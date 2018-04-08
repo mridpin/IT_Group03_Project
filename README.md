@@ -1,7 +1,7 @@
 # Integración de Tecnologías - Grupo 7
 
 ## Componentes del grupo:
-* Victor Martinelli Rodriguez
+* Victor Martinelli Rodríguez
 * Manuel Ridao Pineda
 * Pablo Oliva Navea
 
