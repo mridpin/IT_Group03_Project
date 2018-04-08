@@ -1,0 +1,8 @@
+1. Alumno
+2. Profesor
+3. Administrador 
+4. Fichero
+5. Actividad
+6. Clase
+7. Aula
+8. Mensaje
