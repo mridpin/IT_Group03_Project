@@ -15,3 +15,12 @@ La documentación se encuentra en el directorio "Documentación". Allí pueden c
 
 ### Código fuente
 El código fuente se encuentra en el directorio "source_files". Dentro de él, hay todo lo necesario para desplegar la aplicación, junto con un directorio "database" con la base de datos en formato SQL. 
+
+
+## Sugerencias
+
+### Tecnologías no vistas
+* Maven
+* Git+GitHub
+* TestNG (test de caja negra)
+* Selenium (test web)
