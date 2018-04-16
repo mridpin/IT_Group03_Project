@@ -1,9 +1,9 @@
-1. Alumno -> CRU
-2. Profesor -> CRU
-3. Administrador -> ??
-4. Fichero -> CRUD
+1. Alumno -> CRUD
+2. Profesor -> CRUD
+3. Administrador -> -
+4. Material-> CRUD
 5. Actividad -> CRUD
 6. Clase -> CRUD
 7. Aula -> CRUD
 8. Mensaje -> CR
-Total: 24
+Total: 26
