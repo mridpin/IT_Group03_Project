@@ -24,3 +24,4 @@ El código fuente se encuentra en el directorio "source_files". Dentro de él, h
 * Git+GitHub
 * TestNG (test de caja negra)
 * Selenium (test web)
+* Un "chat" parecido al de Moodle, con AJAX
