@@ -11,16 +11,18 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>WhiteBoard - Login</title>
-    </head>
-    <body>
-        <header>
-            <h1>WHITEBOARD</h1>
-            <p>Very cool header thank</p>
-        </header>
-        <article>
-            <section>
-                <h2>Identificacion de usuario</h2>
-                <s:form action="login">
+        <s:head></s:head>
+        </head>
+        <body>
+            <header>
+                <h1>WHITEBOARD</h1>
+                <p>Very cool header thank</p>
+            </header>
+            <article>
+                <section>
+                    <h2>Identificacion de usuario</h2>
+                <s:actionerror/>
+                <s:form namespace="/login" action="login">
                     <s:textfield key="user"></s:textfield>
                     <s:password key="password"></s:password>
                     <s:submit key="loginsubmit"></s:submit>

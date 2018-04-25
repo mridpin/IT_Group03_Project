@@ -6,7 +6,13 @@
     <!-- Configuration for the default package. -->
     <package name="default" extends="struts-default">
         <action name="">
-            <result>index.jsp</result>
+            <result>login.jsp</result>
+        </action>
+    </package>
+    <package name="login" namespace="/login" extends="struts-default">
+        <action name="login" class="actions.LoginAction">
+            <result name="success">/student_home.jsp</result>
+            <result name="error">/login.jsp</result>            
         </action>
     </package>
 </struts>
