@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Apr 24, 2018 at 06:15 PM
+-- Generation Time: Apr 26, 2018 at 03:09 PM
 -- Server version: 10.1.26-MariaDB
 -- PHP Version: 7.1.9
 
@@ -35,7 +35,8 @@ CREATE TABLE `actividades` (
   `actividadId` int(11) NOT NULL,
   `tipo` varchar(56) COLLATE utf8mb4_spanish2_ci NOT NULL,
   `notaMax` double NOT NULL,
-  `nombre` varchar(256) COLLATE utf8mb4_spanish2_ci NOT NULL
+  `nombre` varchar(256) COLLATE utf8mb4_spanish2_ci NOT NULL,
+  `profesorId` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish2_ci;
 
 -- --------------------------------------------------------
@@ -54,6 +55,42 @@ CREATE TABLE `actividad_alumno` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `administradores`
+--
+
+CREATE TABLE `administradores` (
+  `idUsuario` int(11) NOT NULL,
+  `contraseña` varchar(56) COLLATE utf8mb4_spanish2_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish2_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `alumnos`
+--
+
+CREATE TABLE `alumnos` (
+  `idUsuario` int(11) NOT NULL,
+  `contraseña` varchar(32) COLLATE utf8mb4_spanish2_ci NOT NULL,
+  `nombre` varchar(32) COLLATE utf8mb4_spanish2_ci NOT NULL,
+  `apellidos` varchar(32) COLLATE utf8mb4_spanish2_ci NOT NULL,
+  `foto` varchar(256) COLLATE utf8mb4_spanish2_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish2_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `alumno_asignatura`
+--
+
+CREATE TABLE `alumno_asignatura` (
+  `alumnoId` int(11) NOT NULL,
+  `asignaturaId` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish2_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `asignaturas`
 --
 
@@ -63,7 +100,8 @@ CREATE TABLE `asignaturas` (
   `nAlumnos` int(11) NOT NULL,
   `semestre` varchar(56) COLLATE utf8mb4_spanish2_ci NOT NULL,
   `nombre` varchar(256) COLLATE utf8mb4_spanish2_ci NOT NULL,
-  `curso` int(1) NOT NULL
+  `curso` int(1) NOT NULL,
+  `profesorId` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish2_ci;
 
 -- --------------------------------------------------------
@@ -75,7 +113,8 @@ CREATE TABLE `asignaturas` (
 CREATE TABLE `aulas` (
   `aulaId` int(11) NOT NULL,
   `capacidad` int(11) NOT NULL,
-  `localizacion` varchar(256) COLLATE utf8mb4_spanish2_ci NOT NULL
+  `localizacion` varchar(256) COLLATE utf8mb4_spanish2_ci NOT NULL,
+  `asignaturaId` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish2_ci;
 
 -- --------------------------------------------------------
@@ -87,7 +126,8 @@ CREATE TABLE `aulas` (
 CREATE TABLE `material` (
   `materialId` int(11) NOT NULL,
   `rutaArchivo` varchar(256) COLLATE utf8mb4_spanish2_ci NOT NULL,
-  `nombre` varchar(256) COLLATE utf8mb4_spanish2_ci NOT NULL
+  `nombre` varchar(256) COLLATE utf8mb4_spanish2_ci NOT NULL,
+  `asignaturaId` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish2_ci;
 
 -- --------------------------------------------------------
@@ -98,21 +138,20 @@ CREATE TABLE `material` (
 
 CREATE TABLE `mensajes` (
   `contenido` varchar(256) COLLATE utf8mb4_spanish2_ci NOT NULL,
-  `fecha` date NOT NULL
+  `fecha` date NOT NULL,
+  `remitenteId` int(11) NOT NULL,
+  `destinatarioId` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish2_ci;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `usuarios`
+-- Table structure for table `profesores`
 --
 
-CREATE TABLE `usuarios` (
+CREATE TABLE `profesores` (
   `idUsuario` int(11) NOT NULL,
-  `contraseña` varchar(32) COLLATE utf8mb4_spanish2_ci NOT NULL,
-  `nombre` varchar(32) COLLATE utf8mb4_spanish2_ci NOT NULL,
-  `apellidos` varchar(32) COLLATE utf8mb4_spanish2_ci NOT NULL,
-  `foto` varchar(256) COLLATE utf8mb4_spanish2_ci NOT NULL
+  `horaTutoria` varchar(11) COLLATE utf8mb4_spanish2_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish2_ci;
 
 --
@@ -123,7 +162,8 @@ CREATE TABLE `usuarios` (
 -- Indexes for table `actividades`
 --
 ALTER TABLE `actividades`
-  ADD PRIMARY KEY (`actividadId`);
+  ADD PRIMARY KEY (`actividadId`),
+  ADD KEY `profesorId` (`profesorId`);
 
 --
 -- Indexes for table `actividad_alumno`
@@ -133,27 +173,56 @@ ALTER TABLE `actividad_alumno`
   ADD KEY `alumnoId` (`alumnoId`);
 
 --
+-- Indexes for table `administradores`
+--
+ALTER TABLE `administradores`
+  ADD PRIMARY KEY (`idUsuario`);
+
+--
+-- Indexes for table `alumnos`
+--
+ALTER TABLE `alumnos`
+  ADD PRIMARY KEY (`idUsuario`);
+
+--
+-- Indexes for table `alumno_asignatura`
+--
+ALTER TABLE `alumno_asignatura`
+  ADD KEY `alumnoId` (`alumnoId`),
+  ADD KEY `asignaturaId` (`asignaturaId`);
+
+--
 -- Indexes for table `asignaturas`
 --
 ALTER TABLE `asignaturas`
-  ADD PRIMARY KEY (`asignaturaId`);
+  ADD PRIMARY KEY (`asignaturaId`),
+  ADD KEY `profesorId` (`profesorId`);
 
 --
 -- Indexes for table `aulas`
 --
 ALTER TABLE `aulas`
-  ADD PRIMARY KEY (`aulaId`);
+  ADD PRIMARY KEY (`aulaId`),
+  ADD KEY `asignaturaId` (`asignaturaId`);
 
 --
 -- Indexes for table `material`
 --
 ALTER TABLE `material`
-  ADD PRIMARY KEY (`materialId`);
+  ADD PRIMARY KEY (`materialId`),
+  ADD KEY `asignaturaId` (`asignaturaId`);
 
 --
--- Indexes for table `usuarios`
+-- Indexes for table `mensajes`
 --
-ALTER TABLE `usuarios`
+ALTER TABLE `mensajes`
+  ADD KEY `remitenteId` (`remitenteId`),
+  ADD KEY `destinatarioId` (`destinatarioId`);
+
+--
+-- Indexes for table `profesores`
+--
+ALTER TABLE `profesores`
   ADD PRIMARY KEY (`idUsuario`);
 
 --
@@ -165,6 +234,12 @@ ALTER TABLE `usuarios`
 --
 ALTER TABLE `actividades`
   MODIFY `actividadId` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `alumnos`
+--
+ALTER TABLE `alumnos`
+  MODIFY `idUsuario` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `asignaturas`
@@ -185,21 +260,61 @@ ALTER TABLE `material`
   MODIFY `materialId` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `usuarios`
---
-ALTER TABLE `usuarios`
-  MODIFY `idUsuario` int(11) NOT NULL AUTO_INCREMENT;
-
---
 -- Constraints for dumped tables
 --
+
+--
+-- Constraints for table `actividades`
+--
+ALTER TABLE `actividades`
+  ADD CONSTRAINT `actividades_ibfk_1` FOREIGN KEY (`profesorId`) REFERENCES `profesores` (`idUsuario`);
 
 --
 -- Constraints for table `actividad_alumno`
 --
 ALTER TABLE `actividad_alumno`
   ADD CONSTRAINT `actividad_alumno_ibfk_1` FOREIGN KEY (`actividadId`) REFERENCES `actividades` (`actividadId`),
-  ADD CONSTRAINT `actividad_alumno_ibfk_2` FOREIGN KEY (`alumnoId`) REFERENCES `usuarios` (`idUsuario`);
+  ADD CONSTRAINT `actividad_alumno_ibfk_2` FOREIGN KEY (`alumnoId`) REFERENCES `alumnos` (`idUsuario`);
+
+--
+-- Constraints for table `alumno_asignatura`
+--
+ALTER TABLE `alumno_asignatura`
+  ADD CONSTRAINT `alumno_asignatura_ibfk_1` FOREIGN KEY (`alumnoId`) REFERENCES `alumnos` (`idUsuario`),
+  ADD CONSTRAINT `alumno_asignatura_ibfk_2` FOREIGN KEY (`asignaturaId`) REFERENCES `asignaturas` (`asignaturaId`);
+
+--
+-- Constraints for table `asignaturas`
+--
+ALTER TABLE `asignaturas`
+  ADD CONSTRAINT `asignaturas_ibfk_1` FOREIGN KEY (`profesorId`) REFERENCES `profesores` (`idUsuario`);
+
+--
+-- Constraints for table `aulas`
+--
+ALTER TABLE `aulas`
+  ADD CONSTRAINT `aulas_ibfk_1` FOREIGN KEY (`asignaturaId`) REFERENCES `asignaturas` (`asignaturaId`);
+
+--
+-- Constraints for table `material`
+--
+ALTER TABLE `material`
+  ADD CONSTRAINT `material_ibfk_1` FOREIGN KEY (`asignaturaId`) REFERENCES `asignaturas` (`asignaturaId`);
+
+--
+-- Constraints for table `mensajes`
+--
+ALTER TABLE `mensajes`
+  ADD CONSTRAINT `mensajes_ibfk_1` FOREIGN KEY (`remitenteId`) REFERENCES `alumnos` (`idUsuario`),
+  ADD CONSTRAINT `mensajes_ibfk_2` FOREIGN KEY (`remitenteId`) REFERENCES `profesores` (`idUsuario`),
+  ADD CONSTRAINT `mensajes_ibfk_3` FOREIGN KEY (`destinatarioId`) REFERENCES `alumnos` (`idUsuario`),
+  ADD CONSTRAINT `mensajes_ibfk_4` FOREIGN KEY (`destinatarioId`) REFERENCES `profesores` (`idUsuario`);
+
+--
+-- Constraints for table `profesores`
+--
+ALTER TABLE `profesores`
+  ADD CONSTRAINT `profesores_ibfk_1` FOREIGN KEY (`idUsuario`) REFERENCES `alumnos` (`idUsuario`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
