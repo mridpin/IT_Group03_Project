@@ -1,9 +1,3 @@
-<%-- 
-    Document   : index
-    Created on : Apr 25, 2018, 10:04:11 AM
-    Author     : ridao
---%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="s" uri="/struts-tags" %>
 <!DOCTYPE html>
@@ -14,13 +8,10 @@
         <s:head></s:head>
         </head>
         <body>
-            <header>
-                <h1>WHITEBOARD</h1>
-                <p>Very cool header thank</p>
-            </header>
+        <s:include value="header.jsp"/>
             <article>
                 <section>
-                    <h2>Identificacion de usuario</h2>
+                    <h2><s:text name="loginTitle"/></h2>
                 <s:actionerror/>
                 <s:form namespace="/login" action="login">
                     <s:textfield key="user"></s:textfield>
@@ -29,8 +20,6 @@
                 </s:form>
             </section>
         </article>
-        <footer>
-            <p>OC pls dont steal</p>
-        </footer>
+        <s:include value="footer.jsp"/>
     </body>
 </html>

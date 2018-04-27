@@ -1,9 +1,3 @@
-<%-- 
-    Document   : student_home
-    Created on : Apr 25, 2018, 10:52:10 AM
-    Author     : ridao
---%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
