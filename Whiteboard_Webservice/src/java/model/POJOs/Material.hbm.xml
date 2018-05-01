@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated May 1, 2018 1:17:57 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="model.POJOs.Material" table="material" catalog="proyecto_it" optimistic-lock="version">
+        <id name="materialId" type="java.lang.Integer">
+            <column name="materialId" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="asignaturas" class="model.POJOs.Asignaturas" fetch="select">
+            <column name="asignaturaId" not-null="true" />
+        </many-to-one>
+        <property name="rutaArchivo" type="string">
+            <column name="rutaArchivo" length="256" not-null="true" />
+        </property>
+        <property name="nombre" type="string">
+            <column name="nombre" length="256" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

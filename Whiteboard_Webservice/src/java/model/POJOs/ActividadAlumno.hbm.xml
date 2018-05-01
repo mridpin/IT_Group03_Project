@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated May 1, 2018 1:17:57 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="model.POJOs.ActividadAlumno" table="actividad_alumno" catalog="proyecto_it" optimistic-lock="version">
+        <composite-id name="id" class="model.POJOs.ActividadAlumnoId">
+            <key-property name="alumnoId" type="int">
+                <column name="alumnoId" />
+            </key-property>
+            <key-property name="actividadId" type="int">
+                <column name="actividadId" />
+            </key-property>
+        </composite-id>
+        <many-to-one name="actividades" class="model.POJOs.Actividades" update="false" insert="false" fetch="select">
+            <column name="actividadId" not-null="true" />
+        </many-to-one>
+        <many-to-one name="alumnos" class="model.POJOs.Alumnos" update="false" insert="false" fetch="select">
+            <column name="alumnoId" not-null="true" />
+        </many-to-one>
+        <property name="nota" type="double">
+            <column name="nota" precision="22" scale="0" not-null="true" />
+        </property>
+        <property name="rutaArchivo" type="string">
+            <column name="rutaArchivo" length="256" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

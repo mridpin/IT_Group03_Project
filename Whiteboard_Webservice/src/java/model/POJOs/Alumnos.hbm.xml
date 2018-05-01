@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated May 1, 2018 1:17:57 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="model.POJOs.Alumnos" table="alumnos" catalog="proyecto_it" optimistic-lock="version">
+        <id name="idUsuario" type="java.lang.Integer">
+            <column name="idUsuario" />
+            <generator class="identity" />
+        </id>
+        <property name="password" type="string">
+            <column name="password" length="256" not-null="true" />
+        </property>
+        <property name="nombre" type="string">
+            <column name="nombre" length="32" not-null="true" />
+        </property>
+        <property name="apellidos" type="string">
+            <column name="apellidos" length="32" not-null="true" />
+        </property>
+        <property name="foto" type="string">
+            <column name="foto" length="256" not-null="true" />
+        </property>
+        <set name="actividadAlumnos" table="actividad_alumno" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="alumnoId" not-null="true" />
+            </key>
+            <one-to-many class="model.POJOs.ActividadAlumno" />
+        </set>
+        <set name="asignaturases" table="alumno_asignatura" inverse="false" lazy="true" fetch="select">
+            <key>
+                <column name="alumnoId" not-null="true" />
+            </key>
+            <many-to-many entity-name="model.POJOs.Asignaturas">
+                <column name="asignaturaId" not-null="true" />
+            </many-to-many>
+        </set>
+        <set name="mensajesesForRemitenteId" table="mensajes" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="remitenteId" not-null="true" />
+            </key>
+            <one-to-many class="model.POJOs.Mensajes" />
+        </set>
+        <one-to-one name="profesores" class="model.POJOs.Profesores"></one-to-one>
+        <set name="mensajesesForDestinatarioId" table="mensajes" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="destinatarioId" not-null="true" />
+            </key>
+            <one-to-many class="model.POJOs.Mensajes" />
+        </set>
+    </class>
+</hibernate-mapping>

@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.4
+-- version 4.7.7
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost
--- Generation Time: Apr 26, 2018 at 03:09 PM
--- Server version: 10.1.26-MariaDB
--- PHP Version: 7.1.9
+-- Host: 127.0.0.1
+-- Generation Time: May 01, 2018 at 01:04 PM
+-- Server version: 10.1.30-MariaDB
+-- PHP Version: 7.2.2
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -19,10 +19,10 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `proyecto_IT`
+-- Database: `proyecto_it`
 --
-CREATE DATABASE IF NOT EXISTS `proyecto_IT` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish2_ci;
-USE `proyecto_IT`;
+CREATE DATABASE IF NOT EXISTS `proyecto_it` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish2_ci;
+USE `proyecto_it`;
 
 -- --------------------------------------------------------
 
@@ -137,6 +137,7 @@ CREATE TABLE `material` (
 --
 
 CREATE TABLE `mensajes` (
+  `idMensaje` int(11) NOT NULL,
   `contenido` varchar(256) COLLATE utf8mb4_spanish2_ci NOT NULL,
   `fecha` date NOT NULL,
   `remitenteId` int(11) NOT NULL,
@@ -169,6 +170,7 @@ ALTER TABLE `actividades`
 -- Indexes for table `actividad_alumno`
 --
 ALTER TABLE `actividad_alumno`
+  ADD PRIMARY KEY (`alumnoId`,`actividadId`),
   ADD KEY `actividadId` (`actividadId`),
   ADD KEY `alumnoId` (`alumnoId`);
 
@@ -188,6 +190,7 @@ ALTER TABLE `alumnos`
 -- Indexes for table `alumno_asignatura`
 --
 ALTER TABLE `alumno_asignatura`
+  ADD PRIMARY KEY (`alumnoId`,`asignaturaId`),
   ADD KEY `alumnoId` (`alumnoId`),
   ADD KEY `asignaturaId` (`asignaturaId`);
 
@@ -216,6 +219,7 @@ ALTER TABLE `material`
 -- Indexes for table `mensajes`
 --
 ALTER TABLE `mensajes`
+  ADD PRIMARY KEY (`idMensaje`),
   ADD KEY `remitenteId` (`remitenteId`),
   ADD KEY `destinatarioId` (`destinatarioId`);
 
@@ -258,6 +262,12 @@ ALTER TABLE `aulas`
 --
 ALTER TABLE `material`
   MODIFY `materialId` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `mensajes`
+--
+ALTER TABLE `mensajes`
+  MODIFY `idMensaje` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- Constraints for dumped tables

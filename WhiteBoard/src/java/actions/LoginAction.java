@@ -7,6 +7,7 @@ package actions;
 
 import com.opensymphony.xwork2.ActionSupport;
 import model.ModeloProvisional;
+import model.dao.Alumnos;
 
 /**
  *
@@ -22,12 +23,11 @@ public class LoginAction extends ActionSupport {
     }
 
     public String execute() throws Exception {
-        if (ModeloProvisional.login(user, password)) {
+        if (login(user, password) != null) {
             return SUCCESS;
-        } else {
-            addActionError(getText("loginError"));
-            return ERROR;
         }
+        return ERROR;
+        // Guardar aliumno en session
     }
 
     public String getUser() {
@@ -45,5 +45,12 @@ public class LoginAction extends ActionSupport {
     public void setPassword(String password) {
         this.password = password;
     }
+
+    private static Alumnos login(java.lang.String user, java.lang.String pass) {
+        model.dao.DAO_Service service = new model.dao.DAO_Service();
+        model.dao.DAO port = service.getDAOPort();
+        return port.login(user, pass);
+    }
+
 
 }
