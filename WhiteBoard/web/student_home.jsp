@@ -8,5 +8,10 @@
     </head>
     <body>
         <h1>Welcome back <s:property value="#session.usuario.nombre"/></h1>
+        
+        <s:form action="logout">
+            <s:submit name="logout" value="Logout"/>
+        </s:form>
+        
     </body>
 </html>
