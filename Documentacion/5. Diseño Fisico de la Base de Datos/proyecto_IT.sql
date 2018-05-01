@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.7
+-- version 4.7.4
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: May 01, 2018 at 01:04 PM
--- Server version: 10.1.30-MariaDB
--- PHP Version: 7.2.2
+-- Host: localhost
+-- Generation Time: May 01, 2018 at 08:20 PM
+-- Server version: 10.1.26-MariaDB
+-- PHP Version: 7.1.9
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -60,7 +60,8 @@ CREATE TABLE `actividad_alumno` (
 
 CREATE TABLE `administradores` (
   `idUsuario` int(11) NOT NULL,
-  `contraseña` varchar(56) COLLATE utf8mb4_spanish2_ci NOT NULL
+  `contraseña` varchar(56) COLLATE utf8mb4_spanish2_ci NOT NULL,
+  `password` longtext COLLATE utf8mb4_spanish2_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish2_ci;
 
 -- --------------------------------------------------------
@@ -71,11 +72,18 @@ CREATE TABLE `administradores` (
 
 CREATE TABLE `alumnos` (
   `idUsuario` int(11) NOT NULL,
-  `contraseña` varchar(32) COLLATE utf8mb4_spanish2_ci NOT NULL,
   `nombre` varchar(32) COLLATE utf8mb4_spanish2_ci NOT NULL,
   `apellidos` varchar(32) COLLATE utf8mb4_spanish2_ci NOT NULL,
-  `foto` varchar(256) COLLATE utf8mb4_spanish2_ci NOT NULL
+  `foto` varchar(256) COLLATE utf8mb4_spanish2_ci NOT NULL,
+  `password` varchar(256) COLLATE utf8mb4_spanish2_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish2_ci;
+
+--
+-- Dumping data for table `alumnos`
+--
+
+INSERT INTO `alumnos` (`idUsuario`, `nombre`, `apellidos`, `foto`, `password`) VALUES
+(1, 'pene', 'pene', '', '20D59B95948B67CE4CADAAC4F7934B1A');
 
 -- --------------------------------------------------------
 
@@ -152,7 +160,11 @@ CREATE TABLE `mensajes` (
 
 CREATE TABLE `profesores` (
   `idUsuario` int(11) NOT NULL,
-  `horaTutoria` varchar(11) COLLATE utf8mb4_spanish2_ci NOT NULL
+  `horaTutoria` varchar(11) COLLATE utf8mb4_spanish2_ci NOT NULL,
+  `password` longtext COLLATE utf8mb4_spanish2_ci NOT NULL,
+  `nombre` varchar(32) COLLATE utf8mb4_spanish2_ci NOT NULL,
+  `apellidos` varchar(124) COLLATE utf8mb4_spanish2_ci NOT NULL,
+  `foto` longtext COLLATE utf8mb4_spanish2_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish2_ci;
 
 --
@@ -243,7 +255,7 @@ ALTER TABLE `actividades`
 -- AUTO_INCREMENT for table `alumnos`
 --
 ALTER TABLE `alumnos`
-  MODIFY `idUsuario` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idUsuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `asignaturas`
