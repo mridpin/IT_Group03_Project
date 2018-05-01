@@ -5,7 +5,7 @@
     <client name="DAO">
       <wsdl-url>http://localhost:8080/Whiteboard_Webservice/DAO?WSDL</wsdl-url>
       <local-wsdl-file>localhost_8080/Whiteboard_Webservice/DAO.wsdl</local-wsdl-file>
-      <package-name>model.dao</package-name>
+      <package-name forceReplace="true">model</package-name>
       <catalog-file>catalog.xml</catalog-file>
       <wsimport-options>
         <wsimport-option>
@@ -31,6 +31,10 @@
         <wsimport-option>
           <wsimport-option-name>xendorsed</wsimport-option-name>
           <wsimport-option-value>true</wsimport-option-value>
+        </wsimport-option>
+        <wsimport-option>
+          <wsimport-option-name>package</wsimport-option-name>
+          <wsimport-option-value>model</wsimport-option-value>
         </wsimport-option>
       </wsimport-options>
     </client>

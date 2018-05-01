@@ -5,9 +5,11 @@
  */
 package actions;
 
+import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
-import model.ModeloProvisional;
-import model.dao.Alumnos;
+import java.util.Map;
+import model.Alumnos;
+
 
 /**
  *
@@ -23,7 +25,10 @@ public class LoginAction extends ActionSupport {
     }
 
     public String execute() throws Exception {
-        if (login(user, password) != null) {
+        Alumnos current = login(user, password);
+        if (current != null) {
+            Map session = (Map) ActionContext.getContext().get("session");
+            session.put("usuario", current);
             return SUCCESS;
         }
         return ERROR;
@@ -47,10 +52,12 @@ public class LoginAction extends ActionSupport {
     }
 
     private static Alumnos login(java.lang.String user, java.lang.String pass) {
-        model.dao.DAO_Service service = new model.dao.DAO_Service();
-        model.dao.DAO port = service.getDAOPort();
+        model.DAO_Service service = new model.DAO_Service();
+        model.DAO port = service.getDAOPort();
         return port.login(user, pass);
     }
+
+    
 
 
 }

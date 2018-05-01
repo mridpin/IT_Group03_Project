@@ -28,7 +28,7 @@
     </target>
     <target name="wsimport-client-DAO" depends="wsimport-init">
         <mkdir dir="${build.generated.dir}/jax-wsCache/DAO"/>
-        <wsimport sourcedestdir="${build.generated.dir}/jax-wsCache/DAO" destdir="${build.generated.dir}/jax-wsCache/DAO" wsdl="${basedir}/${conf-dir}xml-resources/web-service-references/DAO/wsdl/localhost_8080/Whiteboard_Webservice/DAO.wsdl" catalog="catalog.xml" encoding="${source.encoding}" extension="true" verbose="true" fork="false" wsdlLocation="http://localhost:8080/Whiteboard_Webservice/DAO?WSDL" xnocompile="true" xendorsed="true">
+        <wsimport sourcedestdir="${build.generated.dir}/jax-wsCache/DAO" destdir="${build.generated.dir}/jax-wsCache/DAO" wsdl="${basedir}/${conf-dir}xml-resources/web-service-references/DAO/wsdl/localhost_8080/Whiteboard_Webservice/DAO.wsdl" catalog="catalog.xml" encoding="${source.encoding}" extension="true" verbose="true" fork="false" wsdlLocation="http://localhost:8080/Whiteboard_Webservice/DAO?WSDL" xnocompile="true" xendorsed="true" package="model">
             <depends file="${basedir}/${conf-dir}xml-resources/web-service-references/DAO/wsdl/localhost_8080/Whiteboard_Webservice/DAO.wsdl"/>
             <produces dir="${build.generated.dir}/jax-wsCache/DAO"/>
         </wsimport>
@@ -39,7 +39,7 @@
         </copy>
     </target>
     <target name="wsimport-client-clean-DAO" depends="-init-project">
-        <delete dir="${build.generated.sources.dir}/jax-ws/model/dao"/>
+        <delete dir="${build.generated.sources.dir}/jax-ws/model"/>
         <delete dir="${build.generated.dir}/jax-wsCache/DAO"/>
     </target>
     <target name="wsimport-client-generate" depends="wsimport-client-DAO"/>
