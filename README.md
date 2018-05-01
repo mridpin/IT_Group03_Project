@@ -5,6 +5,11 @@
 * Manuel Ridao Pineda
 * Pablo Oliva Navea
 
+## Instrucciones
+* Validaciones mediante XML
+* Mensajes de error en .properties
+* Webservice con WSDL
+
 ## Temática del trabajo:
 * Sistema Educativo Online
 ## Entrega
