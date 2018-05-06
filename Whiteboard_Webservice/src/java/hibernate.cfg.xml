@@ -51,14 +51,14 @@ Contributor(s):
     <property name="hibernate.format_sql">true</property>
     <property name="hibernate.hbm2ddl.auto">update</property>
     <property name="hibernate.enable_lazy_load_no_trans">true</property>
-    <mapping resource="model/POJOs/ActividadAlumno.hbm.xml"/>
-    <mapping resource="model/POJOs/Material.hbm.xml"/>
-    <mapping resource="model/POJOs/Profesores.hbm.xml"/>
-    <mapping resource="model/POJOs/Mensajes.hbm.xml"/>
+    <mapping resource="model/POJOs/Aulas.hbm.xml"/>
+    <mapping resource="model/POJOs/Actividades.hbm.xml"/>
     <mapping resource="model/POJOs/Asignaturas.hbm.xml"/>
     <mapping resource="model/POJOs/Administradores.hbm.xml"/>
-    <mapping resource="model/POJOs/Actividades.hbm.xml"/>
-    <mapping resource="model/POJOs/Aulas.hbm.xml"/>
+    <mapping resource="model/POJOs/Mensajes.hbm.xml"/>
+    <mapping resource="model/POJOs/ActividadAlumno.hbm.xml"/>
     <mapping resource="model/POJOs/Alumnos.hbm.xml"/>
+    <mapping resource="model/POJOs/Profesores.hbm.xml"/>
+    <mapping resource="model/POJOs/Material.hbm.xml"/>
   </session-factory>
 </hibernate-configuration>

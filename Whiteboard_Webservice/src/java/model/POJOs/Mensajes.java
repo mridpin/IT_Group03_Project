@@ -1,5 +1,5 @@
 package model.POJOs;
-// Generated May 6, 2018 5:08:57 PM by Hibernate Tools 4.3.1
+// Generated May 6, 2018 7:52:07 PM by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -13,19 +13,15 @@ public class Mensajes  implements java.io.Serializable {
      private Integer idMensaje;
      private Alumnos alumnosByRemitenteId;
      private Alumnos alumnosByDestinatarioId;
-     private Profesores profesoresByRemitenteId;
-     private Profesores profesoresByDestinatarioId;
      private String contenido;
      private Date fecha;
 
     public Mensajes() {
     }
 
-    public Mensajes(Alumnos alumnosByRemitenteId, Alumnos alumnosByDestinatarioId, Profesores profesoresByRemitenteId, Profesores profesoresByDestinatarioId, String contenido, Date fecha) {
+    public Mensajes(Alumnos alumnosByRemitenteId, Alumnos alumnosByDestinatarioId, String contenido, Date fecha) {
        this.alumnosByRemitenteId = alumnosByRemitenteId;
        this.alumnosByDestinatarioId = alumnosByDestinatarioId;
-       this.profesoresByRemitenteId = profesoresByRemitenteId;
-       this.profesoresByDestinatarioId = profesoresByDestinatarioId;
        this.contenido = contenido;
        this.fecha = fecha;
     }
@@ -50,20 +46,6 @@ public class Mensajes  implements java.io.Serializable {
     
     public void setAlumnosByDestinatarioId(Alumnos alumnosByDestinatarioId) {
         this.alumnosByDestinatarioId = alumnosByDestinatarioId;
-    }
-    public Profesores getProfesoresByRemitenteId() {
-        return this.profesoresByRemitenteId;
-    }
-    
-    public void setProfesoresByRemitenteId(Profesores profesoresByRemitenteId) {
-        this.profesoresByRemitenteId = profesoresByRemitenteId;
-    }
-    public Profesores getProfesoresByDestinatarioId() {
-        return this.profesoresByDestinatarioId;
-    }
-    
-    public void setProfesoresByDestinatarioId(Profesores profesoresByDestinatarioId) {
-        this.profesoresByDestinatarioId = profesoresByDestinatarioId;
     }
     public String getContenido() {
         return this.contenido;

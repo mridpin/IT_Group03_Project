@@ -1,12 +1,12 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated May 6, 2018 5:08:57 PM by Hibernate Tools 4.3.1 -->
+<!-- Generated May 6, 2018 7:52:08 PM by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="model.POJOs.Profesores" table="profesores" catalog="proyecto_it" optimistic-lock="version">
-        <id name="idUsuario" type="int">
+        <id name="idUsuario" type="java.lang.Integer">
             <column name="idUsuario" />
-            <generator class="assigned" />
+            <generator class="identity" />
         </id>
         <property name="username" type="string">
             <column name="username" length="52" not-null="true" />
@@ -37,18 +37,6 @@
                 <column name="profesorId" not-null="true" />
             </key>
             <one-to-many class="model.POJOs.Asignaturas" />
-        </set>
-        <set name="mensajesesForRemitenteId" table="mensajes" inverse="true" lazy="true" fetch="select">
-            <key>
-                <column name="remitenteId" not-null="true" />
-            </key>
-            <one-to-many class="model.POJOs.Mensajes" />
-        </set>
-        <set name="mensajesesForDestinatarioId" table="mensajes" inverse="true" lazy="true" fetch="select">
-            <key>
-                <column name="destinatarioId" not-null="true" />
-            </key>
-            <one-to-many class="model.POJOs.Mensajes" />
         </set>
     </class>
 </hibernate-mapping>

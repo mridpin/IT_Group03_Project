@@ -7,6 +7,7 @@ package actions;
 
 import com.opensymphony.xwork2.ActionSupport;
 import java.util.List;
+import model.Asignaturas;
 
 public class AlumnoActions extends ActionSupport {
     

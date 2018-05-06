@@ -1,5 +1,5 @@
 package model.POJOs;
-// Generated May 6, 2018 5:08:57 PM by Hibernate Tools 4.3.1
+// Generated May 6, 2018 7:52:07 PM by Hibernate Tools 4.3.1
 
 
 
@@ -9,24 +9,23 @@ package model.POJOs;
 public class Administradores  implements java.io.Serializable {
 
 
-     private int idUsuario;
+     private Integer idUsuario;
      private String username;
      private String password;
 
     public Administradores() {
     }
 
-    public Administradores(int idUsuario, String username, String password) {
-       this.idUsuario = idUsuario;
+    public Administradores(String username, String password) {
        this.username = username;
        this.password = password;
     }
    
-    public int getIdUsuario() {
+    public Integer getIdUsuario() {
         return this.idUsuario;
     }
     
-    public void setIdUsuario(int idUsuario) {
+    public void setIdUsuario(Integer idUsuario) {
         this.idUsuario = idUsuario;
     }
     public String getUsername() {
