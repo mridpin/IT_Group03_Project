@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 06-05-2018 a las 12:34:16
+-- Tiempo de generación: 06-05-2018 a las 17:19:46
 -- Versión del servidor: 10.1.21-MariaDB
 -- Versión de PHP: 5.6.30
 
@@ -82,7 +82,7 @@ CREATE TABLE `alumnos` (
 --
 
 INSERT INTO `alumnos` (`idUsuario`, `username`, `nombre`, `apellidos`, `foto`, `password`) VALUES
-(1, '', 'pene', 'pene', '', '20D59B95948B67CE4CADAAC4F7934B1A');
+(1, 'test', 'test', 'test', '', 'D8E8FCA2DC0F896FD7CB4CB0031BA249');
 
 -- --------------------------------------------------------
 
@@ -110,6 +110,13 @@ CREATE TABLE `asignaturas` (
   `curso` int(1) NOT NULL,
   `profesorId` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish2_ci;
+
+--
+-- Volcado de datos para la tabla `asignaturas`
+--
+
+INSERT INTO `asignaturas` (`asignaturaId`, `notaMinima`, `nAlumnos`, `semestre`, `nombre`, `curso`, `profesorId`) VALUES
+(2, 5, 2, '1', 'Programación C', 1, 2);
 
 -- --------------------------------------------------------
 
@@ -161,11 +168,18 @@ CREATE TABLE `profesores` (
   `idUsuario` int(11) NOT NULL,
   `username` varchar(52) COLLATE utf8mb4_spanish2_ci NOT NULL,
   `horaTutoria` varchar(11) COLLATE utf8mb4_spanish2_ci NOT NULL,
-  `password` longtext COLLATE utf8mb4_spanish2_ci NOT NULL,
+  `password` varchar(256) COLLATE utf8mb4_spanish2_ci NOT NULL,
   `nombre` varchar(32) COLLATE utf8mb4_spanish2_ci NOT NULL,
   `apellidos` varchar(124) COLLATE utf8mb4_spanish2_ci NOT NULL,
-  `foto` longtext COLLATE utf8mb4_spanish2_ci NOT NULL
+  `foto` varchar(256) COLLATE utf8mb4_spanish2_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish2_ci;
+
+--
+-- Volcado de datos para la tabla `profesores`
+--
+
+INSERT INTO `profesores` (`idUsuario`, `username`, `horaTutoria`, `password`, `nombre`, `apellidos`, `foto`) VALUES
+(2, 'MKHN', '08:50', 'A393BAE49DC6094B3E1AA1CEA969AB63', 'Mike', 'Hunt', '');
 
 --
 -- Índices para tablas volcadas
@@ -259,7 +273,7 @@ ALTER TABLE `alumnos`
 -- AUTO_INCREMENT de la tabla `asignaturas`
 --
 ALTER TABLE `asignaturas`
-  MODIFY `asignaturaId` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `asignaturaId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT de la tabla `aulas`
 --
@@ -325,12 +339,6 @@ ALTER TABLE `mensajes`
   ADD CONSTRAINT `mensajes_ibfk_2` FOREIGN KEY (`remitenteId`) REFERENCES `profesores` (`idUsuario`),
   ADD CONSTRAINT `mensajes_ibfk_3` FOREIGN KEY (`destinatarioId`) REFERENCES `alumnos` (`idUsuario`),
   ADD CONSTRAINT `mensajes_ibfk_4` FOREIGN KEY (`destinatarioId`) REFERENCES `profesores` (`idUsuario`);
-
---
--- Filtros para la tabla `profesores`
---
-ALTER TABLE `profesores`
-  ADD CONSTRAINT `profesores_ibfk_1` FOREIGN KEY (`idUsuario`) REFERENCES `alumnos` (`idUsuario`);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

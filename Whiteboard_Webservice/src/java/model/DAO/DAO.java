@@ -7,6 +7,7 @@ package model.DAO;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.List;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -15,6 +16,7 @@ import javax.jws.WebMethod;
 import javax.jws.WebParam;
 import javax.xml.bind.DatatypeConverter;
 import model.POJOs.Alumnos;
+import model.POJOs.Asignaturas;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -64,6 +66,25 @@ public class DAO {
             return false;
         }
         
+    }
+
+    /**
+     * Web service operation
+     */
+    @WebMethod(operationName = "getAlumnoAsignaturas")
+    public List<Asignaturas> getAlumnoAsignaturas(@WebParam(name = "idUsuario") int idUsuario) {
+        Alumnos aux = null;
+        List<Asignaturas> result = null;
+        
+        session = HibernateUtil.getSessionFactory().getCurrentSession();
+        Transaction tx = session.beginTransaction();
+        Query q = session.createQuery("from Alumnos where idUsuario='" + idUsuario + "'");
+        aux = (Alumnos) q.uniqueResult();
+        tx.commit();
+
+        result.addAll(aux.getAsignaturases());
+        
+        return result;
     }
     
 }

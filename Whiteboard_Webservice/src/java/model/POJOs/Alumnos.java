@@ -1,5 +1,5 @@
 package model.POJOs;
-// Generated May 6, 2018 12:33:14 PM by Hibernate Tools 4.3.1
+// Generated May 6, 2018 5:08:57 PM by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
@@ -20,7 +20,6 @@ public class Alumnos  implements java.io.Serializable {
      private Set actividadAlumnos = new HashSet(0);
      private Set asignaturases = new HashSet(0);
      private Set mensajesesForRemitenteId = new HashSet(0);
-     private Profesores profesores;
      private Set mensajesesForDestinatarioId = new HashSet(0);
 
     public Alumnos() {
@@ -34,7 +33,7 @@ public class Alumnos  implements java.io.Serializable {
         this.foto = foto;
         this.password = password;
     }
-    public Alumnos(String username, String nombre, String apellidos, String foto, String password, Set actividadAlumnos, Set asignaturases, Set mensajesesForRemitenteId, Profesores profesores, Set mensajesesForDestinatarioId) {
+    public Alumnos(String username, String nombre, String apellidos, String foto, String password, Set actividadAlumnos, Set asignaturases, Set mensajesesForRemitenteId, Set mensajesesForDestinatarioId) {
        this.username = username;
        this.nombre = nombre;
        this.apellidos = apellidos;
@@ -43,7 +42,6 @@ public class Alumnos  implements java.io.Serializable {
        this.actividadAlumnos = actividadAlumnos;
        this.asignaturases = asignaturases;
        this.mensajesesForRemitenteId = mensajesesForRemitenteId;
-       this.profesores = profesores;
        this.mensajesesForDestinatarioId = mensajesesForDestinatarioId;
     }
    
@@ -109,13 +107,6 @@ public class Alumnos  implements java.io.Serializable {
     
     public void setMensajesesForRemitenteId(Set mensajesesForRemitenteId) {
         this.mensajesesForRemitenteId = mensajesesForRemitenteId;
-    }
-    public Profesores getProfesores() {
-        return this.profesores;
-    }
-    
-    public void setProfesores(Profesores profesores) {
-        this.profesores = profesores;
     }
     public Set getMensajesesForDestinatarioId() {
         return this.mensajesesForDestinatarioId;

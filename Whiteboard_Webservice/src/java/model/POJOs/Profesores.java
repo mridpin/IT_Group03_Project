@@ -1,5 +1,5 @@
 package model.POJOs;
-// Generated May 6, 2018 12:33:14 PM by Hibernate Tools 4.3.1
+// Generated May 6, 2018 5:08:57 PM by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
@@ -12,7 +12,6 @@ public class Profesores  implements java.io.Serializable {
 
 
      private int idUsuario;
-     private Alumnos alumnos;
      private String username;
      private String horaTutoria;
      private String password;
@@ -28,8 +27,8 @@ public class Profesores  implements java.io.Serializable {
     }
 
 	
-    public Profesores(Alumnos alumnos, String username, String horaTutoria, String password, String nombre, String apellidos, String foto) {
-        this.alumnos = alumnos;
+    public Profesores(int idUsuario, String username, String horaTutoria, String password, String nombre, String apellidos, String foto) {
+        this.idUsuario = idUsuario;
         this.username = username;
         this.horaTutoria = horaTutoria;
         this.password = password;
@@ -37,8 +36,8 @@ public class Profesores  implements java.io.Serializable {
         this.apellidos = apellidos;
         this.foto = foto;
     }
-    public Profesores(Alumnos alumnos, String username, String horaTutoria, String password, String nombre, String apellidos, String foto, Set actividadeses, Set asignaturases, Set mensajesesForRemitenteId, Set mensajesesForDestinatarioId) {
-       this.alumnos = alumnos;
+    public Profesores(int idUsuario, String username, String horaTutoria, String password, String nombre, String apellidos, String foto, Set actividadeses, Set asignaturases, Set mensajesesForRemitenteId, Set mensajesesForDestinatarioId) {
+       this.idUsuario = idUsuario;
        this.username = username;
        this.horaTutoria = horaTutoria;
        this.password = password;
@@ -57,13 +56,6 @@ public class Profesores  implements java.io.Serializable {
     
     public void setIdUsuario(int idUsuario) {
         this.idUsuario = idUsuario;
-    }
-    public Alumnos getAlumnos() {
-        return this.alumnos;
-    }
-    
-    public void setAlumnos(Alumnos alumnos) {
-        this.alumnos = alumnos;
     }
     public String getUsername() {
         return this.username;
