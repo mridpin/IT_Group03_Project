@@ -6,21 +6,40 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>WhiteBoard - Login</title>
         <link rel="stylesheet" type="text/css" href="Auxiliary/style.css" >
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+        <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-blue-grey.css">
+        <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Open+Sans'>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <s:head></s:head>
         </head>
-        <body>
+
+        <body class="w3-green">
         <s:include value="header.jsp"/>
-        <article>
-            <section>
-                <h2><s:text name="loginTitle"/></h2>
-                <s:actionerror/>
+
+        <div class="w3-card w3-round-medium w3-white w3-margin w3-half w3-display-middle">
+            <div class="w3-container">
                 <s:form namespace="/login" action="login">
-                    <s:textfield key="user"></s:textfield>
-                    <s:password key="password"></s:password>
-                    <s:submit key="loginsubmit"></s:submit>
+                    <h4 class="w3-center"><s:text name="loginTitle"/></h4>
+                    <s:textfield cssClass="w3-input" key="user"></s:textfield>
+                    <s:password cssClass="w3-input" key="password"></s:password>
+                    <s:submit cssClass="w3-button" key="loginsubmit"></s:submit>
                 </s:form>
-            </section>
-        </article>
+            </div>
+        </div>
+
+        <!--
+         <article>
+             <section>
+                 <h2><s:text name="loginTitle"/></h2>
+        <s:actionerror/>
+        <s:form namespace="/login" action="login">
+            <s:textfield key="user"></s:textfield>
+            <s:password key="password"></s:password>
+            <s:submit key="loginsubmit"></s:submit>
+        </s:form>
+    </section>
+</article>-->
+        <br>
         <s:include value="footer.jsp"/>
     </body>
 </html>
