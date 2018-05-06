@@ -10,7 +10,6 @@ import com.opensymphony.xwork2.ActionSupport;
 import java.util.Map;
 import model.Alumnos;
 
-
 /**
  *
  * @author ridao
@@ -25,14 +24,25 @@ public class LoginAction extends ActionSupport {
     }
 
     public String execute() throws Exception {
-        Alumnos current = login(user, password);
-        if (current != null) {
-            Map session = (Map) ActionContext.getContext().get("session");
-            session.put("usuario", current);
-            return SUCCESS;
+
+        if (!user.equals("") && !password.equals("")) {
+            Alumnos current = login(user, password);
+            if (current != null) {
+                Map session = (Map) ActionContext.getContext().get("session");
+                session.put("usuario", current);
+                return SUCCESS;
+            }
+            else
+            {
+                //This has to be done here because the invalid login case doesn't have a validation
+                addFieldError("user",getText("login.error"));
+                return INPUT;
+            }
         }
-        return ERROR;
-        // Guardar aliumno en session
+        else
+        {
+            return INPUT;
+        }
     }
 
     public String getUser() {
@@ -57,14 +67,10 @@ public class LoginAction extends ActionSupport {
         return port.login(user, pass);
     }
 
-    
-    public String logout()
-    {
+    public String logout() {
         Map session = (Map) ActionContext.getContext().get("session");
         session.put("usuario", null);
         return SUCCESS;
     }
-    
-
 
 }
