@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated May 6, 2018 7:52:08 PM by Hibernate Tools 4.3.1 -->
+<!-- Generated May 6, 2018 8:06:22 PM by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="model.POJOs.Administradores" table="administradores" catalog="proyecto_it" optimistic-lock="version">
         <id name="idUsuario" type="java.lang.Integer">

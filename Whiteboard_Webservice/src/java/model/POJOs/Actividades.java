@@ -1,5 +1,5 @@
 package model.POJOs;
-// Generated May 6, 2018 7:52:07 PM by Hibernate Tools 4.3.1
+// Generated May 6, 2018 8:06:22 PM by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -18,7 +18,7 @@ public class Actividades  implements java.io.Serializable {
      private String tipo;
      private double notaMax;
      private String nombre;
-     private Set actividadAlumnos = new HashSet(0);
+     private Set entregas = new HashSet(0);
 
     public Actividades() {
     }
@@ -31,13 +31,13 @@ public class Actividades  implements java.io.Serializable {
         this.notaMax = notaMax;
         this.nombre = nombre;
     }
-    public Actividades(Profesores profesores, Date fechaFin, String tipo, double notaMax, String nombre, Set actividadAlumnos) {
+    public Actividades(Profesores profesores, Date fechaFin, String tipo, double notaMax, String nombre, Set entregas) {
        this.profesores = profesores;
        this.fechaFin = fechaFin;
        this.tipo = tipo;
        this.notaMax = notaMax;
        this.nombre = nombre;
-       this.actividadAlumnos = actividadAlumnos;
+       this.entregas = entregas;
     }
    
     public Integer getActividadId() {
@@ -82,12 +82,12 @@ public class Actividades  implements java.io.Serializable {
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
-    public Set getActividadAlumnos() {
-        return this.actividadAlumnos;
+    public Set getEntregas() {
+        return this.entregas;
     }
     
-    public void setActividadAlumnos(Set actividadAlumnos) {
-        this.actividadAlumnos = actividadAlumnos;
+    public void setEntregas(Set entregas) {
+        this.entregas = entregas;
     }
 
 

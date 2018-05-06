@@ -1,5 +1,5 @@
 package model.POJOs;
-// Generated May 6, 2018 7:52:07 PM by Hibernate Tools 4.3.1
+// Generated May 6, 2018 8:06:22 PM by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
@@ -17,7 +17,7 @@ public class Alumnos  implements java.io.Serializable {
      private String apellidos;
      private String foto;
      private String password;
-     private Set actividadAlumnos = new HashSet(0);
+     private Set entregas = new HashSet(0);
      private Set asignaturases = new HashSet(0);
      private Set mensajesesForRemitenteId = new HashSet(0);
      private Set mensajesesForDestinatarioId = new HashSet(0);
@@ -33,13 +33,13 @@ public class Alumnos  implements java.io.Serializable {
         this.foto = foto;
         this.password = password;
     }
-    public Alumnos(String username, String nombre, String apellidos, String foto, String password, Set actividadAlumnos, Set asignaturases, Set mensajesesForRemitenteId, Set mensajesesForDestinatarioId) {
+    public Alumnos(String username, String nombre, String apellidos, String foto, String password, Set entregas, Set asignaturases, Set mensajesesForRemitenteId, Set mensajesesForDestinatarioId) {
        this.username = username;
        this.nombre = nombre;
        this.apellidos = apellidos;
        this.foto = foto;
        this.password = password;
-       this.actividadAlumnos = actividadAlumnos;
+       this.entregas = entregas;
        this.asignaturases = asignaturases;
        this.mensajesesForRemitenteId = mensajesesForRemitenteId;
        this.mensajesesForDestinatarioId = mensajesesForDestinatarioId;
@@ -87,12 +87,12 @@ public class Alumnos  implements java.io.Serializable {
     public void setPassword(String password) {
         this.password = password;
     }
-    public Set getActividadAlumnos() {
-        return this.actividadAlumnos;
+    public Set getEntregas() {
+        return this.entregas;
     }
     
-    public void setActividadAlumnos(Set actividadAlumnos) {
-        this.actividadAlumnos = actividadAlumnos;
+    public void setEntregas(Set entregas) {
+        this.entregas = entregas;
     }
     public Set getAsignaturases() {
         return this.asignaturases;

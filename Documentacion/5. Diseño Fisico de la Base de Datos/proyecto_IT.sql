@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 06, 2018 at 07:56 PM
+-- Generation Time: May 06, 2018 at 08:07 PM
 -- Server version: 10.1.30-MariaDB
 -- PHP Version: 7.2.2
 
@@ -37,19 +37,6 @@ CREATE TABLE `actividades` (
   `notaMax` double NOT NULL,
   `nombre` varchar(256) COLLATE utf8mb4_spanish2_ci NOT NULL,
   `profesorId` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish2_ci;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `actividad_alumno`
---
-
-CREATE TABLE `actividad_alumno` (
-  `alumnoId` int(11) NOT NULL,
-  `actividadId` int(11) NOT NULL,
-  `nota` double NOT NULL,
-  `rutaArchivo` varchar(256) COLLATE utf8mb4_spanish2_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish2_ci;
 
 -- --------------------------------------------------------
@@ -136,6 +123,19 @@ CREATE TABLE `aulas` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `entrega`
+--
+
+CREATE TABLE `entrega` (
+  `alumnoId` int(11) NOT NULL,
+  `actividadId` int(11) NOT NULL,
+  `nota` double NOT NULL,
+  `rutaArchivo` varchar(256) COLLATE utf8mb4_spanish2_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish2_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `material`
 --
 
@@ -195,14 +195,6 @@ ALTER TABLE `actividades`
   ADD KEY `profesorId` (`profesorId`);
 
 --
--- Indexes for table `actividad_alumno`
---
-ALTER TABLE `actividad_alumno`
-  ADD PRIMARY KEY (`alumnoId`,`actividadId`),
-  ADD KEY `actividadId` (`actividadId`),
-  ADD KEY `alumnoId` (`alumnoId`);
-
---
 -- Indexes for table `administradores`
 --
 ALTER TABLE `administradores`
@@ -235,6 +227,14 @@ ALTER TABLE `asignaturas`
 ALTER TABLE `aulas`
   ADD PRIMARY KEY (`aulaId`),
   ADD KEY `asignaturaId` (`asignaturaId`);
+
+--
+-- Indexes for table `entrega`
+--
+ALTER TABLE `entrega`
+  ADD PRIMARY KEY (`alumnoId`,`actividadId`),
+  ADD KEY `actividadId` (`actividadId`),
+  ADD KEY `alumnoId` (`alumnoId`);
 
 --
 -- Indexes for table `material`
@@ -320,13 +320,6 @@ ALTER TABLE `actividades`
   ADD CONSTRAINT `actividades_ibfk_1` FOREIGN KEY (`profesorId`) REFERENCES `profesores` (`idUsuario`);
 
 --
--- Constraints for table `actividad_alumno`
---
-ALTER TABLE `actividad_alumno`
-  ADD CONSTRAINT `actividad_alumno_ibfk_1` FOREIGN KEY (`actividadId`) REFERENCES `actividades` (`actividadId`),
-  ADD CONSTRAINT `actividad_alumno_ibfk_2` FOREIGN KEY (`alumnoId`) REFERENCES `alumnos` (`idUsuario`);
-
---
 -- Constraints for table `alumno_asignatura`
 --
 ALTER TABLE `alumno_asignatura`
@@ -344,6 +337,13 @@ ALTER TABLE `asignaturas`
 --
 ALTER TABLE `aulas`
   ADD CONSTRAINT `aulas_ibfk_1` FOREIGN KEY (`asignaturaId`) REFERENCES `asignaturas` (`asignaturaId`);
+
+--
+-- Constraints for table `entrega`
+--
+ALTER TABLE `entrega`
+  ADD CONSTRAINT `entrega_ibfk_1` FOREIGN KEY (`actividadId`) REFERENCES `actividades` (`actividadId`),
+  ADD CONSTRAINT `entrega_ibfk_2` FOREIGN KEY (`alumnoId`) REFERENCES `alumnos` (`idUsuario`);
 
 --
 -- Constraints for table `material`

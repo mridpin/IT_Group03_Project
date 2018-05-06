@@ -56,8 +56,8 @@ Contributor(s):
     <mapping resource="model/POJOs/Asignaturas.hbm.xml"/>
     <mapping resource="model/POJOs/Administradores.hbm.xml"/>
     <mapping resource="model/POJOs/Mensajes.hbm.xml"/>
-    <mapping resource="model/POJOs/ActividadAlumno.hbm.xml"/>
     <mapping resource="model/POJOs/Alumnos.hbm.xml"/>
+    <mapping resource="model/POJOs/Entrega.hbm.xml"/>
     <mapping resource="model/POJOs/Profesores.hbm.xml"/>
     <mapping resource="model/POJOs/Material.hbm.xml"/>
   </session-factory>
