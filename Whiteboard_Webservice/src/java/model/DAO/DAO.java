@@ -38,7 +38,7 @@ public class DAO {
         Alumnos aux = null;
         session = HibernateUtil.getSessionFactory().getCurrentSession();
         Transaction tx = session.beginTransaction();
-        Query q = session.createQuery("from Alumnos where idUsuario='" + user + "'");
+        Query q = session.createQuery("from Alumnos where username='" + user + "'");
         aux = (Alumnos)q.uniqueResult();
         tx.commit();
         

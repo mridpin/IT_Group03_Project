@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated May 1, 2018 1:17:57 PM by Hibernate Tools 4.3.1 -->
+<!-- Generated May 6, 2018 12:33:15 PM by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="model.POJOs.Profesores" table="profesores" catalog="proyecto_it" optimistic-lock="version">
         <id name="idUsuario" type="int">
@@ -11,11 +11,14 @@
             </generator>
         </id>
         <one-to-one name="alumnos" class="model.POJOs.Alumnos" constrained="true"></one-to-one>
+        <property name="username" type="string">
+            <column name="username" length="52" not-null="true" />
+        </property>
         <property name="horaTutoria" type="string">
             <column name="horaTutoria" length="11" not-null="true" />
         </property>
         <property name="password" type="string">
-            <column name="password" length="256" not-null="true" />
+            <column name="password" not-null="true" />
         </property>
         <property name="nombre" type="string">
             <column name="nombre" length="32" not-null="true" />
@@ -24,7 +27,7 @@
             <column name="apellidos" length="124" not-null="true" />
         </property>
         <property name="foto" type="string">
-            <column name="foto" length="256" not-null="true" />
+            <column name="foto" not-null="true" />
         </property>
         <set name="actividadeses" table="actividades" inverse="true" lazy="true" fetch="select">
             <key>

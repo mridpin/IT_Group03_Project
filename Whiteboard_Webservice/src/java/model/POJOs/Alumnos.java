@@ -1,5 +1,5 @@
 package model.POJOs;
-// Generated May 1, 2018 1:17:57 PM by Hibernate Tools 4.3.1
+// Generated May 6, 2018 12:33:14 PM by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
@@ -12,10 +12,11 @@ public class Alumnos  implements java.io.Serializable {
 
 
      private Integer idUsuario;
-     private String password;
+     private String username;
      private String nombre;
      private String apellidos;
      private String foto;
+     private String password;
      private Set actividadAlumnos = new HashSet(0);
      private Set asignaturases = new HashSet(0);
      private Set mensajesesForRemitenteId = new HashSet(0);
@@ -26,17 +27,19 @@ public class Alumnos  implements java.io.Serializable {
     }
 
 	
-    public Alumnos(String password, String nombre, String apellidos, String foto) {
-        this.password = password;
+    public Alumnos(String username, String nombre, String apellidos, String foto, String password) {
+        this.username = username;
         this.nombre = nombre;
         this.apellidos = apellidos;
         this.foto = foto;
+        this.password = password;
     }
-    public Alumnos(String password, String nombre, String apellidos, String foto, Set actividadAlumnos, Set asignaturases, Set mensajesesForRemitenteId, Profesores profesores, Set mensajesesForDestinatarioId) {
-       this.password = password;
+    public Alumnos(String username, String nombre, String apellidos, String foto, String password, Set actividadAlumnos, Set asignaturases, Set mensajesesForRemitenteId, Profesores profesores, Set mensajesesForDestinatarioId) {
+       this.username = username;
        this.nombre = nombre;
        this.apellidos = apellidos;
        this.foto = foto;
+       this.password = password;
        this.actividadAlumnos = actividadAlumnos;
        this.asignaturases = asignaturases;
        this.mensajesesForRemitenteId = mensajesesForRemitenteId;
@@ -51,12 +54,12 @@ public class Alumnos  implements java.io.Serializable {
     public void setIdUsuario(Integer idUsuario) {
         this.idUsuario = idUsuario;
     }
-    public String getPassword() {
-        return this.password;
+    public String getUsername() {
+        return this.username;
     }
     
-    public void setPassword(String password) {
-        this.password = password;
+    public void setUsername(String username) {
+        this.username = username;
     }
     public String getNombre() {
         return this.nombre;
@@ -78,6 +81,13 @@ public class Alumnos  implements java.io.Serializable {
     
     public void setFoto(String foto) {
         this.foto = foto;
+    }
+    public String getPassword() {
+        return this.password;
+    }
+    
+    public void setPassword(String password) {
+        this.password = password;
     }
     public Set getActividadAlumnos() {
         return this.actividadAlumnos;

@@ -1,15 +1,15 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated May 1, 2018 1:17:57 PM by Hibernate Tools 4.3.1 -->
+<!-- Generated May 6, 2018 12:33:15 PM by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="model.POJOs.Alumnos" table="alumnos" catalog="proyecto_it" optimistic-lock="version">
         <id name="idUsuario" type="java.lang.Integer">
             <column name="idUsuario" />
             <generator class="identity" />
         </id>
-        <property name="password" type="string">
-            <column name="password" length="256" not-null="true" />
+        <property name="username" type="string">
+            <column name="username" length="52" not-null="true" />
         </property>
         <property name="nombre" type="string">
             <column name="nombre" length="32" not-null="true" />
@@ -19,6 +19,9 @@
         </property>
         <property name="foto" type="string">
             <column name="foto" length="256" not-null="true" />
+        </property>
+        <property name="password" type="string">
+            <column name="password" length="256" not-null="true" />
         </property>
         <set name="actividadAlumnos" table="actividad_alumno" inverse="true" lazy="true" fetch="select">
             <key>

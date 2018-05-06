@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated May 1, 2018 1:17:57 PM by Hibernate Tools 4.3.1 -->
+<!-- Generated May 6, 2018 12:33:15 PM by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="model.POJOs.Material" table="material" catalog="proyecto_it" optimistic-lock="version">
         <id name="materialId" type="java.lang.Integer">

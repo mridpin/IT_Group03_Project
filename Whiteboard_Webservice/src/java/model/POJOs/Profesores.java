@@ -1,5 +1,5 @@
 package model.POJOs;
-// Generated May 1, 2018 1:17:57 PM by Hibernate Tools 4.3.1
+// Generated May 6, 2018 12:33:14 PM by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
@@ -13,6 +13,7 @@ public class Profesores  implements java.io.Serializable {
 
      private int idUsuario;
      private Alumnos alumnos;
+     private String username;
      private String horaTutoria;
      private String password;
      private String nombre;
@@ -27,16 +28,18 @@ public class Profesores  implements java.io.Serializable {
     }
 
 	
-    public Profesores(Alumnos alumnos, String horaTutoria, String password, String nombre, String apellidos, String foto) {
+    public Profesores(Alumnos alumnos, String username, String horaTutoria, String password, String nombre, String apellidos, String foto) {
         this.alumnos = alumnos;
+        this.username = username;
         this.horaTutoria = horaTutoria;
         this.password = password;
         this.nombre = nombre;
         this.apellidos = apellidos;
         this.foto = foto;
     }
-    public Profesores(Alumnos alumnos, String horaTutoria, String password, String nombre, String apellidos, String foto, Set actividadeses, Set asignaturases, Set mensajesesForRemitenteId, Set mensajesesForDestinatarioId) {
+    public Profesores(Alumnos alumnos, String username, String horaTutoria, String password, String nombre, String apellidos, String foto, Set actividadeses, Set asignaturases, Set mensajesesForRemitenteId, Set mensajesesForDestinatarioId) {
        this.alumnos = alumnos;
+       this.username = username;
        this.horaTutoria = horaTutoria;
        this.password = password;
        this.nombre = nombre;
@@ -61,6 +64,13 @@ public class Profesores  implements java.io.Serializable {
     
     public void setAlumnos(Alumnos alumnos) {
         this.alumnos = alumnos;
+    }
+    public String getUsername() {
+        return this.username;
+    }
+    
+    public void setUsername(String username) {
+        this.username = username;
     }
     public String getHoraTutoria() {
         return this.horaTutoria;
