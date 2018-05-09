@@ -5,6 +5,7 @@
  */
 package model.POJOs.service;
 
+import java.util.Collection;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -19,6 +20,7 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import model.POJOs.Alumnos;
+import model.POJOs.Asignaturas;
 
 /**
  *
@@ -60,6 +62,15 @@ public class AlumnosFacadeREST extends AbstractFacade<Alumnos> {
     @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
     public Alumnos find(@PathParam("id") Integer id) {
         return super.find(id);
+    }
+    
+    @GET
+    @Path("{id}/getAsignaturas")
+    @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
+    public Collection<Asignaturas> findAsignaturas(@PathParam("id") Integer id) {
+        Alumnos aux = this.find(id);
+        
+        return aux.getAsignaturasCollection();
     }
 
     @GET
