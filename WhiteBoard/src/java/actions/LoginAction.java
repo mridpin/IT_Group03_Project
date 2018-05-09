@@ -36,6 +36,7 @@ public class LoginAction extends ActionSupport {
         if (!user.equals("") && !password.equals("")) {
             // Comprobar si es alumno, profesor o admin
             Usuario current = login(user, password);
+            // Las dos lineas siguientes son para debuggear. Este alumno tiene relaciones que estan en null, como la lista test
             Alumnos a = (Alumnos) current;
             List<Asignaturas> test = a.getAsignaturasList();
             if (current != null) {
