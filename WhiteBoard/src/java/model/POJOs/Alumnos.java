@@ -6,7 +6,7 @@
 package model.POJOs;
 
 import java.io.Serializable;
-import java.util.Collection;
+import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -42,7 +42,7 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "Alumnos.findByApellidos", query = "SELECT a FROM Alumnos a WHERE a.apellidos = :apellidos")
     , @NamedQuery(name = "Alumnos.findByFoto", query = "SELECT a FROM Alumnos a WHERE a.foto = :foto")
     , @NamedQuery(name = "Alumnos.findByPassword", query = "SELECT a FROM Alumnos a WHERE a.password = :password")})
-public class Alumnos implements Serializable {
+public class Alumnos implements Serializable, Usuario {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -78,14 +78,14 @@ public class Alumnos implements Serializable {
     @JoinTable(name = "alumno_asignatura", joinColumns = {
         @JoinColumn(name = "alumnoId", referencedColumnName = "idUsuario")}, inverseJoinColumns = {
         @JoinColumn(name = "asignaturaId", referencedColumnName = "asignaturaId")})
-    @ManyToMany
-    private Collection<Asignaturas> asignaturasCollection;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "remitenteId")
-    private Collection<Mensajes> mensajesCollection;
+    @ManyToMany (fetch = FetchType.EAGER)
+    private List<Asignaturas> asignaturasList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "remitenteId", fetch = FetchType.EAGER)
+    private List<Mensajes> mensajesList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "destinatarioId")
-    private Collection<Mensajes> mensajesCollection1;
+    private List<Mensajes> mensajesList1;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "alumnos")
-    private Collection<Entrega> entregaCollection;
+    private List<Entrega> entregaList;
 
     public Alumnos() {
     }
@@ -152,39 +152,39 @@ public class Alumnos implements Serializable {
     }
 
     @XmlTransient
-    public Collection<Asignaturas> getAsignaturasCollection() {
-        return asignaturasCollection;
+    public List<Asignaturas> getAsignaturasList() {
+        return asignaturasList;
     }
 
-    public void setAsignaturasCollection(Collection<Asignaturas> asignaturasCollection) {
-        this.asignaturasCollection = asignaturasCollection;
-    }
-
-    @XmlTransient
-    public Collection<Mensajes> getMensajesCollection() {
-        return mensajesCollection;
-    }
-
-    public void setMensajesCollection(Collection<Mensajes> mensajesCollection) {
-        this.mensajesCollection = mensajesCollection;
+    public void setAsignaturasList(List<Asignaturas> asignaturasList) {
+        this.asignaturasList = asignaturasList;
     }
 
     @XmlTransient
-    public Collection<Mensajes> getMensajesCollection1() {
-        return mensajesCollection1;
+    public List<Mensajes> getMensajesList() {
+        return mensajesList;
     }
 
-    public void setMensajesCollection1(Collection<Mensajes> mensajesCollection1) {
-        this.mensajesCollection1 = mensajesCollection1;
+    public void setMensajesList(List<Mensajes> mensajesList) {
+        this.mensajesList = mensajesList;
     }
 
     @XmlTransient
-    public Collection<Entrega> getEntregaCollection() {
-        return entregaCollection;
+    public List<Mensajes> getMensajesList1() {
+        return mensajesList1;
     }
 
-    public void setEntregaCollection(Collection<Entrega> entregaCollection) {
-        this.entregaCollection = entregaCollection;
+    public void setMensajesList1(List<Mensajes> mensajesList1) {
+        this.mensajesList1 = mensajesList1;
+    }
+
+    @XmlTransient
+    public List<Entrega> getEntregaList() {
+        return entregaList;
+    }
+
+    public void setEntregaList(List<Entrega> entregaList) {
+        this.entregaList = entregaList;
     }
 
     @Override
