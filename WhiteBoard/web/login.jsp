@@ -5,15 +5,15 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>WhiteBoard - Login</title>
-        <link rel="stylesheet" type="text/css" href="Auxiliary/style.css" >
+        <link rel="stylesheet" type="text/css" href="../Auxiliary/style.css" >
         <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
         <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-blue-grey.css">
         <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Open+Sans'>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <s:head/>
-        </head>
+    </head>
 
-        <body class="w3-green">
+    <body class="w3-green">
         <s:include value="header.jsp"/>
 
         <div class="w3-card w3-round-medium w3-white w3-margin w3-half w3-display-middle">

@@ -23,5 +23,9 @@
             <result name="error">/error.jsp</result>            
         </action>
         
+        <action name="admin_nav_students" class="AdminNavAction" method="goToStudents">
+            <result name="success">/</result>
+        </action>
+        
     </package>
 </struts>

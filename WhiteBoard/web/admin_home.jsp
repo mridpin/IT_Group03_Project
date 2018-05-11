@@ -10,7 +10,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Whiteboard</title>
+        <title>WhiteBoard - Welcome</title>
         <link rel="stylesheet" type="text/css" href="Auxiliary/style.css" >
         <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
         <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-blue-grey.css">
@@ -20,12 +20,12 @@
     </head>
     <body>
         <s:include value="header.jsp"/>
-        <div class="w3-col s8 w3-bar">
-            <span>Welcome, <strong><s:property value="#session.usuario.username"/></strong></span><br>
-            <a href="#" class="w3-bar-item w3-button"><i class="fa fa-envelope"></i></a>
-            <a href="#" class="w3-bar-item w3-button"><i class="fa fa-user"></i></a>
-            <a href="#" class="w3-bar-item w3-button"><i class="fa fa-cog"></i></a>
-        </div>
+        <s:include value="admin_nav.jsp"/>
+        <article>
+            <h2>
+                
+            </h2>
+        </article>
         <s:include value="footer.jsp"/>
     </body>
 </html>

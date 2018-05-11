@@ -10,6 +10,7 @@ import java.util.List;
 import javax.ws.rs.core.GenericType;
 import model.POJOs.Administradores;
 import model.POJOs.Alumnos;
+import model.POJOs.Asignaturas;
 import model.POJOs.Usuario;
 import model.dao.AdministradoresJerseyClient;
 import model.dao.AlumnosJerseyClient;
@@ -55,5 +56,14 @@ public class DAOImpl {
 
     public static Usuario findProf(String user, String password) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    
+    public static List<Asignaturas> findAsignaturas (Alumnos al) {
+        AlumnosJerseyClient client = new AlumnosJerseyClient();
+        GenericType<List<Asignaturas>> genericType = new GenericType<List<Asignaturas>>() {
+        };
+        List<Asignaturas> data = new ArrayList<>();
+        data = client.findAsignaturas_JSON(genericType, al.getIdUsuario().toString());
+        return data;
     }
 }
