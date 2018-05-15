@@ -19,6 +19,7 @@
         <s:head/>
     </head>
     <body>
+        <h2>THIS PAGE IS WIP</h2>
         <s:include value="header.jsp"/>
         <s:include value="admin_nav.jsp"/>
         <article>
