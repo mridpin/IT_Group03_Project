@@ -16,7 +16,7 @@
     <body class="w3-green">
         <s:include value="header.jsp"/>
 
-        <div class="w3-card w3-round-medium w3-white w3-margin w3-half w3-display-middle">
+        <div class="w3-card-4 w3-round-medium w3-white w3-margin w3-half w3-display-middle">
             <div class="w3-container">
                 <s:form namespace="/login" action="login">
                     <h4 class="w3-center"><s:text name="loginTitle"/></h4>
