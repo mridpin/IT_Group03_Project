@@ -10,12 +10,21 @@
         </action>
     </package>
     <package name="login" namespace="/login" extends="struts-default">
+        
         <action name="login" class="actions.LoginAction">
-            <result name="success">/student_home.jsp</result>
+            <result name="success" type="chain">
+                <param name="actionName">loadStudentHome</param>
+            </result>
             <result name="success_admin">/admin_home.jsp</result>
-            <result name="success_alumno">/student_home.jsp</result>
+            <result name="success_alumno" type="chain">
+                <param name="actionName">loadStudentHome</param>
+            </result>
             <result name="input">/login.jsp</result>
             <result name="error">/login.jsp</result>            
+        </action>
+        
+        <action name="loadStudentHome" class="actions.AlumnoActions">
+            <result name="success">/student_home.jsp</result>
         </action>
         
         <action name="logout" class="actions.LoginAction" method="logout">
