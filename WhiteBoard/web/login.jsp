@@ -14,7 +14,7 @@
     </head>
 
     <body class="w3-green">
-        <s:include value="header.jsp"/>
+        <s:include value="header_login.jsp"/>
 
         <div class="w3-card-4 w3-round-medium w3-white w3-margin w3-half w3-display-middle">
             <div class="w3-container">
