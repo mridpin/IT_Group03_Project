@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 06, 2018 at 08:07 PM
+-- Generation Time: May 15, 2018 at 09:26 PM
 -- Server version: 10.1.30-MariaDB
 -- PHP Version: 7.2.2
 
@@ -30,6 +30,7 @@ USE `proyecto_it`;
 -- Table structure for table `actividades`
 --
 
+DROP TABLE IF EXISTS `actividades`;
 CREATE TABLE `actividades` (
   `fechaFin` date NOT NULL,
   `actividadId` int(11) NOT NULL,
@@ -45,11 +46,20 @@ CREATE TABLE `actividades` (
 -- Table structure for table `administradores`
 --
 
+DROP TABLE IF EXISTS `administradores`;
 CREATE TABLE `administradores` (
   `idUsuario` int(11) NOT NULL,
   `username` varchar(52) COLLATE utf8mb4_spanish2_ci NOT NULL,
   `password` varchar(256) COLLATE utf8mb4_spanish2_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish2_ci;
+
+--
+-- Dumping data for table `administradores`
+--
+
+INSERT INTO `administradores` (`idUsuario`, `username`, `password`) VALUES
+(1, 'admin', 'password'),
+(2, 'admin', 'admin');
 
 -- --------------------------------------------------------
 
@@ -57,6 +67,7 @@ CREATE TABLE `administradores` (
 -- Table structure for table `alumnos`
 --
 
+DROP TABLE IF EXISTS `alumnos`;
 CREATE TABLE `alumnos` (
   `idUsuario` int(11) NOT NULL,
   `username` varchar(52) COLLATE utf8mb4_spanish2_ci NOT NULL,
@@ -71,7 +82,8 @@ CREATE TABLE `alumnos` (
 --
 
 INSERT INTO `alumnos` (`idUsuario`, `username`, `nombre`, `apellidos`, `foto`, `password`) VALUES
-(1, 'test', 'test', 'test', '', 'D8E8FCA2DC0F896FD7CB4CB0031BA249');
+(1, 'alu_test', 'test', 'test', '', 'test'),
+(2, 'alu_mridpin', 'Manuel', 'Ridao', '', 'mridpin');
 
 -- --------------------------------------------------------
 
@@ -79,10 +91,19 @@ INSERT INTO `alumnos` (`idUsuario`, `username`, `nombre`, `apellidos`, `foto`, `
 -- Table structure for table `alumno_asignatura`
 --
 
+DROP TABLE IF EXISTS `alumno_asignatura`;
 CREATE TABLE `alumno_asignatura` (
   `alumnoId` int(11) NOT NULL,
   `asignaturaId` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish2_ci;
+
+--
+-- Dumping data for table `alumno_asignatura`
+--
+
+INSERT INTO `alumno_asignatura` (`alumnoId`, `asignaturaId`) VALUES
+(1, 2),
+(2, 2);
 
 -- --------------------------------------------------------
 
@@ -90,6 +111,7 @@ CREATE TABLE `alumno_asignatura` (
 -- Table structure for table `asignaturas`
 --
 
+DROP TABLE IF EXISTS `asignaturas`;
 CREATE TABLE `asignaturas` (
   `asignaturaId` int(11) NOT NULL,
   `notaMinima` double NOT NULL,
@@ -113,6 +135,7 @@ INSERT INTO `asignaturas` (`asignaturaId`, `notaMinima`, `nAlumnos`, `semestre`,
 -- Table structure for table `aulas`
 --
 
+DROP TABLE IF EXISTS `aulas`;
 CREATE TABLE `aulas` (
   `aulaId` int(11) NOT NULL,
   `capacidad` int(11) NOT NULL,
@@ -126,6 +149,7 @@ CREATE TABLE `aulas` (
 -- Table structure for table `entrega`
 --
 
+DROP TABLE IF EXISTS `entrega`;
 CREATE TABLE `entrega` (
   `alumnoId` int(11) NOT NULL,
   `actividadId` int(11) NOT NULL,
@@ -139,6 +163,7 @@ CREATE TABLE `entrega` (
 -- Table structure for table `material`
 --
 
+DROP TABLE IF EXISTS `material`;
 CREATE TABLE `material` (
   `materialId` int(11) NOT NULL,
   `rutaArchivo` varchar(256) COLLATE utf8mb4_spanish2_ci NOT NULL,
@@ -152,6 +177,7 @@ CREATE TABLE `material` (
 -- Table structure for table `mensajes`
 --
 
+DROP TABLE IF EXISTS `mensajes`;
 CREATE TABLE `mensajes` (
   `idMensaje` int(11) NOT NULL,
   `contenido` text COLLATE utf8mb4_spanish2_ci NOT NULL,
@@ -160,12 +186,21 @@ CREATE TABLE `mensajes` (
   `destinatarioId` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish2_ci;
 
+--
+-- Dumping data for table `mensajes`
+--
+
+INSERT INTO `mensajes` (`idMensaje`, `contenido`, `fecha`, `remitenteId`, `destinatarioId`) VALUES
+(1, 'que pasa', '2018-05-08', 2, 1),
+(2, 'nadfa', '2018-05-15', 1, 2);
+
 -- --------------------------------------------------------
 
 --
 -- Table structure for table `profesores`
 --
 
+DROP TABLE IF EXISTS `profesores`;
 CREATE TABLE `profesores` (
   `idUsuario` int(11) NOT NULL,
   `username` varchar(52) COLLATE utf8mb4_spanish2_ci NOT NULL,
@@ -271,13 +306,13 @@ ALTER TABLE `actividades`
 -- AUTO_INCREMENT for table `administradores`
 --
 ALTER TABLE `administradores`
-  MODIFY `idUsuario` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idUsuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `alumnos`
 --
 ALTER TABLE `alumnos`
-  MODIFY `idUsuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `idUsuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `asignaturas`
@@ -301,7 +336,7 @@ ALTER TABLE `material`
 -- AUTO_INCREMENT for table `mensajes`
 --
 ALTER TABLE `mensajes`
-  MODIFY `idMensaje` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idMensaje` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `profesores`
