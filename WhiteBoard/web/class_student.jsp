@@ -52,7 +52,7 @@
             <!-- Header -->
             <header class="w3-container" style="padding-top:22px">
                 <span class="w3-button w3-hide-large w3-xxlarge w3-hover-text-grey" onclick="w3_open()"><i class="fa fa-bars"></i></span>
-                <h5><b><i class="fa fa-dashboard"></i> Mi Panel de Control</b></h5>
+                <h5><b><i class="fa fa-dashboard"></i><s:property value="current.getNombre()"/></b></h5>
             </header>
 
             <div class="w3-row-padding w3-center w3-margin-bottom w3-card-4 w3-padding-16 w3-margin w3-white">

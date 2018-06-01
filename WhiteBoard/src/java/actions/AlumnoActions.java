@@ -16,9 +16,6 @@ import model.dao.AlumnosJerseyClient;
 
 public class AlumnoActions extends ActionSupport {
     
-    //The asignatura that is currently being viewed
-    private Asignaturas current;
-    
     
     public AlumnoActions() {
     }
@@ -34,7 +31,6 @@ public class AlumnoActions extends ActionSupport {
         Map session = (Map) ActionContext.getContext().get("session");
         Usuario current = (Usuario) session.get("usuario");
 
-        
         //This is saved in  session so that we don't have to load the Asignaturas again
         session.put("asignaturas",alumnoJersey.findAsignaturas_XML(genericType,current.getIdUsuario().toString()));
         
@@ -42,18 +38,5 @@ public class AlumnoActions extends ActionSupport {
         
     }
 
-    public Asignaturas getCurrent() {
-        return current;
-    }
-
-    public void setCurrent(Asignaturas current) {
-        this.current = current;
-    }
-
-    
-    
-  
-    
-    
     
 }

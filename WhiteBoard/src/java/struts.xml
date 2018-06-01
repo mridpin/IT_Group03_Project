@@ -9,6 +9,7 @@
             <result>login.jsp</result>
         </action>
     </package>
+    
     <package name="login" namespace="/login" extends="struts-default">
         
         <action name="login" class="actions.LoginAction">
@@ -37,4 +38,13 @@
         </action> -->
         
     </package>
+    
+    <package name="asignatura" namespace="/asignaturas" extends="struts-default">
+        
+        <action name="loadAsignatura" class="actions.AsignaturaActions">
+            <result name="success">/class_student.jsp</result>
+        </action>
+        
+    </package>
+    
 </struts>

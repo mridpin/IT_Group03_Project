@@ -30,12 +30,17 @@
             </div>
             <hr>
             <div class="w3-container">
-                <h5>Mis clases</h5>
+                <h5 class="fa fa-graduation-cap">Mis clases</h5>
             </div>            
             <div class="w3-bar-block">
                 <a href="#" class="w3-bar-item w3-button w3-padding-16 w3-hide-large w3-dark-grey w3-hover-black" onclick="w3_close()" title="close menu"><i class="fa fa-remove fa-fw"></i>  Close Menu</a>
-                <s:iterator status="stat" value="#session.asignaturas">
-                    <a href="#" onclick="w3_close()" class="w3-bar-item w3-button w3-padding w3-blue"><i class="fa fa-graduation-cap fa-fw"></i><s:property value="nombre"/></a>  
+                <s:iterator status="stat" value="#session.asignaturas" var="asignatura">
+                    
+                    <s:form namespace="/asignaturas" action="loadAsignatura">
+                        <s:hidden name="asignaturaId" value="%{#asignatura.asignaturaId}"/>
+                        <s:submit cssClass="w3-bar-item w3-button w3-padding w3-blue" value='%{#asignatura.nombre}'/>
+                    </s:form>
+   
                     </s:iterator>
                 <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-cog fa-fw"></i>  Ajustes</a><br><br>
                 <s:form action="logout">
