@@ -18,6 +18,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 import model.POJOs.Material;
 
 /**
@@ -60,6 +61,21 @@ public class MaterialFacadeREST extends AbstractFacade<Material> {
     @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
     public Material find(@PathParam("id") Integer id) {
         return super.find(id);
+    }
+    
+    @GET
+    @Path("material/{asignaturaId}")
+    @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
+    public Material findFromAsignatura(@PathParam("asignaturaId") Integer asignaturaId){
+        
+        //Single Ge
+        try{
+        return (Material) em.createQuery("SELECT m from Material m WHERE m.asignaturaId.asignaturaId = "+asignaturaId,Material.class).getSingleResult();
+        }
+        catch(Exception ex)
+        {
+            return new Material();
+        }
     }
 
     @GET
