@@ -66,16 +66,11 @@ public class MaterialFacadeREST extends AbstractFacade<Material> {
     @GET
     @Path("material/{asignaturaId}")
     @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public Material findFromAsignatura(@PathParam("asignaturaId") Integer asignaturaId){
+    public List<Material> findFromAsignatura(@PathParam("asignaturaId") Integer asignaturaId){
         
         //Single Ge
-        try{
-        return (Material) em.createQuery("SELECT m from Material m WHERE m.asignaturaId.asignaturaId = "+asignaturaId,Material.class).getSingleResult();
-        }
-        catch(Exception ex)
-        {
-            return new Material();
-        }
+
+        return (List<Material>) em.createQuery("SELECT m from Material m WHERE m.asignaturaId.asignaturaId = "+asignaturaId).getResultList();
     }
 
     @GET
