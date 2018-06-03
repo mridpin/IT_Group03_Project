@@ -6,6 +6,7 @@
 package actions;
 
 import com.opensymphony.xwork2.ActionSupport;
+import java.util.ArrayList;
 import java.util.List;
 import javax.ws.rs.core.GenericType;
 import model.POJOs.Asignaturas;
@@ -27,9 +28,6 @@ public class MaterialActions extends ActionSupport {
     //all the material
     private List<Material> all;
     
-    //current asignatura
-    private Asignaturas asignatura;
-    
     public MaterialActions() {
     }
     
@@ -39,6 +37,8 @@ public class MaterialActions extends ActionSupport {
         GenericType<List<Material>> genericTypeMaterial = new GenericType<List<Material>>(){};
         
         List<Material> materiales = materialJersey.findFromAsignatura_XML(genericTypeMaterial, asignaturaId.toString());
+        
+        all = new ArrayList();
 
         for (Material current : materiales) {
             
@@ -88,13 +88,6 @@ public class MaterialActions extends ActionSupport {
         this.all = all;
     }
 
-    public Asignaturas getAsignatura() {
-        return asignatura;
-    }
-
-    public void setAsignatura(Asignaturas asignatura) {
-        this.asignatura = asignatura;
-    }
     
     
     

@@ -63,4 +63,12 @@
         
     </package>
     
+    <package name="material" namespace="/materiales" extends="struts-default">
+        
+        <action name="loadMaterial" class="actions.MaterialActions">
+            <result name="success">/student_material.jsp</result>
+        </action>
+        
+    </package>
+    
 </struts>
