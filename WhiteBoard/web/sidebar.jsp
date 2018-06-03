@@ -23,7 +23,7 @@
         <a href="#" class="w3-bar-item w3-button w3-padding-16 w3-hide-large w3-dark-grey w3-hover-black" onclick="w3_close()" title="close menu"><i class="fa fa-remove fa-fw"></i>  Close Menu</a>
         <s:iterator status="stat" value="#session.asignaturas" var="asignatura">
 
-            <s:form namespace="/asignaturas" action="loadAsignatura">
+            <s:form action="loadAsignatura">
                 <s:hidden name="asignaturaId" value="%{#asignatura.asignaturaId}"/>
                 <s:submit cssClass="w3-bar-item w3-button w3-padding w3-blue" value='%{#asignatura.nombre}'/>
             </s:form>

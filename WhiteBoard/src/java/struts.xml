@@ -5,8 +5,17 @@
 <struts>
     <!-- Configuration for the default package. -->
     <package name="default" extends="struts-default">
-        <action name="">
-            <result>login.jsp</result>
+         <action name=""> 
+            <result type="chain"> 
+                <param name="actionName">index</param> 
+                <param name="namespace">/index</param>
+            </result> 
+        </action>
+    </package>
+    
+    <package name="index" namespace="/index" extends="struts-default">
+        <action name="index">
+            <result>/login.jsp</result>
         </action>
     </package>
     
@@ -28,8 +37,15 @@
             <result name="success">/student_home.jsp</result>
         </action>
         
+        <!--
+        TODO: El logout siempre da un input, asi que lo he reenvio al principio
+        -->
         <action name="logout" class="actions.LoginAction" method="logout">
             <result name="success">/login.jsp</result>
+            <result name="input" type="chain">
+                <param name="actionName">index</param> 
+                <param name="namespace">/index</param>
+            </result>
             <result name="error">/error.jsp</result>            
         </action>
         
