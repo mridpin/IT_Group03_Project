@@ -20,9 +20,24 @@
             <!-- Header -->
             <header class="w3-container" style="padding-top:22px">
                 <span class="w3-button w3-hide-large w3-xxlarge w3-hover-text-grey" onclick="w3_open()"><i class="fa fa-bars"></i></span>
-                <h2 class="w3-container w3-center"><b><u><s:property value="tipo"/></u></b></h2>
+                <h2 class="w3-container w3-center"><b><u><s:property value="#session.asignatura.getNombre()"/> - <s:property value="tipo"/></u></b></h2>
                 
             </header>
+            
+        <s:iterator status="stat" value="all" var="material">
+
+            <s:form namespace="/asignaturas" action="loadAsignatura">
+                
+                <div class="w3-container w3-padding-16">
+                    <div class="w3-left w3-padding"><i class="fa fa-file w3-xxxlarge w3-padding-16"></i></div>
+                    <h4 class="w3-padding-16"><s:property  value="%{#material.nombre}"/></h4>
+                </div>
+            </s:form>
+
+        </s:iterator>
+                
+                
+                
 
             <!--    THIS IS JUST A TEST
                 

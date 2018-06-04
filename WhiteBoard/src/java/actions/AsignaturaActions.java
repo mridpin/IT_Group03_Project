@@ -5,7 +5,9 @@
  */
 package actions;
 
+import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
+import java.util.Map;
 import javax.ws.rs.core.GenericType;
 import model.POJOs.Asignaturas; 
 import model.POJOs.Profesores;
@@ -20,9 +22,6 @@ public class AsignaturaActions extends ActionSupport {
     //Asignatura to be shown
     private Integer asignaturaId;
     
-    //Current Asignatura shown
-    private Asignaturas current;
-    
     //Profesor of the Asignatura
     private Profesores profesor;
     
@@ -34,9 +33,11 @@ public class AsignaturaActions extends ActionSupport {
         GenericType<Asignaturas> genericTypeAsignatura = new GenericType<Asignaturas>(){};
         
         Asignaturas asignatura = asignaturaJersey.find_XML(genericTypeAsignatura,asignaturaId.toString());
-
-        //They are not saved in session since every page will be different
-        this.setCurrent(asignatura);
+        
+        Map session = (Map) ActionContext.getContext().get("session");
+        
+        //This is saved in  session so that we don't have to load the Asignatura again
+        session.put("asignatura",asignatura);
         
         this.setProfesor(asignatura.getProfesorId());
         
@@ -49,14 +50,6 @@ public class AsignaturaActions extends ActionSupport {
 
     public void setAsignaturaId(Integer asignaturaId) {
         this.asignaturaId = asignaturaId;
-    }
-
-    public Asignaturas getCurrent() {
-        return current;
-    }
-
-    public void setCurrent(Asignaturas current) {
-        this.current = current;
     }
 
     public Profesores getProfesor() {

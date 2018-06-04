@@ -20,7 +20,7 @@
             <!-- Header -->
             <header class="w3-container" style="padding-top:22px">
                 <span class="w3-button w3-hide-large w3-xxlarge w3-hover-text-grey" onclick="w3_open()"><i class="fa fa-bars"></i></span>
-                <h2 class="w3-container w3-center"><b><u><s:property value="current.getNombre()"/></u></b></h2>
+                <h2 class="w3-container w3-center"><b><u><s:property value="#session.asignatura.getNombre()"/></u></b></h2>
                 <!--<h5><b><i class="fa fa-dashboard"></i></b></h5>-->
                 <br>
                 <h6 class="w3-text-grey w3-padding-16"><i class="fa fa-graduation-cap fa-fw w3-margin-right w3-xxlarge w3-text-teal"></i>Profesor de la asignatura: <s:property value="profesor.nombre"/> <s:property value="profesor.apellidos"/></h6>
