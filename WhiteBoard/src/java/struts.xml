@@ -5,7 +5,7 @@
 <struts>
     <!-- Configuration for the default package. -->
     <package name="default" extends="struts-default">
-         <action name=""> 
+        <action name=""> 
             <result type="chain"> 
                 <param name="actionName">index</param> 
                 <param name="namespace">/index</param>
@@ -49,7 +49,7 @@
             <result name="error">/error.jsp</result>            
         </action>
         
-       <!-- <action name="admin_nav_students" class="AdminNavAction" method="goToStudents">
+        <!-- <action name="admin_nav_students" class="AdminNavAction" method="goToStudents">
             <result name="success">/</result>
         </action> -->
         
@@ -70,5 +70,14 @@
         </action>
         
     </package>
+    
+    <package name="messages" namespace="/messages" extends="struts-default">
+        
+        <action name="loadMessages" class="actions.MessagesActions">
+            <result name="success">/messages.jsp</result>
+        </action>
+        
+    </package>
+    
     
 </struts>

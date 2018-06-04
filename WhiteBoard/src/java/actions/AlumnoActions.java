@@ -34,8 +34,7 @@ public class AlumnoActions extends ActionSupport {
         //This is saved in  session so that we don't have to load the Asignaturas again
         session.put("asignaturas",alumnoJersey.findAsignaturas_XML(genericType,current.getIdUsuario().toString()));
         
-        return "success";
-        
+        return "success";        
     }
 
     

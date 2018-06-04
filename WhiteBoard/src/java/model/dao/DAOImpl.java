@@ -26,7 +26,7 @@ public class DAOImpl {
         GenericType<List<Administradores>> genericType = new GenericType<List<Administradores>>() {
         };
         List<Administradores> data = new ArrayList<>();
-        data = client.findAll_JSON(genericType);
+        data = client.findAll_XML(genericType);
         // Hash password here
         for (Administradores a : data) {
             if (a.getUsername().equals(user) && a.getPassword().equals(password)) {
@@ -43,7 +43,7 @@ public class DAOImpl {
         GenericType<List<Alumnos>> genericType = new GenericType<List<Alumnos>>() {
         };
         List<Alumnos> data = new ArrayList<>();
-        data = client.findAll_JSON(genericType);
+        data = client.findAll_XML(genericType);
         for (Alumnos a : data) {
             if (a.getUsername().equals(user) && a.getPassword().equals(password)) {
                 client.close();
@@ -63,7 +63,7 @@ public class DAOImpl {
         GenericType<List<Asignaturas>> genericType = new GenericType<List<Asignaturas>>() {
         };
         List<Asignaturas> data = new ArrayList<>();
-        data = client.findAsignaturas_JSON(genericType, al.getIdUsuario().toString());
+        data = client.findAsignaturas_XML(genericType, al.getIdUsuario().toString());
         return data;
     }
 }

@@ -10,7 +10,9 @@
         </div>
         <div class="w3-col s8 w3-bar">
             <span>Bienvenido, <strong><s:property value="#session.usuario.nombre"/></strong></span><br>
-            <a href="#" class="w3-bar-item w3-button"><i class="fa fa-envelope"></i></a>
+            <s:form namespace="/messages" action="loadMessages">
+                <s:submit cssClass="w3-bar-item w3-button"><i class="fa fa-envelope" theme="simple"></i></s:submit>
+            </s:form>
             <a href="#" class="w3-bar-item w3-button"><i class="fa fa-user"></i></a>
             <a href="#" class="w3-bar-item w3-button"><i class="fa fa-cog"></i></a>
         </div>
@@ -35,7 +37,7 @@
         </s:form>
     </div>
 </nav>
-            
-            
-        <!-- Overlay effect when opening sidebar on small screens -->
-        <div class="w3-overlay w3-hide-large w3-animate-opacity" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
+
+
+<!-- Overlay effect when opening sidebar on small screens -->
+<div class="w3-overlay w3-hide-large w3-animate-opacity" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
