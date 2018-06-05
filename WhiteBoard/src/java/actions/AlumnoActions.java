@@ -7,12 +7,9 @@ package actions;
 
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
-import java.util.List;
 import java.util.Map;
-import javax.ws.rs.core.GenericType;
-import model.POJOs.Asignaturas;
 import model.POJOs.Usuario;
-import model.dao.AlumnosJerseyClient; 
+import static model.dao.DAOImpl.*;
 
 public class AlumnoActions extends ActionSupport {
     
@@ -24,17 +21,15 @@ public class AlumnoActions extends ActionSupport {
     Loads all the Asignaturas of the Alumno
     */
     public String execute() throws Exception {
-        AlumnosJerseyClient alumnoJersey = new AlumnosJerseyClient();
-        GenericType<List<Asignaturas>> genericType = new GenericType<List<Asignaturas>>(){};
         
         //Get the usuario we are working with
         Map session = (Map) ActionContext.getContext().get("session");
         Usuario current = (Usuario) session.get("usuario");
 
         //This is saved in  session so that we don't have to load the Asignaturas again
-        session.put("asignaturas",alumnoJersey.findAsignaturas_XML(genericType,current.getIdUsuario().toString()));
+        session.put("asignaturas",findAsignaturasFromAlumno(current.getIdUsuario().toString()));
         
-        return "success";        
+        return SUCCESS;        
     }
 
     

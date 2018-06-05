@@ -8,10 +8,8 @@ package actions;
 import com.opensymphony.xwork2.ActionSupport;
 import java.util.ArrayList;
 import java.util.List;
-import javax.ws.rs.core.GenericType;
-import model.POJOs.Asignaturas;
 import model.POJOs.Material;
-import model.dao.MaterialJerseyClient;
+import static model.dao.DAOImpl.*;
 
 /**
  *
@@ -33,11 +31,10 @@ public class MaterialActions extends ActionSupport {
     
     //Finds all the materials of the asignatura according to tipo
     public String execute() throws Exception {
-        MaterialJerseyClient materialJersey = new MaterialJerseyClient();
-        GenericType<List<Material>> genericTypeMaterial = new GenericType<List<Material>>(){};
+        
         
         // No llames al jersey desde la action, mejor crea un metodo estatico en DAOImpl que sea el que llame al jersey
-        List<Material> materiales = materialJersey.findFromAsignatura_XML(genericTypeMaterial, asignaturaId.toString());
+        List<Material> materiales = findMaterialesFromAsignatura(asignaturaId.toString());
         
         all = new ArrayList();
 
@@ -62,7 +59,7 @@ public class MaterialActions extends ActionSupport {
             tipo="Enseñanzas Prácticas";
         }
         
-        return "success";
+        return SUCCESS;
     }
 
     public String getTipo() {

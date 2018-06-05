@@ -11,6 +11,7 @@ import javax.ws.rs.core.GenericType;
 import model.POJOs.Administradores;
 import model.POJOs.Alumnos;
 import model.POJOs.Asignaturas;
+import model.POJOs.Material;
 import model.POJOs.Mensajes;
 import model.POJOs.Usuario;
 import model.dao.AdministradoresJerseyClient;
@@ -75,5 +76,32 @@ public class DAOImpl {
         List<Mensajes> data = new ArrayList<>();
         data = client.findMensajesRecibidos_XML(genericType, al.getIdUsuario().toString());
         return data;
+    }
+    
+    public static List<Asignaturas> findAsignaturasFromAlumno(String idUsuario)
+    {
+        AlumnosJerseyClient alumnoJersey = new AlumnosJerseyClient();
+        GenericType<List<Asignaturas>> genericType = new GenericType<List<Asignaturas>>(){};
+        
+        
+        return alumnoJersey.findAsignaturas_XML(genericType,idUsuario);
+    }
+    
+    public static Asignaturas findAsignatura(String id)
+    {
+        AsignaturasJerseyClient asignaturaJersey = new AsignaturasJerseyClient();
+        GenericType<Asignaturas> genericTypeAsignatura = new GenericType<Asignaturas>(){};
+        
+        
+        return asignaturaJersey.find_XML(genericTypeAsignatura,id);
+    }
+    
+    public static List<Material> findMaterialesFromAsignatura(String id)
+    {
+        MaterialJerseyClient materialJersey = new MaterialJerseyClient();
+        GenericType<List<Material>> genericTypeMaterial = new GenericType<List<Material>>(){};
+        
+        
+        return materialJersey.findFromAsignatura_XML(genericTypeMaterial,id);
     }
 }

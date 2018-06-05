@@ -12,6 +12,7 @@ import javax.ws.rs.core.GenericType;
 import model.POJOs.Asignaturas; 
 import model.POJOs.Profesores;
 import model.dao.AsignaturasJerseyClient;
+import static model.dao.DAOImpl.*;
 
 /**
  *
@@ -29,11 +30,8 @@ public class AsignaturaActions extends ActionSupport {
     }
     
     public String execute() throws Exception {
-        AsignaturasJerseyClient asignaturaJersey = new AsignaturasJerseyClient();
-        GenericType<Asignaturas> genericTypeAsignatura = new GenericType<Asignaturas>(){};
-        
          // No llames al jersey desde la action, mejor crea un metodo estatico en DAOImpl que sea el que llame al jersey
-        Asignaturas asignatura = asignaturaJersey.find_XML(genericTypeAsignatura,asignaturaId.toString());
+        Asignaturas asignatura = findAsignatura(asignaturaId.toString());
         
         Map session = (Map) ActionContext.getContext().get("session");
         
