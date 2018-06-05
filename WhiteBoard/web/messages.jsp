@@ -26,9 +26,10 @@
         <!-- Sidebar/menu -->
         <s:include value="sidebar.jsp"/>
         <!-- Side Navigation -->
-        <aside class="w3-sidebar w3-bar-block w3-collapse w3-white w3-animate-right w3-card" style="z-index:3;width:20%;right:0" id="mySidebar">
-            <!--<a href="javascript:void(0)" onclick="w3_close()" title="Close Sidemenu"--> 
-            <!--class="w3-bar-item w3-button w3-hide-large w3-large">Close <i class="fa fa-remove"></i></a>-->
+        <aside class="w3-sidebar w3-bar-block w3-collapse w3-white w3-animate-right w3-card" style="z-index:3;width:300px;right:0" id="myMailSidebar">
+
+            <a href="javascript:void(0)" onclick="w3_close_mail_menu()" title="Close Sidemenu" 
+               class="w3-bar-item w3-button w3-hide-large w3-large">Close <i class="fa fa-remove"></i></a>
             <a href="javascript:void(0)" class="w3-bar-item w3-button w3-dark-grey w3-button w3-hover-black w3--align" onclick="document.getElementById('id01').style.display = 'block'">New Message <i class="w3-padding fa fa-pencil"></i></a>
             <a id="myBtn" onclick="myFunc('Demo1')" href="javascript:void(0)" class="w3-bar-item w3-button"><i class="fa fa-inbox w3-margin-right"></i>Inbox (3)<i class="fa fa-caret-down w3-margin-left"></i></a>
             <div id="Demo1" class="w3-hide w3-animate-right">
@@ -85,10 +86,12 @@
         <div class="w3-overlay w3-hide-large w3-animate-opacity" onclick="w3_close()" style="cursor:pointer" title="Close Sidemenu" id="myOverlay"></div>
 
         <!-- Page content -->
-        <div class="w3-main" style="margin-left:320px;width:58%">
-            <i class="fa fa-bars w3-button w3-white w3-hide-large w3-xlarge w3-margin-left w3-margin-top" onclick="w3_open()"></i>
-            <a href="javascript:void(0)" class="w3-hide-large w3-red w3-button w3-right w3-margin-top w3-margin-right" onclick="document.getElementById('id01').style.display = 'block'"><i class="fa fa-pencil"></i></a>
-
+        <div class="w3-main" style="margin-left:320px;margin-right:320px;">
+            <span class="w3-button w3-hide-large w3-xxlarge w3-hover-text-grey" onclick="w3_open()"><i class="fa fa-bars"></i></span>
+            <div class="w3-hide-large w3-xlarge w3-right w3-margin-right w3-margin-top">
+                <i class="fa fa-bars w3-button w3-white " onclick="w3_open_mail_menu()"></i>
+                <a href="javascript:void(0)" class="w3-hide-large w3-red w3-button" onclick="document.getElementById('id01').style.display = 'block'"><i class="fa fa-pencil"></i></a>
+            </div>
             <div id="Borge" class="w3-container person">
                 <br>
                 <img class="w3-round  w3-animate-top" src="/w3images/avatar3.png" style="width:20%;">
@@ -132,12 +135,12 @@
             var openInbox = document.getElementById("myBtn");
             openInbox.click();
 
-            function w3_open() {
-                document.getElementById("mySidebar").style.display = "block";
+            function w3_open_mail_menu() {
+                document.getElementById("myMailSidebar").style.display = "block";
                 document.getElementById("myOverlay").style.display = "block";
             }
-            function w3_close() {
-                document.getElementById("mySidebar").style.display = "none";
+            function w3_close_mail_menu() {
+                document.getElementById("myMailSidebar").style.display = "none";
                 document.getElementById("myOverlay").style.display = "none";
             }
 
@@ -173,6 +176,6 @@
             var openTab = document.getElementById("firstTab");
             openTab.click();
         </script>
-
+        <s:include value="scripts.jsp"/>
     </body>
 </html> 
