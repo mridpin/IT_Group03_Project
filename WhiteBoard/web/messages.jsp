@@ -27,35 +27,20 @@
         <s:include value="sidebar.jsp"/>
         <!-- Side Navigation -->
         <aside class="w3-sidebar w3-bar-block w3-collapse w3-white w3-animate-right w3-card" style="z-index:3;width:300px;right:0" id="myMailSidebar">
-
             <a href="javascript:void(0)" onclick="w3_close_mail_menu()" title="Close Sidemenu" 
                class="w3-bar-item w3-button w3-hide-large w3-large">Close <i class="fa fa-remove"></i></a>
             <a href="javascript:void(0)" class="w3-bar-item w3-button w3-dark-grey w3-button w3-hover-black w3--align" onclick="document.getElementById('id01').style.display = 'block'">New Message <i class="w3-padding fa fa-pencil"></i></a>
-            <a id="myBtn" onclick="myFunc('Demo1')" href="javascript:void(0)" class="w3-bar-item w3-button"><i class="fa fa-inbox w3-margin-right"></i>Inbox (3)<i class="fa fa-caret-down w3-margin-left"></i></a>
-            <div id="Demo1" class="w3-hide w3-animate-right">
-                <a href="javascript:void(0)" class="w3-bar-item w3-button w3-border-bottom test w3-hover-light-grey" onclick="openMail('Borge');w3_close();" id="firstTab">
+            <a id="myBtn" onclick="collapseInbox('message_inbox')" href="javascript:void(0)" class="w3-bar-item w3-button"><i class="fa fa-inbox w3-margin-right"></i>Inbox (<span id="message_count"></span>)<i class="fa fa-caret-down w3-margin-left"></i></a>
+            <div id="message_inbox" class="w3-hide w3-animate-right">
+                <a id="message_unit" href="javascript:void(0)" class="w3-bar-item w3-button w3-border-bottom test w3-hover-light-grey" onclick="openMail('Borge');w3_close_mail_menu();" id="firstTab">
                     <div class="w3-container">
                         <img class="w3-round w3-margin-right" src="/w3images/avatar3.png" style="width:15%;"><span class="w3-opacity w3-large">Borge Refsnes</span>
                         <h6>Subject: Remember Me</h6>
                         <p>Hello, i just wanted to let you know that i'll be home at...</p>
                     </div>
-                </a>
-                <a href="javascript:void(0)" class="w3-bar-item w3-button w3-border-bottom test w3-hover-light-grey" onclick="openMail('Jane');w3_close();">
-                    <div class="w3-container">
-                        <img class="w3-round w3-margin-right" src="/w3images/avatar5.png" style="width:15%;"><span class="w3-opacity w3-large">Jane Doe</span>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit...</p>
-                    </div>
-                </a>
-                <a href="javascript:void(0)" class="w3-bar-item w3-button w3-border-bottom test w3-hover-light-grey" onclick="openMail('John');w3_close();">
-                    <div class="w3-container">
-                        <img class="w3-round w3-margin-right" src="/w3images/avatar2.png" style="width:15%;"><span class="w3-opacity w3-large">John Doe</span>
-                        <p>Welcome!</p>
-                    </div>
-                </a>
+                </a>                
             </div>
             <a href="#" class="w3-bar-item w3-button"><i class="fa fa-paper-plane w3-margin-right"></i>Sent</a>
-            <a href="#" class="w3-bar-item w3-button"><i class="fa fa-hourglass-end w3-margin-right"></i>Drafts</a>
-            <a href="#" class="w3-bar-item w3-button"><i class="fa fa-trash w3-margin-right"></i>Trash</a>
         </aside>
 
         <!-- Modal that pops up when you click on "New Message" -->
@@ -69,10 +54,8 @@
                 <div class="w3-panel">
                     <label>To</label>
                     <input class="w3-input w3-border w3-margin-bottom" type="text">
-                    <label>From</label>
-                    <input class="w3-input w3-border w3-margin-bottom" type="text">
-                    <label>Subject</label>
-                    <input class="w3-input w3-border w3-margin-bottom" type="text">
+<!--                    <label>Subject</label>
+                    <input class="w3-input w3-border w3-margin-bottom" type="text">-->
                     <input class="w3-input w3-border w3-margin-bottom" style="height:150px" placeholder="What's on your mind?">
                     <div class="w3-section">
                         <a class="w3-button w3-red" onclick="document.getElementById('id01').style.display = 'none'">Cancel  <i class="fa fa-remove"></i></a>
@@ -82,54 +65,29 @@
             </div>
         </div>
 
-        <!-- Overlay effect when opening the side navigation on small screens -->
+        <!-- Overlay effect that dims the colors when opening the side navigation on small screens -->
         <div class="w3-overlay w3-hide-large w3-animate-opacity" onclick="w3_close()" style="cursor:pointer" title="Close Sidemenu" id="myOverlay"></div>
 
         <!-- Page content -->
-        <div class="w3-main" style="margin-left:320px;margin-right:320px;">
+        <section class="w3-main" style="margin-left:320px;margin-right:320px;" id="message_section">
+            <!--Button for the nav bar-->
             <span class="w3-button w3-hide-large w3-xxlarge w3-hover-text-grey" onclick="w3_open()"><i class="fa fa-bars"></i></span>
+            <!--Pencil icon button for small screens-->
             <div class="w3-hide-large w3-xlarge w3-right w3-margin-right w3-margin-top">
                 <i class="fa fa-bars w3-button w3-white " onclick="w3_open_mail_menu()"></i>
                 <a href="javascript:void(0)" class="w3-hide-large w3-red w3-button" onclick="document.getElementById('id01').style.display = 'block'"><i class="fa fa-pencil"></i></a>
             </div>
-            <div id="Borge" class="w3-container person">
+            <div id="message_body" class="w3-container person">
                 <br>
-                <img class="w3-round  w3-animate-top" src="/w3images/avatar3.png" style="width:20%;">
-                <h5 class="w3-opacity">Subject: Remember Me</h5>
-                <h4><i class="fa fa-clock-o"></i> From Borge Refsnes, Sep 27, 2015.</h4>
-                <a class="w3-button w3-light-grey" href="#">Reply<i class="w3-margin-left fa fa-mail-reply"></i></a>
-                <a class="w3-button w3-light-grey" href="#">Forward<i class="w3-margin-left fa fa-arrow-right"></i></a>
+                <img class="w3-round  w3-animate-top" src="//insert source here" style="width:20%;" id="sender_pic">
+                <h5 class="w3-opacity" id="message_subject">Subject: //insert subject here</h5>
+                <h4><i class="fa fa-clock-o"></i> From <span id="sender_name">sender.name</span>, <span id="message_date">message.date</span></h4>
+<!--                <a class="w3-button w3-light-grey" href="#">Reply<i class="w3-margin-left fa fa-mail-reply"></i></a>
+                <a class="w3-button w3-light-grey" href="#">Forward<i class="w3-margin-left fa fa-arrow-right"></i></a>-->
                 <hr>
-                <p>Hello, i just wanted to let you know that i'll be home at lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-                <p>Best Regards, <br>Borge Refsnes</p>
+                <p id="message_text">message.content</p>
             </div>
-
-            <div id="Jane" class="w3-container person">
-                <br>
-                <img class="w3-round w3-animate-top" src="/w3images/avatar5.png" style="width:20%;">
-                <h5 class="w3-opacity">Subject: None</h5>
-                <h4><i class="fa fa-clock-o"></i> From Jane Doe, Sep 25, 2015.</h4>
-                <a class="w3-button w3-light-grey">Reply<i class="w3-margin-left fa fa-mail-reply"></i></a>
-                <a class="w3-button w3-light-grey">Forward<i class="w3-margin-left fa fa-arrow-right"></i></a>
-                <hr>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-                <p>Forever yours,<br>Jane</p>
-            </div>
-
-            <div id="John" class="w3-container person">
-                <br>
-                <img class="w3-round w3-animate-top" src="/w3images/avatar2.png" style="width:20%;">
-                <h5 class="w3-opacity">Subject: None</h5>
-                <h4><i class="fa fa-clock-o"></i> From John Doe, Sep 23, 2015.</h4>
-                <a class="w3-button w3-light-grey">Reply<i class="w3-margin-left fa fa-mail-reply"></i></a>
-                <a class="w3-button w3-light-grey">Forward<i class="w3-margin-left fa fa-arrow-right"></i></a>
-                <hr>
-                <p>Welcome.</p>
-                <p>That's it!</p>
-            </div>
-
-        </div>
+        </section>
 
         <script>
             var openInbox = document.getElementById("myBtn");
@@ -144,15 +102,14 @@
                 document.getElementById("myOverlay").style.display = "none";
             }
 
-            function myFunc(id) {
+            function collapseInbox(id) {
                 var x = document.getElementById(id);
                 if (x.className.indexOf("w3-show") == -1) {
                     x.className += " w3-show";
                     x.previousElementSibling.className += " w3-red";
                 } else {
                     x.className = x.className.replace(" w3-show", "");
-                    x.previousElementSibling.className =
-                            x.previousElementSibling.className.replace(" w3-red", "");
+                    x.previousElementSibling.className = x.previousElementSibling.className.replace(" w3-red", "");
                 }
             }
 
