@@ -11,6 +11,7 @@ import javax.ws.rs.core.GenericType;
 import model.POJOs.Administradores;
 import model.POJOs.Alumnos;
 import model.POJOs.Asignaturas;
+import model.POJOs.Mensajes;
 import model.POJOs.Usuario;
 import model.dao.AdministradoresJerseyClient;
 import model.dao.AlumnosJerseyClient;
@@ -57,13 +58,22 @@ public class DAOImpl {
     public static Usuario findProf(String user, String password) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
-    public static List<Asignaturas> findAsignaturas (Alumnos al) {
+
+    public static List<Asignaturas> findAsignaturas(Alumnos al) {
         AlumnosJerseyClient client = new AlumnosJerseyClient();
         GenericType<List<Asignaturas>> genericType = new GenericType<List<Asignaturas>>() {
         };
         List<Asignaturas> data = new ArrayList<>();
         data = client.findAsignaturas_XML(genericType, al.getIdUsuario().toString());
+        return data;
+    }
+
+    public static List<Mensajes> findRecievedMessages(Alumnos al) {
+        AlumnosJerseyClient client = new AlumnosJerseyClient();
+        GenericType<List<Mensajes>> genericType = new GenericType<List<Mensajes>>() {
+        };
+        List<Mensajes> data = new ArrayList<>();
+        data = client.findMensajesRecibidos_XML(genericType, al.getIdUsuario().toString());
         return data;
     }
 }

@@ -5,7 +5,13 @@
  */
 package actions;
 
+import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
+import java.util.List;
+import java.util.Map;
+import model.POJOs.Alumnos;
+import model.POJOs.Mensajes;
+import model.dao.DAOImpl;
 
 /**
  *
@@ -13,10 +19,16 @@ import com.opensymphony.xwork2.ActionSupport;
  */
 public class MessagesActions extends ActionSupport {
     
+    Alumnos alumno;
+    List<Mensajes> mensajes;
+    
     public MessagesActions() {
     }
     
     public String execute() throws Exception {
+        Map session = (Map) ActionContext.getContext().get("session");
+        alumno = (Alumnos) session.get("usuario");
+        mensajes = DAOImpl.findRecievedMessages(alumno);
         return SUCCESS;
     }
     

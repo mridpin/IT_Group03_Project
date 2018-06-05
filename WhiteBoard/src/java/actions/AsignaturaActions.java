@@ -32,6 +32,7 @@ public class AsignaturaActions extends ActionSupport {
         AsignaturasJerseyClient asignaturaJersey = new AsignaturasJerseyClient();
         GenericType<Asignaturas> genericTypeAsignatura = new GenericType<Asignaturas>(){};
         
+         // No llames al jersey desde la action, mejor crea un metodo estatico en DAOImpl que sea el que llame al jersey
         Asignaturas asignatura = asignaturaJersey.find_XML(genericTypeAsignatura,asignaturaId.toString());
         
         Map session = (Map) ActionContext.getContext().get("session");

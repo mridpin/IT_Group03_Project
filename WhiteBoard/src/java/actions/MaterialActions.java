@@ -36,6 +36,7 @@ public class MaterialActions extends ActionSupport {
         MaterialJerseyClient materialJersey = new MaterialJerseyClient();
         GenericType<List<Material>> genericTypeMaterial = new GenericType<List<Material>>(){};
         
+        // No llames al jersey desde la action, mejor crea un metodo estatico en DAOImpl que sea el que llame al jersey
         List<Material> materiales = materialJersey.findFromAsignatura_XML(genericTypeMaterial, asignaturaId.toString());
         
         all = new ArrayList();
