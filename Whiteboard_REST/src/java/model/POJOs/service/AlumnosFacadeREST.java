@@ -78,7 +78,7 @@ public class AlumnosFacadeREST extends AbstractFacade<Alumnos> {
     @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
     public Collection<Mensajes> findMensajesRecibidos(@PathParam("id") Integer id) {
         Alumnos aux = this.find(id);        
-        return aux.getMensajesCollection1();
+        return aux.getMensajesCollection();
     }
 
     @GET

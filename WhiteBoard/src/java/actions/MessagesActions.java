@@ -31,5 +31,23 @@ public class MessagesActions extends ActionSupport {
         mensajes = DAOImpl.findRecievedMessages(alumno);
         return SUCCESS;
     }
+
+    public Alumnos getAlumno() {
+        return alumno;
+    }
+
+    public void setAlumno(Alumnos alumno) {
+        this.alumno = alumno;
+    }
+
+    public List<Mensajes> getMensajes() {
+        return mensajes;
+    }
+
+    public void setMensajes(List<Mensajes> mensajes) {
+        this.mensajes = mensajes;
+    }
+    
+    
     
 }
