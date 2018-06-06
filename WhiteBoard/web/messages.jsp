@@ -25,30 +25,74 @@
             function previewMessage(fullMsg) {
                 return fullMsg.slice(0, 50);
             }
-        </script>
-    </head>
-    <body>
+            var mensajes; 
+            $(document).ready(function () {
+                xhttp = new XMLHttpRequest();
+                xhttp.open("GET", "http://localhost:8080/Whiteboard_REST/webresources/model.pojos.alumnos/" +<s:property value="#session.usuario.idUsuario"></s:property> + "/getMensajesRecibidos");
+                xhttp.setRequestHeader("Accept", "application/json");
+                xhttp.onreadystatechange = function () {
+                    mensajes = eval(xhttp.responseText);
+                    for (var i in mensajes) {
+                        var msg = mensajes[i];
+                        var msgbox = $("<a>");
+                        $(msgbox).attr("href", "javascript:void(0)");
+                        $(msgbox).addClass("class", "w3-sidebar w3-bar-block w3-collapse w3-white w3-animate-right w3-card");
+                        $(msgbox).css({
+                            "z-index": "3",
+                            "width" : "300px",
+                            "right" : "0px"
+                        });
+                        $(msgbox).click(function(){
+                            openMail(this);
+                            w3_close_mail_menu();
+                        });
+                        var msgimg = $("<img>");
+                        $(msgimg).addClass("w3-round w3-margin-right");
+                        $(msgimg).attr("src", "//user image");
+                        $(msgimg).attr("alt", "user image");
+                        $(msgimg).css({
+                            "witdh":"15%"
+                        });
+                        var msgsender = $("<span>");
+                        $(msgsender).addClass("sender_name w3-opacity w3-large");
+                        $(msgsender).append(msg["remitenteId"]);
+                        var msgcontent = $("<p>");
+                        $(msgcontent).append(previewMessage(msg["contenido"]));
+                        var msgcontainer  = $("<div>");
+                        $(msgcontainer).addClass("w3-container");
+                        $(msgcontainer).append(msgimg);
+                        $(msgcontainer).append(msgsender);
+                        $(msgcontainer).append(msgcontent);
+                        $(msgbox).append(msgcontainer);
+                        $("#message_box").append(msgbox);
+                    }
+                };
+                xhttp.send();
+            });
+            </script>
+        </head>
+        <body>
         <s:include value="header.jsp"/>
         <!-- Sidebar/menu -->
         <s:include value="sidebar.jsp"/>
         <!-- Side Navigation -->
-        <aside class="w3-sidebar w3-bar-block w3-collapse w3-white w3-animate-right w3-card" style="z-index:3;width:300px;right:0;overflow:auto;" id="myMailSidebar">
+        <aside class="w3-sidebar w3-bar-block w3-collapse w3-white w3-animate-right w3-card" style="z-index:3;width:300px;right:0" id="myMailSidebar">
             <a href="javascript:void(0)" onclick="w3_close_mail_menu()" title="Close Sidemenu" 
                class="w3-bar-item w3-button w3-hide-large w3-large">Close <i class="fa fa-remove"></i></a>
             <a href="javascript:void(0)" class="w3-bar-item w3-button w3-dark-grey w3-button w3-hover-black w3--align" onclick="document.getElementById('id01').style.display = 'block'">Nuevo mensaje<i class="w3-padding fa fa-pencil"></i></a>
             <a id="myBtn" onclick="collapseInbox('message_box')" href="javascript:void(0)" class="w3-bar-item w3-button"><i class="fa fa-inbox w3-margin-right"></i>Bandeja de entrada (<span id="message_count"></span>)<i class="fa fa-caret-down w3-margin-left"></i></a>
             <!--            Loops once per message loaded-->
             <div id="message_box" class="w3-hide w3-animate-right">
-                <s:iterator value="mensajes" var="msg">
-                    <a id="message_unit" href="javascript:void(0)" class="w3-bar-item w3-button w3-border-bottom test w3-hover-light-grey" onclick="openMail('Borge');w3_close_mail_menu();" id="firstTab">
-                        <div class="w3-container">
-                            <img class="w3-round w3-margin-right" src="//user image" style="width:15%;"><span class="sender_name w3-opacity w3-large">
-                                <s:property value="#msg.remitenteId"></s:property></span>
+                <%--<s:iterator value="mensajes" var="msg">--%>
+                    <!--<a id="message_unit" href="javascript:void(0)" class="w3-bar-item w3-button w3-border-bottom test w3-hover-light-grey" onclick="openMail(this);w3_close_mail_menu();" id="firstTab">-->
+                        <!--<div class="w3-container">-->
+                            <!--<img class="w3-round w3-margin-right" src="//user image" style="width:15%;">-->
+                            <!--<span class="sender_name w3-opacity w3-large"><s:property value="#msg.remitenteId"></s:property></span>-->
                                 <!--                        <h6 id="message_subject">Subject: Remember Me</h6>-->
-                                <p id="message_text_preview"><script>document.write(previewMessage('<s:property value="#msg.contenido" escapeXml="true"></s:property>'));</script></p>
-                            </div>
-                        </a>  
-                </s:iterator>
+                                <!--<p id="message_text_preview"><script>document.write(previewMessage('<s:property value="#msg.contenido" escapeXml="true"></s:property>'));</script></p>-->
+                            <!--</div>-->
+                        <!--</a>-->  
+               <%--</s:iterator>--%>
             </div>
             <a href="#" class="w3-bar-item w3-button"><i class="fa fa-paper-plane w3-margin-right"></i>Enviados</a>
         </aside>
@@ -126,7 +170,7 @@
             }
 
             // Scripts that handle opening and displaying the message clicked
-            openMail("Borge"); //Open first by default
+            openMail(); //Open first by default
             function openMail(personName) {
                 var i;
                 var x = document.getElementsByClassName("person");
