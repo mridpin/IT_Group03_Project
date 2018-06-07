@@ -25,46 +25,55 @@
             function previewMessage(fullMsg) {
                 return fullMsg.slice(0, 50);
             }
-            var mensajes; 
+            var mensajes; // Stored as a globar variable so we can clic on them
             $(document).ready(function () {
                 xhttp = new XMLHttpRequest();
                 xhttp.open("GET", "http://localhost:8080/Whiteboard_REST/webresources/model.pojos.alumnos/" +<s:property value="#session.usuario.idUsuario"></s:property> + "/getMensajesRecibidos");
                 xhttp.setRequestHeader("Accept", "application/json");
                 xhttp.onreadystatechange = function () {
-                    mensajes = eval(xhttp.responseText);
-                    for (var i in mensajes) {
-                        var msg = mensajes[i];
-                        var msgbox = $("<a>");
-                        $(msgbox).attr("href", "javascript:void(0)");
-                        $(msgbox).addClass("class", "w3-sidebar w3-bar-block w3-collapse w3-white w3-animate-right w3-card");
-                        $(msgbox).css({
-                            "z-index": "3",
-                            "width" : "300px",
-                            "right" : "0px"
-                        });
-                        $(msgbox).click(function(){
-                            openMail(this);
-                            w3_close_mail_menu();
-                        });
-                        var msgimg = $("<img>");
-                        $(msgimg).addClass("w3-round w3-margin-right");
-                        $(msgimg).attr("src", "//user image");
-                        $(msgimg).attr("alt", "user image");
-                        $(msgimg).css({
-                            "witdh":"15%"
-                        });
-                        var msgsender = $("<span>");
-                        $(msgsender).addClass("sender_name w3-opacity w3-large");
-                        $(msgsender).append(msg["remitenteId"]);
-                        var msgcontent = $("<p>");
-                        $(msgcontent).append(previewMessage(msg["contenido"]));
-                        var msgcontainer  = $("<div>");
-                        $(msgcontainer).addClass("w3-container");
-                        $(msgcontainer).append(msgimg);
-                        $(msgcontainer).append(msgsender);
-                        $(msgcontainer).append(msgcontent);
-                        $(msgbox).append(msgcontainer);
-                        $("#message_box").append(msgbox);
+                    if (xhttp.readyState == 4 && xhttp.status == 200) {
+                        var reversedmensajes = eval(xhttp.responseText);
+                        mensajes = reversedmensajes.reverse();
+                        $("#message_count").append(mensajes.length);
+                        // Built the message sidebar with the info from each message
+                        for (var i in mensajes) {
+                            var msg = mensajes[i];
+                            var msgbox = $("<a>");
+                            $(msgbox).attr("href", "javascript:void(0)");
+                            $(msgbox).addClass("w3-bar-item w3-button w3-border-bottom test w3-hover-light-grey");
+                            $(msgbox).css({
+                                "z-index": "3",
+                                "width": "300px",
+                                "right": "0px"
+                            });
+                            // Double return function jabbascript goodness
+                            $(msgbox).click(function (j) {
+                                return function () {
+                                    openMail(mensajes[j]);
+                                    return false;
+                                };
+                                w3_close_mail_menu();
+                            }(i));
+                            var msgimg = $("<img>");
+                            $(msgimg).addClass("w3-round w3-margin-right");
+                            $(msgimg).attr("src", "//user image");
+                            $(msgimg).attr("alt", "user image");
+                            $(msgimg).css({
+                                "witdh": "15%"
+                            });
+                            var msgsender = $("<span>");
+                            $(msgsender).addClass("w3-opacity w3-large");
+                            $(msgsender).append(msg["remitenteId"]["nombre"]);
+                            var msgcontent = $("<p>");
+                            $(msgcontent).append(previewMessage(msg["contenido"]));
+                            var msgcontainer = $("<div>");
+                            $(msgcontainer).addClass("w3-container");
+                            $(msgcontainer).append(msgimg);
+                            $(msgcontainer).append(msgsender);
+                            $(msgcontainer).append(msgcontent);
+                            $(msgbox).append(msgcontainer);
+                            $("#message_box").append(msgbox);
+                        }
                     }
                 };
                 xhttp.send();
@@ -84,15 +93,15 @@
             <!--            Loops once per message loaded-->
             <div id="message_box" class="w3-hide w3-animate-right">
                 <%--<s:iterator value="mensajes" var="msg">--%>
-                    <!--<a id="message_unit" href="javascript:void(0)" class="w3-bar-item w3-button w3-border-bottom test w3-hover-light-grey" onclick="openMail(this);w3_close_mail_menu();" id="firstTab">-->
-                        <!--<div class="w3-container">-->
-                            <!--<img class="w3-round w3-margin-right" src="//user image" style="width:15%;">-->
-                            <!--<span class="sender_name w3-opacity w3-large"><s:property value="#msg.remitenteId"></s:property></span>-->
-                                <!--                        <h6 id="message_subject">Subject: Remember Me</h6>-->
-                                <!--<p id="message_text_preview"><script>document.write(previewMessage('<s:property value="#msg.contenido" escapeXml="true"></s:property>'));</script></p>-->
-                            <!--</div>-->
-                        <!--</a>-->  
-               <%--</s:iterator>--%>
+                <!--<a id="message_unit" href="javascript:void(0)" class="w3-bar-item w3-button w3-border-bottom test w3-hover-light-grey" onclick="openMail(this);w3_close_mail_menu();" id="firstTab">-->
+                <!--<div class="w3-container">-->
+                <!--<img class="w3-round w3-margin-right" src="//user image" style="width:15%;">-->
+                <!--<span class="sender_name w3-opacity w3-large"><s:property value="#msg.remitenteId"></s:property></span>-->
+                    <!--                        <h6 id="message_subject">Subject: Remember Me</h6>-->
+                    <!--<p id="message_text_preview"><script>document.write(previewMessage('<s:property value="#msg.contenido" escapeXml="true"></s:property>'));</script></p>-->
+                    <!--</div>-->
+                    <!--</a>-->  
+                <%--</s:iterator>--%>
             </div>
             <a href="#" class="w3-bar-item w3-button"><i class="fa fa-paper-plane w3-margin-right"></i>Enviados</a>
         </aside>
@@ -131,11 +140,12 @@
                 <i class="fa fa-bars w3-button w3-white " onclick="w3_open_mail_menu()"></i>
                 <a href="javascript:void(0)" class="w3-hide-large w3-red w3-button" onclick="document.getElementById('id01').style.display = 'block'"><i class="fa fa-pencil"></i></a>
             </div>
+            <!--Space for full messages-->
             <div id="message_body" class="w3-container person">
                 <br>
-                <img class="w3-round  w3-animate-top" src="//insert source here" style="width:20%;" id="sender_pic">
-                <h5 class="w3-opacity" id="message_subject">Subject: //insert subject here</h5>
-                <h4><i class="fa fa-clock-o"></i> From <span class="sender_name">sender.name</span>, <span id="message_date">message.date</span></h4>
+                <img class="w3-round  w3-animate-top" src="//insert source here" style="width:20%;" id="sender_pic" alt="Foto del remitente">
+                <!--<h5 class="w3-opacity" id="message_subject">Subject: //insert subject here</h5>-->
+                <h4><i class="fa fa-clock-o"></i> From <span id="sender_name">sender.name</span>, <span id="message_date">message.date</span></h4>
                 <!--                <a class="w3-button w3-light-grey" href="#">Reply<i class="w3-margin-left fa fa-mail-reply"></i></a>
                                 <a class="w3-button w3-light-grey" href="#">Forward<i class="w3-margin-left fa fa-arrow-right"></i></a>-->
                 <hr>
@@ -170,22 +180,18 @@
             }
 
             // Scripts that handle opening and displaying the message clicked
-            openMail(); //Open first by default
-            function openMail(personName) {
-                var i;
-                var x = document.getElementsByClassName("person");
-                for (i = 0; i < x.length; i++) {
-                    x[i].style.display = "none";
-                }
-                x = document.getElementsByClassName("test");
-                for (i = 0; i < x.length; i++) {
-                    x[i].className = x[i].className.replace(" w3-light-grey", "");
-                }
-                document.getElementById(personName).style.display = "block";
-                event.currentTarget.className += " w3-light-grey";
+            openMail(mensajes[0]); //Open first by default
+            function openMail(msg) {
+                $("#sender_pic").empty();
+                $("#sender_pic").append(msg["remitenteId"]["foto"]);
+                $("#sender_name").empty();
+                $("#sender_name").append(msg["remitenteId"]["nombre"]);
+                $("#message_date").empty();
+                var date = new Date(msg["fecha"]);
+                $("#message_date").append(date.getFullYear() + "-" + ("0" + date.getMonth()).slice(-2) + "-" + ("0" + date.getDay()).slice(-2) + " " + ("0" + date.getHours()).slice(-2) + ":" + ("0" + date.getMinutes()).slice(-2));
+                $("#message_text").empty();
+                $("#message_text").append(msg["contenido"]);
             }
-            var openTab = document.getElementById("firstTab");
-            openTab.click();
         </script>
         <s:include value="scripts.jsp"/>
     </body>
