@@ -100,6 +100,9 @@ public class MaterialFacadeREST extends AbstractFacade<Material> {
     @Path("get/{filePath}")
     @Produces(MediaType.APPLICATION_OCTET_STREAM)
     public Response getFile(@PathParam("filePath")String filePath) {
+        
+        filePath = filePath.replace("_","/");
+        
         File file = new File(filePath);
         return Response.ok(file, MediaType.APPLICATION_OCTET_STREAM)
       .header("Content-Disposition", "attachment; filename=\"" + file.getName() + "\"" ) //optional
