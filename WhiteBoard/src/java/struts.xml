@@ -72,7 +72,7 @@
     </package>
     
     <package name="messages" namespace="/messages" extends="struts-default">        
-        <action name="loadMessages" class="actions.MessagesActions">
+        <action name="loadMessages" class="actions.MessagesActions" method="loadAlumnos">
             <result name="success">/messages.jsp</result>
             <result name="input">/messages.jsp</result>
         </action>        

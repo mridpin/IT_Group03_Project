@@ -116,4 +116,10 @@ public class DAOImpl {
         GenericType<Alumnos> genericType = new GenericType<Alumnos>(){};
         return client.findByUserName_XML(genericType, destinatario);        
     }
+
+    public static List<Alumnos> findAllStudents() {
+        AlumnosJerseyClient client = new AlumnosJerseyClient();
+        GenericType<List<Alumnos>> genericType = new GenericType<List<Alumnos>>(){};
+        return client.findAll_XML(genericType);
+    }
 }

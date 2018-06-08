@@ -23,10 +23,9 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <script>
             function previewMessage(fullMsg) {
-                return fullMsg.slice(0, 50);
+                return fullMsg.slice(0, 20) + "...";
             }
-            var mensajes; // Stored as a globar variable so we can clic on them
-            $(document).ready(function () {
+            function showAllMessages() {
                 xhttp = new XMLHttpRequest();
                 xhttp.open("GET", "http://localhost:8080/Whiteboard_REST/webresources/model.pojos.alumnos/" +<s:property value="#session.usuario.idUsuario"></s:property> + "/getMensajesRecibidos");
                 xhttp.setRequestHeader("Accept", "application/json");
@@ -84,6 +83,10 @@
                     }
                 };
                 xhttp.send();
+            }
+            var mensajes; // Stored as a globar variable so we can clic on them
+            $(document).ready(function () {
+                showAllMessages();
             });
             </script>
         </head>
@@ -92,23 +95,13 @@
         <!-- Sidebar/menu -->
         <s:include value="sidebar.jsp"/>
         <!-- Side Navigation -->
-        <aside class="w3-sidebar w3-bar-block w3-collapse w3-white w3-animate-right w3-card" style="z-index:3;width:300px;right:0" id="myMailSidebar">
+        <aside class="w3-sidebar w3-bar-block w3-collapse w3-white w3-animate-right w3-card" style="z-index:3;width:300px;right:0;" id="myMailSidebar">
             <a href="javascript:void(0)" onclick="w3_close_mail_menu()" title="Close Sidemenu" 
                class="w3-bar-item w3-button w3-hide-large w3-large">Close <i class="fa fa-remove"></i></a>
             <a href="javascript:void(0)" class="w3-bar-item w3-button w3-dark-grey w3-button w3-hover-black w3--align" onclick="document.getElementById('modal').style.display = 'block'">Nuevo mensaje<i class="w3-padding fa fa-pencil"></i></a>
             <a id="myBtn" onclick="collapseInbox('message_box')" href="javascript:void(0)" class="w3-bar-item w3-button"><i class="fa fa-inbox w3-margin-right"></i>Bandeja de entrada (<span id="message_count"></span>)<i class="fa fa-caret-down w3-margin-left"></i></a>
             <!--            Loops once per message loaded-->
             <div id="message_box" class="w3-hide w3-animate-right">
-                <%--<s:iterator value="mensajes" var="msg">--%>
-                <!--<a id="message_unit" href="javascript:void(0)" class="w3-bar-item w3-button w3-border-bottom test w3-hover-light-grey" onclick="openMail(this);w3_close_mail_menu();" id="firstTab">-->
-                <!--<div class="w3-container">-->
-                <!--<img class="w3-round w3-margin-right" src="//user image" style="width:15%;">-->
-                <!--<span class="sender_name w3-opacity w3-large"><s:property value="#msg.remitenteId"></s:property></span>-->
-                    <!--                        <h6 id="message_subject">Subject: Remember Me</h6>-->
-                    <!--<p id="message_text_preview"><script>document.write(previewMessage('<s:property value="#msg.contenido" escapeXml="true"></s:property>'));</script></p>-->
-                    <!--</div>-->
-                    <!--</a>-->  
-                <%--</s:iterator>--%>
             </div>
             <a href="#" class="w3-bar-item w3-button"><i class="fa fa-paper-plane w3-margin-right"></i>Enviados</a>
         </aside>
@@ -123,13 +116,14 @@
                 </div>
                 <div class="w3-panel">
                     <s:form namespace="/messages" action="send" theme="simple">
+                        <p id="addressee_error" class="w3-panel w3-red w3-hide"></p>
                         <label>Para:</label>
-                        <input class="w3-input w3-border w3-margin-bottom" type="text" id="destinatario_nombre" name="destinatario">
+                        <s:select cssClass="w3-input w3-border w3-margin-bottom" id="destinatario_nombre" name="destinatario" required="true" list="alumnos" listValue="nombre" listKey="username"></s:select>
                         <input class="w3-input w3-border w3-margin-bottom" style="height:150px" placeholder="Escribe tu mensaje aquí" name="contenido" id="mensaje_cuerpo">
                         <div class="w3-section">
                             <a class="w3-button w3-red" onclick="document.getElementById('modal').style.display = 'none'">Cancelar<i class="fa fa-remove"></i></a>
-                            <s:submit cssClass="w3-button w3-light-grey w3-right" value="Enviar"></s:submit>
-                        </div>
+                                <s:submit cssClass="w3-button w3-light-grey w3-right" value="Enviar"></s:submit>
+                            </div>
                         </div>
                 </s:form>
             </div>
@@ -199,7 +193,23 @@
                 $("#message_text").empty();
                 $("#message_text").append(msg["contenido"]);
             }
-        </script>
+
+//            // Validate as a SYNCH call if the user exists. This process is repeated in the server just in case the sender doesnt have javascript active
+//            function validateUser() {
+//                xhttp = new XMLHttpRequest();
+//                xhttp.open("GET", "http://localhost:8080/Whiteboard_REST/webresources/model.pojos.alumnos/username/" + $("#sender_name").val());
+//                xhttp.setRequestHeader("Accept", "application/json");
+//                xhttp.send();
+//                var addressee = eval(xhttp.responseText);
+//                if (addressee != null && addressee["username"]===$("#sender_name").val()) {
+//                    return true;
+//                } else {
+//                    $("#addressee_error").val("El usuario destinatario no existe!");
+//                    $("#addressee_error").removeClass("w3-hide");
+//                    return false;
+//                }
+//            }
+            </script>
         <s:include value="scripts.jsp"/>
     </body>
 </html> 

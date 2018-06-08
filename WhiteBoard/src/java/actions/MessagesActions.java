@@ -19,23 +19,22 @@ import model.dao.DAOImpl;
  * @author ridao
  */
 public class MessagesActions extends ActionSupport {
-    
+
     Alumnos alumno;
     List<Mensajes> mensajes;
     String destinatario;
     String contenido;
     Alumnos alumnoDestinatario;
-    
+    List<Alumnos> alumnos;
+
     public MessagesActions() {
     }
-    
-    public String execute() throws Exception {
-        Map session = (Map) ActionContext.getContext().get("session");
-        alumno = (Alumnos) session.get("usuario");
-        mensajes = DAOImpl.findRecievedMessages(alumno);
+
+    public String loadAlumnos() {
+        alumnos = DAOImpl.findAllStudents();
         return SUCCESS;
     }
-    
+
     public String sendMessage() {
         Map session = (Map) ActionContext.getContext().get("session");
         alumno = (Alumnos) session.get("usuario");
@@ -48,13 +47,16 @@ public class MessagesActions extends ActionSupport {
         DAOImpl.crearMensaje(msg);
         return SUCCESS;
     }
-    
+
+    // Busca el usuario a ver si existe
     public void validate() {
-        alumnoDestinatario = DAOImpl.findStudentByName(destinatario);
-        if (alumnoDestinatario==null) {
-            addFieldError("destinatario", "Destinatario no encontrado");
+        if (destinatario != null) {
+            alumnoDestinatario = DAOImpl.findStudentByName(destinatario);
+            if (alumnoDestinatario == null) {
+                addFieldError("destinatario", "Destinatario no encontrado");
+            }
         }
-    } 
+    }
 
     public Alumnos getAlumno() {
         return alumno;
@@ -95,7 +97,13 @@ public class MessagesActions extends ActionSupport {
     public void setAlumnoDestinatario(Alumnos alumnoDestinatario) {
         this.alumnoDestinatario = alumnoDestinatario;
     }
-    
-    
-    
+
+    public List<Alumnos> getAlumnos() {
+        return alumnos;
+    }
+
+    public void setAlumnos(List<Alumnos> alumnos) {
+        this.alumnos = alumnos;
+    }
+
 }

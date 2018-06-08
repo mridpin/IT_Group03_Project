@@ -11,7 +11,7 @@
         <div class="w3-col s8 w3-bar">
             <span>Bienvenido, <strong><s:property value="#session.usuario.nombre"/></strong></span><br>
             <s:form namespace="/messages" action="loadMessages">
-                <s:submit cssClass="w3-bar-item w3-button"><i class="fa fa-envelope" theme="simple"></i></s:submit>
+                <strong><s:submit cssClass="w3-bar-item w3-button" value="Mensajes"></s:submit></strong>
             </s:form>
             <a href="#" class="w3-bar-item w3-button"><i class="fa fa-user"></i></a>
             <a href="#" class="w3-bar-item w3-button"><i class="fa fa-cog"></i></a>
