@@ -32,7 +32,7 @@
 
         </s:iterator>
         <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-cog fa-fw"></i>  Ajustes</a><br><br>
-        <s:form action="logout">
+        <s:form action="logout" namespace="/login">
             <s:submit cssClass="w3-button"  name="logout" value="Logout"/>
         </s:form>
     </div>
