@@ -77,7 +77,7 @@
             <result name="input">/messages.jsp</result>
         </action>        
         <action name="send" class="actions.MessagesActions" method="sendMessage">
-            <result name="success">/messages.jsp</result>
+            <result name="success">/postredirectget.jsp</result>
             <result name="input">/messages.jsp</result>
         </action>        
     </package>

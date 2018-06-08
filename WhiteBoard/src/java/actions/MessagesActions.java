@@ -39,6 +39,7 @@ public class MessagesActions extends ActionSupport {
     public String sendMessage() {
         Map session = (Map) ActionContext.getContext().get("session");
         alumno = (Alumnos) session.get("usuario");
+        session.put("origin", "loadMessages");
         Mensajes msg = new Mensajes();
         msg.setContenido(contenido);
         msg.setDestinatarioId(alumnoDestinatario);

@@ -29,15 +29,6 @@ public class ApplicationConfig extends Application {
      * If required, comment out calling this method in getClasses().
      */
     private void addRestResourceClasses(Set<Class<?>> resources) {
-        resources.add(model.POJOs.service.ActividadesFacadeREST.class);
-        resources.add(model.POJOs.service.AdministradoresFacadeREST.class);
-        resources.add(model.POJOs.service.AlumnosFacadeREST.class);
-        resources.add(model.POJOs.service.AsignaturasFacadeREST.class);
-        resources.add(model.POJOs.service.AulasFacadeREST.class);
-        resources.add(model.POJOs.service.EntregaFacadeREST.class);
-        resources.add(model.POJOs.service.MaterialFacadeREST.class);
-        resources.add(model.POJOs.service.MensajesFacadeREST.class);
-        resources.add(model.POJOs.service.ProfesoresFacadeREST.class);
     }
     
 }
