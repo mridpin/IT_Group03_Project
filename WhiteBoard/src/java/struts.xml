@@ -71,12 +71,15 @@
         
     </package>
     
-    <package name="messages" namespace="/messages" extends="struts-default">
-        
+    <package name="messages" namespace="/messages" extends="struts-default">        
         <action name="loadMessages" class="actions.MessagesActions">
             <result name="success">/messages.jsp</result>
-        </action>
-        
+            <result name="input">/messages.jsp</result>
+        </action>        
+        <action name="send" class="actions.MessagesActions" method="sendMessage">
+            <result name="success">/messages.jsp</result>
+            <result name="input">/messages.jsp</result>
+        </action>        
     </package>
     
     

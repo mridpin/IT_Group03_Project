@@ -64,20 +64,33 @@ public class AlumnosFacadeREST extends AbstractFacade<Alumnos> {
     public Alumnos find(@PathParam("id") Integer id) {
         return super.find(id);
     }
-    
+
+    @GET
+    @Path("username/{username}")
+    @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
+    public Alumnos findByUserName(@PathParam("username") String username) {
+        List<Alumnos> alumnos = super.findAll();
+        for (Alumnos a : alumnos) {
+            if (a.getUsername().equals(username)) {
+                return a;
+            }
+        }
+        return null;
+    }
+
     @GET
     @Path("{id}/getAsignaturas")
     @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
     public Collection<Asignaturas> findAsignaturas(@PathParam("id") Integer id) {
-        Alumnos aux = this.find(id);        
+        Alumnos aux = this.find(id);
         return aux.getAsignaturasCollection();
     }
-    
+
     @GET
     @Path("{id}/getMensajesRecibidos")
     @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
     public Collection<Mensajes> findMensajesRecibidos(@PathParam("id") Integer id) {
-        Alumnos aux = this.find(id);        
+        Alumnos aux = this.find(id);
         return aux.getMensajesCollection1();
     }
 
@@ -106,5 +119,5 @@ public class AlumnosFacadeREST extends AbstractFacade<Alumnos> {
     protected EntityManager getEntityManager() {
         return em;
     }
-    
+
 }

@@ -122,18 +122,19 @@
                     <h2>Enviar Mensaje</h2>
                 </div>
                 <div class="w3-panel">
-                    <label>Para:</label>
-                    <input class="w3-input w3-border w3-margin-bottom" type="text" id="destinatario_nombre">
-                    <!--                    <label>Subject</label>
-                                        <input class="w3-input w3-border w3-margin-bottom" type="text">-->
-                    <input class="w3-input w3-border w3-margin-bottom" style="height:150px" placeholder="Escribe tu mensaje aquí" id="mensaje_cuerpo"
-                    <div class="w3-section">
-                        <a class="w3-button w3-red" onclick="document.getElementById('modal').style.display = 'none'">Cancelar  <i class="fa fa-remove"></i></a>
-                        <a class="w3-button w3-light-grey w3-right" onclick="document.getElementById('modal').style.display = 'none';send_message()">Enviar  <i class="fa fa-paper-plane"></i></a> 
-                    </div>    
-                </div>
+                    <s:form namespace="/messages" action="send" theme="simple">
+                        <label>Para:</label>
+                        <input class="w3-input w3-border w3-margin-bottom" type="text" id="destinatario_nombre" name="destinatario">
+                        <input class="w3-input w3-border w3-margin-bottom" style="height:150px" placeholder="Escribe tu mensaje aquí" name="contenido" id="mensaje_cuerpo">
+                        <div class="w3-section">
+                            <a class="w3-button w3-red" onclick="document.getElementById('modal').style.display = 'none'">Cancelar<i class="fa fa-remove"></i></a>
+                            <s:submit cssClass="w3-button w3-light-grey w3-right" value="Enviar"></s:submit>
+                        </div>
+                        </div>
+                </s:form>
             </div>
         </div>
+
 
         <!-- Overlay effect that dims the colors when opening the side navigation on small screens -->
         <div class="w3-overlay w3-hide-large w3-animate-opacity" onclick="w3_close()" style="cursor:pointer" title="Close Sidemenu" id="myOverlay"></div>
@@ -197,11 +198,6 @@
                 $("#message_date").append(date.getFullYear() + "-" + ("0" + (date.getMonth() + 1)).slice(-2) + "-" + ("0" + date.getDate()).slice(-2) + " " + ("0" + date.getHours()).slice(-2) + ":" + ("0" + date.getMinutes()).slice(-2));
                 $("#message_text").empty();
                 $("#message_text").append(msg["contenido"]);
-            }
-            
-            function send_message() {
-                var addressee = $("#mensaje_destinatario").val();
-                var content = $("#mensaje_contenido").val();
             }
         </script>
         <s:include value="scripts.jsp"/>

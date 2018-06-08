@@ -104,4 +104,16 @@ public class DAOImpl {
         
         return materialJersey.findFromAsignatura_XML(genericTypeMaterial,id);
     }
+
+    public static void crearMensaje(Mensajes msg) {
+        MensajesJerseyClient mensajesJersey = new MensajesJerseyClient();
+        mensajesJersey.create_JSON(msg);
+        mensajesJersey.close();
+    }
+
+    public static Alumnos findStudentByName(String destinatario) {
+        AlumnosJerseyClient client = new AlumnosJerseyClient();
+        GenericType<Alumnos> genericType = new GenericType<Alumnos>(){};
+        return client.findByUserName_XML(genericType, destinatario);        
+    }
 }
