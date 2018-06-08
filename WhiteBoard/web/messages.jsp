@@ -32,9 +32,16 @@
                 xhttp.setRequestHeader("Accept", "application/json");
                 xhttp.onreadystatechange = function () {
                     if (xhttp.readyState == 4 && xhttp.status == 200) {
-                        var reversedmensajes = eval(xhttp.responseText);
-                        mensajes = reversedmensajes.reverse();
+                        //var reversedmensajes = eval(xhttp.responseText);
+                        //mensajes = reversedmensajes.reverse();
+                        mensajes = eval(xhttp.responseText);
+                        mensajes.sort(function (a, b) {
+                            var adate = new Date(a["fecha"]);
+                            var bdate = new Date(b["fecha"]);
+                            return (adate <= bdate) ? 1 : 0;
+                        });
                         $("#message_count").append(mensajes.length);
+                        openMail(mensajes[0]); //Open first by default
                         // Built the message sidebar with the info from each message
                         for (var i in mensajes) {
                             var msg = mensajes[i];
@@ -88,7 +95,7 @@
         <aside class="w3-sidebar w3-bar-block w3-collapse w3-white w3-animate-right w3-card" style="z-index:3;width:300px;right:0" id="myMailSidebar">
             <a href="javascript:void(0)" onclick="w3_close_mail_menu()" title="Close Sidemenu" 
                class="w3-bar-item w3-button w3-hide-large w3-large">Close <i class="fa fa-remove"></i></a>
-            <a href="javascript:void(0)" class="w3-bar-item w3-button w3-dark-grey w3-button w3-hover-black w3--align" onclick="document.getElementById('id01').style.display = 'block'">Nuevo mensaje<i class="w3-padding fa fa-pencil"></i></a>
+            <a href="javascript:void(0)" class="w3-bar-item w3-button w3-dark-grey w3-button w3-hover-black w3--align" onclick="document.getElementById('modal').style.display = 'block'">Nuevo mensaje<i class="w3-padding fa fa-pencil"></i></a>
             <a id="myBtn" onclick="collapseInbox('message_box')" href="javascript:void(0)" class="w3-bar-item w3-button"><i class="fa fa-inbox w3-margin-right"></i>Bandeja de entrada (<span id="message_count"></span>)<i class="fa fa-caret-down w3-margin-left"></i></a>
             <!--            Loops once per message loaded-->
             <div id="message_box" class="w3-hide w3-animate-right">
@@ -107,22 +114,22 @@
         </aside>
 
         <!-- Modal that pops up when you click on "New Message" -->
-        <div id="id01" class="w3-modal" style="z-index:4">
+        <div id="modal" class="w3-modal" style="z-index:4">
             <div class="w3-modal-content w3-animate-zoom">
                 <div class="w3-container w3-padding w3-red">
-                    <span onclick="document.getElementById('id01').style.display = 'none'"
+                    <span onclick="document.getElementById('modal').style.display = 'none'"
                           class="w3-button w3-red w3-right w3-xxlarge"><i class="fa fa-remove"></i></span>
-                    <h2>Send Mail</h2>
+                    <h2>Enviar Mensaje</h2>
                 </div>
                 <div class="w3-panel">
-                    <label>To</label>
-                    <input class="w3-input w3-border w3-margin-bottom" type="text">
+                    <label>Para:</label>
+                    <input class="w3-input w3-border w3-margin-bottom" type="text" id="destinatario_nombre">
                     <!--                    <label>Subject</label>
                                         <input class="w3-input w3-border w3-margin-bottom" type="text">-->
-                    <input class="w3-input w3-border w3-margin-bottom" style="height:150px" placeholder="What's on your mind?">
+                    <input class="w3-input w3-border w3-margin-bottom" style="height:150px" placeholder="Escribe tu mensaje aquí" id="mensaje_cuerpo"
                     <div class="w3-section">
-                        <a class="w3-button w3-red" onclick="document.getElementById('id01').style.display = 'none'">Cancel  <i class="fa fa-remove"></i></a>
-                        <a class="w3-button w3-light-grey w3-right" onclick="document.getElementById('id01').style.display = 'none'">Send  <i class="fa fa-paper-plane"></i></a> 
+                        <a class="w3-button w3-red" onclick="document.getElementById('modal').style.display = 'none'">Cancelar  <i class="fa fa-remove"></i></a>
+                        <a class="w3-button w3-light-grey w3-right" onclick="document.getElementById('modal').style.display = 'none';send_message()">Enviar  <i class="fa fa-paper-plane"></i></a> 
                     </div>    
                 </div>
             </div>
@@ -138,7 +145,7 @@
             <!--Pencil icon button for small screens-->
             <div class="w3-hide-large w3-xlarge w3-right w3-margin-right w3-margin-top">
                 <i class="fa fa-bars w3-button w3-white " onclick="w3_open_mail_menu()"></i>
-                <a href="javascript:void(0)" class="w3-hide-large w3-red w3-button" onclick="document.getElementById('id01').style.display = 'block'"><i class="fa fa-pencil"></i></a>
+                <a href="javascript:void(0)" class="w3-hide-large w3-red w3-button" onclick="document.getElementById('modal').style.display = 'block'"><i class="fa fa-pencil"></i></a>
             </div>
             <!--Space for full messages-->
             <div id="message_body" class="w3-container person">
@@ -180,7 +187,6 @@
             }
 
             // Scripts that handle opening and displaying the message clicked
-            openMail(mensajes[0]); //Open first by default
             function openMail(msg) {
                 $("#sender_pic").empty();
                 $("#sender_pic").append(msg["remitenteId"]["foto"]);
@@ -188,9 +194,14 @@
                 $("#sender_name").append(msg["remitenteId"]["nombre"]);
                 $("#message_date").empty();
                 var date = new Date(msg["fecha"]);
-                $("#message_date").append(date.getFullYear() + "-" + ("0" + date.getMonth()).slice(-2) + "-" + ("0" + date.getDay()).slice(-2) + " " + ("0" + date.getHours()).slice(-2) + ":" + ("0" + date.getMinutes()).slice(-2));
+                $("#message_date").append(date.getFullYear() + "-" + ("0" + (date.getMonth() + 1)).slice(-2) + "-" + ("0" + date.getDate()).slice(-2) + " " + ("0" + date.getHours()).slice(-2) + ":" + ("0" + date.getMinutes()).slice(-2));
                 $("#message_text").empty();
                 $("#message_text").append(msg["contenido"]);
+            }
+            
+            function send_message() {
+                var addressee = $("#mensaje_destinatario").val();
+                var content = $("#mensaje_contenido").val();
             }
         </script>
         <s:include value="scripts.jsp"/>
