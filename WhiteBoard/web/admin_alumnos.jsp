@@ -51,7 +51,14 @@
             </section>
             <section class="w3-container">
                 <h3>EDITAR o CREAR ALUMNO</h3>
-                <s:form></s:form>
+                <s:form cssClass="w3-container" namespace="/admin" action="crearAlumno">
+                    <s:textfield cssClass="w3-input" type="text" id="input_id" name="id"  label="ID" readonly="readonly"></s:textfield>
+                    <s:textfield cssClass="w3-input" type="text" id="input_username" name="username" label="Usuario"></s:textfield>
+                    <s:textfield cssClass="w3-input" type="text" id="input_nombre" name="nombre" label="Nombre"></s:textfield>
+                    <s:textfield cssClass="w3-input" type="text" id="input_apellidos" name="apellidos" label="Apellidos"></s:textfield>
+                    <s:textfield cssClass="w3-input" type="text" id="input_password" name="password" label="Contraseña"></s:textfield>
+                    <s:textfield cssClass="w3-input" type="text" id="input_foto" name="foto"  label="Foto"></s:textfield>
+                </s:form>
                 </section>
             </article>
         <s:include value="footer.jsp"/>
