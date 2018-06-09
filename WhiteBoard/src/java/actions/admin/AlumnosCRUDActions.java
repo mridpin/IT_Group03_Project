@@ -25,6 +25,8 @@ public class AlumnosCRUDActions extends ActionSupport {
     String password;
     String foto;
     String id;
+    String desde;
+    String hasta;
 
     public AlumnosCRUDActions() {
     }
@@ -53,10 +55,21 @@ public class AlumnosCRUDActions extends ActionSupport {
         session.put("origin", "loadStudents");
         return SUCCESS;
     }
+    
     public String editarAlumno() {
+        Alumnos al = new Alumnos();
+        al.setIdUsuario(Integer.parseInt(id));
+        al.setUsername(username);
+        al.setNombre(nombre);
+        al.setApellidos(apellidos);
+        al.setPassword(password);
+        al.setFoto(foto);
+        DAOImpl.editarAlumno(al);
         return SUCCESS;
     }
-
+    public String borrarAlumnos(){
+        DAOImpl.borrarAlumno(desde, hasta);
+    }
     public List<Alumnos> getAlumnos() {
         return alumnos;
     }
@@ -113,4 +126,22 @@ public class AlumnosCRUDActions extends ActionSupport {
     public void setId(String id) {
         this.id = id;
     }
+
+    public String getDesde() {
+        return desde;
+    }
+
+    public void setDesde(String desde) {
+        this.desde = desde;
+    }
+
+    public String getHasta() {
+        return hasta;
+    }
+
+    public void setHasta(String hasta) {
+        this.hasta = hasta;
+    }
+    
+    
 }

@@ -3,6 +3,7 @@
 "http://struts.apache.org/dtds/struts-2.0.dtd">
 
 <struts>
+    <constant name="struts.mapper.action.prefix.enabled" value="true" />
     <!--<constant name="struts.mapper.action.prefix.enabled" value="true" />-->
     <!-- Configuration for the default package. -->
     <package name="default" extends="struts-default">

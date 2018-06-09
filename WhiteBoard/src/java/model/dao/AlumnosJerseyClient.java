@@ -96,6 +96,10 @@ public class AlumnosJerseyClient {
         return resource.request(javax.ws.rs.core.MediaType.APPLICATION_JSON).get(responseType);
     }
 
+    public void removeRange(String from, String to) throws ClientErrorException {
+        webTarget.path(java.text.MessageFormat.format("{0}/{1}", new Object[]{from, to})).request().delete();
+    }
+
     public void create_XML(Object requestEntity) throws ClientErrorException {
         webTarget.request(javax.ws.rs.core.MediaType.APPLICATION_XML).post(javax.ws.rs.client.Entity.entity(requestEntity, javax.ws.rs.core.MediaType.APPLICATION_XML));
     }

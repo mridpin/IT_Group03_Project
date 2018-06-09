@@ -16,7 +16,30 @@
         <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-blue-grey.css">
         <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Open+Sans'>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <s:head/>
+        <script>
+            $(document).ready(function () {
+                $("#table").find("tr").click(function () {
+                    var id = $(this).find('td:first').text();
+                    xhttp = new XMLHttpRequest();
+                    xhttp.open("GET", "http://localhost:8080/Whiteboard_REST/webresources/model.pojos.alumnos/" + id, true);
+                    xhttp.setRequestHeader("Accept", "application/json");
+                    xhttp.onreadystatechange = function () {
+                        if (xhttp.readyState == 4 && xhttp.status == 200) {
+                            alumno = JSON.parse(xhttp.responseText); //JSON parse porque eval() no funciona por ningun motivo aparente
+                            $("#input_id").val(alumno["idUsuario"]);
+                            $("#input_username").val(alumno["username"]);
+                            $("#input_nombre").val(alumno["nombre"]);
+                            $("#input_apellidos").val(alumno["apellidos"]);
+                            $("#input_password").val(alumno["password"]);
+                            $("#input_foto").val(alumno["foto"]);
+                        }
+                    };
+                    xhttp.send();
+                });
+            });
+        </script>
     </head>
     <body>
         <s:include value="header.jsp"/>
@@ -29,7 +52,7 @@
             <section class="w3-container w3-border-green w3-bottombar w3-padding-16">
                 <h3>TODOS LOS ALUMNOS</h3>
                 <div style="overflow:auto;">
-                    <table class="w3-table-all w3-hoverable">
+                    <table id="table" class="w3-table-all w3-hoverable">
                         <thead>
                             <tr class="w3-gray">
                                 <th>ID</th>
@@ -64,6 +87,8 @@
                     <s:textfield cssClass="w3-input" type="text" id="input_foto" name="foto"  label="Foto"></s:textfield>
                     <s:submit value="Crear Alumno" action="crearAlumno" cssClass="w3-button" theme="simple"></s:submit>
                     <s:submit value="Editar Alumno" action="editarAlumno" theme="simple" cssClass="w3-button"></s:submit>
+                    <br/>
+                    <s:submit value="Limpiar Formulario" cssClass="w3-button" onclick="this.form.reset();" />
                 </s:form>
             </section>
         </article>

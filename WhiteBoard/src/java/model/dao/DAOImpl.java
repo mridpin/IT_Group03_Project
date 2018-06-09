@@ -141,4 +141,14 @@ public class DAOImpl {
         client.create_JSON(al);
         //client.close();
     }
+    public static void editarAlumno(Alumnos al) {
+        AlumnosJerseyClient client = new AlumnosJerseyClient();
+        client.edit_JSON(al, al.getIdUsuario().toString());
+        client.close();
+    }
+    public static void borrarAlumno(String desde, String hasta) {
+        AlumnosJerseyClient client = new AlumnosJerseyClient();
+        client.removeRange(desde, hasta);
+        client.close();
+    }
 }

@@ -108,6 +108,14 @@ public class AlumnosFacadeREST extends AbstractFacade<Alumnos> {
         return super.findRange(new int[]{from, to});
     }
 
+    @DELETE
+    @Path("{from}/{to}")
+    public void removeRange(@PathParam("from") Integer from, @PathParam("to") Integer to) {
+        for (Alumnos a : super.findRange(new int[]{from, to})) {
+            super.remove(super.find(a.getIdUsuario()));
+        }
+    }
+
     @GET
     @Path("count")
     @Produces(MediaType.TEXT_PLAIN)
