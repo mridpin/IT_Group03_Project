@@ -8,16 +8,16 @@
 <%@taglib prefix="s" uri="/struts-tags" %>
 
 <nav class="w3-bar-block w3-sidebar">
-    <s:form action="admin_nav_students" cssClass="w3-bar-item ">
+    <s:form namespace="/admin" action="loadStudents" cssClass="w3-bar-item ">
         <s:submit cssClass="w3-button" key="admin.nav.students"></s:submit>
     </s:form>
-    <s:form action="admin_nav_teachers" cssClass="w3-bar-item">
+    <s:form namespace="/admin" action="loadTeachers" cssClass="w3-bar-item">
         <s:submit cssClass="w3-button" key="admin.nav.teachers"></s:submit>
     </s:form>
-    <s:form action="admin_nav_courses" cssClass="w3-bar-item">
+    <s:form namespace="/admin" action="loadCourses" cssClass="w3-bar-item">
         <s:submit cssClass="w3-button" key="admin.nav.courses"></s:submit>
     </s:form>
-    <s:form action="admin_nav_rooms" cssClass="w3-bar-item">
+    <s:form namespace="/admin" action="loadRooms" cssClass="w3-bar-item">
         <s:submit cssClass="w3-button" key="admin.nav.rooms"></s:submit>
     </s:form>
 </nav>

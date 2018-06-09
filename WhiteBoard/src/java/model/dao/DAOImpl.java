@@ -11,8 +11,10 @@ import javax.ws.rs.core.GenericType;
 import model.POJOs.Administradores;
 import model.POJOs.Alumnos;
 import model.POJOs.Asignaturas;
+import model.POJOs.Aulas;
 import model.POJOs.Material;
 import model.POJOs.Mensajes;
+import model.POJOs.Profesores;
 import model.POJOs.Usuario;
 import model.dao.AdministradoresJerseyClient;
 import model.dao.AlumnosJerseyClient;
@@ -121,5 +123,17 @@ public class DAOImpl {
         AlumnosJerseyClient client = new AlumnosJerseyClient();
         GenericType<List<Alumnos>> genericType = new GenericType<List<Alumnos>>(){};
         return client.findAll_XML(genericType);
+    }
+
+    public static List<Asignaturas> findAllAsignaturas() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public static List<Aulas> findAllAulas() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public static List<Profesores> findAllProfesores() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

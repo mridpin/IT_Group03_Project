@@ -24,8 +24,16 @@
         <s:include value="admin_nav.jsp"/>
         <article>
             <h2>
-
+                GESTI&Oacute;N DE ASIGNATURAS
             </h2>
+            <section>
+                <h3>TODOS LAS ASIGNATURAS</h3>
+                <table></table>
+            </section>
+            <section>
+                <h3>EDITAR o CREAR ASIGNATURAS</h3>
+                <s:form></s:form>
+            </section>
         </article>
         <s:include value="footer.jsp"/>
     </body>

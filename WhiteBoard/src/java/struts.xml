@@ -24,7 +24,10 @@
             <result name="success" type="chain">
                 <param name="actionName">loadStudentHome</param>
             </result>
-            <result name="success_admin">/admin_students.jsp</result>
+            <result name="success_admin" type="redirectAction">
+                <param name="actionName">loadStudents</param>
+                <param name="namespace">/admin</param>
+            </result>     
             <result name="success_alumno" type="chain">
                 <param name="actionName">loadStudentHome</param>
             </result>
@@ -82,8 +85,17 @@
     </package>
     
     <package name="admin" namespace="/admin" extends="struts-default">
-        <action name="loadStudents" class="actions.admin.StudentCRUDActions" method="loadStudents">
-            <result name="success">/admin_students.jsp</result>
+        <action name="loadStudents" class="actions.admin.AlumnosCRUDActions" method="loadAlumnos">
+            <result name="success">/admin_alumnos.jsp</result>
+        </action>
+        <action name="loadTeachers" class="actions.admin.ProfesoresCRUDActions" method="loadProfesores">
+            <result name="success">/admin_profesores.jsp</result>
+        </action>
+        <action name="loadCourses" class="actions.admin.AsignaturasCRUDActions" method="loadAsignaturas">
+            <result name="success">/admin_asignaturas.jsp</result>
+        </action>
+        <action name="loadRooms" class="actions.admin.AulasCRUDActions" method="loadAulas">
+            <result name="success">/admin_aulas.jsp</result>
         </action>
     </package>
 </struts>
