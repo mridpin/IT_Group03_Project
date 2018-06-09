@@ -20,47 +20,61 @@
     </head>
     <body>
         <s:include value="header.jsp"/>
-        <h2>THIS PAGE IS WIP</h2>
         <s:include value="admin_nav.jsp"/>
-        <article class="w3-container" style="margin-left:300px">
-            <h2>
-                GESTI&Oacute;N DE ALUMNOS
-            </h2>
+        <article class="w3-container w3-threequarter w3-right w3-mobile" style="margin-left:300px;margin-bottom:100px;">
+            <div class="w3-grey w3-text-black w3-container w3-center">
+                <button class="w3-button w3-xlarge w3-hide-large w3-left" onclick="w3_open()">&#9776;</button>
+                <h2><strong>GESTI&Oacute;N DE ALUMNOS</strong></h2>
+            </div>
             <section class="w3-container w3-border-green w3-bottombar w3-padding-16">
                 <h3>TODOS LOS ALUMNOS</h3>
-                <table class="w3-table">
-                    <tr>
-                        <th>ID</th>
-                        <th>Usuario</th>
-                        <th>Nombre</th>
-                        <th>Apellidos</th>
-                        <th>Contraseña</th>
-                        <th>Foto</th>
-                    </tr>
-                    <s:iterator value="alumnos" var="al">
-                        <tr>
-                            <td><s:property value="#al.idUsuario"></s:property></td>
-                            <td><s:property value="#al.username"></s:property></td>
-                            <td><s:property value="#al.nombre"></s:property></td>
-                            <td><s:property value="#al.apellidos"></s:property></td>
-                            <td><s:property value="#al.password"></s:property></td>
-                            <td><s:property value="#al.foto"></s:property></td>
+                <div style="overflow:auto;">
+                    <table class="w3-table-all w3-hoverable">
+                        <thead>
+                            <tr class="w3-gray">
+                                <th>ID</th>
+                                <th>Usuario</th>
+                                <th>Nombre</th>
+                                <th>Apellidos</th>
+                                <th>Contraseña</th>
+                                <th>Foto</th>
                             </tr>
-                    </s:iterator>
-                </table>
+                        </thead>
+                        <s:iterator value="alumnos" var="al">
+                            <tr>
+                                <td><s:property value="#al.idUsuario"></s:property></td>
+                                <td><s:property value="#al.username"></s:property></td>
+                                <td><s:property value="#al.nombre"></s:property></td>
+                                <td><s:property value="#al.apellidos"></s:property></td>
+                                <td><s:property value="#al.password"></s:property></td>
+                                <td><s:property value="#al.foto"></s:property></td>
+                                </tr>
+                        </s:iterator>
+                    </table>
+                </div>
             </section>
             <section class="w3-container">
                 <h3>EDITAR o CREAR ALUMNO</h3>
                 <s:form cssClass="w3-container" namespace="/admin" action="crearAlumno">
-                    <s:textfield cssClass="w3-input" type="text" id="input_id" name="id"  label="ID" readonly="readonly"></s:textfield>
+                    <s:textfield cssClass="w3-input" type="text" id="input_id" name="id"  label="ID" readonly="true"></s:textfield>
                     <s:textfield cssClass="w3-input" type="text" id="input_username" name="username" label="Usuario"></s:textfield>
                     <s:textfield cssClass="w3-input" type="text" id="input_nombre" name="nombre" label="Nombre"></s:textfield>
                     <s:textfield cssClass="w3-input" type="text" id="input_apellidos" name="apellidos" label="Apellidos"></s:textfield>
                     <s:textfield cssClass="w3-input" type="text" id="input_password" name="password" label="Contraseña"></s:textfield>
                     <s:textfield cssClass="w3-input" type="text" id="input_foto" name="foto"  label="Foto"></s:textfield>
+                    <s:submit value="Crear Alumno" cssClass="w3-button" theme="simple"></s:submit>
+                    <s:submit value="Editar Alumno" action="editarAlumno" theme="simple" cssClass="w3-button"></s:submit>
                 </s:form>
-                </section>
-            </article>
+            </section>
+        </article>
         <s:include value="footer.jsp"/>
+        <script>
+            function w3_open() {
+                document.getElementById("nav").style.display = "block";
+            }
+            function w3_close() {
+                document.getElementById("nav").style.display = "none";
+            }
+        </script>
     </body>
 </html>

@@ -1,5 +1,15 @@
-<footer>
-    <div class="w3-bottom w3-blue-grey">
-        <p>OC pls dont steal</p>
-    </div>
+<footer class="w3-margin-top w3-container w3-blue-grey w3-right-align" style='box-shadow: 0px 500px 0px 500px #1a7c78; clear: both; height: 200px'>
+    <h3><em>&copy;WhiteBoard</em></h3>
+    <h4>Grupo 03:</h4>
+    <ul>
+        <li>
+            Manuel Ridao Pineda
+        </li>
+        <li>
+            V&iacute;ctor Martinelli Rodr&iacute;guez
+        </li>
+        <li>
+            Pablo Oliva Navea
+        </li>
+    </ul>
 </footer>

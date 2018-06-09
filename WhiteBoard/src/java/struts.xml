@@ -88,6 +88,13 @@
         <action name="loadStudents" class="actions.admin.AlumnosCRUDActions" method="loadAlumnos">
             <result name="success">/admin_alumnos.jsp</result>
         </action>
+        <action name="crearAlumno" class="actions.admin.AlumnosCRUDActions" method="crearAlumno">
+            <result name="success">/admin_alumnos.jsp</result>
+        </action>
+        <action name="editarAlumno" class="actions.admin.AlumnosCRUDActions" method="editarAlumno">
+            <result name="success">/admin_alumnos.jsp</result>
+        </action>
+        
         <action name="loadTeachers" class="actions.admin.ProfesoresCRUDActions" method="loadProfesores">
             <result name="success">/admin_profesores.jsp</result>
         </action>
