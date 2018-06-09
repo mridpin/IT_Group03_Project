@@ -62,7 +62,19 @@ public class DAOImpl {
     }
 
     public static Usuario findProf(String user, String password) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        ProfesoresJerseyClient client = new ProfesoresJerseyClient();
+        GenericType<List<Profesores>> genericType = new GenericType<List<Profesores>>() {
+        };
+        List<Profesores> data = new ArrayList<>();
+        data = client.findAll_XML(genericType);
+        for (Profesores a : data) {
+            if (a.getUsername().equals(user) && a.getPassword().equals(password)) {
+                client.close();
+                return a;
+            }
+        }
+        client.close();
+        return null;
     }
 
     public static List<Asignaturas> findAsignaturas(Alumnos al) {
@@ -85,6 +97,14 @@ public class DAOImpl {
 
     public static List<Asignaturas> findAsignaturasFromAlumno(String idUsuario) {
         AlumnosJerseyClient alumnoJersey = new AlumnosJerseyClient();
+        GenericType<List<Asignaturas>> genericType = new GenericType<List<Asignaturas>>() {
+        };
+
+        return alumnoJersey.findAsignaturas_XML(genericType, idUsuario);
+    }
+    
+    public static List<Asignaturas> findAsignaturasFromProfesor(String idUsuario) {
+        ProfesoresJerseyClient alumnoJersey = new ProfesoresJerseyClient();
         GenericType<List<Asignaturas>> genericType = new GenericType<List<Asignaturas>>() {
         };
 
