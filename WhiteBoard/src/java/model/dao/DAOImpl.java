@@ -126,14 +126,14 @@ public class DAOImpl {
     }
 
     public static List<Asignaturas> findAllAsignaturas() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        throw new UnsupportedOperationException("Not supported yet."); // Implementar igual que findAllStudents
     }
 
     public static List<Aulas> findAllAulas() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        throw new UnsupportedOperationException("Not supported yet."); // Implementar igual que findAllStudents
     }
 
     public static List<Profesores> findAllProfesores() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        throw new UnsupportedOperationException("Not supported yet."); // Implementar igual que findAllStudents
     }
 }
