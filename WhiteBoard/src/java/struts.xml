@@ -89,8 +89,9 @@
             <result name="success">/admin_alumnos.jsp</result>
         </action>
         <action name="crearAlumno" class="actions.admin.AlumnosCRUDActions" method="crearAlumno">
-            <result name="success">/admin_alumnos.jsp</result>
-        </action>
+            <result name="success">/postredirectget.jsp</result>
+            <result name="input">/admin_alumnos.jsp</result>
+        </action>      
         <action name="editarAlumno" class="actions.admin.AlumnosCRUDActions" method="editarAlumno">
             <result name="success">/admin_alumnos.jsp</result>
         </action>

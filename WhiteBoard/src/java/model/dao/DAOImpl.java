@@ -79,32 +79,29 @@ public class DAOImpl {
         data = client.findMensajesRecibidos_XML(genericType, al.getIdUsuario().toString());
         return data;
     }
-    
-    public static List<Asignaturas> findAsignaturasFromAlumno(String idUsuario)
-    {
+
+    public static List<Asignaturas> findAsignaturasFromAlumno(String idUsuario) {
         AlumnosJerseyClient alumnoJersey = new AlumnosJerseyClient();
-        GenericType<List<Asignaturas>> genericType = new GenericType<List<Asignaturas>>(){};
-        
-        
-        return alumnoJersey.findAsignaturas_XML(genericType,idUsuario);
+        GenericType<List<Asignaturas>> genericType = new GenericType<List<Asignaturas>>() {
+        };
+
+        return alumnoJersey.findAsignaturas_XML(genericType, idUsuario);
     }
-    
-    public static Asignaturas findAsignatura(String id)
-    {
+
+    public static Asignaturas findAsignatura(String id) {
         AsignaturasJerseyClient asignaturaJersey = new AsignaturasJerseyClient();
-        GenericType<Asignaturas> genericTypeAsignatura = new GenericType<Asignaturas>(){};
-        
-        
-        return asignaturaJersey.find_XML(genericTypeAsignatura,id);
+        GenericType<Asignaturas> genericTypeAsignatura = new GenericType<Asignaturas>() {
+        };
+
+        return asignaturaJersey.find_XML(genericTypeAsignatura, id);
     }
-    
-    public static List<Material> findMaterialesFromAsignatura(String id)
-    {
+
+    public static List<Material> findMaterialesFromAsignatura(String id) {
         MaterialJerseyClient materialJersey = new MaterialJerseyClient();
-        GenericType<List<Material>> genericTypeMaterial = new GenericType<List<Material>>(){};
-        
-        
-        return materialJersey.findFromAsignatura_XML(genericTypeMaterial,id);
+        GenericType<List<Material>> genericTypeMaterial = new GenericType<List<Material>>() {
+        };
+
+        return materialJersey.findFromAsignatura_XML(genericTypeMaterial, id);
     }
 
     public static void crearMensaje(Mensajes msg) {
@@ -115,13 +112,15 @@ public class DAOImpl {
 
     public static Alumnos findStudentByName(String destinatario) {
         AlumnosJerseyClient client = new AlumnosJerseyClient();
-        GenericType<Alumnos> genericType = new GenericType<Alumnos>(){};
-        return client.findByUserName_XML(genericType, destinatario);        
+        GenericType<Alumnos> genericType = new GenericType<Alumnos>() {
+        };
+        return client.findByUserName_XML(genericType, destinatario);
     }
 
     public static List<Alumnos> findAllStudents() {
         AlumnosJerseyClient client = new AlumnosJerseyClient();
-        GenericType<List<Alumnos>> genericType = new GenericType<List<Alumnos>>(){};
+        GenericType<List<Alumnos>> genericType = new GenericType<List<Alumnos>>() {
+        };
         return client.findAll_XML(genericType);
     }
 
@@ -135,5 +134,11 @@ public class DAOImpl {
 
     public static List<Profesores> findAllProfesores() {
         throw new UnsupportedOperationException("Not supported yet."); // Implementar igual que findAllStudents
+    }
+
+    public static void crearAlumno(Alumnos al) {
+        AlumnosJerseyClient client = new AlumnosJerseyClient();
+        client.create_XML(al);
+        //client.close();
     }
 }

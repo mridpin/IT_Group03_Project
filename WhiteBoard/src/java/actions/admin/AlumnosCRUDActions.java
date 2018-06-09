@@ -5,8 +5,10 @@
  */
 package actions.admin;
 
+import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import java.util.List;
+import java.util.Map;
 import model.POJOs.Alumnos;
 import model.dao.DAOImpl;
 
@@ -15,7 +17,7 @@ import model.dao.DAOImpl;
  * @author ridao
  */
 public class AlumnosCRUDActions extends ActionSupport {
-    
+
     List<Alumnos> alumnos;
     String username;
     String nombre;
@@ -23,21 +25,34 @@ public class AlumnosCRUDActions extends ActionSupport {
     String password;
     String foto;
     String id;
-    
+
     public AlumnosCRUDActions() {
     }
-    
+
     public String execute() throws Exception {
         throw new UnsupportedOperationException("Not supported yet.");
     }
-    
+
     public String loadAlumnos() {
         // Las llamadas al webservice se hacen siempre a traves de DAOImpl
         alumnos = DAOImpl.findAllStudents();
         return SUCCESS;
     }
-    
+
     // CRUD methods here
+    public String crearAlumno() {
+        Alumnos al = new Alumnos();
+        al.setUsername(username);
+        al.setNombre(nombre);
+        al.setApellidos(appellidos);
+        al.setPassword(password);
+        al.setFoto(foto);
+        DAOImpl.crearAlumno(al);
+        // Para que postredirectget devuelva a la vista de admin alumnos
+        Map session = (Map) ActionContext.getContext().get("session");
+        session.put("origin", "loadStudents");
+        return SUCCESS;
+    }
 
     public List<Alumnos> getAlumnos() {
         return alumnos;
@@ -93,5 +108,5 @@ public class AlumnosCRUDActions extends ActionSupport {
 
     public void setId(String id) {
         this.id = id;
-    }          
+    }
 }
