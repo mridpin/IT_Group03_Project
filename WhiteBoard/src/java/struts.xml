@@ -3,6 +3,7 @@
 "http://struts.apache.org/dtds/struts-2.0.dtd">
 
 <struts>
+    <!--<constant name="struts.mapper.action.prefix.enabled" value="true" />-->
     <!-- Configuration for the default package. -->
     <package name="default" extends="struts-default">
         <action name=""> 
@@ -95,6 +96,13 @@
         <action name="editarAlumno" class="actions.admin.AlumnosCRUDActions" method="editarAlumno">
             <result name="success">/admin_alumnos.jsp</result>
         </action>
+        <action name="editarAlumno" class="actions.admin.AlumnosCRUDActions" method="editarAlumno">
+            <result name="success" type="redirectAction">
+                <param name="actionName">loadStudents</param>
+                <param name="namespace">/admin</param>
+            </result>
+            <result name="input">/admin_alumnos.jsp</result>
+        </action>  
         
         <action name="loadTeachers" class="actions.admin.ProfesoresCRUDActions" method="loadProfesores">
             <result name="success">/admin_profesores.jsp</result>

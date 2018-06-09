@@ -138,7 +138,7 @@ public class DAOImpl {
 
     public static void crearAlumno(Alumnos al) {
         AlumnosJerseyClient client = new AlumnosJerseyClient();
-        client.create_XML(al);
+        client.create_JSON(al);
         //client.close();
     }
 }

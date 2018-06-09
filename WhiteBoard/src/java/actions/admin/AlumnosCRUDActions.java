@@ -21,7 +21,7 @@ public class AlumnosCRUDActions extends ActionSupport {
     List<Alumnos> alumnos;
     String username;
     String nombre;
-    String appellidos;
+    String apellidos;
     String password;
     String foto;
     String id;
@@ -44,13 +44,16 @@ public class AlumnosCRUDActions extends ActionSupport {
         Alumnos al = new Alumnos();
         al.setUsername(username);
         al.setNombre(nombre);
-        al.setApellidos(appellidos);
+        al.setApellidos(apellidos);
         al.setPassword(password);
         al.setFoto(foto);
         DAOImpl.crearAlumno(al);
         // Para que postredirectget devuelva a la vista de admin alumnos
         Map session = (Map) ActionContext.getContext().get("session");
         session.put("origin", "loadStudents");
+        return SUCCESS;
+    }
+    public String editarAlumno() {
         return SUCCESS;
     }
 
@@ -72,18 +75,19 @@ public class AlumnosCRUDActions extends ActionSupport {
 
     public String getNombre() {
         return nombre;
+
     }
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
 
-    public String getAppellidos() {
-        return appellidos;
+    public String getApellidos() {
+        return apellidos;
     }
 
-    public void setAppellidos(String appellidos) {
-        this.appellidos = appellidos;
+    public void setApellidos(String apellidos) {
+        this.apellidos = apellidos;
     }
 
     public String getPassword() {
