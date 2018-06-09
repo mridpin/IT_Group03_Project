@@ -19,12 +19,12 @@
         <s:head/>
     </head>
     <body>
-        <h2>THIS PAGE IS WIP</h2>
         <s:include value="header.jsp"/>
+        <h2>THIS PAGE IS WIP</h2>
         <s:include value="admin_nav.jsp"/>
         <article>
             <h2>
-                
+
             </h2>
         </article>
         <s:include value="footer.jsp"/>

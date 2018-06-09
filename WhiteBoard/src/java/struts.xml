@@ -19,13 +19,12 @@
         </action>
     </package>
     
-    <package name="login" namespace="/login" extends="struts-default">
-        
+    <package name="login" namespace="/login" extends="struts-default">        
         <action name="login" class="actions.LoginAction">
             <result name="success" type="chain">
                 <param name="actionName">loadStudentHome</param>
             </result>
-            <result name="success_admin">/admin_home.jsp</result>
+            <result name="success_admin">/admin_students.jsp</result>
             <result name="success_alumno" type="chain">
                 <param name="actionName">loadStudentHome</param>
             </result>
@@ -82,5 +81,9 @@
         </action>        
     </package>
     
-    
+    <package name="admin" namespace="/admin" extends="struts-default">
+        <action name="loadStudents" class="actions.admin.StudentCRUDActions" method="loadStudents">
+            <result name="success">/admin_students.jsp</result>
+        </action>
+    </package>
 </struts>
