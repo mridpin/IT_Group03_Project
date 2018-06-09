@@ -22,13 +22,25 @@
         <s:include value="header.jsp"/>
         <h2>THIS PAGE IS WIP</h2>
         <s:include value="admin_nav.jsp"/>
-        <article>
+        <article class="w3-container" style="margin-left:300px">
             <h2>
                 GESTI&Oacute;N DE ALUMNOS
             </h2>
             <section>
                 <h3>TODOS LOS ALUMNOS</h3>
-                <table></table>
+                <table class="w3-table">
+                    <tr>
+                        <th>ID</th>
+                        <th>Usuario</th>
+                        <th>Nombre</th>
+                        <th>Apellidos</th>
+                        <th>Contraseña</th>
+                        <th>Foto</th>
+                    </tr>
+                    <s:iterator value="alumnos" var="al">
+                       
+                    </s:iterator>
+                </table>
             </section>
             <section>
                 <h3>EDITAR o CREAR ALUMNO</h3>

@@ -7,7 +7,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="s" uri="/struts-tags" %>
 
-<nav class="w3-bar-block w3-sidebar">
+<nav class="w3-bar-block w3-sidebar" style="width:300px;">
     <s:form namespace="/admin" action="loadStudents" cssClass="w3-bar-item ">
         <s:submit cssClass="w3-button" key="admin.nav.students"></s:submit>
     </s:form>

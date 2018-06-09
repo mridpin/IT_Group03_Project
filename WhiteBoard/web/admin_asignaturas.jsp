@@ -22,15 +22,15 @@
         <s:include value="header.jsp"/>
         <h2>THIS PAGE IS WIP</h2>
         <s:include value="admin_nav.jsp"/>
-        <article>
+        <article class="w3-container" style="margin-left:300px">
             <h2>
                 GESTI&Oacute;N DE ASIGNATURAS
             </h2>
-            <section>
+            <section class="w3-container">
                 <h3>TODOS LAS ASIGNATURAS</h3>
                 <table></table>
             </section>
-            <section>
+            <section class="w3-container">
                 <h3>EDITAR o CREAR ASIGNATURAS</h3>
                 <s:form></s:form>
             </section>
