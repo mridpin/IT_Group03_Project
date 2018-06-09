@@ -102,6 +102,12 @@ public class MaterialJerseyClient {
         return resource.request(javax.ws.rs.core.MediaType.APPLICATION_JSON).get(responseType);
     }
 
+    public <T> T getFile(GenericType<T> responseType, String filePath) throws ClientErrorException {
+        WebTarget resource = webTarget;
+        resource = resource.path(java.text.MessageFormat.format("get/{0}", new Object[]{filePath}));
+        return resource.request(javax.ws.rs.core.MediaType.APPLICATION_OCTET_STREAM).get(responseType);
+    }
+
     public void remove(String id) throws ClientErrorException {
         webTarget.path(java.text.MessageFormat.format("{0}", new Object[]{id})).request().delete();
     }

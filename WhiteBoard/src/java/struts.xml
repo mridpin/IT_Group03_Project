@@ -73,6 +73,10 @@
             <result name="success">/student_material.jsp</result>
         </action>
         
+        <action name="getMaterial" class="actions.MaterialActions" method="download">
+            <result name="success">/student_material.jsp</result>
+        </action>
+        
     </package>
     
     <package name="messages" namespace="/messages" extends="struts-default">        

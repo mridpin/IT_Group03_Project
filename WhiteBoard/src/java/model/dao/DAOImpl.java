@@ -5,6 +5,9 @@
  */
 package model.dao;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import javax.ws.rs.core.GenericType;
@@ -134,6 +137,28 @@ public class DAOImpl {
 
     public static List<Profesores> findAllProfesores() {
         throw new UnsupportedOperationException("Not supported yet."); // Implementar igual que findAllStudents
+    }
+    
+    public static void downloadMaterial(String materialId) throws IOException
+    {
+        MaterialJerseyClient client = new MaterialJerseyClient();
+               
+        GenericType<File> genericType = new GenericType<File>() {
+        };
+        
+        GenericType<Material> genericTypeMaterial = new GenericType<Material>() {
+        };
+        
+        Material current = client.find_XML(genericTypeMaterial, materialId);
+        
+        File file = client.getFile(genericType,current.getRutaArchivo());
+        
+        File ff = new File("C:\test.png");
+        file.renameTo(ff);
+        
+        FileWriter fr = new FileWriter(file);
+        fr.flush();
+        
     }
 
     public static void crearAlumno(Alumnos al) {

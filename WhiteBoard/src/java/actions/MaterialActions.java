@@ -26,6 +26,8 @@ public class MaterialActions extends ActionSupport {
     //all the material
     private List<Material> all;
     
+    private String materialId;
+    
     public MaterialActions() {
     }
     
@@ -40,7 +42,7 @@ public class MaterialActions extends ActionSupport {
 
         for (Material current : materiales) {
             
-            String[] path = current.getRutaArchivo().split("/");
+            String[] path = current.getRutaArchivo().split("_");
             
             if(path[3].equals(tipo))
             {
@@ -58,6 +60,14 @@ public class MaterialActions extends ActionSupport {
         {
             tipo="Enseñanzas Prácticas";
         }
+        
+        return SUCCESS;
+    }
+    
+    public String download()
+    {
+        
+        downloadMaterial(materialId);
         
         return SUCCESS;
     }
@@ -84,6 +94,14 @@ public class MaterialActions extends ActionSupport {
 
     public void setAll(List<Material> all) {
         this.all = all;
+    }
+
+    public String getMaterialId() {
+        return materialId;
+    }
+
+    public void setMaterialId(String materialId) {
+        this.materialId = materialId;
     }
 
     

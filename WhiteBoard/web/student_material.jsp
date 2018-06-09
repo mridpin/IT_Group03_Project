@@ -26,81 +26,15 @@
             
         <s:iterator status="stat" value="all" var="material">
 
-            <s:form namespace="/asignaturas" action="loadAsignatura">
-                
+            <s:form namespace="/materiales" action="getMaterial">
+                <s:hidden name="materialId" value="%{#material.materialId}"/>
                 <div class="w3-container w3-padding-16">
                     <div class="w3-left w3-padding"><i class="fa fa-file w3-xxxlarge w3-padding-16"></i></div>
-                    <h4 class="w3-padding-16"><s:property  value="%{#material.nombre}"/></h4>
+                    <h4 class="w3-padding-16"><s:property  value="%{#material.nombre}"/> <s:submit cssClass="w3-btn w3-hover-teal w3-mobile" value="Descargar"/></h4>
                 </div>
             </s:form>
 
         </s:iterator>
-                
-                
-                
-
-            <!--    THIS IS JUST A TEST
-                
-            <div class="w3-row-padding w3-center w3-margin-bottom w3-card-4 w3-padding-16 w3-margin w3-white">
-                
-                <div class="w3-quarter">
-                    
-                    <div class="w3-container w3-red w3-padding-16">
-                        <div class="w3-left"><i class="fa fa-pencil w3-xxxlarge"></i></div>
-                        <div class="w3-right">
-                            <h3>&nbsp;</h3>
-                        </div>
-                        <div class="w3-clear"></div>
-                        <h4>Pr&oacute;ximas Tareas</h4>
-                    </div>
-                </div>
-                
-                <s:form namespace="/material" action="loadMaterial">
-                <s:hidden name="asignaturaId" value="%{#asignatura.asignaturaId}"/>
-                <s:hidden name="tipo" value="eb"/>
-                <div class="w3-quarter">
-                    <div class="w3-container w3-teal w3-padding-16">
-                        <div class="w3-left"><i class="fa fa-book w3-xxxlarge"></i></div>
-                        <div class="w3-right">
-                            <h3>&nbsp;</h3>
-                        </div>
-                        <div class="w3-clear"></div>
-                            <h4><s:submit cssClass="w3-btn w3-hover-teal w3-mobile" value="Enseñanzas Básicas"/></h4>
-                    </div>
-                </div>
-                </s:form>
-                
-                
-                <s:form namespace="/material" action="loadMaterial">
-                    <s:hidden name="asignaturaId" value="%{#asignatura.asignaturaId}"/>
-                <s:hidden name="tipo" value="eb"/>
-                <div class="w3-quarter">
-                    <div class="w3-container w3-orange w3-text-white w3-padding-16">
-                        <div class="w3-left"><i class="fa fa-calculator w3-xxxlarge"></i></div>
-                        <div class="w3-right">
-                            <h3>&nbsp;</h3>
-                        </div>
-                        <div class="w3-clear"></div>
-                            <h4><s:submit cssClass="w3-btn w3-hover-orange w3-mobile" value="Enseñanzas Prácticas"/></h4>
-                    </div>
-                </div>
-                </s:form>
-                
-                
-                <div class="w3-quarter">
-                    <div class="w3-container w3-blue w3-padding-16">
-                        <div class="w3-left"><i class="fa fa-comment w3-xxxlarge"></i></div>
-                        <div class="w3-right">
-                            <h3>&nbsp;</h3>
-                        </div>
-                        <div class="w3-clear"></div>
-                        <h4>Enviar Mensaje</h4>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-            -->
 
         <s:include value="scripts.jsp"/>
 
