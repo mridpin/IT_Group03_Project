@@ -26,7 +26,7 @@
             <h2>
                 GESTI&Oacute;N DE ALUMNOS
             </h2>
-            <section>
+            <section class="w3-container w3-border-green w3-bottombar w3-padding-16">
                 <h3>TODOS LOS ALUMNOS</h3>
                 <table class="w3-table">
                     <tr>
@@ -38,15 +38,22 @@
                         <th>Foto</th>
                     </tr>
                     <s:iterator value="alumnos" var="al">
-                       
+                        <tr>
+                            <td><s:property value="#al.idUsuario"></s:property></td>
+                            <td><s:property value="#al.username"></s:property></td>
+                            <td><s:property value="#al.nombre"></s:property></td>
+                            <td><s:property value="#al.apellidos"></s:property></td>
+                            <td><s:property value="#al.password"></s:property></td>
+                            <td><s:property value="#al.foto"></s:property></td>
+                            </tr>
                     </s:iterator>
                 </table>
             </section>
-            <section>
+            <section class="w3-container">
                 <h3>EDITAR o CREAR ALUMNO</h3>
                 <s:form></s:form>
-            </section>
-        </article>
+                </section>
+            </article>
         <s:include value="footer.jsp"/>
     </body>
 </html>

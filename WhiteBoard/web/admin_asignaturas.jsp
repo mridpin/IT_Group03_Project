@@ -26,7 +26,7 @@
             <h2>
                 GESTI&Oacute;N DE ASIGNATURAS
             </h2>
-            <section class="w3-container">
+            <section class="w3-container w3-border-green w3-bottombar w3-padding-16">
                 <h3>TODOS LAS ASIGNATURAS</h3>
                 <table></table>
             </section>
