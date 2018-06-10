@@ -104,17 +104,22 @@
     </package>
     
     <package name="admin" namespace="/admin" extends="struts-default">
-        <action name="loadStudents" class="actions.admin.AlumnosCRUDActions" method="loadAlumnos">
+        <action name="loadStudents" class="actions.admin.CargarAlumnosAction" method="loadAlumnos">
             <result name="success">/admin_alumnos.jsp</result>
+            <result name="input">/admin_alumnos.jsp</result>
         </action>
         <action name="crearAlumno" class="actions.admin.AlumnosCRUDActions" method="crearAlumno">
             <result name="success">/postredirectget.jsp</result>
             <result name="input">/admin_alumnos.jsp</result>
-        </action>      
-        <action name="editarAlumno" class="actions.admin.AlumnosCRUDActions" method="editarAlumno">
-            <result name="success">/admin_alumnos.jsp</result>
         </action>
         <action name="editarAlumno" class="actions.admin.AlumnosCRUDActions" method="editarAlumno">
+            <result name="success" type="redirectAction">
+                <param name="actionName">loadStudents</param>
+                <param name="namespace">/admin</param>
+            </result>
+            <result name="input">/admin_alumnos.jsp</result>
+        </action>  
+        <action name="borrarAlumnos" class="actions.admin.AlumnosCRUDActions" method="borrarAlumnos">
             <result name="success" type="redirectAction">
                 <param name="actionName">loadStudents</param>
                 <param name="namespace">/admin</param>

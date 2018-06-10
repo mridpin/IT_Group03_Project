@@ -18,7 +18,6 @@ import model.dao.DAOImpl;
  */
 public class AlumnosCRUDActions extends ActionSupport {
 
-    List<Alumnos> alumnos;
     String username;
     String nombre;
     String apellidos;
@@ -35,12 +34,6 @@ public class AlumnosCRUDActions extends ActionSupport {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
-    public String loadAlumnos() {
-        // Las llamadas al webservice se hacen siempre a traves de DAOImpl
-        alumnos = DAOImpl.findAllStudents();
-        return SUCCESS;
-    }
-
     // CRUD methods here
     public String crearAlumno() {
         Alumnos al = new Alumnos();
@@ -55,7 +48,7 @@ public class AlumnosCRUDActions extends ActionSupport {
         session.put("origin", "loadStudents");
         return SUCCESS;
     }
-    
+
     public String editarAlumno() {
         Alumnos al = new Alumnos();
         al.setIdUsuario(Integer.parseInt(id));
@@ -67,15 +60,10 @@ public class AlumnosCRUDActions extends ActionSupport {
         DAOImpl.editarAlumno(al);
         return SUCCESS;
     }
-    public String borrarAlumnos(){
-        DAOImpl.borrarAlumno(desde, hasta);
-    }
-    public List<Alumnos> getAlumnos() {
-        return alumnos;
-    }
 
-    public void setAlumnos(List<Alumnos> alumnos) {
-        this.alumnos = alumnos;
+    public String borrarAlumnos() {
+        DAOImpl.borrarAlumno(desde, hasta);
+        return SUCCESS;
     }
 
     public String getUsername() {
@@ -142,6 +130,5 @@ public class AlumnosCRUDActions extends ActionSupport {
     public void setHasta(String hasta) {
         this.hasta = hasta;
     }
-    
-    
+
 }

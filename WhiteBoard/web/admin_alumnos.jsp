@@ -76,7 +76,7 @@
                     </table>
                 </div>
             </section>
-            <section class="w3-container">
+            <section class="w3-container w3-border-green w3-bottombar w3-padding-16">
                 <h3>EDITAR o CREAR ALUMNO</h3>
                 <s:form cssClass="w3-container" namespace="/admin" >
                     <s:textfield cssClass="w3-input" type="text" id="input_id" name="id"  label="ID" readonly="true"></s:textfield>
@@ -89,6 +89,14 @@
                     <s:submit value="Editar Alumno" action="editarAlumno" theme="simple" cssClass="w3-button"></s:submit>
                     <br/>
                     <s:submit value="Limpiar Formulario" cssClass="w3-button" onclick="this.form.reset();" />
+                </s:form>
+            </section>
+            <section class="w3-container w3-border-green w3-bottombar w3-padding-16">
+                <h3>BORRAR ALUMNOS</h3>
+                <s:form cssClass="w3-container" namespace="/admin" action="borrarAlumnos">
+                    <s:textfield cssClass="w3-input" type="number" id="input_from" name="desde"  label="Desde (excluido)"></s:textfield>
+                    <s:textfield cssClass="w3-input" type="number" id="input_to" name="hasta" label="Hasta (incluido)"></s:textfield>                    
+                    <s:submit value="Borrar Alumnos" cssClass="w3-button"/>
                 </s:form>
             </section>
         </article>
