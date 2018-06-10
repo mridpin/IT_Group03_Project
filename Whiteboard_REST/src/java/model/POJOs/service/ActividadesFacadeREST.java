@@ -5,6 +5,8 @@
  */
 package model.POJOs.service;
 
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -60,6 +62,46 @@ public class ActividadesFacadeREST extends AbstractFacade<Actividades> {
     @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
     public Actividades find(@PathParam("id") Integer id) {
         return super.find(id);
+    }
+    
+    @GET
+    @Path("getActividadesAsignatura/{id}")
+    @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
+    public List<Actividades> actividadesFromAsignatura(@PathParam("id") Integer id) {
+        List<Actividades> all = this.findAll();
+        
+        List<Actividades> result = new ArrayList<>();
+        
+        for(Actividades current: all)
+        {
+            if(current.getAsignaturaId().getAsignaturaId()==id)
+            {
+                result.add(current);
+            }
+        }
+        
+        return result;
+    }
+    
+    @GET
+    @Path("getProximasActividadesAsignatura/{id}")
+    @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
+    public List<Actividades> proximasActividadesFromAsignatura(@PathParam("id") Integer id) {
+        List<Actividades> all = this.actividadesFromAsignatura(id);
+        
+        Date fecha = new Date();
+        
+        List<Actividades> result = new ArrayList<>();
+        
+        for(Actividades current: all)
+        {
+            if(current.getFechaFin().after(fecha))
+            {
+                result.add(current);
+            }
+        }
+        
+        return result;
     }
 
     @GET
