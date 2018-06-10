@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 05-06-2018 a las 23:04:23
+-- Tiempo de generación: 10-06-2018 a las 03:03:53
 -- Versión del servidor: 10.1.21-MariaDB
 -- Versión de PHP: 5.6.30
 
@@ -166,7 +166,7 @@ CREATE TABLE `material` (
 --
 
 INSERT INTO `material` (`materialId`, `rutaArchivo`, `nombre`, `asignaturaId`) VALUES
-(1, 'files/asignaturas/programacion_c/eb/meme.jpg', 'Notas EB', 2);
+(1, 'files_asignaturas_programacion-c_eb_meme.jpg', 'Notas EB', 2);
 
 -- --------------------------------------------------------
 
@@ -211,7 +211,7 @@ CREATE TABLE `profesores` (
 --
 
 INSERT INTO `profesores` (`idUsuario`, `username`, `horaTutoria`, `password`, `nombre`, `apellidos`, `foto`) VALUES
-(2, 'MKHN', '08:50', 'A393BAE49DC6094B3E1AA1CEA969AB63', 'Mike', 'Hunt', '');
+(2, 'prof_mike', '08:50', 'hunt', 'Mike', 'Hunt', '');
 
 --
 -- Índices para tablas volcadas
