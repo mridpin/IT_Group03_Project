@@ -8,7 +8,10 @@ package actions.admin;
 import static com.opensymphony.xwork2.Action.SUCCESS;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 import model.POJOs.Alumnos;
@@ -53,7 +56,24 @@ public class CargarBorrarAlumnosAction extends ActionSupport {
 //        session.put("origin", "loadStudents");
         if (contentType != null) {
             if (contentType.equals("text/plain") || contentType.equals("application/csv") || contentType.equals("text/csv") || contentType.equals("application/vnd.ms-excel")) {
-                // Para que postredirectget devuelva a la vista de admin alumnos
+                String line = "";
+                try (BufferedReader br = new BufferedReader(new FileReader(file))) {
+                    while ((line = br.readLine()) != null) {
+                        // use comma as separator
+                        String[] alumno = line.split(",");
+                        Alumnos al = new Alumnos();
+                        al.setUsername(alumno[0]);
+                        al.setNombre(alumno[1]);
+                        al.setApellidos(alumno[2]);
+                        al.setPassword(alumno[3]);
+                        al.setFoto(alumno[4]);
+                        DAOImpl.crearAlumno(al);
+                    }
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+// Para que postredirectget devuelva a la vista de admin alumnos
                 Map session = (Map) ActionContext.getContext().get("session");
                 session.put("origin", "loadStudents");
                 return SUCCESS;
