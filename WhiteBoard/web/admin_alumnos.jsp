@@ -93,7 +93,7 @@
             </section>
             <section class="w3-container w3-border-green w3-bottombar w3-padding-16">
                 <h3>EDITAR o CREAR ALUMNO</h3>
-                <s:form cssClass="w3-container" namespace="/admin" >
+                <s:form cssClass="w3-container" namespace="/admin">
                     <s:textfield cssClass="w3-input" type="text" id="input_id" name="id"  label="ID" readonly="true"></s:textfield>
                     <s:textfield cssClass="w3-input" type="text" id="input_username" name="username" label="Usuario"></s:textfield>
                     <s:textfield cssClass="w3-input" type="text" id="input_nombre" name="nombre" label="Nombre"></s:textfield>
@@ -120,6 +120,22 @@
                     <s:file cssClass="w3-button" name="fichero" label="Fichero CSV"/>
                     <s:submit value="Crear Alumnos" cssClass="w3-button"/>
                 </s:form>
+                <div class="w3-container">                    
+                    <ul class="w3-ul">
+                        <li><h4>Instrucciones de uso:</h4></li>
+                        <li>El fichero debe tener la extensi&oacute;n ".csv"</li>
+                        <li>No incluir cabecera, la columna "idUsuario", ni n&uacute;meros de l&iacute;nea</li>
+                        <li>Los elementos deben ir entre comillas</li>
+                        <li>Respetar el orden: "username","nombre","apellidos","password","foto"</li>
+                        <li><h4>Ejemplo:</h4></li>
+                        <li>
+                            <p>"alu_frubbra","Francisco","Rubio Bravo","frubbra","image/1.jpg"<br/>
+                                "alu_jmalonie","Jos&eacute; Manuel","Alonso Nieto","jmalonie","image/2.jpg"<br/>
+                                "alu_asangue","Alicia","S&aacute;nchez Guerrero","asangue","image/3.jpg"<br/>
+                            </p>
+                        </li>
+                    </ul>
+                </div>
             </section>
         </article>
         <s:include value="footer.jsp"/>
