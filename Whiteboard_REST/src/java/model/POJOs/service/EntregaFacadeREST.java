@@ -5,6 +5,13 @@
  */
 package model.POJOs.service;
 
+import com.sun.jersey.core.header.FormDataContentDisposition;
+import com.sun.jersey.multipart.FormDataParam;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -19,6 +26,7 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.PathSegment;
+import javax.ws.rs.core.Response;
 import model.POJOs.Entrega;
 import model.POJOs.EntregaPK;
 
@@ -63,6 +71,47 @@ public class EntregaFacadeREST extends AbstractFacade<Entrega> {
     @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
     public void create(Entrega entity) {
         super.create(entity);
+    }
+
+    @POST
+    @Path("/upload")
+    @Consumes(MediaType.MULTIPART_FORM_DATA)
+    public Response uploadFile(
+            @FormDataParam("file") InputStream uploadedInputStream,
+            @FormDataParam("file") FormDataContentDisposition fileDetail) {
+
+        String uploadedFileLocation = "C:\\Users\\Portatil\\GlassFish_Server\\glassfish\\domains\\Ejercicio1\\config\\files\\asignaturas\\programacion-c\\entregas\\actividad-1\\alu_mridpin\\" + fileDetail.getFileName();
+
+        // save it
+        writeToFile(uploadedInputStream, uploadedFileLocation);
+
+        String output = "File uploaded to : " + uploadedFileLocation;
+
+        return Response.status(200).entity(output).build();
+
+    }
+
+    // save uploaded file to new location
+    private void writeToFile(InputStream uploadedInputStream,
+            String uploadedFileLocation) {
+
+        try {
+            OutputStream out = new FileOutputStream(new File(
+                    uploadedFileLocation));
+            int read = 0;
+            byte[] bytes = new byte[1024];
+
+            out = new FileOutputStream(new File(uploadedFileLocation));
+            while ((read = uploadedInputStream.read(bytes)) != -1) {
+                out.write(bytes, 0, read);
+            }
+            out.flush();
+            out.close();
+        } catch (IOException e) {
+
+            e.printStackTrace();
+        }
+
     }
 
     @PUT
@@ -112,5 +161,5 @@ public class EntregaFacadeREST extends AbstractFacade<Entrega> {
     protected EntityManager getEntityManager() {
         return em;
     }
-    
+
 }

@@ -1,9 +1,3 @@
-<%-- 
-    Document   : activity
-    Created on : Jun 10, 2018, 11:48:56 AM
-    Author     : Portatil
---%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
