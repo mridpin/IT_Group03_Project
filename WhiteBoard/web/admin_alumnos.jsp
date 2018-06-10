@@ -38,6 +38,16 @@
                     };
                     xhttp.send();
                 });
+                $(".borrar_item").click(function () {
+                    var id = $(this).closest("tr").find("td:first").text();
+                    if (confirm("Se va a borrar el alumno con ID " + id + ", esta operación es irreversible")) {
+                        xhttp = new XMLHttpRequest();
+                        xhttp.open("DELETE", "http://localhost:8080/Whiteboard_REST/webresources/model.pojos.alumnos/" + id, false);
+                        xhttp.setRequestHeader("Accept", "application/json");
+                        xhttp.send();
+                        location.reload();
+                    }
+                });
             });
         </script>
     </head>
@@ -61,6 +71,7 @@
                                 <th>Apellidos</th>
                                 <th>Contraseña</th>
                                 <th>Foto</th>
+                                <th>Opciones</th>
                             </tr>
                         </thead>
                         <s:iterator value="alumnos" var="al">
@@ -71,6 +82,7 @@
                                 <td><s:property value="#al.apellidos"></s:property></td>
                                 <td><s:property value="#al.password"></s:property></td>
                                 <td><s:property value="#al.foto"></s:property></td>
+                                    <td><a class="w3-button fa fa-remove w3-large w3-hover-red borrar_item"></a></td>
                                 </tr>
                         </s:iterator>
                     </table>
@@ -87,7 +99,7 @@
                     <s:textfield cssClass="w3-input" type="text" id="input_foto" name="foto"  label="Foto"></s:textfield>
                     <s:submit value="Crear Alumno" action="crearAlumno" cssClass="w3-button" theme="simple"></s:submit>
                     <s:submit value="Editar Alumno" action="editarAlumno" theme="simple" cssClass="w3-button"></s:submit>
-                    <br/>
+                        <br/>
                     <s:submit value="Limpiar Formulario" cssClass="w3-button" onclick="this.form.reset();" />
                 </s:form>
             </section>
