@@ -33,11 +33,23 @@
                 <param name="actionName">loadStudents</param>
                 <param name="namespace">/admin</param>
             </result>     
-            <result name="success_alumno">home.jsp</result>
-            <result name="success_prof">home.jsp</result>
+            <result name="success_alumno" type="chain">
+                <param name="actionName">loadAsignaturasAlumno</param>
+            </result>
+            <result name="success_prof" type="chain">
+                <param name="actionName">loadAsignaturasProfesor</param>
+            </result>
             <result name="input">/login.jsp</result>
             <result name="error">/login.jsp</result>            
         </action>
+        
+        <action name="loadAsignaturasAlumno" class="actions.AlumnoActions">
+            <result>/home.jsp</result>
+        </action> 
+        
+        <action name="loadAsignaturasProfesor" class="actions.ProfesorActions">
+            <result>/home.jsp</result>
+        </action> 
         
         <!--
         TODO: El logout siempre da un input, asi que lo he reenvio al principio

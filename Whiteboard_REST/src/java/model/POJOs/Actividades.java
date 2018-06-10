@@ -74,6 +74,9 @@ public class Actividades implements Serializable {
     @JoinColumn(name = "profesorId", referencedColumnName = "idUsuario")
     @ManyToOne(optional = false)
     private Profesores profesorId;
+    @JoinColumn(name = "asignaturaId", referencedColumnName = "asignaturaId")
+    @ManyToOne(optional = false)
+    private Asignaturas asignaturaId;
 
     public Actividades() {
     }
@@ -166,6 +169,16 @@ public class Actividades implements Serializable {
         }
         return true;
     }
+
+    public Asignaturas getAsignaturaId() {
+        return asignaturaId;
+    }
+
+    public void setAsignaturaId(Asignaturas asignaturaId) {
+        this.asignaturaId = asignaturaId;
+    }
+    
+    
 
     @Override
     public String toString() {

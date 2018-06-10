@@ -6,8 +6,8 @@
 package model.POJOs;
 
 import java.io.Serializable;
+import java.util.Collection;
 import java.util.Date;
-import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -70,10 +70,13 @@ public class Actividades implements Serializable {
     @Column(name = "nombre")
     private String nombre;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "actividades")
-    private List<Entrega> entregaList;
+    private Collection<Entrega> entregaCollection;
     @JoinColumn(name = "profesorId", referencedColumnName = "idUsuario")
     @ManyToOne(optional = false)
     private Profesores profesorId;
+    @JoinColumn(name = "asignaturaId", referencedColumnName = "asignaturaId")
+    @ManyToOne(optional = false)
+    private Asignaturas asignaturaId;
 
     public Actividades() {
     }
@@ -131,12 +134,12 @@ public class Actividades implements Serializable {
     }
 
     @XmlTransient
-    public List<Entrega> getEntregaList() {
-        return entregaList;
+    public Collection<Entrega> getEntregaCollection() {
+        return entregaCollection;
     }
 
-    public void setEntregaList(List<Entrega> entregaList) {
-        this.entregaList = entregaList;
+    public void setEntregaCollection(Collection<Entrega> entregaCollection) {
+        this.entregaCollection = entregaCollection;
     }
 
     public Profesores getProfesorId() {
@@ -166,6 +169,16 @@ public class Actividades implements Serializable {
         }
         return true;
     }
+
+    public Asignaturas getAsignaturaId() {
+        return asignaturaId;
+    }
+
+    public void setAsignaturaId(Asignaturas asignaturaId) {
+        this.asignaturaId = asignaturaId;
+    }
+    
+    
 
     @Override
     public String toString() {
