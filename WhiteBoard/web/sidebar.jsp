@@ -19,7 +19,7 @@
     </div>
     <hr>
     <s:form namespace="/index" action="mainPage">
-    <div class="w3-container fa fa-home">
+    <div class="w3-bar-block">
         <h5><s:submit cssClass="w3-bar-item w3-button" value="Página Principal"/></h5>
     </div>   
     </s:form>
