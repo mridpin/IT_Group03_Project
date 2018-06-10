@@ -10,6 +10,7 @@ import com.opensymphony.xwork2.ActionSupport;
 import java.util.List;
 import java.util.Map;
 import javax.ws.rs.core.GenericType;
+import model.POJOs.Actividades;
 import model.POJOs.Alumnos;
 import model.POJOs.Asignaturas; 
 import model.POJOs.Profesores;
@@ -30,11 +31,12 @@ public class AsignaturaActions extends ActionSupport {
     
     private List<Alumnos> allAlumnos;
     
+    private List<Actividades> currentActividades;
+    
     public AsignaturaActions() {
     }
     
     public String execute() throws Exception {
-         // No llames al jersey desde la action, mejor crea un metodo estatico en DAOImpl que sea el que llame al jersey
         Asignaturas asignatura = findAsignatura(asignaturaId.toString());
         
         Map session = (Map) ActionContext.getContext().get("session");
@@ -43,6 +45,8 @@ public class AsignaturaActions extends ActionSupport {
         session.put("asignatura",asignatura);
         
         this.setProfesor(asignatura.getProfesorId());
+        
+        currentActividades = getProximasActividadesFromAsignatura(asignaturaId.toString());
         
         return "success";
     }
@@ -75,6 +79,14 @@ public class AsignaturaActions extends ActionSupport {
 
     public void setAllAlumnos(List<Alumnos> allAlumnos) {
         this.allAlumnos = allAlumnos;
+    }
+
+    public List<Actividades> getCurrentActividades() {
+        return currentActividades;
+    }
+
+    public void setCurrentActividades(List<Actividades> currentActiviades) {
+        this.currentActividades = currentActiviades;
     }
     
     

@@ -150,7 +150,21 @@
 
     </div>
                 
-                <h3 class="w3-container w3-center"><u>Pr&oacute;ximas Tareas</u></h3>
+    <h3 class="w3-container w3-center"><u>Pr&oacute;ximas Tareas</u></h3>
+    
+      <div class="w3-container">
+                     <ul class="w3-ul w3-card-4">
+            <s:iterator status="stat" value="currentActividades" var="actividad">
+                    
+                        <li class="w3-bar">
+                            <div class="w3-bar-item">
+                                <span class="w3-large"><s:property value="%{#actividad.getNombre()}"/></span><br>
+                                <span class="w3-red">Fecha de L&iacute;mite de Entrega: <s:property value="%{#actividad.getFechaFin()}"/> </span>
+                            </div>
+                        </li>
+            </s:iterator>
+                        </ul>
+                        </div>
 
     <s:include value="scripts.jsp"/>
 

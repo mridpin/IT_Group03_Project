@@ -7,12 +7,13 @@ package actions;
 
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
+import java.util.List;
 import java.util.Map;
+import model.POJOs.Actividades;
 import model.POJOs.Usuario;
 import static model.dao.DAOImpl.*;
 
 public class AlumnoActions extends ActionSupport {
-    
     
     public AlumnoActions() {
     }
@@ -29,8 +30,9 @@ public class AlumnoActions extends ActionSupport {
         //This is saved in  session so that we don't have to load the Asignaturas again
         session.put("asignaturas",findAsignaturasFromAlumno(current.getIdUsuario().toString()));
         
+        
+        
         return SUCCESS;        
     }
-
     
 }

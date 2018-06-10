@@ -11,6 +11,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import javax.ws.rs.core.GenericType;
+import model.POJOs.Actividades;
 import model.POJOs.Administradores;
 import model.POJOs.Alumnos;
 import model.POJOs.Asignaturas;
@@ -138,6 +139,14 @@ public class DAOImpl {
         GenericType<Alumnos> genericType = new GenericType<Alumnos>() {
         };
         return client.findByUserName_XML(genericType, destinatario);
+    }
+    
+    public static List<Actividades> getProximasActividadesFromAsignatura(String id)
+    {
+        ActividadesJerseyClient client = new ActividadesJerseyClient();
+        GenericType<List<Actividades>> genericType = new GenericType<List<Actividades>>() {
+        };
+        return client.proximasActividadesFromAsignatura_XML(genericType, id);
     }
 
     public static List<Alumnos> findAllStudents() {
