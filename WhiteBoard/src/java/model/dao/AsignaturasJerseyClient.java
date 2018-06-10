@@ -34,6 +34,18 @@ public class AsignaturasJerseyClient {
         webTarget = client.target(BASE_URI).path("model.pojos.asignaturas");
     }
 
+    public <T> T alumnosFromAsignatura_XML(GenericType<T> responseType, String id) throws ClientErrorException {
+        WebTarget resource = webTarget;
+        resource = resource.path(java.text.MessageFormat.format("getAlumnos/{0}", new Object[]{id}));
+        return resource.request(javax.ws.rs.core.MediaType.APPLICATION_XML).get(responseType);
+    }
+
+    public <T> T alumnosFromAsignatura_JSON(GenericType<T> responseType, String id) throws ClientErrorException {
+        WebTarget resource = webTarget;
+        resource = resource.path(java.text.MessageFormat.format("getAlumnos/{0}", new Object[]{id}));
+        return resource.request(javax.ws.rs.core.MediaType.APPLICATION_JSON).get(responseType);
+    }
+
     public String countREST() throws ClientErrorException {
         WebTarget resource = webTarget;
         resource = resource.path("count");

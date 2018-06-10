@@ -70,6 +70,9 @@
         <action name="loadAsignatura" class="actions.AsignaturaActions">
             <result name="success">/class.jsp</result>
         </action>
+        <action name="alumnosAsignatura" class="actions.AsignaturaActions" method="allAlumnos">
+            <result name="success">/class.jsp</result>
+        </action>
         
     </package>
     

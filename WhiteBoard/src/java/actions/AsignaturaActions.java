@@ -7,8 +7,10 @@ package actions;
 
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
+import java.util.List;
 import java.util.Map;
 import javax.ws.rs.core.GenericType;
+import model.POJOs.Alumnos;
 import model.POJOs.Asignaturas; 
 import model.POJOs.Profesores;
 import model.dao.AsignaturasJerseyClient;
@@ -26,6 +28,8 @@ public class AsignaturaActions extends ActionSupport {
     //Profesor of the Asignatura
     private Profesores profesor;
     
+    private List<Alumnos> allAlumnos;
+    
     public AsignaturaActions() {
     }
     
@@ -41,6 +45,12 @@ public class AsignaturaActions extends ActionSupport {
         this.setProfesor(asignatura.getProfesorId());
         
         return "success";
+    }
+    
+    public String allAlumnos()
+    {      
+        allAlumnos = alumnosFromAsignatura(asignaturaId.toString());
+        return SUCCESS;
     }
 
     public Integer getAsignaturaId() {
@@ -58,6 +68,16 @@ public class AsignaturaActions extends ActionSupport {
     public void setProfesor(Profesores profesor) {
         this.profesor = profesor;
     }
+
+    public List<Alumnos> getAllAlumnos() {
+        return allAlumnos;
+    }
+
+    public void setAllAlumnos(List<Alumnos> allAlumnos) {
+        this.allAlumnos = allAlumnos;
+    }
+    
+    
     
     
     

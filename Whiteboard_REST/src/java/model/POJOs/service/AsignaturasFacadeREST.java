@@ -18,6 +18,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
+import model.POJOs.Alumnos;
 import model.POJOs.Asignaturas;
 
 /**
@@ -60,6 +61,13 @@ public class AsignaturasFacadeREST extends AbstractFacade<Asignaturas> {
     @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
     public Asignaturas find(@PathParam("id") Integer id) {
         return super.find(id);
+    }
+    
+    @GET
+    @Path("getAlumnos/{id}")
+    @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
+    public List<Alumnos> alumnosFromAsignatura(@PathParam("id") Integer id) {
+        return (List)this.find(id).getAlumnosCollection();
     }
 
     @GET

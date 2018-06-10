@@ -180,6 +180,14 @@ public class DAOImpl {
         fr.flush();
         
     }
+    
+    public static List<Alumnos> alumnosFromAsignatura(String asignaturaId)
+    {
+        AsignaturasJerseyClient client = new AsignaturasJerseyClient();
+        GenericType<List<Alumnos>> genericType = new GenericType<List<Alumnos>>() {
+        };
+        return client.alumnosFromAsignatura_JSON(genericType, asignaturaId);
+    }
 
     public static void crearAlumno(Alumnos al) {
         AlumnosJerseyClient client = new AlumnosJerseyClient();
