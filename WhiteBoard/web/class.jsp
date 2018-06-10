@@ -155,13 +155,16 @@
       <div class="w3-container">
                      <ul class="w3-ul w3-card-4">
             <s:iterator status="stat" value="currentActividades" var="actividad">
-                    
+                <s:form namespace="/actividades" action="loadActividad">
+                    <s:hidden name="asignaturaId" value="%{#actividad.getActividadId()}"/>
                         <li class="w3-bar">
-                            <div class="w3-bar-item">
+                            <div class="w3-bar-item">                         
                                 <span class="w3-large"><s:property value="%{#actividad.getNombre()}"/></span><br>
-                                <span class="w3-red">Fecha de L&iacute;mite de Entrega: <s:property value="%{#actividad.getFechaFin()}"/> </span>
+                                <span class="w3-red">Fecha L&iacute;mite de Entrega: <s:property value="%{#actividad.getFechaFin()}"/> </span>
+                                <span class="w3-right"><s:submit cssClass="w3-btn w3-mobile" value="Ver"/></span>
                             </div>
                         </li>
+                </s:form>
             </s:iterator>
                         </ul>
                         </div>
