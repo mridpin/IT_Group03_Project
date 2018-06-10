@@ -25,6 +25,7 @@ public class AlumnosCRUDActions extends ActionSupport {
     String foto;
     String id;
 
+
     public AlumnosCRUDActions() {
     }
 
@@ -46,6 +47,8 @@ public class AlumnosCRUDActions extends ActionSupport {
         session.put("origin", "loadStudents");
         return SUCCESS;
     }
+
+
 
     public String editarAlumno() {
         Alumnos al = new Alumnos();
@@ -107,4 +110,6 @@ public class AlumnosCRUDActions extends ActionSupport {
     public void setId(String id) {
         this.id = id;
     }
+
+
 }

@@ -86,6 +86,9 @@
                                 </tr>
                         </s:iterator>
                     </table>
+                    <s:form action="loadStudents" namespace="/admin" theme="simple">
+                        <s:submit cssClass="w3-button w3-center w3-bar w3-margin" style="width:80%;" onclick="location.reload()" value="Mostrar todos"></s:submit>
+                    </s:form>
                 </div>
             </section>
             <section class="w3-container w3-border-green w3-bottombar w3-padding-16">
@@ -109,6 +112,13 @@
                     <s:textfield cssClass="w3-input" type="number" id="input_from" name="desde"  label="Desde (excluido)"></s:textfield>
                     <s:textfield cssClass="w3-input" type="number" id="input_to" name="hasta" label="Hasta (incluido)"></s:textfield>                    
                     <s:submit value="Borrar Alumnos" cssClass="w3-button"/>
+                </s:form>
+            </section>
+            <section class="w3-container w3-border-green w3-bottombar w3-padding-16">
+                <h3>CREAR ALUMNOS MEDIANTE FICHERO CSV</h3>
+                <s:form action="crearAlumnosFichero" method="post" enctype="multipart/form-data">
+                    <s:file cssClass="w3-button" name="fichero" label="Fichero CSV"/>
+                    <s:submit value="Crear Alumnos" cssClass="w3-button"/>
                 </s:form>
             </section>
         </article>

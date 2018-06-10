@@ -111,6 +111,10 @@
             <result name="success">/postredirectget.jsp</result>
             <result name="input">/admin_alumnos.jsp</result>
         </action>
+        <action name="crearAlumnosFichero" class="actions.admin.CargarBorrarAlumnosAction" method="crearAlumnos">
+            <result name="success">/postredirectget.jsp</result>
+            <result name="input">/admin_alumnos.jsp</result>
+        </action>
         <action name="editarAlumno" class="actions.admin.AlumnosCRUDActions" method="editarAlumno">
             <result name="success" type="redirectAction">
                 <param name="actionName">loadStudents</param>
