@@ -19,6 +19,9 @@
         <action name="index">
             <result>/login.jsp</result>
         </action>
+        <action name="mainPage">
+            <result>/home.jsp</result>
+        </action>
     </package>
     
     <package name="login" namespace="/login" extends="struts-default">        
@@ -30,21 +33,10 @@
                 <param name="actionName">loadStudents</param>
                 <param name="namespace">/admin</param>
             </result>     
-            <result name="success_alumno" type="chain">
-                <param name="actionName">loadStudentHome</param>
-            </result>
-            <result name="success_prof" type="chain">
-                <param name="actionName">loadTeacherHome</param>
-            </result>
+            <result name="success_alumno">home.jsp</result>
+            <result name="success_prof">home.jsp</result>
             <result name="input">/login.jsp</result>
             <result name="error">/login.jsp</result>            
-        </action>
-        
-        <action name="loadStudentHome" class="actions.AlumnoActions">
-            <result name="success">/student_home.jsp</result>
-        </action>
-        <action name="loadTeacherHome" class="actions.ProfesorActions">
-            <result name="success">/teacher_home.jsp</result>
         </action>
         
         <!--
@@ -71,7 +63,7 @@
             <result name="success">/class.jsp</result>
         </action>
         <action name="alumnosAsignatura" class="actions.AsignaturaActions" method="allAlumnos">
-            <result name="success">/class.jsp</result>
+            <result name="success">/class_alumnos.jsp</result>
         </action>
         
     </package>

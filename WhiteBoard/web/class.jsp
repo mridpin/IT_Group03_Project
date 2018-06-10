@@ -125,6 +125,8 @@
                     </div>
                 </div>
                      
+                 <s:form namespace="/asignaturas" action="alumnosAsignatura">
+                      <s:hidden name="asignaturaId" value="%{#asignatura.asignaturaId}"/>
                      <div class="w3-quarter">
                     <div class="w3-container w3-deep-orange w3-padding-16">
                         <div class="w3-left"><i class="fa fa-users w3-xxxlarge"></i></div>
@@ -132,9 +134,10 @@
                             
                         </div>
                         <div class="w3-clear"></div>
-                        <h4>Ver Lista de Alumnos</h4>
+                        <h4><s:submit cssClass="w3-btn w3-hover-deep-orange w3-mobile" value="Ver Lista de Alumnos"/></h4>
                     </div>
                 </div>
+                 </s:form>
         </s:else>
 
     </div>

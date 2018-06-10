@@ -18,6 +18,11 @@
         </div>
     </div>
     <hr>
+    <s:form namespace="/index" action="mainPage">
+    <div class="w3-container fa fa-home">
+        <h5><s:submit cssClass="w3-bar-item w3-button" value="Página Principal"/></h5>
+    </div>   
+    </s:form>
     <div class="w3-container">
         <h5 class="fa fa-graduation-cap">Mis clases</h5>
     </div>            

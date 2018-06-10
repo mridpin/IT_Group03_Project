@@ -22,6 +22,8 @@
                 <span class="w3-button w3-hide-large w3-xxlarge w3-hover-text-grey" onclick="w3_open()"><i class="fa fa-bars"></i></span>
                 <h5><b><i class="fa fa-dashboard"></i> Mi Panel de Control</b></h5>
             </header>
+            
+            <s:if test="%{#session.usuario.tipo()=='Alumno'}">  
 
             <div class="w3-row-padding w3-center w3-margin-bottom w3-card-4 w3-padding-16 w3-margin w3-white">
                 <div class="w3-quarter">
@@ -44,30 +46,43 @@
                         <h4>Mensajes</h4>
                     </div>
                 </div>
-
-                <!--
+            </div>
+                
+            </s:if>
+            <s:else>
+                <div class="w3-row-padding w3-center w3-margin-bottom w3-card-4 w3-padding-16 w3-margin w3-white">
                 <div class="w3-quarter">
                     <div class="w3-container w3-teal w3-padding-16">
-                        <div class="w3-left"><i class="fa fa-share-alt w3-xxxlarge"></i></div>
+                        <div class="w3-left"><i class="fa fa-check w3-xxxlarge"></i></div>
                         <div class="w3-right">
-                            <h3>23</h3>
+                        
                         </div>
                         <div class="w3-clear"></div>
-                        <h4>Shares</h4>
+                        <h4>Calificar Tareas</h4>
                     </div>
                 </div>
                 <div class="w3-quarter">
-                    <div class="w3-container w3-orange w3-text-white w3-padding-16">
-                        <div class="w3-left"><i class="fa fa-users w3-xxxlarge"></i></div>
+                    <div class="w3-container w3-blue w3-padding-16">
+                        <div class="w3-left"><i class="fa fa-cloud-upload w3-xxxlarge"></i></div>
                         <div class="w3-right">
-                            <h3>50</h3>
+                         
                         </div>
                         <div class="w3-clear"></div>
-                        <h4>Users</h4>
+                        <h4>Subir Material</h4>
                     </div>
                 </div>
-                -->
-            </div>
+                
+                <div class="w3-quarter">
+                    <div class="w3-container w3-red w3-padding-16">
+                        <div class="w3-left"><i class="fa fa-pencil w3-xxxlarge"></i></div>
+                        <div class="w3-right">
+                            
+                        </div>
+                        <div class="w3-clear"></div>
+                        <h4>Subir Tarea</h4>
+                    </div>
+                </div>
+            </s:else>
 
         </div>
 
