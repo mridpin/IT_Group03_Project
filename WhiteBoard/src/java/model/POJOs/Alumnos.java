@@ -151,6 +151,12 @@ public class Alumnos implements Serializable, Usuario {
         }
         return true;
     }
+    
+    @Override
+    public String tipo()
+    {
+        return "Alumno";
+    }
 
     @Override
     public String toString() {

@@ -192,6 +192,12 @@ public class Profesores implements Serializable, Usuario {
         }
         return true;
     }
+    
+    @Override
+    public String tipo()
+    {
+        return "Profesor";
+    }
 
     @Override
     public String toString() {

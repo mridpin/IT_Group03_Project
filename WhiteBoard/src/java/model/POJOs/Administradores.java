@@ -86,6 +86,12 @@ public class Administradores implements Serializable, Usuario {
     public void setPassword(String password) {
         this.password = password;
     }
+    
+    @Override
+    public String tipo()
+    {
+        return "Administrador";
+    }
 
     @Override
     public int hashCode() {

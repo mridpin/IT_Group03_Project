@@ -68,7 +68,7 @@
     <package name="asignatura" namespace="/asignaturas" extends="struts-default">
         
         <action name="loadAsignatura" class="actions.AsignaturaActions">
-            <result name="success">/student_class.jsp</result>
+            <result name="success">/class.jsp</result>
         </action>
         
     </package>

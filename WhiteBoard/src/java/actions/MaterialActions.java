@@ -6,8 +6,11 @@
 package actions;
 
 import com.opensymphony.xwork2.ActionSupport;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import model.POJOs.Material;
 import static model.dao.DAOImpl.*;
 
@@ -67,7 +70,11 @@ public class MaterialActions extends ActionSupport {
     public String download()
     {
         
-        downloadMaterial(materialId);
+        try {
+            downloadMaterial(materialId);
+        } catch (IOException ex) {
+            return ERROR;
+        }
         
         return SUCCESS;
     }

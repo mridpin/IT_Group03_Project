@@ -28,4 +28,6 @@ public interface Usuario {
     boolean equals(Object object);
 
     String toString();
+    
+    String tipo();
 }
