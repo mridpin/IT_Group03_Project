@@ -1,13 +1,15 @@
 -- phpMyAdmin SQL Dump
--- version 4.6.5.2
+-- version 4.7.7
 -- https://www.phpmyadmin.net/
 --
--- Servidor: 127.0.0.1
--- Tiempo de generación: 10-06-2018 a las 03:03:53
--- Versión del servidor: 10.1.21-MariaDB
--- Versión de PHP: 5.6.30
+-- Host: 127.0.0.1
+-- Generation Time: Jun 11, 2018 at 06:43 PM
+-- Server version: 10.1.30-MariaDB
+-- PHP Version: 7.2.2
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -17,7 +19,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de datos: `proyecto_it`
+-- Database: `proyecto_it`
 --
 CREATE DATABASE IF NOT EXISTS `proyecto_it` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish2_ci;
 USE `proyecto_it`;
@@ -25,7 +27,7 @@ USE `proyecto_it`;
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `actividades`
+-- Table structure for table `actividades`
 --
 
 CREATE TABLE `actividades` (
@@ -34,13 +36,22 @@ CREATE TABLE `actividades` (
   `tipo` varchar(56) COLLATE utf8mb4_spanish2_ci NOT NULL,
   `notaMax` double NOT NULL,
   `nombre` varchar(256) COLLATE utf8mb4_spanish2_ci NOT NULL,
-  `profesorId` int(11) NOT NULL
+  `profesorId` int(11) NOT NULL,
+  `asignaturaId` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish2_ci;
+
+--
+-- Dumping data for table `actividades`
+--
+
+INSERT INTO `actividades` (`fechaFin`, `actividadId`, `tipo`, `notaMax`, `nombre`, `profesorId`, `asignaturaId`) VALUES
+('2018-06-16', 1, 'Texto', 5, 'dgfgdgdg', 2, 2),
+('2018-06-02', 2, 'Actividad', 3, 'qaweqwwewqe', 2, 2);
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `administradores`
+-- Table structure for table `administradores`
 --
 
 CREATE TABLE `administradores` (
@@ -50,7 +61,7 @@ CREATE TABLE `administradores` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish2_ci;
 
 --
--- Volcado de datos para la tabla `administradores`
+-- Dumping data for table `administradores`
 --
 
 INSERT INTO `administradores` (`idUsuario`, `username`, `password`) VALUES
@@ -60,7 +71,7 @@ INSERT INTO `administradores` (`idUsuario`, `username`, `password`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `alumnos`
+-- Table structure for table `alumnos`
 --
 
 CREATE TABLE `alumnos` (
@@ -73,17 +84,19 @@ CREATE TABLE `alumnos` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish2_ci;
 
 --
--- Volcado de datos para la tabla `alumnos`
+-- Dumping data for table `alumnos`
 --
 
 INSERT INTO `alumnos` (`idUsuario`, `username`, `nombre`, `apellidos`, `foto`, `password`) VALUES
-(1, 'alu_test', 'test', 'test', '', 'test'),
-(2, 'alu_mridpin', 'Manuel', 'Ridao', '', 'mridpin');
+(1, 'alu_test', 'test', 'test', 'images/fotos/alumnos/pic1.png', 'test'),
+(2, 'alu_mridpin', 'Manuel', 'Ridao', 'images/fotos/alumnos/pic2.png', 'mridpin'),
+(4, 'alu_mridpin', 'Manuel', 'Ridao', 'images/fotos/alumnos/pic2.png', 'mridpin'),
+(5, 'alu_mridpin', 'Manuel', 'Ridao', 'images/fotos/alumnos/pic2.png', 'mridpin');
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `alumno_asignatura`
+-- Table structure for table `alumno_asignatura`
 --
 
 CREATE TABLE `alumno_asignatura` (
@@ -92,7 +105,7 @@ CREATE TABLE `alumno_asignatura` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish2_ci;
 
 --
--- Volcado de datos para la tabla `alumno_asignatura`
+-- Dumping data for table `alumno_asignatura`
 --
 
 INSERT INTO `alumno_asignatura` (`alumnoId`, `asignaturaId`) VALUES
@@ -102,7 +115,7 @@ INSERT INTO `alumno_asignatura` (`alumnoId`, `asignaturaId`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `asignaturas`
+-- Table structure for table `asignaturas`
 --
 
 CREATE TABLE `asignaturas` (
@@ -116,7 +129,7 @@ CREATE TABLE `asignaturas` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish2_ci;
 
 --
--- Volcado de datos para la tabla `asignaturas`
+-- Dumping data for table `asignaturas`
 --
 
 INSERT INTO `asignaturas` (`asignaturaId`, `notaMinima`, `nAlumnos`, `semestre`, `nombre`, `curso`, `profesorId`) VALUES
@@ -125,7 +138,7 @@ INSERT INTO `asignaturas` (`asignaturaId`, `notaMinima`, `nAlumnos`, `semestre`,
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `aulas`
+-- Table structure for table `aulas`
 --
 
 CREATE TABLE `aulas` (
@@ -138,7 +151,7 @@ CREATE TABLE `aulas` (
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `entrega`
+-- Table structure for table `entrega`
 --
 
 CREATE TABLE `entrega` (
@@ -151,7 +164,7 @@ CREATE TABLE `entrega` (
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `material`
+-- Table structure for table `material`
 --
 
 CREATE TABLE `material` (
@@ -162,7 +175,7 @@ CREATE TABLE `material` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish2_ci;
 
 --
--- Volcado de datos para la tabla `material`
+-- Dumping data for table `material`
 --
 
 INSERT INTO `material` (`materialId`, `rutaArchivo`, `nombre`, `asignaturaId`) VALUES
@@ -171,7 +184,7 @@ INSERT INTO `material` (`materialId`, `rutaArchivo`, `nombre`, `asignaturaId`) V
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `mensajes`
+-- Table structure for table `mensajes`
 --
 
 CREATE TABLE `mensajes` (
@@ -183,7 +196,7 @@ CREATE TABLE `mensajes` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish2_ci;
 
 --
--- Volcado de datos para la tabla `mensajes`
+-- Dumping data for table `mensajes`
 --
 
 INSERT INTO `mensajes` (`idMensaje`, `contenido`, `fecha`, `remitenteId`, `destinatarioId`) VALUES
@@ -193,7 +206,7 @@ INSERT INTO `mensajes` (`idMensaje`, `contenido`, `fecha`, `remitenteId`, `desti
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `profesores`
+-- Table structure for table `profesores`
 --
 
 CREATE TABLE `profesores` (
@@ -207,37 +220,38 @@ CREATE TABLE `profesores` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish2_ci;
 
 --
--- Volcado de datos para la tabla `profesores`
+-- Dumping data for table `profesores`
 --
 
 INSERT INTO `profesores` (`idUsuario`, `username`, `horaTutoria`, `password`, `nombre`, `apellidos`, `foto`) VALUES
-(2, 'prof_mike', '08:50', 'hunt', 'Mike', 'Hunt', '');
+(2, 'prof_mike', '08:50', 'hunt', 'Mike', 'Hunt', 'fghfghfgh');
 
 --
--- Índices para tablas volcadas
+-- Indexes for dumped tables
 --
 
 --
--- Indices de la tabla `actividades`
+-- Indexes for table `actividades`
 --
 ALTER TABLE `actividades`
   ADD PRIMARY KEY (`actividadId`),
-  ADD KEY `profesorId` (`profesorId`);
+  ADD KEY `profesorId` (`profesorId`),
+  ADD KEY `asignaturaId` (`asignaturaId`);
 
 --
--- Indices de la tabla `administradores`
+-- Indexes for table `administradores`
 --
 ALTER TABLE `administradores`
   ADD PRIMARY KEY (`idUsuario`);
 
 --
--- Indices de la tabla `alumnos`
+-- Indexes for table `alumnos`
 --
 ALTER TABLE `alumnos`
   ADD PRIMARY KEY (`idUsuario`);
 
 --
--- Indices de la tabla `alumno_asignatura`
+-- Indexes for table `alumno_asignatura`
 --
 ALTER TABLE `alumno_asignatura`
   ADD PRIMARY KEY (`alumnoId`,`asignaturaId`),
@@ -245,21 +259,21 @@ ALTER TABLE `alumno_asignatura`
   ADD KEY `asignaturaId` (`asignaturaId`);
 
 --
--- Indices de la tabla `asignaturas`
+-- Indexes for table `asignaturas`
 --
 ALTER TABLE `asignaturas`
   ADD PRIMARY KEY (`asignaturaId`),
   ADD KEY `profesorId` (`profesorId`);
 
 --
--- Indices de la tabla `aulas`
+-- Indexes for table `aulas`
 --
 ALTER TABLE `aulas`
   ADD PRIMARY KEY (`aulaId`),
   ADD KEY `asignaturaId` (`asignaturaId`);
 
 --
--- Indices de la tabla `entrega`
+-- Indexes for table `entrega`
 --
 ALTER TABLE `entrega`
   ADD PRIMARY KEY (`alumnoId`,`actividadId`),
@@ -267,14 +281,14 @@ ALTER TABLE `entrega`
   ADD KEY `alumnoId` (`alumnoId`);
 
 --
--- Indices de la tabla `material`
+-- Indexes for table `material`
 --
 ALTER TABLE `material`
   ADD PRIMARY KEY (`materialId`),
   ADD KEY `asignaturaId` (`asignaturaId`);
 
 --
--- Indices de la tabla `mensajes`
+-- Indexes for table `mensajes`
 --
 ALTER TABLE `mensajes`
   ADD PRIMARY KEY (`idMensaje`),
@@ -282,103 +296,113 @@ ALTER TABLE `mensajes`
   ADD KEY `destinatarioId` (`destinatarioId`);
 
 --
--- Indices de la tabla `profesores`
+-- Indexes for table `profesores`
 --
 ALTER TABLE `profesores`
   ADD PRIMARY KEY (`idUsuario`);
 
 --
--- AUTO_INCREMENT de las tablas volcadas
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT de la tabla `actividades`
+-- AUTO_INCREMENT for table `actividades`
 --
 ALTER TABLE `actividades`
-  MODIFY `actividadId` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `actividadId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
 --
--- AUTO_INCREMENT de la tabla `administradores`
+-- AUTO_INCREMENT for table `administradores`
 --
 ALTER TABLE `administradores`
   MODIFY `idUsuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
 --
--- AUTO_INCREMENT de la tabla `alumnos`
+-- AUTO_INCREMENT for table `alumnos`
 --
 ALTER TABLE `alumnos`
-  MODIFY `idUsuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `idUsuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
 --
--- AUTO_INCREMENT de la tabla `asignaturas`
+-- AUTO_INCREMENT for table `asignaturas`
 --
 ALTER TABLE `asignaturas`
   MODIFY `asignaturaId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
 --
--- AUTO_INCREMENT de la tabla `aulas`
+-- AUTO_INCREMENT for table `aulas`
 --
 ALTER TABLE `aulas`
   MODIFY `aulaId` int(11) NOT NULL AUTO_INCREMENT;
+
 --
--- AUTO_INCREMENT de la tabla `material`
+-- AUTO_INCREMENT for table `material`
 --
 ALTER TABLE `material`
   MODIFY `materialId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
 --
--- AUTO_INCREMENT de la tabla `mensajes`
+-- AUTO_INCREMENT for table `mensajes`
 --
 ALTER TABLE `mensajes`
   MODIFY `idMensaje` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
 --
--- AUTO_INCREMENT de la tabla `profesores`
+-- AUTO_INCREMENT for table `profesores`
 --
 ALTER TABLE `profesores`
   MODIFY `idUsuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
 --
--- Restricciones para tablas volcadas
+-- Constraints for dumped tables
 --
 
 --
--- Filtros para la tabla `actividades`
+-- Constraints for table `actividades`
 --
 ALTER TABLE `actividades`
-  ADD CONSTRAINT `actividades_ibfk_1` FOREIGN KEY (`profesorId`) REFERENCES `profesores` (`idUsuario`);
+  ADD CONSTRAINT `actividades_ibfk_1` FOREIGN KEY (`profesorId`) REFERENCES `profesores` (`idUsuario`),
+  ADD CONSTRAINT `actividades_ibfk_2` FOREIGN KEY (`asignaturaId`) REFERENCES `asignaturas` (`asignaturaId`);
 
 --
--- Filtros para la tabla `alumno_asignatura`
+-- Constraints for table `alumno_asignatura`
 --
 ALTER TABLE `alumno_asignatura`
   ADD CONSTRAINT `alumno_asignatura_ibfk_1` FOREIGN KEY (`alumnoId`) REFERENCES `alumnos` (`idUsuario`),
   ADD CONSTRAINT `alumno_asignatura_ibfk_2` FOREIGN KEY (`asignaturaId`) REFERENCES `asignaturas` (`asignaturaId`);
 
 --
--- Filtros para la tabla `asignaturas`
+-- Constraints for table `asignaturas`
 --
 ALTER TABLE `asignaturas`
   ADD CONSTRAINT `asignaturas_ibfk_1` FOREIGN KEY (`profesorId`) REFERENCES `profesores` (`idUsuario`);
 
 --
--- Filtros para la tabla `aulas`
+-- Constraints for table `aulas`
 --
 ALTER TABLE `aulas`
   ADD CONSTRAINT `aulas_ibfk_1` FOREIGN KEY (`asignaturaId`) REFERENCES `asignaturas` (`asignaturaId`);
 
 --
--- Filtros para la tabla `entrega`
+-- Constraints for table `entrega`
 --
 ALTER TABLE `entrega`
   ADD CONSTRAINT `entrega_ibfk_1` FOREIGN KEY (`actividadId`) REFERENCES `actividades` (`actividadId`),
   ADD CONSTRAINT `entrega_ibfk_2` FOREIGN KEY (`alumnoId`) REFERENCES `alumnos` (`idUsuario`);
 
 --
--- Filtros para la tabla `material`
+-- Constraints for table `material`
 --
 ALTER TABLE `material`
   ADD CONSTRAINT `material_ibfk_1` FOREIGN KEY (`asignaturaId`) REFERENCES `asignaturas` (`asignaturaId`);
 
 --
--- Filtros para la tabla `mensajes`
+-- Constraints for table `mensajes`
 --
 ALTER TABLE `mensajes`
   ADD CONSTRAINT `mensajes_ibfk_1` FOREIGN KEY (`remitenteId`) REFERENCES `alumnos` (`idUsuario`),
   ADD CONSTRAINT `mensajes_ibfk_3` FOREIGN KEY (`destinatarioId`) REFERENCES `alumnos` (`idUsuario`);
+COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
