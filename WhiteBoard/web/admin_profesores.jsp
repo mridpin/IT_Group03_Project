@@ -17,24 +17,103 @@
         <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Open+Sans'>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <s:head/>
+        <script>
+            $(document).ready(function () {
+                $("#table").find("tr").click(function () {
+                    var id = $(this).find('td:first').text();
+                    xhttp = new XMLHttpRequest();
+                    xhttp.open("GET", "http://localhost:8080/Whiteboard_REST/webresources/model.pojos.profesores/" + id, true);
+                    xhttp.setRequestHeader("Accept", "application/json");
+                    xhttp.onreadystatechange = function () {
+                        if (xhttp.readyState == 4 && xhttp.status == 200) {
+                            alumno = JSON.parse(xhttp.responseText); //JSON parse porque eval() no funciona por ningun motivo aparente
+                            $("#input_id").val(alumno["idUsuario"]);
+                            $("#input_username").val(alumno["username"]);
+                            $("#input_nombre").val(alumno["nombre"]);
+                            $("#input_apellidos").val(alumno["apellidos"]);
+                            $("#input_password").val(alumno["password"]);
+                            $("#input_foto").val(alumno["foto"]);
+                        }
+                    };
+                    xhttp.send();
+                });
+                $(".borrar_item").click(function () {
+                    var id = $(this).closest("tr").find("td:first").text();
+                    if (confirm("Se va a borrar el profesor con ID " + id + ", esta operación es irreversible")) {
+                        xhttp = new XMLHttpRequest();
+                        xhttp.open("DELETE", "http://localhost:8080/Whiteboard_REST/webresources/model.pojos.profesores/" + id, false);
+                        xhttp.setRequestHeader("Accept", "application/json");
+                        xhttp.send();
+                        location.reload();
+                    }
+                });
+            });
+        </script>
     </head>
     <body>
         <s:include value="header.jsp"/>
-        <h2>THIS PAGE IS WIP</h2>
         <s:include value="admin_nav.jsp"/>
-        <article class="w3-container" style="margin-left:300px">
-            <h2>
-                GESTI&Oacute;N DE PROFESORES
-            </h2>
+               <article class="w3-container w3-threequarter w3-right w3-mobile" style="margin-left:300px;margin-bottom:100px;">
+            <div class="w3-grey w3-text-black w3-container w3-center">
+                <button class="w3-button w3-xlarge w3-hide-large w3-left" onclick="w3_open()">&#9776;</button>
+                <h2><strong>GESTI&Oacute;N DE PROFESORES</strong></h2>
+            </div>
             <section class="w3-container w3-border-green w3-bottombar w3-padding-16">
                 <h3>TODOS LOS PROFESORES</h3>
-                <table></table>
+                <div style="overflow:auto;">
+                    <table id="table" class="w3-table-all w3-hoverable">
+                        <thead>
+                            <tr class="w3-gray">
+                                <th>ID</th>
+                                <th>Usuario</th>
+                                <th>Nombre</th>
+                                <th>Apellidos</th>
+                                <th>Contraseña</th>
+                                <th>Foto</th>
+                                <th>Opciones</th>
+                            </tr>
+                        </thead>
+                        <s:iterator value="profesores" var="al">
+                            <tr>
+                                <td><s:property value="#al.idUsuario"></s:property></td>
+                                <td><s:property value="#al.username"></s:property></td>
+                                <td><s:property value="#al.nombre"></s:property></td>
+                                <td><s:property value="#al.apellidos"></s:property></td>
+                                <td><s:property value="#al.password"></s:property></td>
+                                <td><s:property value="#al.foto"></s:property></td>
+                                    <td><a class="w3-button fa fa-remove w3-large w3-hover-red borrar_item"></a></td>
+                                </tr>
+                        </s:iterator>
+                    </table>
+                    <s:form action="loadTeachers" namespace="/admin" theme="simple">
+                        <s:submit cssClass="w3-button w3-center w3-bar w3-margin" style="width:80%;" onclick="location.reload()" value="Mostrar todos"></s:submit>
+                    </s:form>
+                </div>
             </section>
             <section class="w3-container">
                 <h3>EDITAR o CREAR PROFESORES</h3>
-                <s:form></s:form>
+                    <s:form cssClass="w3-container" namespace="/admin">
+                    <s:textfield cssClass="w3-input" type="text" id="input_id" name="id"  label="ID" readonly="true"></s:textfield>
+                    <s:textfield cssClass="w3-input" type="text" id="input_username" name="username" label="Usuario"></s:textfield>
+                    <s:textfield cssClass="w3-input" type="text" id="input_nombre" name="nombre" label="Nombre"></s:textfield>
+                    <s:textfield cssClass="w3-input" type="text" id="input_apellidos" name="apellidos" label="Apellidos"></s:textfield>
+                    <s:textfield cssClass="w3-input" type="text" id="input_password" name="password" label="Contraseña"></s:textfield>
+                    <s:textfield cssClass="w3-input" type="text" id="input_foto" name="foto"  label="Foto"></s:textfield>
+                    <s:submit value="Crear Alumno" action="crearProfesor" cssClass="w3-button" theme="simple"></s:submit>
+                    <s:submit value="Editar Alumno" action="editarProfesor" theme="simple" cssClass="w3-button"></s:submit>
+                        <br/>
+                    <s:submit value="Limpiar Formulario" cssClass="w3-button" onclick="this.form.reset();" />
+                </s:form>
             </section>
         </article>
         <s:include value="footer.jsp"/>
+        <script>
+            function w3_open() {
+                document.getElementById("nav").style.display = "block";
+            }
+            function w3_close() {
+                document.getElementById("nav").style.display = "none";
+            }
+        </script>
     </body>
 </html>
