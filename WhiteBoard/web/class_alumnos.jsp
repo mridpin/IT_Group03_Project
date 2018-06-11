@@ -24,19 +24,19 @@
 
             </header>
 
-                 <div class="w3-container">
-                     <ul class="w3-ul w3-card-4">
-            <s:iterator status="stat" value="allAlumnos" var="alumno">
-                    
+            <div class="w3-container">
+                <ul class="w3-ul w3-card-4">
+                    <s:iterator status="stat" value="allAlumnos" var="alumno">
+
                         <li class="w3-bar">
                             <img src="img_avatar2.png" class="w3-bar-item w3-circle w3-hide-small" style="width:85px">
                             <div class="w3-bar-item">
                                 <span class="w3-large"><s:property value="%{#alumno.getNombre()}"/></span><br>
                             </div>
                         </li>
-            </s:iterator>
-                        </ul>
-                        </div>
+                    </s:iterator>
+                </ul>
+            </div>
             <s:include value="scripts.jsp"/>
 
     </body>

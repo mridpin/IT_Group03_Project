@@ -6,7 +6,7 @@
             <i class="fa fa-remove"></i>
         </a>
         <div class="w3-col s4">
-            <img src="/w3images/avatar2.png" class="w3-circle w3-margin-right" style="width:46px">
+            <img src='../<s:property value="#session.usuario.foto"></s:property>' alt="imagen de usuario" class="w3-circle w3-margin-right" style="width:46px">
         </div>
         <div class="w3-col s8 w3-bar">
             <span>Bienvenido, <strong><s:property value="#session.usuario.nombre"/></strong></span><br>

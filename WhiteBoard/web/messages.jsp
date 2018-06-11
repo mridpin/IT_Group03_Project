@@ -62,8 +62,9 @@
                             }(i));
                             var msgimg = $("<img>");
                             $(msgimg).addClass("w3-round w3-margin-right");
-                            $(msgimg).attr("src", "//user image");
+                            $(msgimg).attr("src", "../"+msg["remitenteId"]["foto"]);
                             $(msgimg).attr("alt", "user image");
+                            $(msgimg).attr("width", "36px");
                             $(msgimg).css({
                                 "witdh": "15%"
                             });
@@ -145,7 +146,7 @@
             <!--Space for full messages-->
             <div id="message_body" class="w3-container person">
                 <br>
-                <img class="w3-round  w3-animate-top" src="//insert source here" style="width:20%;" id="sender_pic" alt="Foto del remitente">
+                <img class="w3-round w3-animate-top" style="width:20%;" id="sender_pic" alt="Foto del remitente">
                 <!--<h5 class="w3-opacity" id="message_subject">Subject: //insert subject here</h5>-->
                 <h4><i class="fa fa-clock-o"></i> From <span id="sender_name">sender.name</span>, <span id="message_date">message.date</span></h4>
                 <!--                <a class="w3-button w3-light-grey" href="#">Reply<i class="w3-margin-left fa fa-mail-reply"></i></a>
@@ -184,7 +185,7 @@
             // Scripts that handle opening and displaying the message clicked
             function openMail(msg) {
                 $("#sender_pic").empty();
-                $("#sender_pic").append(msg["remitenteId"]["foto"]);
+                $("#sender_pic").attr("src", "../" + msg["remitenteId"]["foto"]);
                 $("#sender_name").empty();
                 $("#sender_name").append(msg["remitenteId"]["nombre"]);
                 $("#message_date").empty();
@@ -193,22 +194,6 @@
                 $("#message_text").empty();
                 $("#message_text").append(msg["contenido"]);
             }
-
-//            // Validate as a SYNCH call if the user exists. This process is repeated in the server just in case the sender doesnt have javascript active
-//            function validateUser() {
-//                xhttp = new XMLHttpRequest();
-//                xhttp.open("GET", "http://localhost:8080/Whiteboard_REST/webresources/model.pojos.alumnos/username/" + $("#sender_name").val());
-//                xhttp.setRequestHeader("Accept", "application/json");
-//                xhttp.send();
-//                var addressee = eval(xhttp.responseText);
-//                if (addressee != null && addressee["username"]===$("#sender_name").val()) {
-//                    return true;
-//                } else {
-//                    $("#addressee_error").val("El usuario destinatario no existe!");
-//                    $("#addressee_error").removeClass("w3-hide");
-//                    return false;
-//                }
-//            }
             </script>
         <s:include value="scripts.jsp"/>
     </body>
