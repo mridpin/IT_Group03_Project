@@ -28,7 +28,7 @@
         <h5 class="fa fa-graduation-cap">Mis clases</h5>
     </div>            
     <div class="w3-bar-block">
-        <a href="#" class="w3-bar-item w3-button w3-padding-16 w3-hide-large w3-dark-grey w3-hover-black" onclick="w3_close()" title="close menu"><i class="fa fa-remove fa-fw"></i>  Close Menu</a>
+        <!--<a href="#" class="w3-bar-item w3-button w3-padding-16 w3-hide-large w3-dark-grey w3-hover-black" onclick="w3_close()" title="close menu"><i class="fa fa-remove fa-fw"></i>  Close Menu</a>-->
         <div class="w3-container w3-margin-bottom">
             <s:iterator status="stat" value="#session.asignaturas" var="asignatura">
 
