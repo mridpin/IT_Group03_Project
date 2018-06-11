@@ -26,6 +26,5 @@
                     <input class="w3-button w3-hover-light-grey w3-grey w3-margin" type="submit" value="Volver">
                 </form>
             </section>
-        <s:include value="footer.jsp"/>
     </body>
 </html>

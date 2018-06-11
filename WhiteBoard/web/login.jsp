@@ -26,20 +26,5 @@
                 </s:form>
             </div>
         </div>
-
-        <!--
-         <article>
-             <section>
-                 <h2><s:text name="loginTitle"/></h2>
-        <s:actionerror/>
-        <s:form namespace="/login" action="login">
-            <s:textfield key="user"></s:textfield>
-            <s:password key="password"></s:password>
-            <s:submit key="loginsubmit"></s:submit>
-        </s:form>
-    </section>
-</article>-->
-        <br>
-        <s:include value="footer.jsp"/>
     </body>
 </html>
