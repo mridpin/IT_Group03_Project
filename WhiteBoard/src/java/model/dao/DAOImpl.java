@@ -226,4 +226,14 @@ public class DAOImpl {
         client.removeRange(desde, hasta);
         client.close();
     }
+    public static void crearProfesor(Profesores p){
+        ProfesoresJerseyClient client = new ProfesoresJerseyClient();
+        client.create_JSON(p);
+        //client.close();
+    }
+    public static void editarProfesor(Profesores p) {
+        ProfesoresJerseyClient client = new ProfesoresJerseyClient();
+        client.edit_JSON(p, p.getIdUsuario().toString());
+        client.close();
+    }
 }
