@@ -165,7 +165,10 @@ public class DAOImpl {
     }
 
     public static List<Profesores> findAllProfesores() {
-        throw new UnsupportedOperationException("Not supported yet."); // Implementar igual que findAllStudents
+        ProfesoresJerseyClient client = new ProfesoresJerseyClient();
+        GenericType<List<Profesores>> genericType = new GenericType<List<Profesores>>() {
+        };
+        return client.findAll_XML(genericType);
     }
     
     public static void downloadMaterial(String materialId) throws IOException
