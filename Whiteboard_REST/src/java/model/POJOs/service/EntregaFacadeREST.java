@@ -73,53 +73,6 @@ public class EntregaFacadeREST extends AbstractFacade<Entrega> {
         super.create(entity);
     }
 
-    @POST
-    @Path("upload/{id}")
-    @Consumes(MediaType.MULTIPART_FORM_DATA)
-    public Response uploadFile(
-            @FormDataParam("file") InputStream uploadedInputStream,
-            @FormDataParam("file") FormDataContentDisposition fileDetail,
-            @PathParam("id") Integer id) {
-
-        String uploadedFileLocation = "C:\\Users\\Portatil\\GlassFish_Server\\glassfish\\domains\\Ejercicio1\\config\\files\\asignaturas\\programacion-c\\entregas\\actividad-1\\alu_mridpin\\" + fileDetail.getFileName();
-
-        // save it
-        writeToFile(uploadedInputStream, uploadedFileLocation);
-
-        Entrega nuevaEntrega = new Entrega();
-        nuevaEntrega.setAlumnos(new AlumnosFacadeREST().find(id));
-        nuevaEntrega.setRutaArchivo(uploadedFileLocation);
-        this.create(nuevaEntrega);
-        
-        String output = "File uploaded to : " + uploadedFileLocation;
-        
-        return Response.status(200).entity(output).build();
-
-    }
-
-    // save uploaded file to new location
-    private void writeToFile(InputStream uploadedInputStream,
-            String uploadedFileLocation) {
-
-        try {
-            OutputStream out = new FileOutputStream(new File(
-                    uploadedFileLocation));
-            int read = 0;
-            byte[] bytes = new byte[1024];
-
-            out = new FileOutputStream(new File(uploadedFileLocation));
-            while ((read = uploadedInputStream.read(bytes)) != -1) {
-                out.write(bytes, 0, read);
-            }
-            out.flush();
-            out.close();
-        } catch (IOException e) {
-
-            e.printStackTrace();
-        }
-
-    }
-
     @PUT
     @Path("{id}")
     @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})

@@ -94,21 +94,6 @@ public class MaterialFacadeREST extends AbstractFacade<Material> {
         return String.valueOf(super.count());
     }
 
-    //WIP https://stackoverflow.com/questions/10100936/file-downloading-in-restful-web-services\
-    //Esto coge de la carpeta glassfish\domains\<Tu domain>\config
-    @GET
-    @Path("get/{filePath}")
-    @Produces(MediaType.APPLICATION_OCTET_STREAM)
-    public Response getFile(@PathParam("filePath")String filePath) {
-        
-        filePath = filePath.replace("_","/");
-        
-        File file = new File(filePath);
-        return Response.ok(file, MediaType.APPLICATION_OCTET_STREAM)
-      .header("Content-Disposition", "attachment; filename=\"" + file.getName() + "\"" ) //optional
-      .build();
-    }
-
     @Override
     protected EntityManager getEntityManager() {
         return em;
