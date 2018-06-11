@@ -19,27 +19,31 @@
     </div>
     <hr>
     <s:form namespace="/index" action="mainPage">
-    <div class="w3-bar-block">
-        <h5><s:submit cssClass="w3-bar-item w3-button" value="Página Principal"/></h5>
-    </div>   
+        <div class="w3-bar-block">
+            <h5><s:submit cssClass="w3-bar-item w3-button" value="Página Principal"/></h5>
+        </div>   
     </s:form>
     <div class="w3-container">
         <h5 class="fa fa-graduation-cap">Mis clases</h5>
     </div>            
     <div class="w3-bar-block">
+
         <a href="#" class="w3-bar-item w3-button w3-padding-16 w3-hide-large w3-dark-grey w3-hover-black" onclick="w3_close()" title="close menu"><i class="fa fa-remove fa-fw"></i>  Close Menu</a>
-        <s:iterator status="stat" value="#session.asignaturas" var="asignatura">
+        <div class="w3-container w3-margin-bottom">
+            <s:iterator status="stat" value="#session.asignaturas" var="asignatura">
 
-            <s:form namespace="/asignaturas" action="loadAsignatura">
-                <s:hidden name="asignaturaId" value="%{#asignatura.asignaturaId}"/>
-                <s:submit cssClass="w3-bar-item w3-button w3-padding w3-blue" value='%{#asignatura.nombre}'/>
+                <s:form namespace="/asignaturas" action="loadAsignatura">
+                    <s:hidden name="asignaturaId" value="%{#asignatura.asignaturaId}"/>
+                    <s:submit cssClass="w3-bar-item w3-button w3-padding w3-blue" value='%{#asignatura.nombre}'/>
+                </s:form>
+
+            </s:iterator>
+        </div>
+        <div class="w3-container w3-margin-top">
+            <s:form action="logout" namespace="/login" cssClass="w3-bar-item" theme="simple">
+                <s:submit cssClass="w3-button w3-grey"  name="logout" value="Logout" cssStyle="width:100%;"/>
             </s:form>
-
-        </s:iterator>
-        <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-cog fa-fw"></i>  Ajustes</a><br><br>
-        <s:form action="logout" namespace="/login">
-            <s:submit cssClass="w3-button"  name="logout" value="Logout"/>
-        </s:form>
+        </div>
     </div>
 </nav>
 
