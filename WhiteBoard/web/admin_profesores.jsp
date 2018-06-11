@@ -34,6 +34,7 @@
                             $("#input_apellidos").val(alumno["apellidos"]);
                             $("#input_password").val(alumno["password"]);
                             $("#input_foto").val(alumno["foto"]);
+                            $("#input_horaTutoria").val(alumno["horaTutoria"]);
                         }
                     };
                     xhttp.send();
@@ -102,8 +103,9 @@
                     <s:textfield cssClass="w3-input" type="text" id="input_apellidos" name="apellidos" label="Apellidos"></s:textfield>
                     <s:textfield cssClass="w3-input" type="text" id="input_password" name="password" label="Contraseña"></s:textfield>
                     <s:textfield cssClass="w3-input" type="text" id="input_foto" name="foto"  label="Foto"></s:textfield>
-                    <s:submit value="Crear Alumno" action="crearProfesor" cssClass="w3-button" theme="simple"></s:submit>
-                    <s:submit value="Editar Alumno" action="editarProfesor" theme="simple" cssClass="w3-button"></s:submit>
+                    <s:textfield cssClass="w3-input" type="text" id="input_horaTutoria" name="horaTutoria"  label="Horario de Tutoria"></s:textfield>
+                    <s:submit value="Crear Profesor" action="crearProfesor" cssClass="w3-button" theme="simple"></s:submit>
+                    <s:submit value="Editar Profesor" action="editarProfesor" theme="simple" cssClass="w3-button"></s:submit>
                         <br/>
                     <s:submit value="Limpiar Formulario" cssClass="w3-button" onclick="this.form.reset();" />
                 </s:form>
