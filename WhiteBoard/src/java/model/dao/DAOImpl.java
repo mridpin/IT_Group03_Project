@@ -190,6 +190,19 @@ public class DAOImpl {
         
     }
     
+    public static Actividades findActividad(String id)
+    {
+        ActividadesJerseyClient client = new ActividadesJerseyClient();
+        GenericType<Actividades> genericType = new GenericType<Actividades>() {
+        };
+        return client.find_XML(genericType, id);
+    }
+    
+    public static void realizarEntrega(String alumnoId, File entrega)
+    {
+        new EntregasJerseyClient().uploadFile(alumnoId);
+    }
+    
     public static List<Alumnos> alumnosFromAsignatura(String asignaturaId)
     {
         AsignaturasJerseyClient client = new AsignaturasJerseyClient();

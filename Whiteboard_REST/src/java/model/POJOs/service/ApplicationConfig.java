@@ -7,6 +7,9 @@ package model.POJOs.service;
 
 import java.util.Set;
 import javax.ws.rs.core.Application;
+import org.glassfish.jersey.media.multipart.MultiPartFeature;
+
+
 
 /**
  *
@@ -36,6 +39,7 @@ public class ApplicationConfig extends Application {
         resources.add(model.POJOs.service.AulasFacadeREST.class);
         resources.add(model.POJOs.service.EntregaFacadeREST.class);
         resources.add(model.POJOs.service.MaterialFacadeREST.class);
+        resources.add(MultiPartFeature.class);
         resources.add(model.POJOs.service.MensajesFacadeREST.class);
         resources.add(model.POJOs.service.ProfesoresFacadeREST.class);
     }

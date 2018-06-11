@@ -5,8 +5,6 @@
  */
 package model.POJOs.service;
 
-import com.sun.jersey.core.header.FormDataContentDisposition;
-import com.sun.jersey.multipart.FormDataParam;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -29,6 +27,8 @@ import javax.ws.rs.core.PathSegment;
 import javax.ws.rs.core.Response;
 import model.POJOs.Entrega;
 import model.POJOs.EntregaPK;
+import org.glassfish.jersey.media.multipart.FormDataContentDisposition;
+import org.glassfish.jersey.media.multipart.FormDataParam;
 
 /**
  *
@@ -74,19 +74,25 @@ public class EntregaFacadeREST extends AbstractFacade<Entrega> {
     }
 
     @POST
-    @Path("/upload")
+    @Path("upload/{id}")
     @Consumes(MediaType.MULTIPART_FORM_DATA)
     public Response uploadFile(
             @FormDataParam("file") InputStream uploadedInputStream,
-            @FormDataParam("file") FormDataContentDisposition fileDetail) {
+            @FormDataParam("file") FormDataContentDisposition fileDetail,
+            @PathParam("id") Integer id) {
 
         String uploadedFileLocation = "C:\\Users\\Portatil\\GlassFish_Server\\glassfish\\domains\\Ejercicio1\\config\\files\\asignaturas\\programacion-c\\entregas\\actividad-1\\alu_mridpin\\" + fileDetail.getFileName();
 
         // save it
         writeToFile(uploadedInputStream, uploadedFileLocation);
 
+        Entrega nuevaEntrega = new Entrega();
+        nuevaEntrega.setAlumnos(new AlumnosFacadeREST().find(id));
+        nuevaEntrega.setRutaArchivo(uploadedFileLocation);
+        this.create(nuevaEntrega);
+        
         String output = "File uploaded to : " + uploadedFileLocation;
-
+        
         return Response.status(200).entity(output).build();
 
     }

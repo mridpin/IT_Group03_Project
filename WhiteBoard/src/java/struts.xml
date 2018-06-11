@@ -92,6 +92,20 @@
         
     </package>
     
+    <package name="actividad" namespace="/actividades" extends="struts-default">
+        
+        <action name="loadActividad" class="actions.ActividadActions">
+            <result name="success">/activity.jsp</result>
+        </action>
+    </package>
+    
+    <package name="entrega" namespace="/entregas" extends="struts-default">
+        
+        <action name="realizarEntrega" class="actions.EntregaActions">
+            <result name="success">/activity.jsp</result>
+        </action>
+    </package>
+    
     <package name="messages" namespace="/messages" extends="struts-default">        
         <action name="loadMessages" class="actions.MessagesActions" method="loadAlumnos">
             <result name="success">/messages.jsp</result>

@@ -156,7 +156,7 @@
                      <ul class="w3-ul w3-card-4">
             <s:iterator status="stat" value="currentActividades" var="actividad">
                 <s:form namespace="/actividades" action="loadActividad">
-                    <s:hidden name="asignaturaId" value="%{#actividad.getActividadId()}"/>
+                    <s:hidden name="actividadId" value="%{#actividad.getActividadId()}"/>
                         <li class="w3-bar">
                             <div class="w3-bar-item">                         
                                 <span class="w3-large"><s:property value="%{#actividad.getNombre()}"/></span><br>
