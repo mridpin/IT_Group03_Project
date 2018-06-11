@@ -71,6 +71,7 @@
                                 <th>Apellidos</th>
                                 <th>Contraseña</th>
                                 <th>Foto</th>
+                                <th>Horario de Tutor&iacute;as</th>
                                 <th>Opciones</th>
                             </tr>
                         </thead>
@@ -82,6 +83,7 @@
                                 <td><s:property value="#al.apellidos"></s:property></td>
                                 <td><s:property value="#al.password"></s:property></td>
                                 <td><s:property value="#al.foto"></s:property></td>
+                                <td><s:property value="#al.horaTutoria"></s:property></td>
                                     <td><a class="w3-button fa fa-remove w3-large w3-hover-red borrar_item"></a></td>
                                 </tr>
                         </s:iterator>
