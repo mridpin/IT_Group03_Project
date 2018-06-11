@@ -11,10 +11,11 @@
         <div class="w3-col s8 w3-bar">
             <span>Bienvenido, <strong><s:property value="#session.usuario.nombre"/></strong></span><br>
             <s:form namespace="/messages" action="loadMessages">
-                <strong><s:submit cssClass="w3-bar-item w3-button" value="Mensajes"></s:submit></strong>
+                <strong><s:submit cssClass="w3-bar-item w3-button" value="Mensajes" cssStyle="width:100%;"></s:submit></strong>
             </s:form>
-            <a href="#" class="w3-bar-item w3-button"><i class="fa fa-user"></i></a>
-            <a href="#" class="w3-bar-item w3-button"><i class="fa fa-cog"></i></a>
+            <s:form action="logout" namespace="/login">
+                <s:submit cssClass="w3-button w3-bar-item w3-hover-grey"  name="logout" value="Cerrar sesión" cssStyle="width:100%;"/>
+            </s:form>
         </div>
     </div>
     <hr>
@@ -27,7 +28,6 @@
         <h5 class="fa fa-graduation-cap">Mis clases</h5>
     </div>            
     <div class="w3-bar-block">
-
         <a href="#" class="w3-bar-item w3-button w3-padding-16 w3-hide-large w3-dark-grey w3-hover-black" onclick="w3_close()" title="close menu"><i class="fa fa-remove fa-fw"></i>  Close Menu</a>
         <div class="w3-container w3-margin-bottom">
             <s:iterator status="stat" value="#session.asignaturas" var="asignatura">
@@ -38,11 +38,6 @@
                 </s:form>
 
             </s:iterator>
-        </div>
-        <div class="w3-container w3-margin-top">
-            <s:form action="logout" namespace="/login" cssClass="w3-bar-item" theme="simple">
-                <s:submit cssClass="w3-button w3-grey"  name="logout" value="Logout" cssStyle="width:100%;"/>
-            </s:form>
         </div>
     </div>
 </nav>
