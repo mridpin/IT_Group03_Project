@@ -157,11 +157,17 @@ public class DAOImpl {
     }
 
     public static List<Asignaturas> findAllAsignaturas() {
-        throw new UnsupportedOperationException("Not supported yet."); // Implementar igual que findAllStudents
+        AsignaturasJerseyClient client = new AsignaturasJerseyClient();
+        GenericType<List<Asignaturas>> genericType = new GenericType<List<Asignaturas>>() {
+        };
+        return client.findAll_XML(genericType);
     }
 
     public static List<Aulas> findAllAulas() {
-        throw new UnsupportedOperationException("Not supported yet."); // Implementar igual que findAllStudents
+        AulasJerseyClient client = new AulasJerseyClient();
+        GenericType<List<Aulas>> genericType = new GenericType<List<Aulas>>() {
+        };
+        return client.findAll_XML(genericType);
     }
 
     public static List<Profesores> findAllProfesores() {
@@ -237,6 +243,16 @@ public class DAOImpl {
     public static void editarProfesor(Profesores p) {
         ProfesoresJerseyClient client = new ProfesoresJerseyClient();
         client.edit_JSON(p, p.getIdUsuario().toString());
+        client.close();
+    }
+    public static void crearAula(Aulas a){
+        AulasJerseyClient client = new AulasJerseyClient();
+        client.create_JSON(a);
+        //client.close();
+    }
+    public static void editarAula(Aulas a) {
+        AulasJerseyClient client = new AulasJerseyClient();
+        client.edit_JSON(a, a.getAulaId().toString());
         client.close();
     }
 }

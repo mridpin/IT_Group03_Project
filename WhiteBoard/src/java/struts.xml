@@ -160,8 +160,19 @@
         <action name="loadCourses" class="actions.admin.AsignaturasCRUDActions" method="loadAsignaturas">
             <result name="success">/admin_asignaturas.jsp</result>
         </action>
-        <action name="loadRooms" class="actions.admin.AulasCRUDActions" method="loadAulas">
+        <action name="loadRooms" class="actions.admin.AulasCRUDActions" method="loadRooms">
             <result name="success">/admin_aulas.jsp</result>
         </action>
+        <action name="crearAula" class="actions.admin.AulasCRUDActions" method="crearAula">
+            <result name="success">/postredirectget.jsp</result>
+            <result name="input">/admin_aula.jsp</result>
+        </action>
+        <action name="editarAula" class="actions.admin.AulasCRUDActions" method="editarAulas">
+            <result name="success" type="redirectAction">
+                <param name="actionName">loadRooms</param>
+                <param name="namespace">/admin</param>
+            </result>
+            <result name="input">/admin_profesores.jsp</result>
+        </action> 
     </package>
 </struts>
