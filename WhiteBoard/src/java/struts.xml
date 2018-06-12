@@ -82,6 +82,12 @@
             <result name="success">/activity.jsp</result>
         </action>
         
+        <action name="subirActividad" class="actions.ActividadActions" method="subirActividad">
+            <result name="success" type="chain">
+                 <param name="actionName">loadTodoActividades</param>
+            </result>
+        </action>
+        
     </package>
     
     <package name="material" namespace="/materiales" extends="struts-default">
@@ -118,12 +124,6 @@
         
         <action name="loadActividad" class="actions.ActividadActions">
             <result name="success">/activity.jsp</result>
-        </action>
-        
-        <action name="subirMaterial" class="actions.ActividadActions" method="subirActividad">
-            <result name="success" type="chain">
-                 <param name="actionName">loadTodoMaterial</param>
-            </result>
         </action>
 
     </package>

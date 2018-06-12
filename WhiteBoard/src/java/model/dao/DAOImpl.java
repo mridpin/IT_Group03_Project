@@ -235,6 +235,12 @@ public class DAOImpl {
         //client.close();
     }
     
+    public static void crearActividad(Actividades al) {
+        ActividadesJerseyClient client = new ActividadesJerseyClient();
+        client.create_XML(al);
+        //client.close();
+    }
+    
     public static void crearMaterial(Material al) {
        MaterialJerseyClient client = new MaterialJerseyClient();
         client.create_JSON(al);

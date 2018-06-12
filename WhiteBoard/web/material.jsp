@@ -74,7 +74,7 @@
                         <s:textfield name="nombreActividad" id="nombreActividad" label="Nombre del Material" cssClass="w3-input w3-border w3-round"/>
                         <s:select cssClass="w3-select" name="tipo" label="Tipo de material" list="tipos"/>
                         <s:file cssClass="w3-button" name="file" label="Archivo a subir"/>
-                        <s:submit name="Subir Material" value="Subir Material" id="Subir Material"/>
+                        <s:submit name="Subir Material" value="Subir Material" id="Subir Material" cssClass="w3-input w3-border"/>
                     </s:form>
                 </div>
                 

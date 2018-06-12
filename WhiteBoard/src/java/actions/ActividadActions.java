@@ -7,12 +7,18 @@ package actions;
 
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
+import java.io.File;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import model.POJOs.Actividades;
+import model.POJOs.Asignaturas;
 import model.POJOs.Entrega;
+import model.POJOs.Profesores;
 import model.POJOs.Usuario;
 import static model.dao.DAOImpl.*;
+import static org.apache.commons.lang3.StringUtils.stripAccents;
+import static org.apache.struts2.ServletActionContext.getServletContext;
 
 /**
  *
@@ -31,6 +37,8 @@ public class ActividadActions extends ActionSupport {
     private String asignaturaId;
     
     private String notaActividad;
+    
+    private String tipoActividad;
     
     private String nombreActividad;
     
@@ -52,7 +60,28 @@ public class ActividadActions extends ActionSupport {
     
     public String subirActividad()
     {
+        Asignaturas asignatura = findAsignatura(asignaturaId);
         
+        String fullPath = getServletContext().getRealPath(File.separator) + (path + stripAccents(asignatura.getNombre())+"/entregas/"+stripAccents(nombreActividad));
+        
+         //Create folder to store future entregas
+        File saveFolder = new File(fullPath);
+        
+        saveFolder.mkdirs();
+        
+        Actividades newActividad = new Actividades();
+        
+        Map session = (Map) ActionContext.getContext().get("session");
+        Usuario profesor = (Usuario) session.get("usuario");
+        
+        newActividad.setAsignaturaId(asignatura);
+        newActividad.setNombre(nombreActividad);
+        newActividad.setFechaFin(new Date(fechaActividad));
+        newActividad.setNotaMax(Double.parseDouble(notaActividad));
+        newActividad.setTipo(tipoActividad);
+        newActividad.setProfesorId((Profesores) profesor);
+        
+        crearActividad(newActividad);
         
         return SUCCESS;
     }
@@ -125,6 +154,14 @@ public class ActividadActions extends ActionSupport {
 
     public void setFechaActividad(String fechaActividad) {
         this.fechaActividad = fechaActividad;
+    }
+
+    public String getTipoActividad() {
+        return tipoActividad;
+    }
+
+    public void setTipoActividad(String tipoActividad) {
+        this.tipoActividad = tipoActividad;
     }
     
     

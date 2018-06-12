@@ -65,6 +65,7 @@
                         <div class="w3-container w3-padding-16">
                             <div class="w3-left w3-padding"><i class="fa fa-pencil w3-xxxlarge w3-padding-16"></i></div>
                             <h4 class="w3-padding-16"><s:property  value="%{#actividad.nombre}"/></h4>
+                            <h5 class="w3-padding-16">Tipo: <s:property  value="%{#actividad.tipo}"/></h5>
                             <h5 class="w3-padding-16 w3-blue">Fecha L&iacute;mite de entrega: <s:property  value="%{#actividad.fechaFin}"/></h5>
                             <h5 class="w3-padding-16 w3-green">Nota M&aacute;xima: <s:property  value="%{#actividad.notaMax}"/></h5>
                             <div class="w3-container w3-row">
@@ -87,8 +88,9 @@
                             <s:hidden name="asignaturaId" value="%{#session.asignatura.getAsignaturaId()}"/>
                             <s:textfield name="nombreActividad" id="nombreActividad" label="Nombre de la Actividad" cssClass="w3-input w3-border w3-round"/>
                             <s:textfield name="notaActividad" id="notaActividad" label="Nota Máxima de la Actividad - (Formato x.x)" cssClass="w3-input w3-border w3-round"/>
+                            <s:textfield name="tipoActividad" id="tipoActividad" label="Tipo de Actividad" cssClass="w3-input w3-border w3-round"/>
                             <s:textfield name="fechaActividad" id="fechaActividad" label="Fecha Máxima de entrega de la Actividad - (Formato yyyy/mm/dd)" cssClass="w3-input w3-border w3-round"/>
-                            <s:submit name="Subir Material" value="Subir Material" id="Subir Material"/>
+                            <s:submit name="Subir Actividad" value="Subir Actividad" id="Subir Actividad" cssClass="w3-input w3-border"/>
                         </s:form>
                     </div>
 
