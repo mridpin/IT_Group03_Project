@@ -28,10 +28,10 @@
 
             <div class="w3-row-padding w3-margin-bottom w3-card-4 w3-padding-16 w3-margin w3-white">
 
-                <s:if test="%{#session.usuario.tipo()=='Alumno'}">  
-                    
-                    <s:form namespace="/entregas" action="realizarEntrega">
-                         <s:file cssClass="w3-button" name="entrega" label="Archivo para entregar"/>
+                <s:if test="%{#session.usuario.tipo()=='Alumno'}">     
+                    <s:form namespace="/entregas" action="realizarEntrega" method="post" enctype="multipart/form-data">
+                         <s:hidden name="actividadId" value="%{current.actividadId}"/>
+                         <s:file cssClass="w3-button" name="file" label="Archivo para entregar"/>
                          <s:submit value="Entregar" cssClass="w3-button"/>
                     </s:form>
 

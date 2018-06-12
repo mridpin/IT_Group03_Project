@@ -98,7 +98,10 @@
     <package name="entrega" namespace="/entregas" extends="struts-default">
         
         <action name="realizarEntrega" class="actions.EntregaActions">
-            <result name="success">/activity.jsp</result>
+            <result name="success" type="chain">
+                 <param name="actionName">loadAsignaturasAlumno</param>
+                 <param name="namespace">/login</param>
+            </result>
         </action>
     </package>
     
