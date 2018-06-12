@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 11-06-2018 a las 20:58:34
+-- Tiempo de generación: 12-06-2018 a las 07:06:05
 -- Versión del servidor: 10.1.21-MariaDB
 -- Versión de PHP: 5.6.30
 
@@ -156,8 +156,15 @@ CREATE TABLE `entrega` (
   `alumnoId` int(11) NOT NULL,
   `actividadId` int(11) NOT NULL,
   `nota` double NOT NULL,
-  `rutaArchivo` varchar(256) COLLATE utf8mb4_spanish2_ci NOT NULL
+  `rutaArchivo` varchar(256) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish2_ci;
+
+--
+-- Volcado de datos para la tabla `entrega`
+--
+
+INSERT INTO `entrega` (`alumnoId`, `actividadId`, `nota`, `rutaArchivo`) VALUES
+(1, 1, 0, 'files/asignaturas//Programacion C/entregas/Actividad 1/alu_test/test.txt');
 
 -- --------------------------------------------------------
 
@@ -177,7 +184,7 @@ CREATE TABLE `material` (
 --
 
 INSERT INTO `material` (`materialId`, `rutaArchivo`, `nombre`, `asignaturaId`) VALUES
-(1, 'files/asignaturas/programacion-c/eb/meme.jpg', 'Notas EB', 2);
+(1, 'files\\asignaturas\\Programacion C\\eb\\meme.jpg', 'Notas EB', 2);
 
 -- --------------------------------------------------------
 
