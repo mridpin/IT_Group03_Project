@@ -31,7 +31,7 @@
                             $("#input_id").val(alumno["aulaId"]);
                             $("#input_capacidad").val(alumno["capacidad"]);
                             $("#input_localizacion").val(alumno["localizacion"]);
-                            $("#input_asignaturaId").val(alumno["asignaturaId"]);
+                            //$("#input_asignaturaId").val(alumno["asignaturaId"]);
                         }
                     };
                     xhttp.send();
@@ -74,7 +74,7 @@
                                 <td><s:property value="#al.aulaId"></s:property></td>
                                 <td><s:property value="#al.capacidad"></s:property></td>
                                 <td><s:property value="#al.localizacion"></s:property></td>
-                                <td><s:property value="#al.asignaturaId.nombre"></s:property></td>
+                                <td><s:property value="#al.asignaturaId.getNombre"></s:property></td>
                                     <td><a class="w3-button fa fa-remove w3-large w3-hover-red borrar_item"></a></td>
                                 </tr>
                         </s:iterator>
@@ -91,7 +91,7 @@
                     <s:textfield cssClass="w3-input" type="text" id="input_capacidad" name="capcidad" label="capacidad"></s:textfield>
                     <s:textfield cssClass="w3-input" type="text" id="input_localizacion" name="localizacion" label="Localizacion"></s:textfield>
                     <%-- <s:textfield cssClass="w3-input" type="text" id="input_asignaturaId" name="asignaturaId" label="Id-Asignatura"></s:textfield>--%>
-                    <s:select cssClass="w3-input" id="input_asignaturaId" name="asignaturaId" required="true" list="asignaturas" listValue="asignaturaId" listKey="asignaturaId"></s:select>
+                    <s:select cssClass="w3-input" id="input_asignaturaId" name="asignaturaSeleccionada" required="true" list="asignaturas" listValue="asignaturaId" listKey="asignaturaId"></s:select>
                     <s:submit value="Crear Aula" action="crearAula" cssClass="w3-button" theme="simple"></s:submit>
                     <s:submit value="Editar Aula" action="editarAula" theme="simple" cssClass="w3-button"></s:submit>
                         <br/>

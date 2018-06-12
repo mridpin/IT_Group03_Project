@@ -74,17 +74,18 @@
                 </s:if>        
                 <s:else>
 
-
-                    <div class="w3-quarter">
-                        <div class="w3-container w3-blue w3-padding-16">
-                            <div class="w3-left"><i class="fa fa-cloud-upload w3-xxxlarge"></i></div>
-                            <div class="w3-right">
-
+                    <s:form namespace="/materiales" action="loadTodoMaterial">
+                        <s:hidden name="asignaturaId" value="%{#asignatura.asignaturaId}"/>
+                        <div class="w3-quarter">
+                            <div class="w3-container w3-blue w3-padding-16">
+                                <div class="w3-left"><i class="fa fa-cloud-upload w3-xxxlarge"></i></div>
+                                <div class="w3-right">
+                                </div>
+                                <div class="w3-clear"></div>
+                                <h4><s:submit cssClass="w3-btn w3-hover-blue w3-mobile" value="Subir Material"/></h4>
                             </div>
-                            <div class="w3-clear"></div>
-                            <h4>Subir Material</h4>
                         </div>
-                    </div>
+                    </s:form>
 
                     <div class="w3-quarter">
                         <div class="w3-container w3-red w3-padding-16">
@@ -135,9 +136,9 @@
                     </s:if>
                     <s:else>
                         <s:iterator status="stat" value="currentActividades" var="actividad">
-                        <s:form namespace="/entregas" action="getEntregas">
-                            <s:hidden name="asignaturaId" value="%{#asignatura.asignaturaId}"/>
-                              <s:hidden name="actividadId" value="%{#actividad.getActividadId()}"/>
+                            <s:form namespace="/entregas" action="getEntregas">
+                                <s:hidden name="asignaturaId" value="%{#asignatura.asignaturaId}"/>
+                                <s:hidden name="actividadId" value="%{#actividad.getActividadId()}"/>
                                 <li class="w3-bar">
                                     <div class="w3-bar-item">                         
                                         <span class="w3-large"><s:property value="%{#actividad.getNombre()}"/></span><br>
@@ -145,7 +146,7 @@
                                         <span class="w3-right"><s:submit cssClass="w3-btn w3-mobile" value="Calificar Entregas"/></span>
                                     </div>
                                 </li>
-                        </s:form>
+                            </s:form>
                         </s:iterator>
                     </s:else>
 
