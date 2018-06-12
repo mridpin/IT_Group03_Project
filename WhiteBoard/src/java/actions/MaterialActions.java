@@ -144,6 +144,12 @@ public class MaterialActions extends ActionSupport {
         
         return SUCCESS;
     }
+    
+    public String borrarMaterial()
+    {
+        deleteMaterial(materialId);
+        return SUCCESS;
+    }
 
     public String getNombreActividad() {
         return nombreActividad;

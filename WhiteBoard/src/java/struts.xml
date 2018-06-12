@@ -96,6 +96,12 @@
             </result>
         </action>
         
+        <action name="borrarMaterial" class="actions.MaterialActions" method="borrarMaterial">
+            <result name="success" type="chain">
+                 <param name="actionName">loadTodoMaterial</param>
+            </result>
+        </action>
+        
     </package>
     
     <package name="actividad" namespace="/actividades" extends="struts-default">

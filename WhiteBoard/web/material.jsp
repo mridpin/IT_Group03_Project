@@ -43,6 +43,15 @@
                             <button class="fa fa-download w3-button"> <s:property  value="%{#material.nombre}"/></button>
                         </a>
                     </h4>
+                    <s:if test="%{#session.usuario.tipo()!='Alumno'}"> 
+                    <div class="w3-container w3-row">
+                            <s:form namespace="/materiales" action="borrarMaterial">
+                                <s:hidden name="materialId" value="%{#material.materialId}"/>
+                                <s:hidden name="asignaturaId" value="%{#session.asignatura.asignaturaId}"/>
+                                <s:submit name=""  value="Borrar" cssClass="w3-button w3-red w3-hover-orange"/> 
+                            </s:form>
+                    </div>
+                    </s:if>
                 </div>
 
 

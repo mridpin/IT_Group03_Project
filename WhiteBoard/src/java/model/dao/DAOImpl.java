@@ -225,6 +225,13 @@ public class DAOImpl {
         //client.close();
     }
     
+    public static void deleteMaterial(String al) {
+       MaterialJerseyClient client = new MaterialJerseyClient();
+        client.remove(al);
+        //client.close();
+    }
+    
+    
     public static void editarAlumno(Alumnos al) {
         AlumnosJerseyClient client = new AlumnosJerseyClient();
         client.edit_JSON(al, al.getIdUsuario().toString());
