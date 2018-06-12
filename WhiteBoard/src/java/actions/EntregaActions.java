@@ -1,11 +1,13 @@
 package actions;
 
 import com.opensymphony.xwork2.ActionContext;
+import static com.opensymphony.xwork2.ActionContext.getContext;
 import com.opensymphony.xwork2.ActionSupport;
 import java.io.File;
 import java.io.InputStream;
 import java.util.List;
 import java.util.Map;
+import javax.servlet.ServletContext;
 import model.POJOs.Actividades;
 import model.POJOs.Alumnos;
 import model.POJOs.Entrega;
@@ -13,6 +15,7 @@ import model.POJOs.EntregaPK;
 import model.POJOs.Usuario;
 import static model.dao.DAOImpl.*;
 import static org.apache.commons.lang3.StringUtils.stripAccents;
+import static org.apache.struts2.ServletActionContext.getServletContext;
 
 /**
  *
@@ -38,21 +41,26 @@ public class EntregaActions extends ActionSupport {
     public String execute() throws Exception {
         Map session = (Map) ActionContext.getContext().get("session");
         Usuario current = (Usuario) session.get("usuario");
-
+        
+       
         //Find actividad
         Actividades actividad = findActividad(actividadId);
+
+        String fullPath = getServletContext().getRealPath(File.separator)+(path + "/" + stripAccents(actividad.getAsignaturaId().getNombre()) + "/entregas/" + stripAccents(actividad.getNombre()) + "/" + current.getUsername());
 
         Entrega newEntrega = new Entrega();
         
         //Create folder to store entrega (lo hace dentro de glass fish)
-        File saveFolder = new File(path + "/" + stripAccents(actividad.getAsignaturaId().getNombre()) + "/entregas/" + stripAccents(actividad.getNombre()) + "/" + current.getUsername());
+        File saveFolder = new File(fullPath);
 
         saveFolder.mkdirs();
        
-        file.renameTo(new File(path + "/" + actividad.getAsignaturaId().getNombre() + "/entregas/" + actividad.getNombre() + "/" + current.getUsername()+"/"+fileFileName));
+        file.renameTo(new File(fullPath+"/"+fileFileName));
+       
+        int startPath = (fullPath+"/"+fileFileName).indexOf("files");
         
         newEntrega.setAlumnos((Alumnos) current);
-        newEntrega.setRutaArchivo(new File(saveFolder.getAbsolutePath()+"/"+fileFileName).toString());
+        newEntrega.setRutaArchivo((fullPath+"/"+fileFileName).substring(startPath));
         newEntrega.setActividades(actividad);
         newEntrega.setEntregaPK(new EntregaPK(current.getIdUsuario(),actividad.getActividadId()));
         

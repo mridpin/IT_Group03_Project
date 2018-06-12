@@ -30,7 +30,7 @@ import model.dao.AlumnosJerseyClient;
  */
 public class DAOImpl {
     
-    public static String path = "../files/asignaturas/";
+    public static String path = "/files/asignaturas/";
 
     public static Administradores findAdmin(String user, String password) {
         AdministradoresJerseyClient client = new AdministradoresJerseyClient();
