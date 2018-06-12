@@ -241,7 +241,7 @@ public class DAOImpl {
     
     public static void editMaterial(Material al) {
         MaterialJerseyClient client = new MaterialJerseyClient();
-        client.edit_JSON(client,al.getMaterialId().toString());
+        client.edit_JSON(al,al.getMaterialId().toString());
         client.close();
     }
     
