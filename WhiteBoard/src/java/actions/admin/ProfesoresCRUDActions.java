@@ -10,15 +10,6 @@ import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import java.util.List;
 import java.util.Map;
-import javax.persistence.Basic;
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.OneToMany;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
-import model.POJOs.Actividades;
-import model.POJOs.Alumnos;
-import model.POJOs.Asignaturas;
 import model.POJOs.Profesores;
 import model.dao.DAOImpl;
 

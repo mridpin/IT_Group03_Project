@@ -51,6 +51,15 @@
                                 <s:submit name=""  value="Borrar" cssClass="w3-button w3-red w3-hover-orange"/> 
                             </s:form>
                     </div>
+                    <div class="w3-container w3-row">
+                            <s:form namespace="/materiales" action="editarMaterial">
+                                <s:hidden name="materialId" value="%{#material.materialId}"/>
+                                <s:hidden name="asignaturaId" value="%{#session.asignatura.asignaturaId}"/>
+                                <s:textfield name="nombreActividad" id="nombreActividad" label="Nuevo nombre del Material" cssClass="w3-input w3-border w3-round"/>
+                                <br>
+                                <s:submit name=""  value="Editar" cssClass="w3-button w3-yellow"/> 
+                            </s:form>
+                    </div>
                     </s:if>
                 </div>
 

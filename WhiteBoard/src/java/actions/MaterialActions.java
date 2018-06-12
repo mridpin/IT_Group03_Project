@@ -145,6 +145,17 @@ public class MaterialActions extends ActionSupport {
         return SUCCESS;
     }
     
+    public String editarMaterial()
+    {
+        Material edit = findMaterial(materialId);
+        
+        edit.setNombre(nombreActividad);
+        
+        editMaterial(edit);
+        
+        return SUCCESS;
+    }
+    
     public String borrarMaterial()
     {
         deleteMaterial(materialId);

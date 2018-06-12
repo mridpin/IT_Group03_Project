@@ -205,6 +205,14 @@ public class DAOImpl {
         return client.find_XML(genericType, id);
     }
     
+    public static Material findMaterial(String id)
+    {
+        MaterialJerseyClient client = new MaterialJerseyClient();
+        GenericType<Material> genericType = new GenericType<Material>() {
+        };
+        return client.find_JSON(genericType, id);
+    }
+    
     public static List<Alumnos> alumnosFromAsignatura(String asignaturaId)
     {
         AsignaturasJerseyClient client = new AsignaturasJerseyClient();
@@ -229,6 +237,12 @@ public class DAOImpl {
        MaterialJerseyClient client = new MaterialJerseyClient();
         client.remove(al);
         //client.close();
+    }
+    
+    public static void editMaterial(Material al) {
+        MaterialJerseyClient client = new MaterialJerseyClient();
+        client.edit_JSON(client,al.getMaterialId().toString());
+        client.close();
     }
     
     
