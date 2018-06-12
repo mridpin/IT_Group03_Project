@@ -27,6 +27,7 @@ import model.dao.DAOImpl;
 public class AulasCRUDActions extends ActionSupport {
 
     List<Aulas> aulas;
+    List<Asignaturas>asignaturas;
         private Integer aulaId;
 
     private int capacidad;
@@ -71,6 +72,7 @@ public class AulasCRUDActions extends ActionSupport {
     public String loadAulas() {
         // Las llamadas al webservice se hacen siempre a traves de DAOImpl
         aulas = DAOImpl.findAllAulas();
+        asignaturas=DAOImpl.findAllAsignaturas();
         return SUCCESS;
     }
     
@@ -116,6 +118,14 @@ public class AulasCRUDActions extends ActionSupport {
 
     public void setAsignaturaId(Asignaturas asignaturaId) {
         this.asignaturaId = asignaturaId;
+    }
+
+    public List<Asignaturas> getAsignaturas() {
+        return asignaturas;
+    }
+
+    public void setAsignaturas(List<Asignaturas> asignaturas) {
+        this.asignaturas = asignaturas;
     }
     
 }
