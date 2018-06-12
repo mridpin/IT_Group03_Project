@@ -90,7 +90,7 @@
                     <s:textfield cssClass="w3-input" type="text" id="input_id" name="aulaId"  label="ID" readonly="true"></s:textfield>
                     <s:textfield cssClass="w3-input" type="text" id="input_capacidad" name="capcidad" label="capacidad"></s:textfield>
                     <s:textfield cssClass="w3-input" type="text" id="input_localizacion" name="localizacion" label="Localizacion"></s:textfield>
-                    <s:textfield cssClass="w3-input" type="text" id="input_apellidos" name="asignaturaId" label="Id-Asignatura"></s:textfield>
+                    <s:textfield cssClass="w3-input" type="text" id="input_asignaturaId" name="asignaturaId" label="Id-Asignatura"></s:textfield>
 
                     <s:submit value="Crear Aula" action="crearAula" cssClass="w3-button" theme="simple"></s:submit>
                     <s:submit value="Editar Aula" action="editarAula" theme="simple" cssClass="w3-button"></s:submit>
