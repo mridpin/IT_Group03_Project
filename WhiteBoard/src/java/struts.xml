@@ -119,6 +119,12 @@
         <action name="loadActividad" class="actions.ActividadActions">
             <result name="success">/activity.jsp</result>
         </action>
+        
+        <action name="subirMaterial" class="actions.ActividadActions" method="subirActividad">
+            <result name="success" type="chain">
+                 <param name="actionName">loadTodoMaterial</param>
+            </result>
+        </action>
 
     </package>
     

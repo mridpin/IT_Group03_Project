@@ -61,51 +61,37 @@
 
                 </s:if>        
                 <s:else>
-                    <div class="w3-quarter">
-                        <div class="w3-container w3-teal w3-padding-16">
-                            <div class="w3-left"><i class="fa fa-check w3-xxxlarge"></i></div>
-                            <div class="w3-right">
-
+                    <s:iterator status="stat" value="all" var="actividad">
+                        <div class="w3-container w3-padding-16">
+                            <div class="w3-left w3-padding"><i class="fa fa-pencil w3-xxxlarge w3-padding-16"></i></div>
+                            <h4 class="w3-padding-16"><s:property  value="%{#actividad.nombre}"/></h4>
+                            <h5 class="w3-padding-16 w3-blue">Fecha L&iacute;mite de entrega: <s:property  value="%{#actividad.fechaFin}"/></h5>
+                            <h5 class="w3-padding-16 w3-green">Nota M&aacute;xima: <s:property  value="%{#actividad.notaMax}"/></h5>
+                            <div class="w3-container w3-row">
+                                <s:form namespace="/materiales" action="editarMaterial">
+                                    <s:hidden name="materialId" value="%{#material.materialId}"/>
+                                    <s:hidden name="asignaturaId" value="%{#session.asignatura.asignaturaId}"/>
+                                    <s:textfield name="nombreActividad" id="nombreActividad" label="Nuevo nombre del Material" cssClass="w3-input w3-border w3-round"/>
+                                    <br>
+                                    <s:submit name=""  value="Editar" cssClass="w3-button w3-yellow"/> 
+                                </s:form>
                             </div>
-                            <div class="w3-clear"></div>
-                            <h4>Calificar Tareas</h4>
                         </div>
+
+
+                    </s:iterator>
+
+                    <h4 class="w3-center">Subida de nueva Actividad</h4>
+                    <div class="w3-container w3-card-4">
+                        <s:form namespace="/materiales" action="subirActividad" method="post">
+                            <s:hidden name="asignaturaId" value="%{#session.asignatura.getAsignaturaId()}"/>
+                            <s:textfield name="nombreActividad" id="nombreActividad" label="Nombre de la Actividad" cssClass="w3-input w3-border w3-round"/>
+                            <s:textfield name="notaActividad" id="notaActividad" label="Nota Máxima de la Actividad - (Formato x.x)" cssClass="w3-input w3-border w3-round"/>
+                            <s:textfield name="fechaActividad" id="fechaActividad" label="Fecha Máxima de entrega de la Actividad - (Formato yyyy/mm/dd)" cssClass="w3-input w3-border w3-round"/>
+                            <s:submit name="Subir Material" value="Subir Material" id="Subir Material"/>
+                        </s:form>
                     </div>
-                    <div class="w3-quarter">
-                        <div class="w3-container w3-blue w3-padding-16">
-                            <div class="w3-left"><i class="fa fa-cloud-upload w3-xxxlarge"></i></div>
-                            <div class="w3-right">
 
-                            </div>
-                            <div class="w3-clear"></div>
-                            <h4>Subir Material</h4>
-                        </div>
-                    </div>
-
-                    <div class="w3-quarter">
-                        <div class="w3-container w3-red w3-padding-16">
-                            <div class="w3-left"><i class="fa fa-pencil w3-xxxlarge"></i></div>
-                            <div class="w3-right">
-
-                            </div>
-                            <div class="w3-clear"></div>
-                            <h4>Subir Tarea</h4>
-                        </div>
-                    </div>
-
-                    <s:form namespace="/asignaturas" action="alumnosAsignatura">
-                        <s:hidden name="asignaturaId" value="%{#asignatura.asignaturaId}"/>
-                        <div class="w3-quarter">
-                            <div class="w3-container w3-deep-orange w3-padding-16">
-                                <div class="w3-left"><i class="fa fa-users w3-xxxlarge"></i></div>
-                                <div class="w3-right">
-
-                                </div>
-                                <div class="w3-clear"></div>
-                                <h4><s:submit cssClass="w3-btn w3-hover-deep-orange w3-mobile" value="Ver Lista de Alumnos"/></h4>
-                            </div>
-                        </div>
-                    </s:form>
                 </s:else>
 
 
