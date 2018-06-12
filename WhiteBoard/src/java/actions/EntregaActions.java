@@ -1,13 +1,10 @@
 package actions;
 
 import com.opensymphony.xwork2.ActionContext;
-import static com.opensymphony.xwork2.ActionContext.getContext;
 import com.opensymphony.xwork2.ActionSupport;
 import java.io.File;
-import java.io.InputStream;
 import java.util.List;
 import java.util.Map;
-import javax.servlet.ServletContext;
 import model.POJOs.Actividades;
 import model.POJOs.Alumnos;
 import model.POJOs.Entrega;
@@ -30,10 +27,14 @@ public class EntregaActions extends ActionSupport {
     String fileFileName;
 
     private String actividadId;
-    
+
     private List<Entrega> all;
-    
+
     private Actividades currentActividad;
+    
+    private String alumnoId;
+
+    private String nota;
 
     public EntregaActions() {
     }
@@ -41,31 +42,30 @@ public class EntregaActions extends ActionSupport {
     public String execute() throws Exception {
         Map session = (Map) ActionContext.getContext().get("session");
         Usuario current = (Usuario) session.get("usuario");
-        
-       
+
         //Find actividad
         Actividades actividad = findActividad(actividadId);
 
-        String fullPath = getServletContext().getRealPath(File.separator)+(path + "/" + stripAccents(actividad.getAsignaturaId().getNombre()) + "/entregas/" + stripAccents(actividad.getNombre()) + "/" + current.getUsername());
+        String fullPath = getServletContext().getRealPath(File.separator) + (path + "/" + stripAccents(actividad.getAsignaturaId().getNombre()) + "/entregas/" + stripAccents(actividad.getNombre()) + "/" + current.getUsername());
 
         Entrega newEntrega = new Entrega();
-        
+
         //Create folder to store entrega (lo hace dentro de glass fish)
         File saveFolder = new File(fullPath);
 
         saveFolder.mkdirs();
-       
-        file.renameTo(new File(fullPath+"/"+fileFileName));
-       
-        int startPath = (fullPath+"/"+fileFileName).indexOf("files");
-        
+
+        file.renameTo(new File(fullPath + "/" + fileFileName));
+
+        int startPath = (fullPath + "/" + fileFileName).indexOf("files");
+
         newEntrega.setAlumnos((Alumnos) current);
-        newEntrega.setRutaArchivo((fullPath+"/"+fileFileName).substring(startPath));
+        newEntrega.setRutaArchivo((fullPath + "/" + fileFileName).substring(startPath));
         newEntrega.setActividades(actividad);
-        newEntrega.setEntregaPK(new EntregaPK(current.getIdUsuario(),actividad.getActividadId()));
-        
+        newEntrega.setEntregaPK(new EntregaPK(current.getIdUsuario(), actividad.getActividadId()));
+
         crearEntrega(newEntrega);
-        
+
         return SUCCESS;
     }
 
@@ -89,16 +89,29 @@ public class EntregaActions extends ActionSupport {
         return fileContentType;
     }
 
+    public String getAlumnoId() {
+        return alumnoId;
+    }
+
+    public void setAlumnoId(String alumnoId) {
+        this.alumnoId = alumnoId;
+    }
+
     public void setFileContentType(String fileContentType) {
         this.fileContentType = fileContentType;
     }
-    
-    public String getEntregasActividad()
-    {
+
+    public String getEntregasActividad() {
+        Map session = (Map) ActionContext.getContext().get("session");
+        
         all = getTodasEntregasActividad(actividadId);
         
-         //Find actividad
+        session.put("allEntregas",all);
+
+        //Find actividad
         currentActividad = findActividad(actividadId);
+        
+        session.put("currentActividad",currentActividad);
         return SUCCESS;
     }
 
@@ -126,8 +139,43 @@ public class EntregaActions extends ActionSupport {
         this.currentActividad = currentActividad;
     }
 
-    
-    
-    
+    public String getNota() {
+        return nota;
+    }
+
+    public void setNota(String nota) {
+        this.nota = nota;
+    }
+
+    public String calificarEntrega() {
+
+        //If it´s a valid number
+        if (nota.matches("^\\d+(\\.\\d+)+$")) {
+
+            double notaFinal = Double.parseDouble(nota);
+            
+            currentActividad = findActividad(actividadId);
+            
+            if(notaFinal> 0 && notaFinal <= currentActividad.getNotaMax())
+            {
+                Entrega entrega = getEntregaAlumnoActividad(actividadId,alumnoId);
+                entrega.setNota(notaFinal);
+                modificarEntrega(entrega);
+            }
+            else
+            {
+                addFieldError("nota", "La nota debe ser mayor o igual a 0 y menor o igual a la nota máxima");
+                return INPUT;
+            }
+            
+        }
+        else
+        {
+            addFieldError("nota", "La nota debe ser numérica y debe seguir el formato X.X");
+            return INPUT;
+        }
+
+        return SUCCESS;
+    }
 
 }

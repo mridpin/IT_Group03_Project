@@ -29,7 +29,7 @@
                     <s:iterator status="stat" value="allAlumnos" var="alumno">
 
                         <li class="w3-bar">
-                            <img src="img_avatar2.png" class="w3-bar-item w3-circle w3-hide-small" style="width:85px">
+                            <img src="../<s:property value="%{#alumno.foto}"/>" class="w3-bar-item w3-circle w3-hide-small" style="width:85px">
                             <div class="w3-bar-item">
                                 <span class="w3-large"><s:property value="%{#alumno.getNombre()}"/></span><br>
                             </div>

@@ -6,6 +6,7 @@
 package actions;
 
 import com.opensymphony.xwork2.ActionSupport;
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -31,14 +32,19 @@ public class MaterialActions extends ActionSupport {
     
     private String materialId;
     
+    private String nombreActividad;
+    
+    private File file;
+    
+     String fileContentType;
+
+    String fileFileName;
+    
     public MaterialActions() {
     }
     
     //Finds all the materials of the asignatura according to tipo
     public String execute() throws Exception {
-        
-        
-        // No llames al jersey desde la action, mejor crea un metodo estatico en DAOImpl que sea el que llame al jersey
         List<Material> materiales = findMaterialesFromAsignatura(asignaturaId.toString());
         
         all = new ArrayList();
@@ -100,7 +106,45 @@ public class MaterialActions extends ActionSupport {
     }
 
     
-    
+    public String cargarTodoMaterial()
+    {
+        all = findMaterialesFromAsignatura(asignaturaId.toString());
+        
+        return SUCCESS;
+    }
+
+    public String getNombreActividad() {
+        return nombreActividad;
+    }
+
+    public void setNombreActividad(String nombreActividad) {
+        this.nombreActividad = nombreActividad;
+    }
+
+    public File getFile() {
+        return file;
+    }
+
+    public void setFile(File file) {
+        this.file = file;
+    }
+
+    public String getFileContentType() {
+        return fileContentType;
+    }
+
+    public void setFileContentType(String fileContentType) {
+        this.fileContentType = fileContentType;
+    }
+
+    public String getFileFileName() {
+        return fileFileName;
+    }
+
+    public void setFileFileName(String fileFileName) {
+        this.fileFileName = fileFileName;
+    }
+
     
     
     

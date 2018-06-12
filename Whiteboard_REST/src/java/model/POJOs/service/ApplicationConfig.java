@@ -7,7 +7,6 @@ package model.POJOs.service;
 
 import java.util.Set;
 import javax.ws.rs.core.Application;
-import org.glassfish.jersey.media.multipart.MultiPartFeature;
 
 
 

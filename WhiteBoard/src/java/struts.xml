@@ -83,7 +83,11 @@
     <package name="material" namespace="/materiales" extends="struts-default">
         
         <action name="loadMaterial" class="actions.MaterialActions">
-            <result name="success">/student_material.jsp</result>
+            <result name="success">/material.jsp</result>
+        </action>
+        
+        <action name="loadTodoMaterial" class="actions.MaterialActions" method="cargarTodoMaterial">
+            <result name="success">/material.jsp</result>
         </action>
         
     </package>
@@ -106,6 +110,13 @@
         
         <action name="getEntregas" class="actions.EntregaActions" method="getEntregasActividad">
             <result name="success">/entregas.jsp</result>
+        </action>
+        
+        <action name="calificarEntrega" class="actions.EntregaActions" method="calificarEntrega">
+            <result name="success" type="chain">
+                 <param name="actionName">getEntregas</param>
+            </result>
+            <result name="input">/entregas.jsp</result>
         </action>
     </package>
     
