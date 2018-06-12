@@ -102,10 +102,16 @@ public class EntregaActions extends ActionSupport {
     }
 
     public String getEntregasActividad() {
+        Map session = (Map) ActionContext.getContext().get("session");
+        
         all = getTodasEntregasActividad(actividadId);
+        
+        session.put("allEntregas",all);
 
         //Find actividad
         currentActividad = findActividad(actividadId);
+        
+        session.put("currentActividad",currentActividad);
         return SUCCESS;
     }
 
@@ -146,7 +152,7 @@ public class EntregaActions extends ActionSupport {
         //If it´s a valid number
         if (nota.matches("^\\d+(\\.\\d+)+$")) {
 
-            double notaFinal = Math.ceil(Double.parseDouble(nota) / 100.0);
+            double notaFinal = Double.parseDouble(nota);
             
             currentActividad = findActividad(actividadId);
             
@@ -165,7 +171,7 @@ public class EntregaActions extends ActionSupport {
         }
         else
         {
-            addFieldError("nota", "La nota de ber numérica");
+            addFieldError("nota", "La nota debe ser numérica y debe seguir el formato X.X");
             return INPUT;
         }
 

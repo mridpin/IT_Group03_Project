@@ -113,6 +113,7 @@
                  <param name="actionName">loadAsignaturasProfesor</param>
                  <param name="namespace">/login</param>
             </result>
+            <result name="input">/entregas.jsp</result>
         </action>
     </package>
     
