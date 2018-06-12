@@ -63,12 +63,12 @@ public class AsignaturasFacadeREST extends AbstractFacade<Asignaturas> {
     public Asignaturas find(@PathParam("id") Integer id) {
         return super.find(id);
     }
-    
+
     @GET
     @Path("getAlumnos/{id}")
     @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
     public List<Alumnos> alumnosFromAsignatura(@PathParam("id") Integer id) {
-        return (List)this.find(id).getAlumnosCollection();
+        return (List) this.find(id).getAlumnosCollection();
     }
 
     @GET
@@ -96,5 +96,5 @@ public class AsignaturasFacadeREST extends AbstractFacade<Asignaturas> {
     protected EntityManager getEntityManager() {
         return em;
     }
-    
+
 }
