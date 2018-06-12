@@ -3,6 +3,8 @@ package actions;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import java.io.File;
+import java.io.InputStream;
+import java.util.List;
 import java.util.Map;
 import model.POJOs.Actividades;
 import model.POJOs.Alumnos;
@@ -10,6 +12,7 @@ import model.POJOs.Entrega;
 import model.POJOs.EntregaPK;
 import model.POJOs.Usuario;
 import static model.dao.DAOImpl.*;
+import static org.apache.commons.lang3.StringUtils.stripAccents;
 
 /**
  *
@@ -24,6 +27,10 @@ public class EntregaActions extends ActionSupport {
     String fileFileName;
 
     private String actividadId;
+    
+    private List<Entrega> all;
+    
+    private Actividades currentActividad;
 
     public EntregaActions() {
     }
@@ -36,13 +43,13 @@ public class EntregaActions extends ActionSupport {
         Actividades actividad = findActividad(actividadId);
 
         Entrega newEntrega = new Entrega();
-
+        
         //Create folder to store entrega (lo hace dentro de glass fish)
-        File saveFolder = new File(path + "/" + actividad.getAsignaturaId().getNombre() + "/entregas/" + actividad.getNombre() + "/" + current.getUsername());
+        File saveFolder = new File(path + "/" + stripAccents(actividad.getAsignaturaId().getNombre()) + "/entregas/" + stripAccents(actividad.getNombre()) + "/" + current.getUsername());
 
         saveFolder.mkdirs();
        
-        file.renameTo(new File(saveFolder.getAbsolutePath()+"/"+fileFileName));
+        file.renameTo(new File(path + "/" + actividad.getAsignaturaId().getNombre() + "/entregas/" + actividad.getNombre() + "/" + current.getUsername()+"/"+fileFileName));
         
         newEntrega.setAlumnos((Alumnos) current);
         newEntrega.setRutaArchivo(new File(saveFolder.getAbsolutePath()+"/"+fileFileName).toString());
@@ -77,6 +84,23 @@ public class EntregaActions extends ActionSupport {
     public void setFileContentType(String fileContentType) {
         this.fileContentType = fileContentType;
     }
+    
+    public String getEntregasActividad()
+    {
+        all = getTodasEntregasActividad(actividadId);
+        
+         //Find actividad
+        currentActividad = findActividad(actividadId);
+        return SUCCESS;
+    }
+
+    public List<Entrega> getAll() {
+        return all;
+    }
+
+    public void setAll(List<Entrega> all) {
+        this.all = all;
+    }
 
     public String getFileFileName() {
         return fileFileName;
@@ -84,6 +108,14 @@ public class EntregaActions extends ActionSupport {
 
     public void setFileFileName(String fileFileName) {
         this.fileFileName = fileFileName;
+    }
+
+    public Actividades getCurrentActividad() {
+        return currentActividad;
+    }
+
+    public void setCurrentActividad(Actividades currentActividad) {
+        this.currentActividad = currentActividad;
     }
 
     

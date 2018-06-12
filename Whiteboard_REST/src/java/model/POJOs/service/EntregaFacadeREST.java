@@ -104,16 +104,16 @@ public class EntregaFacadeREST extends AbstractFacade<Entrega> {
     }
 
     @GET
-    @Path("getEntregasActividad/{id}")
+    @Path("entregasActividad/{actividadId}")
     @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public List<Entrega> getEntregasActividad(@PathParam("id") Integer id) {
+    public List<Entrega> entregasActividad(@PathParam("actividadId") Integer actividadId) {
         List<Entrega> all = this.findAll();
 
         List<Entrega> result = new ArrayList<>();
         
         for(Entrega current: all)
         {
-            if(current.getActividades().getActividadId()==id)
+            if(current.getActividades().getActividadId()==actividadId)
             {
                 result.add(current);
             }

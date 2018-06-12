@@ -66,18 +66,6 @@ public class MaterialActions extends ActionSupport {
         
         return SUCCESS;
     }
-    
-    public String download()
-    {
-        
-        try {
-            downloadMaterial(materialId);
-        } catch (IOException ex) {
-            return ERROR;
-        }
-        
-        return SUCCESS;
-    }
 
     public String getTipo() {
         return tipo;

@@ -103,6 +103,10 @@
                  <param name="namespace">/login</param>
             </result>
         </action>
+        
+        <action name="getEntregas" class="actions.EntregaActions" method="getEntregasActividad">
+            <result name="success">/entregas.jsp</result>
+        </action>
     </package>
     
     <package name="messages" namespace="/messages" extends="struts-default">        

@@ -30,7 +30,7 @@ import model.dao.AlumnosJerseyClient;
  */
 public class DAOImpl {
     
-    public static String path = "./files/asignaturas/";
+    public static String path = "../files/asignaturas/";
 
     public static Administradores findAdmin(String user, String password) {
         AdministradoresJerseyClient client = new AdministradoresJerseyClient();
@@ -187,6 +187,14 @@ public class DAOImpl {
         };
         return client.getEntregaAlumnoActividad_JSON(genericType, act, al);
      
+    }
+    
+    public static List<Entrega> getTodasEntregasActividad(String act)
+    {
+        EntregasJerseyClient client = new EntregasJerseyClient();
+        GenericType<List<Entrega>> genericType = new GenericType<List<Entrega>>() {
+        };
+        return client.entregasActividad_JSON(genericType, act);
     }
     
     public static Actividades findActividad(String id)
