@@ -110,8 +110,7 @@
         
         <action name="calificarEntrega" class="actions.EntregaActions" method="calificarEntrega">
             <result name="success" type="chain">
-                 <param name="actionName">loadAsignaturasProfesor</param>
-                 <param name="namespace">/login</param>
+                 <param name="actionName">getEntregas</param>
             </result>
             <result name="input">/entregas.jsp</result>
         </action>
