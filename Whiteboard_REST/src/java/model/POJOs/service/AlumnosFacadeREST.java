@@ -52,6 +52,17 @@ public class AlumnosFacadeREST extends AbstractFacade<Alumnos> {
     public void edit(@PathParam("id") Integer id, Alumnos entity) {
         super.edit(entity);
     }
+    
+    @PUT
+    @Path("{id}/asignaturas")
+    @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
+    public void matricular(@PathParam("id") Integer id, Asignaturas entity) {
+        Alumnos als = this.find(id);
+        Collection<Asignaturas> asignaturas = als.getAsignaturasCollection();
+        asignaturas.add(entity);
+        als.setAsignaturasCollection(asignaturas);
+        super.edit(als);
+    }
 
     @DELETE
     @Path("{id}")

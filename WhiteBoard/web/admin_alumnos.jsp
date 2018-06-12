@@ -123,7 +123,7 @@
                         <%--<s:checkbox name="checkboxes" label="%{#asg.nombre}" cssClass="w3-check"></s:checkbox>--%>
                         <%--<s:hidden name="hiddenAsignaturas" value="%{#asg.asignaturaId}"></s:hidden>--%>
                     <%--</s:iterator>--%>
-                    <s:checkboxlist label="Asignaturas" list="nombreAsignaturas" name="checkboxes"></s:checkboxlist>
+                    <s:checkboxlist label="Asignaturas" list="nombreAsignaturas" name="checkboxes" requiredLabel="true"></s:checkboxlist>
                     <s:submit value="Crear Alumnos" cssClass="w3-button"/>
                 </s:form>
                 <div class="w3-container">                    
@@ -131,13 +131,13 @@
                         <li><h4>Instrucciones de uso:</h4></li>
                         <li>El fichero debe tener la extensi&oacute;n ".csv"</li>
                         <li>No incluir cabecera, la columna "idUsuario", ni n&uacute;meros de l&iacute;nea</li>
-                        <li>Los elementos deben ir entre comillas</li>
+                        <li>Los elementos deben ir sin comillas</li>
                         <li>Respetar el orden: "username","nombre","apellidos","password","foto"</li>
                         <li><h4>Ejemplo:</h4></li>
                         <li>
-                            <p>"alu_frubbra","Francisco","Rubio Bravo","frubbra","image/1.jpg"<br/>
-                                "alu_jmalonie","Jos&eacute; Manuel","Alonso Nieto","jmalonie","image/2.jpg"<br/>
-                                "alu_asangue","Alicia","S&aacute;nchez Guerrero","asangue","image/3.jpg"<br/>
+                            <p>alu_frubbra,Francisco,Rubio Bravo,frubbra,image/1.jpg<br/>
+                                alu_jmalonie,Jos&eacute; Manuel,Alonso Nieto,jmalonie,image/2.jpg<br/>
+                                alu_asangue,Alicia,S&aacute;nchez Guerrero,asangue,image/3.jpg<br/>
                             </p>
                         </li>
                     </ul>

@@ -13,6 +13,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import model.POJOs.Alumnos;
@@ -54,50 +55,57 @@ public class CargarBorrarAlumnosAction extends ActionSupport {
     }
 
     public String crearAlumnos() {
-        if (contentType != null) {
-            if (contentType.equals("text/plain") || contentType.equals("application/csv") || contentType.equals("text/csv") || contentType.equals("application/vnd.ms-excel")) {
-                String line = "";
-                List<Asignaturas> asignaturasSeleccionadas = this.getAsignaturasSeleccionadas(checkboxes);
-                List<Alumnos> nuevosAlumnosMatriculados = new ArrayList<>();
-                try (BufferedReader br = new BufferedReader(new FileReader(file))) {
-                    while ((line = br.readLine()) != null) {
-                        // use comma as separator
-                        String[] alumno = line.split(",");
-                        Alumnos al = new Alumnos();
-                        al.setUsername(alumno[0]);
-                        al.setNombre(alumno[1]);
-                        al.setApellidos(alumno[2]);
-                        al.setPassword(alumno[3]);
-                        al.setFoto(alumno[4]);
-                        DAOImpl.crearAlumno(al);
-                        nuevosAlumnosMatriculados.add(al);
-                    }
+        if (checkboxes.length > 0) {
+            if (contentType != null) {
+                if (contentType.equals("text/plain") || contentType.equals("application/csv") || contentType.equals("text/csv") || contentType.equals("application/vnd.ms-excel")) {
 
-                    // Añadimos los alumnos a las asignaturas
-                    for (Asignaturas a : asignaturasSeleccionadas) {
-                        List<Alumnos> alumnosMatriculados = a.getAlumnosList();
-                        if (alumnosMatriculados != null) {
-                            alumnosMatriculados.addAll(nuevosAlumnosMatriculados);
-                            a.setAlumnosList(alumnosMatriculados);
-                        } else {
-                            a.setAlumnosList(nuevosAlumnosMatriculados);
+                    String line = "";
+                    List<Asignaturas> asignaturasSeleccionadas = this.getAsignaturasSeleccionadas(checkboxes);
+                    List<Alumnos> nuevosAlumnosMatriculados = new ArrayList<>();
+                    try (BufferedReader br = new BufferedReader(new FileReader(file))) {
+                        while ((line = br.readLine()) != null) {
+                            // use comma as separator
+                            String[] alumno = line.split(",");
+                            Alumnos al = new Alumnos();
+                            al.setUsername(alumno[0]);
+                            al.setNombre(alumno[1]);
+                            al.setApellidos(alumno[2]);
+                            al.setPassword(alumno[3]);
+                            al.setFoto(alumno[4]);
+                            DAOImpl.crearAlumno(al);
+                            nuevosAlumnosMatriculados.add(al);
                         }
-                        DAOImpl.matricularAlumno(a);
+
+                        // Añadimos los alumnos a las asignaturas
+                        List<Alumnos> alumnosReversed = new ArrayList<>();
+                        alumnosReversed = DAOImpl.findAllStudents();
+                        Collections.reverse(alumnosReversed);
+                        // Tomamos los ultimos alumnos añadidos. Esto es necesario porque necesitamos objetos Alumno con id
+                        List<Alumnos> alumnosRecientes = alumnosReversed.subList(0, nuevosAlumnosMatriculados.size());
+                        for (Asignaturas a : asignaturasSeleccionadas) {
+                            for (Alumnos al : alumnosRecientes) {
+                                DAOImpl.matricularAlumno(al, a);
+                            }
+                        }
+                    } catch (IOException e) {
+                        e.printStackTrace();
                     }
-                } catch (IOException e) {
-                    e.printStackTrace();
+                    // Para que postredirectget devuelva a la vista de admin alumnos
+                    Map session = (Map) ActionContext.getContext().get("session");
+                    session.put("origin", "loadStudents");
+                    return SUCCESS;
+
+                } else {
+                    addFieldError("fichero", "Fichero debe ser de tipo CSV");
+                    return INPUT;
                 }
-                // Para que postredirectget devuelva a la vista de admin alumnos
-                Map session = (Map) ActionContext.getContext().get("session");
-                session.put("origin", "loadStudents");
-                return SUCCESS;
-            } else {
-                addFieldError("fichero", "Fichero debe ser de tipo CSV");
-                return INPUT;
             }
+            addFieldError("fichero", "No se ha subido ningún fichero");
+            return INPUT;
+        } else {
+            addFieldError("checkboxes", "Los alumnos deben estar matriculados en al menos una asignatura. Es necesario crear la asignatura deseada si no existe");
+            return INPUT;
         }
-        addFieldError("fichero", "No se ha subido ningún fichero");
-        return INPUT;
     }
 
     public String borrarAlumnos() { //RETOMAR: desde y hasta son nulls

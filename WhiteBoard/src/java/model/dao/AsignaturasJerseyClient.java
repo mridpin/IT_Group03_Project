@@ -21,7 +21,7 @@ import javax.ws.rs.core.GenericType;
  *        client.close();
  * </pre>
  *
- * @author Portatil
+ * @author ridao
  */
 public class AsignaturasJerseyClient {
 
@@ -44,6 +44,14 @@ public class AsignaturasJerseyClient {
         WebTarget resource = webTarget;
         resource = resource.path(java.text.MessageFormat.format("getAlumnos/{0}", new Object[]{id}));
         return resource.request(javax.ws.rs.core.MediaType.APPLICATION_JSON).get(responseType);
+    }
+
+    public void alumnosToAsignatura_XML(Object requestEntity, String id) throws ClientErrorException {
+        webTarget.path(java.text.MessageFormat.format("addAlumnos/{0}", new Object[]{id})).request(javax.ws.rs.core.MediaType.APPLICATION_XML).put(javax.ws.rs.client.Entity.entity(requestEntity, javax.ws.rs.core.MediaType.APPLICATION_XML));
+    }
+
+    public void alumnosToAsignatura_JSON(Object requestEntity, String id) throws ClientErrorException {
+        webTarget.path(java.text.MessageFormat.format("addAlumnos/{0}", new Object[]{id})).request(javax.ws.rs.core.MediaType.APPLICATION_JSON).put(javax.ws.rs.client.Entity.entity(requestEntity, javax.ws.rs.core.MediaType.APPLICATION_JSON));
     }
 
     public String countREST() throws ClientErrorException {

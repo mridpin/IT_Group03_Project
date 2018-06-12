@@ -263,11 +263,9 @@ public class DAOImpl {
         client.close();
     }
 
-    public static void matricularAlumno(Asignaturas a) {
-        AsignaturasJerseyClient client = new AsignaturasJerseyClient();
-        GenericType<List<Asignaturas>> genericType = new GenericType<List<Asignaturas>>() {
-        };
-        client.create_JSON(a);
+    public static void matricularAlumno(Alumnos al, Asignaturas a) {
+        AlumnosJerseyClient client = new AlumnosJerseyClient();
+        client.matricular_JSON(a, al.getIdUsuario().toString());
         client.close();
     }
 

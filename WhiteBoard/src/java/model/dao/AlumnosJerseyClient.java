@@ -21,7 +21,7 @@ import javax.ws.rs.core.GenericType;
  *        client.close();
  * </pre>
  *
- * @author Portatil
+ * @author ridao
  */
 public class AlumnosJerseyClient {
 
@@ -32,12 +32,6 @@ public class AlumnosJerseyClient {
     public AlumnosJerseyClient() {
         client = javax.ws.rs.client.ClientBuilder.newClient();
         webTarget = client.target(BASE_URI).path("model.pojos.alumnos");
-    }
-
-    public String countREST() throws ClientErrorException {
-        WebTarget resource = webTarget;
-        resource = resource.path("count");
-        return resource.request(javax.ws.rs.core.MediaType.TEXT_PLAIN).get(String.class);
     }
 
     public void edit_XML(Object requestEntity, String id) throws ClientErrorException {
@@ -58,6 +52,58 @@ public class AlumnosJerseyClient {
         WebTarget resource = webTarget;
         resource = resource.path(java.text.MessageFormat.format("username/{0}", new Object[]{username}));
         return resource.request(javax.ws.rs.core.MediaType.APPLICATION_JSON).get(responseType);
+    }
+
+    public <T> T findRange_XML(GenericType<T> responseType, String from, String to) throws ClientErrorException {
+        WebTarget resource = webTarget;
+        resource = resource.path(java.text.MessageFormat.format("{0}/{1}", new Object[]{from, to}));
+        return resource.request(javax.ws.rs.core.MediaType.APPLICATION_XML).get(responseType);
+    }
+
+    public <T> T findRange_JSON(GenericType<T> responseType, String from, String to) throws ClientErrorException {
+        WebTarget resource = webTarget;
+        resource = resource.path(java.text.MessageFormat.format("{0}/{1}", new Object[]{from, to}));
+        return resource.request(javax.ws.rs.core.MediaType.APPLICATION_JSON).get(responseType);
+    }
+
+    public void matricular_XML(Object requestEntity, String id) throws ClientErrorException {
+        webTarget.path(java.text.MessageFormat.format("{0}/asignaturas", new Object[]{id})).request(javax.ws.rs.core.MediaType.APPLICATION_XML).put(javax.ws.rs.client.Entity.entity(requestEntity, javax.ws.rs.core.MediaType.APPLICATION_XML));
+    }
+
+    public void matricular_JSON(Object requestEntity, String id) throws ClientErrorException {
+        webTarget.path(java.text.MessageFormat.format("{0}/asignaturas", new Object[]{id})).request(javax.ws.rs.core.MediaType.APPLICATION_JSON).put(javax.ws.rs.client.Entity.entity(requestEntity, javax.ws.rs.core.MediaType.APPLICATION_JSON));
+    }
+
+    public <T> T findAll_XML(GenericType<T> responseType) throws ClientErrorException {
+        WebTarget resource = webTarget;
+        return resource.request(javax.ws.rs.core.MediaType.APPLICATION_XML).get(responseType);
+    }
+
+    public <T> T findAll_JSON(GenericType<T> responseType) throws ClientErrorException {
+        WebTarget resource = webTarget;
+        return resource.request(javax.ws.rs.core.MediaType.APPLICATION_JSON).get(responseType);
+    }
+
+    public void remove(String id) throws ClientErrorException {
+        webTarget.path(java.text.MessageFormat.format("{0}", new Object[]{id})).request().delete();
+    }
+
+    public <T> T getEntregaAlumnoActividad_XML(GenericType<T> responseType, String idact, String idal) throws ClientErrorException {
+        WebTarget resource = webTarget;
+        resource = resource.path(java.text.MessageFormat.format("getEntregaAlumnoActividad/{0}/{1}", new Object[]{idact, idal}));
+        return resource.request(javax.ws.rs.core.MediaType.APPLICATION_XML).get(responseType);
+    }
+
+    public <T> T getEntregaAlumnoActividad_JSON(GenericType<T> responseType, String idact, String idal) throws ClientErrorException {
+        WebTarget resource = webTarget;
+        resource = resource.path(java.text.MessageFormat.format("getEntregaAlumnoActividad/{0}/{1}", new Object[]{idact, idal}));
+        return resource.request(javax.ws.rs.core.MediaType.APPLICATION_JSON).get(responseType);
+    }
+
+    public String countREST() throws ClientErrorException {
+        WebTarget resource = webTarget;
+        resource = resource.path("count");
+        return resource.request(javax.ws.rs.core.MediaType.TEXT_PLAIN).get(String.class);
     }
 
     public <T> T find_XML(GenericType<T> responseType, String id) throws ClientErrorException {
@@ -84,18 +130,6 @@ public class AlumnosJerseyClient {
         return resource.request(javax.ws.rs.core.MediaType.APPLICATION_JSON).get(responseType);
     }
 
-    public <T> T findRange_XML(GenericType<T> responseType, String from, String to) throws ClientErrorException {
-        WebTarget resource = webTarget;
-        resource = resource.path(java.text.MessageFormat.format("{0}/{1}", new Object[]{from, to}));
-        return resource.request(javax.ws.rs.core.MediaType.APPLICATION_XML).get(responseType);
-    }
-
-    public <T> T findRange_JSON(GenericType<T> responseType, String from, String to) throws ClientErrorException {
-        WebTarget resource = webTarget;
-        resource = resource.path(java.text.MessageFormat.format("{0}/{1}", new Object[]{from, to}));
-        return resource.request(javax.ws.rs.core.MediaType.APPLICATION_JSON).get(responseType);
-    }
-
     public void removeRange(String from, String to) throws ClientErrorException {
         webTarget.path(java.text.MessageFormat.format("{0}/{1}", new Object[]{from, to})).request().delete();
     }
@@ -117,32 +151,6 @@ public class AlumnosJerseyClient {
     public <T> T findAsignaturas_JSON(GenericType<T> responseType, String id) throws ClientErrorException {
         WebTarget resource = webTarget;
         resource = resource.path(java.text.MessageFormat.format("{0}/getAsignaturas", new Object[]{id}));
-        return resource.request(javax.ws.rs.core.MediaType.APPLICATION_JSON).get(responseType);
-    }
-
-    public <T> T findAll_XML(GenericType<T> responseType) throws ClientErrorException {
-        WebTarget resource = webTarget;
-        return resource.request(javax.ws.rs.core.MediaType.APPLICATION_XML).get(responseType);
-    }
-
-    public <T> T findAll_JSON(GenericType<T> responseType) throws ClientErrorException {
-        WebTarget resource = webTarget;
-        return resource.request(javax.ws.rs.core.MediaType.APPLICATION_JSON).get(responseType);
-    }
-
-    public void remove(String id) throws ClientErrorException {
-        webTarget.path(java.text.MessageFormat.format("{0}", new Object[]{id})).request().delete();
-    }
-
-    public <T> T getEntregaAlumnoActividad_XML(GenericType<T> responseType, String idact, String idal) throws ClientErrorException {
-        WebTarget resource = webTarget;
-        resource = resource.path(java.text.MessageFormat.format("getEntregaAlumnoActividad/{0}/{1}", new Object[]{idact, idal}));
-        return resource.request(javax.ws.rs.core.MediaType.APPLICATION_XML).get(responseType);
-    }
-
-    public <T> T getEntregaAlumnoActividad_JSON(GenericType<T> responseType, String idact, String idal) throws ClientErrorException {
-        WebTarget resource = webTarget;
-        resource = resource.path(java.text.MessageFormat.format("getEntregaAlumnoActividad/{0}/{1}", new Object[]{idact, idal}));
         return resource.request(javax.ws.rs.core.MediaType.APPLICATION_JSON).get(responseType);
     }
 
