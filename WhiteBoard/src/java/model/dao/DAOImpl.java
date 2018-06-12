@@ -210,11 +210,6 @@ public class DAOImpl {
         return client.find_XML(genericType, id);
     }
     
-    public static void realizarEntrega(String alumnoId, File entrega)
-    {
-        new EntregasJerseyClient().uploadFile(alumnoId);
-    }
-    
     public static List<Alumnos> alumnosFromAsignatura(String asignaturaId)
     {
         AsignaturasJerseyClient client = new AsignaturasJerseyClient();

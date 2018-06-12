@@ -21,6 +21,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import model.POJOs.Alumnos;
 import model.POJOs.Asignaturas;
+import model.POJOs.Entrega;
 import model.POJOs.Mensajes;
 
 /**
@@ -72,6 +73,20 @@ public class AlumnosFacadeREST extends AbstractFacade<Alumnos> {
         List<Alumnos> alumnos = super.findAll();
         for (Alumnos a : alumnos) {
             if (a.getUsername().equals(username)) {
+                return a;
+            }
+        }
+        return null;
+    }
+    
+    @GET
+    @Path("getEntregaAlumnoActividad/{idact}/{idal}")
+    @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
+    public Entrega getEntregaAlumnoActividad(@PathParam("idact") Integer idact,@PathParam("idal") Integer idal) {
+        Alumnos alumnos = this.find(idal);
+        
+        for (Entrega a : alumnos.getEntregaCollection()) {
+            if (a.getActividades().getActividadId()==idact) {
                 return a;
             }
         }

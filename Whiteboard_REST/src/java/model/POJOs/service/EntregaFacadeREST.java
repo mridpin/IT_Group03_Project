@@ -10,6 +10,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -103,11 +104,31 @@ public class EntregaFacadeREST extends AbstractFacade<Entrega> {
     }
 
     @GET
+    @Path("getEntregasActividad/{id}")
+    @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
+    public List<Entrega> getEntregasActividad(@PathParam("id") Integer id) {
+        List<Entrega> all = this.findAll();
+
+        List<Entrega> result = new ArrayList<>();
+        
+        for(Entrega current: all)
+        {
+            if(current.getActividades().getActividadId()==id)
+            {
+                result.add(current);
+            }
+        }
+        
+        return result;
+    }
+    
+    @GET
     @Path("{from}/{to}")
     @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
     public List<Entrega> findRange(@PathParam("from") Integer from, @PathParam("to") Integer to) {
         return super.findRange(new int[]{from, to});
     }
+    
 
     @GET
     @Path("count")

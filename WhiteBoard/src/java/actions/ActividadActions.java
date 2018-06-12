@@ -17,6 +17,8 @@ public class ActividadActions extends ActionSupport {
     
     private Actividades current;
     
+    private boolean entregado;
+    
     private String actividadId;
     
     public ActividadActions() {
@@ -42,6 +44,16 @@ public class ActividadActions extends ActionSupport {
     public void setActividadId(String actividadId) {
         this.actividadId = actividadId;
     }
+
+    public boolean isEntregado() {
+        return entregado;
+    }
+
+    public void setEntregado(boolean entregado) {
+        this.entregado = entregado;
+    }
+    
+    
     
     
     
