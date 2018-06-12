@@ -12,9 +12,11 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import model.POJOs.Alumnos;
+import model.POJOs.Asignaturas;
 import model.dao.DAOImpl;
 
 /**
@@ -24,11 +26,14 @@ import model.dao.DAOImpl;
 public class CargarBorrarAlumnosAction extends ActionSupport {
 
     List<Alumnos> alumnos;
+    List<Asignaturas> asignaturas;
     String desde;
     String hasta;
     File file;
     String contentType;
     String filename;
+    List<String> nombreAsignaturas;
+    String[] checkboxes;
 
     public CargarBorrarAlumnosAction() {
     }
@@ -40,23 +45,20 @@ public class CargarBorrarAlumnosAction extends ActionSupport {
     public String loadAlumnos() {
         // Las llamadas al webservice se hacen siempre a traves de DAOImpl
         alumnos = DAOImpl.findAllStudents();
+        asignaturas = DAOImpl.findAllAsignaturas();
+        nombreAsignaturas = new ArrayList<>();
+        for (Asignaturas a : asignaturas) {
+            nombreAsignaturas.add(a.getNombre());
+        }
         return SUCCESS;
     }
 
     public String crearAlumnos() {
-//        Alumnos al = new Alumnos();
-//        al.setUsername(username);
-//        al.setNombre(nombre);
-//        al.setApellidos(apellidos);
-//        al.setPassword(password);
-//        al.setFoto(foto);
-//        DAOImpl.crearAlumno(al);
-//        // Para que postredirectget devuelva a la vista de admin alumnos
-//        Map session = (Map) ActionContext.getContext().get("session");
-//        session.put("origin", "loadStudents");
         if (contentType != null) {
             if (contentType.equals("text/plain") || contentType.equals("application/csv") || contentType.equals("text/csv") || contentType.equals("application/vnd.ms-excel")) {
                 String line = "";
+                List<Asignaturas> asignaturasSeleccionadas = this.getAsignaturasSeleccionadas(checkboxes);
+                List<Alumnos> nuevosAlumnosMatriculados = new ArrayList<>();
                 try (BufferedReader br = new BufferedReader(new FileReader(file))) {
                     while ((line = br.readLine()) != null) {
                         // use comma as separator
@@ -68,12 +70,24 @@ public class CargarBorrarAlumnosAction extends ActionSupport {
                         al.setPassword(alumno[3]);
                         al.setFoto(alumno[4]);
                         DAOImpl.crearAlumno(al);
+                        nuevosAlumnosMatriculados.add(al);
+                    }
+
+                    // Añadimos los alumnos a las asignaturas
+                    for (Asignaturas a : asignaturasSeleccionadas) {
+                        List<Alumnos> alumnosMatriculados = a.getAlumnosList();
+                        if (alumnosMatriculados != null) {
+                            alumnosMatriculados.addAll(nuevosAlumnosMatriculados);
+                            a.setAlumnosList(alumnosMatriculados);
+                        } else {
+                            a.setAlumnosList(nuevosAlumnosMatriculados);
+                        }
+                        DAOImpl.matricularAlumno(a);
                     }
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-
-// Para que postredirectget devuelva a la vista de admin alumnos
+                // Para que postredirectget devuelva a la vista de admin alumnos
                 Map session = (Map) ActionContext.getContext().get("session");
                 session.put("origin", "loadStudents");
                 return SUCCESS;
@@ -97,6 +111,14 @@ public class CargarBorrarAlumnosAction extends ActionSupport {
 
     public void setAlumnos(List<Alumnos> alumnos) {
         this.alumnos = alumnos;
+    }
+
+    public List<Asignaturas> getAsignaturas() {
+        return asignaturas;
+    }
+
+    public void setAsignaturas(List<Asignaturas> asignaturas) {
+        this.asignaturas = asignaturas;
     }
 
     public String getDesde() {
@@ -125,6 +147,35 @@ public class CargarBorrarAlumnosAction extends ActionSupport {
 
     public void setFicheroFileName(String filename) {
         this.filename = filename;
+    }
+
+    public String[] getCheckboxes() {
+        return checkboxes;
+    }
+
+    public void setCheckboxes(String[] checkboxes) {
+        this.checkboxes = checkboxes;
+    }
+
+    public List<String> getNombreAsignaturas() {
+        return nombreAsignaturas;
+    }
+
+    public void setNombreAsignaturas(List<String> nombreAsignaturas) {
+        this.nombreAsignaturas = nombreAsignaturas;
+    }
+
+    private List<Asignaturas> getAsignaturasSeleccionadas(String[] nombreAsignaturasSeleccionadas) {
+        List<Asignaturas> asignaturasSeleccionadas = new ArrayList<>();
+        asignaturas = DAOImpl.findAllAsignaturas();
+        for (String s : nombreAsignaturasSeleccionadas) {
+            for (Asignaturas a : asignaturas) {
+                if (s.equals(a.getNombre())) {
+                    asignaturasSeleccionadas.add(a);
+                }
+            }
+        }
+        return asignaturasSeleccionadas;
     }
 
 }

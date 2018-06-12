@@ -255,4 +255,13 @@ public class DAOImpl {
         client.edit_JSON(a, a.getAulaId().toString());
         client.close();
     }
+
+    public static void matricularAlumno(Asignaturas a) {
+        AsignaturasJerseyClient client = new AsignaturasJerseyClient();
+        GenericType<List<Asignaturas>> genericType = new GenericType<List<Asignaturas>>() {
+        };
+        client.create_JSON(a);
+        client.close();
+    }
+
 }
