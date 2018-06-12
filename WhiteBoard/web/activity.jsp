@@ -20,7 +20,12 @@
             <!-- Header -->
             <header class="w3-container" style="padding-top:22px">
                 <span class="w3-button w3-hide-large w3-xxlarge w3-hover-text-grey" onclick="w3_open()"><i class="fa fa-bars"></i></span>
-                <h2 class="w3-container w3-center"><b><u>Actividad - <s:property value="current.getNombre()"/></u></b></h2>
+                    <s:if test="%{#session.usuario.tipo()=='Alumno'}"> 
+                    <h2 class="w3-container w3-center"><b><u>Actividad - <s:property value="current.getNombre()"/></u></b></h2>
+                            </s:if>
+                            <s:else>
+                    <h2 class="w3-container w3-center"><b><u>Actividades de la asignatura - <s:property value="#session.asignatura.getNombre()"/></u></b></h2>
+                            </s:else>
 
             </header>
 
@@ -42,14 +47,14 @@
                     <s:else>
                         <div>
                             <h3 class="w3-green w3-center">Entregado</h3>
-                            
+
                             <s:if test="%{entrega.nota>current.notaMax/2}">
-                            
-                            <h4 class="w3-center w3-green">Nota: <s:property value="entrega.nota"/>/<s:property value="current.notaMax"/></h4>
-                            
+
+                                <h4 class="w3-center w3-green">Nota: <s:property value="entrega.nota"/>/<s:property value="current.notaMax"/></h4>
+
                             </s:if>
                             <s:else>
-                                 <h4 class="w3-center w3-red">Nota: <s:property value="entrega.nota"/>/<s:property value="current.notaMax"/></h4>
+                                <h4 class="w3-center w3-red">Nota: <s:property value="entrega.nota"/>/<s:property value="current.notaMax"/></h4>
                             </s:else>
                         </div>
                     </s:else>

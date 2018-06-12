@@ -205,6 +205,14 @@ public class DAOImpl {
         return client.find_XML(genericType, id);
     }
     
+    public static List<Actividades> findActividadesAsignatura(String id)
+    {
+        ActividadesJerseyClient client = new ActividadesJerseyClient();
+        GenericType<List<Actividades>> genericType = new GenericType<List<Actividades>>() {
+        };
+        return client.actividadesFromAsignatura_JSON(genericType, id);
+    }
+    
     public static Material findMaterial(String id)
     {
         MaterialJerseyClient client = new MaterialJerseyClient();

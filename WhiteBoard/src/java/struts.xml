@@ -78,6 +78,10 @@
             <result name="success">/class_alumnos.jsp</result>
         </action>
         
+        <action name="loadTodoActividades" class="actions.ActividadActions" method="cargarTodasActividades">
+            <result name="success">/activity.jsp</result>
+        </action>
+        
     </package>
     
     <package name="material" namespace="/materiales" extends="struts-default">
@@ -115,6 +119,7 @@
         <action name="loadActividad" class="actions.ActividadActions">
             <result name="success">/activity.jsp</result>
         </action>
+
     </package>
     
     <package name="entrega" namespace="/entregas" extends="struts-default">

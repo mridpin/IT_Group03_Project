@@ -87,6 +87,8 @@
                         </div>
                     </s:form>
 
+                    <s:form namespace="/actividades" action="loadTodoActividades">
+                    <s:hidden name="asignaturaId" value="%{#asignatura.asignaturaId}"/>
                     <div class="w3-quarter">
                         <div class="w3-container w3-red w3-padding-16">
                             <div class="w3-left"><i class="fa fa-pencil w3-xxxlarge"></i></div>
@@ -94,9 +96,10 @@
 
                             </div>
                             <div class="w3-clear"></div>
-                            <h4>Subir Tarea</h4>
+                            <h4><s:submit cssClass="w3-btn w3-hover-red w3-mobile" value="Gestionar Tareas"/></h4>
                         </div>
                     </div>
+                    </s:form>
 
                     <s:form namespace="/asignaturas" action="alumnosAsignatura">
                         <s:hidden name="asignaturaId" value="%{#asignatura.asignaturaId}"/>

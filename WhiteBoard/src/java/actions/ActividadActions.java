@@ -63,7 +63,11 @@ public class ActividadActions extends ActionSupport {
         this.entrega = entrega;
     }
     
-    
+    public String cargarTodasActividades()
+    {
+        
+        return SUCCESS;
+    }
     
     
     
