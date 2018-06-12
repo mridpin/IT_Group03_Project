@@ -5,8 +5,12 @@
  */
 package actions;
 
+import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
+import java.util.Map;
 import model.POJOs.Actividades;
+import model.POJOs.Entrega;
+import model.POJOs.Usuario;
 import static model.dao.DAOImpl.*;
 
 /**
@@ -17,7 +21,7 @@ public class ActividadActions extends ActionSupport {
     
     private Actividades current;
     
-    private boolean entregado;
+    private Entrega entrega;
     
     private String actividadId;
     
@@ -25,7 +29,13 @@ public class ActividadActions extends ActionSupport {
     }
     
     public String execute() throws Exception {
+         Map session = (Map) ActionContext.getContext().get("session");
+        Usuario alumno = (Usuario) session.get("usuario");
+        
         current = findActividad(actividadId);
+        
+        entrega = getEntregaAlumnoActividad(current.getActividadId().toString(),alumno.getIdUsuario().toString());
+        
         return SUCCESS;
     }
 
@@ -45,12 +55,12 @@ public class ActividadActions extends ActionSupport {
         this.actividadId = actividadId;
     }
 
-    public boolean isEntregado() {
-        return entregado;
+    public Entrega getEntrega() {
+        return entrega;
     }
 
-    public void setEntregado(boolean entregado) {
-        this.entregado = entregado;
+    public void setEntrega(Entrega entrega) {
+        this.entrega = entrega;
     }
     
     

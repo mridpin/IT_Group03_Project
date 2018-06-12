@@ -179,27 +179,14 @@ public class DAOImpl {
         };
         return client.findAll_XML(genericType);
     }
-    
-    public static void downloadMaterial(String materialId) throws IOException
+
+    public static Entrega getEntregaAlumnoActividad(String act, String al)
     {
-        MaterialJerseyClient client = new MaterialJerseyClient();
-               
-        GenericType<File> genericType = new GenericType<File>() {
+        AlumnosJerseyClient client = new AlumnosJerseyClient();
+        GenericType<Entrega> genericType = new GenericType<Entrega>() {
         };
-        
-        GenericType<Material> genericTypeMaterial = new GenericType<Material>() {
-        };
-        
-        Material current = client.find_XML(genericTypeMaterial, materialId);
-        
-        File file = client.getFile(genericType,current.getRutaArchivo());
-        
-        File ff = new File("C:\test.png");
-        file.renameTo(ff);
-        
-        FileWriter fr = new FileWriter(file);
-        fr.flush();
-        
+        return client.getEntregaAlumnoActividad_JSON(genericType, act, al);
+     
     }
     
     public static Actividades findActividad(String id)

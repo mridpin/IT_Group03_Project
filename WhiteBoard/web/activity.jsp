@@ -29,65 +29,84 @@
             <div class="w3-row-padding w3-margin-bottom w3-card-4 w3-padding-16 w3-margin w3-white">
 
                 <s:if test="%{#session.usuario.tipo()=='Alumno'}">     
-                    <s:form namespace="/entregas" action="realizarEntrega" method="post" enctype="multipart/form-data">
-                         <s:hidden name="actividadId" value="%{current.actividadId}"/>
-                         <s:file cssClass="w3-button" name="file" label="Archivo para entregar"/>
-                         <s:submit value="Entregar" cssClass="w3-button"/>
-                    </s:form>
+
+                    <s:if test="%{entrega==null}">
+
+                        <s:form namespace="/entregas" action="realizarEntrega" method="post" enctype="multipart/form-data">
+                            <s:hidden name="actividadId" value="%{current.actividadId}"/>
+                            <s:file cssClass="w3-button" name="file" label="Archivo para entregar"/>
+                            <s:submit value="Entregar" cssClass="w3-button"/>
+                        </s:form>
+
+                    </s:if>
+                    <s:else>
+                        <div>
+                            <h3 class="w3-green w3-center">Entregado</h3>
+                            
+                            <s:if test="%{entrega.nota>current.notaMax/2}">
+                            
+                            <h4 class="w3-center w3-green">Nota: <s:property value="entrega.nota"/>/<s:property value="current.notaMax"/></h4>
+                            
+                            </s:if>
+                            <s:else>
+                                 <h4 class="w3-center w3-red">Nota: <s:property value="entrega.nota"/>/<s:property value="current.notaMax"/></h4>
+                            </s:else>
+                        </div>
+                    </s:else>
 
                 </s:if>        
-            <s:else>
-                <div class="w3-quarter">
-                    <div class="w3-container w3-teal w3-padding-16">
-                        <div class="w3-left"><i class="fa fa-check w3-xxxlarge"></i></div>
-                        <div class="w3-right">
-                        
+                <s:else>
+                    <div class="w3-quarter">
+                        <div class="w3-container w3-teal w3-padding-16">
+                            <div class="w3-left"><i class="fa fa-check w3-xxxlarge"></i></div>
+                            <div class="w3-right">
+
+                            </div>
+                            <div class="w3-clear"></div>
+                            <h4>Calificar Tareas</h4>
                         </div>
-                        <div class="w3-clear"></div>
-                        <h4>Calificar Tareas</h4>
                     </div>
-                </div>
-                <div class="w3-quarter">
-                    <div class="w3-container w3-blue w3-padding-16">
-                        <div class="w3-left"><i class="fa fa-cloud-upload w3-xxxlarge"></i></div>
-                        <div class="w3-right">
-                         
+                    <div class="w3-quarter">
+                        <div class="w3-container w3-blue w3-padding-16">
+                            <div class="w3-left"><i class="fa fa-cloud-upload w3-xxxlarge"></i></div>
+                            <div class="w3-right">
+
+                            </div>
+                            <div class="w3-clear"></div>
+                            <h4>Subir Material</h4>
                         </div>
-                        <div class="w3-clear"></div>
-                        <h4>Subir Material</h4>
                     </div>
-                </div>
-                
-                <div class="w3-quarter">
-                    <div class="w3-container w3-red w3-padding-16">
-                        <div class="w3-left"><i class="fa fa-pencil w3-xxxlarge"></i></div>
-                        <div class="w3-right">
-                            
+
+                    <div class="w3-quarter">
+                        <div class="w3-container w3-red w3-padding-16">
+                            <div class="w3-left"><i class="fa fa-pencil w3-xxxlarge"></i></div>
+                            <div class="w3-right">
+
+                            </div>
+                            <div class="w3-clear"></div>
+                            <h4>Subir Tarea</h4>
                         </div>
-                        <div class="w3-clear"></div>
-                        <h4>Subir Tarea</h4>
                     </div>
-                </div>
-                     
-                 <s:form namespace="/asignaturas" action="alumnosAsignatura">
-                      <s:hidden name="asignaturaId" value="%{#asignatura.asignaturaId}"/>
-                     <div class="w3-quarter">
-                    <div class="w3-container w3-deep-orange w3-padding-16">
-                        <div class="w3-left"><i class="fa fa-users w3-xxxlarge"></i></div>
-                        <div class="w3-right">
-                            
+
+                    <s:form namespace="/asignaturas" action="alumnosAsignatura">
+                        <s:hidden name="asignaturaId" value="%{#asignatura.asignaturaId}"/>
+                        <div class="w3-quarter">
+                            <div class="w3-container w3-deep-orange w3-padding-16">
+                                <div class="w3-left"><i class="fa fa-users w3-xxxlarge"></i></div>
+                                <div class="w3-right">
+
+                                </div>
+                                <div class="w3-clear"></div>
+                                <h4><s:submit cssClass="w3-btn w3-hover-deep-orange w3-mobile" value="Ver Lista de Alumnos"/></h4>
+                            </div>
                         </div>
-                        <div class="w3-clear"></div>
-                        <h4><s:submit cssClass="w3-btn w3-hover-deep-orange w3-mobile" value="Ver Lista de Alumnos"/></h4>
-                    </div>
-                </div>
-                 </s:form>
-        </s:else>
+                    </s:form>
+                </s:else>
 
 
-    </div>
+            </div>
 
-    <s:include value="scripts.jsp"/>
+            <s:include value="scripts.jsp"/>
 
-</body>
+    </body>
 </html>
