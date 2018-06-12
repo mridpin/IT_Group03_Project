@@ -59,7 +59,7 @@ public class ProfesoresCRUDActions extends ActionSupport {
         DAOImpl.crearProfesor(al);
         // Para que postredirectget devuelva a la vista de admin alumnos
         Map session = (Map) ActionContext.getContext().get("session");
-        session.put("origin", "loadStudents");
+        session.put("origin", "loadTeachers");
         return SUCCESS;
     }
 
