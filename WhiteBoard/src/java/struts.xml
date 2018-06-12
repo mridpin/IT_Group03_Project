@@ -107,6 +107,13 @@
         <action name="getEntregas" class="actions.EntregaActions" method="getEntregasActividad">
             <result name="success">/entregas.jsp</result>
         </action>
+        
+        <action name="calificarEntrega" class="actions.EntregaActions">
+            <result name="success" type="chain">
+                 <param name="actionName">loadAsignaturasAlumno</param>
+                 <param name="namespace">/login</param>
+            </result>
+        </action>
     </package>
     
     <package name="messages" namespace="/messages" extends="struts-default">        

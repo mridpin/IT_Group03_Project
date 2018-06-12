@@ -28,8 +28,6 @@ import javax.ws.rs.core.PathSegment;
 import javax.ws.rs.core.Response;
 import model.POJOs.Entrega;
 import model.POJOs.EntregaPK;
-import org.glassfish.jersey.media.multipart.FormDataContentDisposition;
-import org.glassfish.jersey.media.multipart.FormDataParam;
 
 /**
  *

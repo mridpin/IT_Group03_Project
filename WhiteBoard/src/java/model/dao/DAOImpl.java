@@ -255,6 +255,13 @@ public class DAOImpl {
         client.edit_JSON(a, a.getAulaId().toString());
         client.close();
     }
+    
+    public static void calificarEntrega(Entrega a)
+    {
+        EntregasJerseyClient client = new EntregasJerseyClient();
+        client.edit_XML(a,a.getEntregaPK().toString());
+        client.close();
+    }
 
     public static void matricularAlumno(Asignaturas a) {
         AsignaturasJerseyClient client = new AsignaturasJerseyClient();
