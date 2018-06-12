@@ -31,7 +31,7 @@
                         <li class="w3-bar">
                             <div class="w3-bar-item">
                                 <span class="w3-large">Nombre del Alumno: <s:property value="%{#entrega.alumnos.nombre}"/></span><br>
-                                <span class="w3-large">Nota Actual: <s:property value="%{#entrega.nota}"/></span><br>
+                                <span class="w3-large">Nota Actual: <s:property value="%{#entrega.nota}"/>/<s:property value="%{#entrega.actividades.notaMax}"/></span><br>
                             </div>
                             <h4 class="w3-padding-16">
                                 <a href='../<s:property value="rutaArchivo"/>' download>
@@ -41,6 +41,8 @@
                             <div class="w3-bar-item">
                                 
                                 <s:form namespace="/entregas" action="calificarEntrega">
+                                    <s:hidden name="alumnoId" value="%{#entrega.alumnos.idUsuario}"/>
+                                    <s:hidden name="actividadId" value="%{currentActividad.actividadId}"/>
                                     <s:textfield name="nota" id="nota" label="Nota del alumno"/>
                                     <s:submit name="Calificar" value="Calificar" id="Calificar"/>
                                 </s:form>

@@ -108,9 +108,9 @@
             <result name="success">/entregas.jsp</result>
         </action>
         
-        <action name="calificarEntrega" class="actions.EntregaActions">
+        <action name="calificarEntrega" class="actions.EntregaActions" method="calificarEntrega">
             <result name="success" type="chain">
-                 <param name="actionName">loadAsignaturasAlumno</param>
+                 <param name="actionName">loadAsignaturasProfesor</param>
                  <param name="namespace">/login</param>
             </result>
         </action>

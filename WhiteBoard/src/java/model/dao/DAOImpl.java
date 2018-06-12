@@ -256,7 +256,7 @@ public class DAOImpl {
         client.close();
     }
     
-    public static void calificarEntrega(Entrega a)
+    public static void modificarEntrega(Entrega a)
     {
         EntregasJerseyClient client = new EntregasJerseyClient();
         client.edit_XML(a,a.getEntregaPK().toString());

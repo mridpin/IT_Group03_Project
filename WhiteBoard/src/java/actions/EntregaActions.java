@@ -1,13 +1,10 @@
 package actions;
 
 import com.opensymphony.xwork2.ActionContext;
-import static com.opensymphony.xwork2.ActionContext.getContext;
 import com.opensymphony.xwork2.ActionSupport;
 import java.io.File;
-import java.io.InputStream;
 import java.util.List;
 import java.util.Map;
-import javax.servlet.ServletContext;
 import model.POJOs.Actividades;
 import model.POJOs.Alumnos;
 import model.POJOs.Entrega;
@@ -34,6 +31,8 @@ public class EntregaActions extends ActionSupport {
     private List<Entrega> all;
 
     private Actividades currentActividad;
+    
+    private String alumnoId;
 
     private String nota;
 
@@ -90,6 +89,14 @@ public class EntregaActions extends ActionSupport {
         return fileContentType;
     }
 
+    public String getAlumnoId() {
+        return alumnoId;
+    }
+
+    public void setAlumnoId(String alumnoId) {
+        this.alumnoId = alumnoId;
+    }
+
     public void setFileContentType(String fileContentType) {
         this.fileContentType = fileContentType;
     }
@@ -139,13 +146,27 @@ public class EntregaActions extends ActionSupport {
         //If it´s a valid number
         if (nota.matches("^\\d+(\\.\\d+)+$")) {
 
-            double notaFinal = Double.parseDouble(nota);
+            double notaFinal = Math.ceil(Double.parseDouble(nota) / 100.0);
+            
+            currentActividad = findActividad(actividadId);
             
             if(notaFinal> 0 && notaFinal <= currentActividad.getNotaMax())
             {
-                calificarEntrega(entrega);
+                Entrega entrega = getEntregaAlumnoActividad(actividadId,alumnoId);
+                entrega.setNota(notaFinal);
+                modificarEntrega(entrega);
+            }
+            else
+            {
+                addFieldError("nota", "La nota debe ser mayor o igual a 0 y menor o igual a la nota máxima");
+                return INPUT;
             }
             
+        }
+        else
+        {
+            addFieldError("nota", "La nota de ber numérica");
+            return INPUT;
         }
 
         return SUCCESS;
