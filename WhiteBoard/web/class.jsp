@@ -82,7 +82,7 @@
                                 <div class="w3-right">
                                 </div>
                                 <div class="w3-clear"></div>
-                                <h4><s:submit cssClass="w3-btn w3-hover-blue w3-mobile" value="Subir Material"/></h4>
+                                <h4><s:submit cssClass="w3-btn w3-hover-blue w3-mobile" value="Gestionar Material"/></h4>
                             </div>
                         </div>
                     </s:form>
