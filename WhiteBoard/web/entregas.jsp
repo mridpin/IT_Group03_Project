@@ -30,13 +30,21 @@
 
                         <li class="w3-bar">
                             <div class="w3-bar-item">
-                                <span class="w3-large"><s:property value="%{#alumno.getNombre()}"/></span><br>
+                                <span class="w3-large">Nombre del Alumno: <s:property value="%{#entrega.alumnos.nombre}"/></span><br>
+                                <span class="w3-large">Nota Actual: <s:property value="%{#entrega.nota}"/></span><br>
                             </div>
                             <h4 class="w3-padding-16">
                                 <a href='../<s:property value="rutaArchivo"/>' download>
                                     <button class="fa fa-download w3-button">Descargar Entrega</button>
                                 </a>
                             </h4>
+                            <div class="w3-bar-item">
+                                
+                                <s:form namespace="/entregas" action="calificarEntrega">
+                                    <s:textfield name="nota" id="nota" label="Nota del alumno"/>
+                                    <s:submit name="Calificar" value="Calificar" id="Calificar"/>
+                                </s:form>
+                            </div>
                         </li>
                     </s:iterator>
                 </ul>

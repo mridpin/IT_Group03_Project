@@ -30,10 +30,12 @@ public class EntregaActions extends ActionSupport {
     String fileFileName;
 
     private String actividadId;
-    
+
     private List<Entrega> all;
-    
+
     private Actividades currentActividad;
+
+    private String nota;
 
     public EntregaActions() {
     }
@@ -41,31 +43,30 @@ public class EntregaActions extends ActionSupport {
     public String execute() throws Exception {
         Map session = (Map) ActionContext.getContext().get("session");
         Usuario current = (Usuario) session.get("usuario");
-        
-       
+
         //Find actividad
         Actividades actividad = findActividad(actividadId);
 
-        String fullPath = getServletContext().getRealPath(File.separator)+(path + "/" + stripAccents(actividad.getAsignaturaId().getNombre()) + "/entregas/" + stripAccents(actividad.getNombre()) + "/" + current.getUsername());
+        String fullPath = getServletContext().getRealPath(File.separator) + (path + "/" + stripAccents(actividad.getAsignaturaId().getNombre()) + "/entregas/" + stripAccents(actividad.getNombre()) + "/" + current.getUsername());
 
         Entrega newEntrega = new Entrega();
-        
+
         //Create folder to store entrega (lo hace dentro de glass fish)
         File saveFolder = new File(fullPath);
 
         saveFolder.mkdirs();
-       
-        file.renameTo(new File(fullPath+"/"+fileFileName));
-       
-        int startPath = (fullPath+"/"+fileFileName).indexOf("files");
-        
+
+        file.renameTo(new File(fullPath + "/" + fileFileName));
+
+        int startPath = (fullPath + "/" + fileFileName).indexOf("files");
+
         newEntrega.setAlumnos((Alumnos) current);
-        newEntrega.setRutaArchivo((fullPath+"/"+fileFileName).substring(startPath));
+        newEntrega.setRutaArchivo((fullPath + "/" + fileFileName).substring(startPath));
         newEntrega.setActividades(actividad);
-        newEntrega.setEntregaPK(new EntregaPK(current.getIdUsuario(),actividad.getActividadId()));
-        
+        newEntrega.setEntregaPK(new EntregaPK(current.getIdUsuario(), actividad.getActividadId()));
+
         crearEntrega(newEntrega);
-        
+
         return SUCCESS;
     }
 
@@ -92,12 +93,11 @@ public class EntregaActions extends ActionSupport {
     public void setFileContentType(String fileContentType) {
         this.fileContentType = fileContentType;
     }
-    
-    public String getEntregasActividad()
-    {
+
+    public String getEntregasActividad() {
         all = getTodasEntregasActividad(actividadId);
-        
-         //Find actividad
+
+        //Find actividad
         currentActividad = findActividad(actividadId);
         return SUCCESS;
     }
@@ -126,8 +126,29 @@ public class EntregaActions extends ActionSupport {
         this.currentActividad = currentActividad;
     }
 
-    
-    
-    
+    public String getNota() {
+        return nota;
+    }
+
+    public void setNota(String nota) {
+        this.nota = nota;
+    }
+
+    public String calificarEntrega() {
+
+        //If it´s a valid number
+        if (nota.matches("^\\d+(\\.\\d+)+$")) {
+
+            double notaFinal = Double.parseDouble(nota);
+            
+            if(notaFinal> 0 && notaFinal <= currentActividad.getNotaMax())
+            {
+                calificarEntrega(entrega);
+            }
+            
+        }
+
+        return SUCCESS;
+    }
 
 }
