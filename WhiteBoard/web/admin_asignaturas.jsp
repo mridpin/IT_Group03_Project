@@ -28,7 +28,7 @@
                     xhttp.onreadystatechange = function () {
                         if (xhttp.readyState == 4 && xhttp.status == 200) {
                             alumno = JSON.parse(xhttp.responseText); //JSON parse porque eval() no funciona por ningun motivo aparente
-                            $("#input_id").val(alumno["aulaId"]);
+                            $("#input_id").val(alumno["asignaturaId"]);
                             $("#input_nombre").val(alumno["nombre"]);
                             $("#input_curso").val(alumno["curso"]);
                             $("#input_semestre").val(alumno["semestre"]);
