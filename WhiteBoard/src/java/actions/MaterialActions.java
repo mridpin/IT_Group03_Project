@@ -36,9 +36,6 @@ public class MaterialActions extends ActionSupport {
     
     //Finds all the materials of the asignatura according to tipo
     public String execute() throws Exception {
-        
-        
-        // No llames al jersey desde la action, mejor crea un metodo estatico en DAOImpl que sea el que llame al jersey
         List<Material> materiales = findMaterialesFromAsignatura(asignaturaId.toString());
         
         all = new ArrayList();
@@ -100,8 +97,13 @@ public class MaterialActions extends ActionSupport {
     }
 
     
-    
-    
+    public String cargarTodoMaterial()
+    {
+        all = findMaterialesFromAsignatura(asignaturaId.toString());
+        
+        return SUCCESS;
+    }
+
     
     
 }

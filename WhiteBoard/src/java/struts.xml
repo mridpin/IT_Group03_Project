@@ -83,7 +83,11 @@
     <package name="material" namespace="/materiales" extends="struts-default">
         
         <action name="loadMaterial" class="actions.MaterialActions">
-            <result name="success">/student_material.jsp</result>
+            <result name="success">/material.jsp</result>
+        </action>
+        
+        <action name="loadTodoMaterial" class="actions.MaterialActions" method="cargarTodoMaterial">
+            <result name="success">/material.jsp</result>
         </action>
         
     </package>
