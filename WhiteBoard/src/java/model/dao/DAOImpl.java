@@ -16,6 +16,7 @@ import model.POJOs.Administradores;
 import model.POJOs.Alumnos;
 import model.POJOs.Asignaturas;
 import model.POJOs.Aulas;
+import model.POJOs.Entrega;
 import model.POJOs.Material;
 import model.POJOs.Mensajes;
 import model.POJOs.Profesores;
@@ -252,6 +253,13 @@ public class DAOImpl {
         client.create_JSON(a);
         //client.close();
     }
+    
+    public static void crearEntrega(Entrega a){
+        EntregasJerseyClient client = new EntregasJerseyClient();
+        client.create_JSON(a);
+        //client.close();
+    }
+    
     public static void editarAula(Aulas a) {
         AulasJerseyClient client = new AulasJerseyClient();
         client.edit_JSON(a, a.getAulaId().toString());

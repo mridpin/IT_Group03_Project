@@ -5,7 +5,9 @@ import com.opensymphony.xwork2.ActionSupport;
 import java.io.File;
 import java.util.Map;
 import model.POJOs.Actividades;
+import model.POJOs.Alumnos;
 import model.POJOs.Entrega;
+import model.POJOs.EntregaPK;
 import model.POJOs.Usuario;
 import static model.dao.DAOImpl.*;
 
@@ -38,10 +40,16 @@ public class EntregaActions extends ActionSupport {
         //Create folder to store entrega (lo hace dentro de glass fish)
         File saveFolder = new File(path + "/" + actividad.getAsignaturaId().getNombre() + "/entregas/" + actividad.getNombre() + "/" + current.getUsername());
 
-        
         saveFolder.mkdirs();
        
         file.renameTo(new File(saveFolder.getAbsolutePath()+"/"+fileFileName));
+        
+        newEntrega.setAlumnos((Alumnos) current);
+        newEntrega.setRutaArchivo(new File(saveFolder.getAbsolutePath()+"/"+fileFileName).toString());
+        newEntrega.setActividades(actividad);
+        newEntrega.setEntregaPK(new EntregaPK(current.getIdUsuario(),actividad.getActividadId()));
+        
+        crearEntrega(newEntrega);
         
         return SUCCESS;
     }
