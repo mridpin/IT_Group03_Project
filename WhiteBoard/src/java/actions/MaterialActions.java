@@ -6,6 +6,7 @@
 package actions;
 
 import com.opensymphony.xwork2.ActionSupport;
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -30,6 +31,14 @@ public class MaterialActions extends ActionSupport {
     private List<Material> all;
     
     private String materialId;
+    
+    private String nombreActividad;
+    
+    private File file;
+    
+     String fileContentType;
+
+    String fileFileName;
     
     public MaterialActions() {
     }
@@ -104,6 +113,39 @@ public class MaterialActions extends ActionSupport {
         return SUCCESS;
     }
 
+    public String getNombreActividad() {
+        return nombreActividad;
+    }
+
+    public void setNombreActividad(String nombreActividad) {
+        this.nombreActividad = nombreActividad;
+    }
+
+    public File getFile() {
+        return file;
+    }
+
+    public void setFile(File file) {
+        this.file = file;
+    }
+
+    public String getFileContentType() {
+        return fileContentType;
+    }
+
+    public void setFileContentType(String fileContentType) {
+        this.fileContentType = fileContentType;
+    }
+
+    public String getFileFileName() {
+        return fileFileName;
+    }
+
+    public void setFileFileName(String fileFileName) {
+        this.fileFileName = fileFileName;
+    }
+
+    
     
     
 }

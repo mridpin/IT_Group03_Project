@@ -47,6 +47,18 @@
 
 
             </s:iterator>
+            
+            <s:if test="%{#session.usuario.tipo()!='Alumno'}"> 
+                <h4 class="w3-center">Subida de nuevo material</h4>
+                <div class="w3-container w3-card-4">
+                    <s:form namespace="/materiales" action="subirMaterial" method="post" enctype="multipart/form-data">
+                        <s:hidden name="asignaturaId" value="#session.asignatura.asignaturaId"/>
+                        <s:textfield name="nombreActividad" id="nombreActividad" label="Nombre de la actividad" cssClass="w3-input w3-border w3-round"/>
+                        <s:file cssClass="w3-button" name="file" label="Archivo a subit"/>
+                    </s:form>
+                </div>
+                
+            </s:if>
 
             <s:include value="scripts.jsp"/>
 
