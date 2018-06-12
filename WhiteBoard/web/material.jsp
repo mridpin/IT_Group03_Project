@@ -4,7 +4,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>WhiteBoard - <s:property value="tipo"/></title>
+        <title>WhiteBoard - Material</title>
         <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -27,7 +27,7 @@
                     <h2 class="w3-container w3-center"><b><u><s:property value="#session.asignatura.getNombre()"/> - <s:property value="tipo"/></u></b></h2>
                             </s:if>
                             <s:else>
-                    <h2 class="w3-container w3-center"><b><u>Todo el Material de la asignatura - <s:property value="#session.asignatura.getNombre()"/></u></b></h2>
+                    <h2 class="w3-container w3-center"><b><u>Material de la asignatura - <s:property value="#session.asignatura.getNombre()"/></u></b></h2>
 
                 </s:else>
 
@@ -53,8 +53,11 @@
                 <div class="w3-container w3-card-4">
                     <s:form namespace="/materiales" action="subirMaterial" method="post" enctype="multipart/form-data">
                         <s:hidden name="asignaturaId" value="#session.asignatura.asignaturaId"/>
+                        <s:textfield name="nombreActividad" id="nombreActividad" label="Nombre del Material" cssClass="w3-input w3-border w3-round"/>
                         <s:textfield name="nombreActividad" id="nombreActividad" label="Nombre de la actividad" cssClass="w3-input w3-border w3-round"/>
-                        <s:file cssClass="w3-button" name="file" label="Archivo a subit"/>
+                        <s:select cssClass="w3-select" name="tipo" id="tipo" label="Tipo de material" list="tipos"/>
+                        <s:file cssClass="w3-button" name="file" label="Archivo a subir"/>
+                        <s:submit name="Subir Material" value="Subit Material" id="Subir Material"/>
                     </s:form>
                 </div>
                 

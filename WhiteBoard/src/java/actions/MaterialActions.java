@@ -36,9 +36,11 @@ public class MaterialActions extends ActionSupport {
     
     private File file;
     
-     String fileContentType;
+    String fileContentType;
 
     String fileFileName;
+    
+    private List<String> tipos;
     
     public MaterialActions() {
     }
@@ -109,7 +111,9 @@ public class MaterialActions extends ActionSupport {
     public String cargarTodoMaterial()
     {
         all = findMaterialesFromAsignatura(asignaturaId.toString());
-        
+        tipos = new ArrayList<>();
+        tipos.add("Enseñanzas Básicas");
+        tipos.add("Enseñanzas Prácticas");
         return SUCCESS;
     }
 
@@ -143,6 +147,14 @@ public class MaterialActions extends ActionSupport {
 
     public void setFileFileName(String fileFileName) {
         this.fileFileName = fileFileName;
+    }
+
+    public List<String> getTipos() {
+        return tipos;
+    }
+
+    public void setTipos(List<String> tipos) {
+        this.tipos = tipos;
     }
 
     
