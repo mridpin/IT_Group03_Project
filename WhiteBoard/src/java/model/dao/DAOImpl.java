@@ -13,6 +13,7 @@ import java.util.List;
 import javax.ws.rs.core.GenericType;
 import model.POJOs.Actividades;
 import model.POJOs.Administradores;
+import model.POJOs.AlumnoAsignatura;
 import model.POJOs.Alumnos;
 import model.POJOs.Asignaturas;
 import model.POJOs.Aulas;
@@ -263,10 +264,8 @@ public class DAOImpl {
         client.close();
     }
 
-    public static void matricularAlumno(Asignaturas a) {
-        AsignaturasJerseyClient client = new AsignaturasJerseyClient();
-        GenericType<List<Asignaturas>> genericType = new GenericType<List<Asignaturas>>() {
-        };
+    public static void matricularAlumno(AlumnoAsignatura a) {
+        AlumnoAsignaturaJerseyClient client = new AlumnoAsignaturaJerseyClient();
         client.create_JSON(a);
         client.close();
     }

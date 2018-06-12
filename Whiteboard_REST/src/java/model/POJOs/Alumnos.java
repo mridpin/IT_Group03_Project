@@ -44,6 +44,9 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "Alumnos.findByPassword", query = "SELECT a FROM Alumnos a WHERE a.password = :password")})
 public class Alumnos implements Serializable {
 
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "alumnos")
+    private Collection<AlumnoAsignatura> alumnoAsignaturaCollection;
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -210,6 +213,15 @@ public class Alumnos implements Serializable {
     @Override
     public String toString() {
         return "model.POJOs.Alumnos[ idUsuario=" + idUsuario + " ]";
+    }
+
+    @XmlTransient
+    public Collection<AlumnoAsignatura> getAlumnoAsignaturaCollection() {
+        return alumnoAsignaturaCollection;
+    }
+
+    public void setAlumnoAsignaturaCollection(Collection<AlumnoAsignatura> alumnoAsignaturaCollection) {
+        this.alumnoAsignaturaCollection = alumnoAsignaturaCollection;
     }
     
 }

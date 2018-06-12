@@ -6,6 +6,7 @@
 package model.POJOs;
 
 import java.io.Serializable;
+import java.util.Collection;
 import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
@@ -42,6 +43,9 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "Asignaturas.findByNombre", query = "SELECT a FROM Asignaturas a WHERE a.nombre = :nombre")
     , @NamedQuery(name = "Asignaturas.findByCurso", query = "SELECT a FROM Asignaturas a WHERE a.curso = :curso")})
 public class Asignaturas implements Serializable {
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "asignaturas")
+    private Collection<AlumnoAsignatura> alumnoAsignaturaCollection;
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -203,6 +207,15 @@ public class Asignaturas implements Serializable {
     @Override
     public String toString() {
         return "model.POJOs.Asignaturas[ asignaturaId=" + asignaturaId + " ]";
+    }
+
+    @XmlTransient
+    public Collection<AlumnoAsignatura> getAlumnoAsignaturaCollection() {
+        return alumnoAsignaturaCollection;
+    }
+
+    public void setAlumnoAsignaturaCollection(Collection<AlumnoAsignatura> alumnoAsignaturaCollection) {
+        this.alumnoAsignaturaCollection = alumnoAsignaturaCollection;
     }
     
 }

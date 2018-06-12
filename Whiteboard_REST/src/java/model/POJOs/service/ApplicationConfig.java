@@ -33,6 +33,7 @@ public class ApplicationConfig extends Application {
     private void addRestResourceClasses(Set<Class<?>> resources) {
         resources.add(model.POJOs.service.ActividadesFacadeREST.class);
         resources.add(model.POJOs.service.AdministradoresFacadeREST.class);
+        resources.add(model.POJOs.service.AlumnoAsignaturaFacadeREST.class);
         resources.add(model.POJOs.service.AlumnosFacadeREST.class);
         resources.add(model.POJOs.service.AsignaturasFacadeREST.class);
         resources.add(model.POJOs.service.AulasFacadeREST.class);

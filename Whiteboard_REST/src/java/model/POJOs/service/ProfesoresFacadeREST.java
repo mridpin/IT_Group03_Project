@@ -63,7 +63,7 @@ public class ProfesoresFacadeREST extends AbstractFacade<Profesores> {
     public Profesores find(@PathParam("id") Integer id) {
         return super.find(id);
     }
-    
+
     @GET
     @Path("{id}/getAsignaturas")
     @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})

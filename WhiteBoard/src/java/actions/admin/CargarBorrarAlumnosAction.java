@@ -15,6 +15,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import model.POJOs.AlumnoAsignatura;
+import model.POJOs.AlumnoAsignaturaPK;
 import model.POJOs.Alumnos;
 import model.POJOs.Asignaturas;
 import model.dao.DAOImpl;
@@ -58,7 +60,7 @@ public class CargarBorrarAlumnosAction extends ActionSupport {
             if (contentType.equals("text/plain") || contentType.equals("application/csv") || contentType.equals("text/csv") || contentType.equals("application/vnd.ms-excel")) {
                 String line = "";
                 List<Asignaturas> asignaturasSeleccionadas = this.getAsignaturasSeleccionadas(checkboxes);
-                List<Alumnos> nuevosAlumnosMatriculados = new ArrayList<>();
+                //List<Alumnos> nuevosAlumnosMatriculados = new ArrayList<>();
                 try (BufferedReader br = new BufferedReader(new FileReader(file))) {
                     while ((line = br.readLine()) != null) {
                         // use comma as separator
@@ -70,19 +72,14 @@ public class CargarBorrarAlumnosAction extends ActionSupport {
                         al.setPassword(alumno[3]);
                         al.setFoto(alumno[4]);
                         DAOImpl.crearAlumno(al);
-                        nuevosAlumnosMatriculados.add(al);
-                    }
+                        //nuevosAlumnosMatriculados.add(al);
 
-                    // Añadimos los alumnos a las asignaturas
-                    for (Asignaturas a : asignaturasSeleccionadas) {
-                        List<Alumnos> alumnosMatriculados = a.getAlumnosList();
-                        if (alumnosMatriculados != null) {
-                            alumnosMatriculados.addAll(nuevosAlumnosMatriculados);
-                            a.setAlumnosList(alumnosMatriculados);
-                        } else {
-                            a.setAlumnosList(nuevosAlumnosMatriculados);
+                        // Añadimos los alumnos a las asignaturas
+                        for (Asignaturas a : asignaturasSeleccionadas) {
+                            
+                            //AlumnoAsignaturaPK aapk = new AlumnoAsignaturaPK(al., 0);
+                            DAOImpl.matricularAlumno(a);
                         }
-                        DAOImpl.matricularAlumno(a);
                     }
                 } catch (IOException e) {
                     e.printStackTrace();

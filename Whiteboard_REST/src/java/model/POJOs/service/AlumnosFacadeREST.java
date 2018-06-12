@@ -142,5 +142,5 @@ public class AlumnosFacadeREST extends AbstractFacade<Alumnos> {
     protected EntityManager getEntityManager() {
         return em;
     }
-
+    
 }

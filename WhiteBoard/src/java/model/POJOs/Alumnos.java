@@ -6,7 +6,9 @@
 package model.POJOs;
 
 import java.io.Serializable;
+import java.util.Collection;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -14,10 +16,12 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -35,6 +39,9 @@ import javax.xml.bind.annotation.XmlRootElement;
     , @NamedQuery(name = "Alumnos.findByFoto", query = "SELECT a FROM Alumnos a WHERE a.foto = :foto")
     , @NamedQuery(name = "Alumnos.findByPassword", query = "SELECT a FROM Alumnos a WHERE a.password = :password")})
 public class Alumnos implements Serializable, Usuario {
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "alumnos")
+    private Collection<AlumnoAsignatura> alumnoAsignaturaCollection;
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -161,6 +168,15 @@ public class Alumnos implements Serializable, Usuario {
     @Override
     public String toString() {
         return "model.POJOs.Alumnos[ idUsuario=" + idUsuario + " ]";
+    }
+
+    @XmlTransient
+    public Collection<AlumnoAsignatura> getAlumnoAsignaturaCollection() {
+        return alumnoAsignaturaCollection;
+    }
+
+    public void setAlumnoAsignaturaCollection(Collection<AlumnoAsignatura> alumnoAsignaturaCollection) {
+        this.alumnoAsignaturaCollection = alumnoAsignaturaCollection;
     }
     
 }
