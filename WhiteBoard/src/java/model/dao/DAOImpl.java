@@ -270,5 +270,14 @@ public class DAOImpl {
         client.create_JSON(a);
         client.close();
     }
-
+    public static void crearAsignatura(Asignaturas a){
+        AsignaturasJerseyClient client = new AsignaturasJerseyClient();
+        client.create_JSON(a);
+        //client.close();
+    }
+    public static void editarAsignatura(Asignaturas a) {
+        AsignaturasJerseyClient client = new AsignaturasJerseyClient();
+        client.edit_JSON(a, a.getAsignaturaId().toString());
+        client.close();
+    }
 }

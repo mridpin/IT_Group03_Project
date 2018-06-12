@@ -36,6 +36,7 @@ public class AulasCRUDActions extends ActionSupport {
 
     private Asignaturas asignaturaId;
     // Atributos de la entidad
+    private String asignaturaSeleccionada;
 
     public AulasCRUDActions() {
         
@@ -49,6 +50,9 @@ public class AulasCRUDActions extends ActionSupport {
         a.setAulaId(aulaId);
         a.setCapacidad(capacidad);
         a.setLocalizacion(localizacion);
+        if (asignaturaSeleccionada != null) {
+            asignaturaId = DAOImpl.findAsignatura(asignaturaSeleccionada);
+        }
         a.setAsignaturaId(asignaturaId);
         DAOImpl.crearAula(a);
         // Para que postredirectget devuelva a la vista de admin alumnos
@@ -64,6 +68,9 @@ public class AulasCRUDActions extends ActionSupport {
         a.setAulaId(aulaId);
         a.setCapacidad(capacidad);
         a.setLocalizacion(localizacion);
+        if (asignaturaSeleccionada != null) {
+            asignaturaId = DAOImpl.findAsignatura(asignaturaSeleccionada);
+        }
         a.setAsignaturaId(asignaturaId);
         DAOImpl.editarAula(a);
         return SUCCESS;
