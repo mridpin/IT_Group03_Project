@@ -52,10 +52,8 @@ public class MaterialActions extends ActionSupport {
         all = new ArrayList();
 
         for (Material current : materiales) {
-            
-            String[] path = current.getRutaArchivo().split("/");
-            
-            if(path[3].equals(tipo))
+
+            if(current.getRutaArchivo().contains(tipo))
             {
                 all.add(current);
             }
