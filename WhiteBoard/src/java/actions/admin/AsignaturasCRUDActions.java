@@ -65,7 +65,7 @@ public class AsignaturasCRUDActions extends ActionSupport {
         a.setSemestre(semestre);
         a.setNombre(nombre);
         a.setCurso(curso);
-        
+        profesores = DAOImpl.findAllProfesores();
         if (profesorSeleccionado != null) {
             for(int i=0;i<profesores.size();i++){
                 if(profesores.get(i).getIdUsuario().equals(profesorSeleccionado))
@@ -89,6 +89,7 @@ public class AsignaturasCRUDActions extends ActionSupport {
         a.setSemestre(semestre);
         a.setNombre(nombre);
         a.setCurso(curso);
+        profesores = DAOImpl.findAllProfesores();
         if (profesorSeleccionado != null) {
             for(int i=0;i<profesores.size();i++){
                 if(profesores.get(i).getIdUsuario().equals(profesorSeleccionado))

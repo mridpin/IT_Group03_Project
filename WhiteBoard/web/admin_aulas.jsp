@@ -88,7 +88,7 @@
                 <h3>EDITAR o CREAR AULAS</h3>
                     <s:form cssClass="w3-container" namespace="/admin">
                     <s:textfield cssClass="w3-input" type="text" id="input_id" name="aulaId"  label="ID" readonly="true"></s:textfield>
-                    <s:textfield cssClass="w3-input" type="text" id="input_capacidad" name="capcidad" label="capacidad"></s:textfield>
+                    <s:textfield cssClass="w3-input" type="text" id="input_capacidad" name="capacidad" label="capacidad"></s:textfield>
                     <s:textfield cssClass="w3-input" type="text" id="input_localizacion" name="localizacion" label="Localizacion"></s:textfield>
                     <%-- <s:textfield cssClass="w3-input" type="text" id="input_asignaturaId" name="asignaturaId" label="Id-Asignatura"></s:textfield>--%>
                     <s:select cssClass="w3-input" id="input_asignaturaId" name="asignaturaSeleccionada" required="true" list="asignaturas" listValue="asignaturaId" listKey="asignaturaId"></s:select>
