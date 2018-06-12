@@ -90,6 +90,12 @@
             <result name="success">/material.jsp</result>
         </action>
         
+        <action name="subirMaterial" class="actions.MaterialActions" method="subirMaterial">
+            <result name="success" type="chain">
+                 <param name="actionName">loadTodoMaterial</param>
+            </result>
+        </action>
+        
     </package>
     
     <package name="actividad" namespace="/actividades" extends="struts-default">

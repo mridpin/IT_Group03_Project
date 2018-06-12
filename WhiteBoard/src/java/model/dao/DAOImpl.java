@@ -218,6 +218,13 @@ public class DAOImpl {
         client.create_JSON(al);
         //client.close();
     }
+    
+    public static void crearMaterial(Material al) {
+       MaterialJerseyClient client = new MaterialJerseyClient();
+        client.create_JSON(al);
+        //client.close();
+    }
+    
     public static void editarAlumno(Alumnos al) {
         AlumnosJerseyClient client = new AlumnosJerseyClient();
         client.edit_JSON(al, al.getIdUsuario().toString());

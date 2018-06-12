@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 12-06-2018 a las 07:06:05
+-- Tiempo de generación: 12-06-2018 a las 21:57:41
 -- Versión del servidor: 10.1.21-MariaDB
 -- Versión de PHP: 5.6.30
 
@@ -164,7 +164,7 @@ CREATE TABLE `entrega` (
 --
 
 INSERT INTO `entrega` (`alumnoId`, `actividadId`, `nota`, `rutaArchivo`) VALUES
-(1, 1, 0, 'files/asignaturas//Programacion C/entregas/Actividad 1/alu_test/test.txt');
+(1, 1, 3.7, 'files/asignaturas//Programacion C/entregas/Actividad 1/alu_test/test.txt');
 
 -- --------------------------------------------------------
 
@@ -184,7 +184,8 @@ CREATE TABLE `material` (
 --
 
 INSERT INTO `material` (`materialId`, `rutaArchivo`, `nombre`, `asignaturaId`) VALUES
-(1, 'files\\asignaturas\\Programacion C\\eb\\meme.jpg', 'Notas EB', 2);
+(1, 'files\\asignaturas\\Programacion C\\eb\\meme.jpg', 'Notas EB', 2),
+(4, 'files/asignaturas/Programacion C/epd/danksouls.jpeg', 'Notas EPD', 2);
 
 -- --------------------------------------------------------
 
@@ -339,7 +340,7 @@ ALTER TABLE `aulas`
 -- AUTO_INCREMENT de la tabla `material`
 --
 ALTER TABLE `material`
-  MODIFY `materialId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `materialId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT de la tabla `mensajes`
 --

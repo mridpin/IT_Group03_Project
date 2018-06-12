@@ -52,12 +52,11 @@
                 <h4 class="w3-center">Subida de nuevo material</h4>
                 <div class="w3-container w3-card-4">
                     <s:form namespace="/materiales" action="subirMaterial" method="post" enctype="multipart/form-data">
-                        <s:hidden name="asignaturaId" value="#session.asignatura.asignaturaId"/>
+                        <s:hidden name="asignaturaId" value="%{#session.asignatura.getAsignaturaId()}"/>
                         <s:textfield name="nombreActividad" id="nombreActividad" label="Nombre del Material" cssClass="w3-input w3-border w3-round"/>
-                        <s:textfield name="nombreActividad" id="nombreActividad" label="Nombre de la actividad" cssClass="w3-input w3-border w3-round"/>
-                        <s:select cssClass="w3-select" name="tipo" id="tipo" label="Tipo de material" list="tipos"/>
+                        <s:select cssClass="w3-select" name="tipo" label="Tipo de material" list="tipos"/>
                         <s:file cssClass="w3-button" name="file" label="Archivo a subir"/>
-                        <s:submit name="Subir Material" value="Subit Material" id="Subir Material"/>
+                        <s:submit name="Subir Material" value="Subir Material" id="Subir Material"/>
                     </s:form>
                 </div>
                 

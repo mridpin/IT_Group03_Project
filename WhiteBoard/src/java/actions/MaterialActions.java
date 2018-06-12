@@ -7,13 +7,13 @@ package actions;
 
 import com.opensymphony.xwork2.ActionSupport;
 import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import model.POJOs.Asignaturas;
 import model.POJOs.Material;
 import static model.dao.DAOImpl.*;
+import static org.apache.commons.lang3.StringUtils.stripAccents;
+import static org.apache.struts2.ServletActionContext.getServletContext;
 
 /**
  *
@@ -114,6 +114,36 @@ public class MaterialActions extends ActionSupport {
         tipos = new ArrayList<>();
         tipos.add("Enseñanzas Básicas");
         tipos.add("Enseñanzas Prácticas");
+        return SUCCESS;
+    }
+    
+    public String subirMaterial()
+    {
+        if(tipo.equals("Enseñanzas Básicas"))
+        {
+            tipo="eb";
+        }
+        else
+        {
+            tipo="epd";
+        }
+        
+        Asignaturas asignatura = findAsignatura(asignaturaId.toString());
+        
+        String fullPath = getServletContext().getRealPath(File.separator) + (path + stripAccents(asignatura.getNombre())+"/"+tipo);
+
+        file.renameTo(new File(fullPath + "/" + fileFileName));
+
+        int startPath = (fullPath + "/" + fileFileName).indexOf("files");
+        
+        Material newMaterial = new Material();
+        
+        newMaterial.setAsignaturaId(asignatura);
+        newMaterial.setNombre(nombreActividad);
+        newMaterial.setRutaArchivo((fullPath + "/" + fileFileName).substring(startPath));
+        
+        crearMaterial(newMaterial);
+        
         return SUCCESS;
     }
 
