@@ -31,14 +31,12 @@
 
 
 
-            <div class="w3-row-padding w3-margin-bottom w3-card-4 w3-padding-16 w3-margin w3-white">
+            <div class="w3-row-padding w3-margin-bottom w3-card-4 w3-padding-16 w3-margin w3-white w3-center">
 
+                <div class="w3-container w3-padding-large w3-xlarge w3-wide">
+                
                 <s:if test="%{#session.usuario.tipo()=='Alumno'}">  
 
-                    <div class="w3-quarter">
-                        <div class="w3-container w3-white w3-padding-16">
-                        </div>
-                    </div>
 
                     <s:form namespace="/materiales" action="loadMaterial">
                         <s:hidden name="asignaturaId" value="%{#asignatura.asignaturaId}"/>
@@ -73,10 +71,10 @@
 
                 </s:if>        
                 <s:else>
-
+                    
                     <s:form namespace="/materiales" action="loadTodoMaterial">
                         <s:hidden name="asignaturaId" value="%{#asignatura.asignaturaId}"/>
-                        <div class="w3-quarter">
+                        <div class="w3-third">
                             <div class="w3-container w3-blue w3-padding-16">
                                 <div class="w3-left"><i class="fa fa-cloud-upload w3-xxxlarge"></i></div>
                                 <div class="w3-right">
@@ -89,7 +87,7 @@
 
                     <s:form namespace="/actividades" action="loadTodoActividades">
                     <s:hidden name="asignaturaId" value="%{#asignatura.asignaturaId}"/>
-                    <div class="w3-quarter">
+                    <div class="w3-third">
                         <div class="w3-container w3-red w3-padding-16">
                             <div class="w3-left"><i class="fa fa-pencil w3-xxxlarge"></i></div>
                             <div class="w3-right">
@@ -103,7 +101,7 @@
 
                     <s:form namespace="/asignaturas" action="alumnosAsignatura">
                         <s:hidden name="asignaturaId" value="%{#asignatura.asignaturaId}"/>
-                        <div class="w3-quarter">
+                        <div class="w3-rest">
                             <div class="w3-container w3-deep-orange w3-padding-16">
                                 <div class="w3-left"><i class="fa fa-users w3-xxxlarge"></i></div>
                                 <div class="w3-right">
@@ -116,10 +114,11 @@
                     </s:form>
                 </s:else>
 
-
+                </div>
+     
             </div>
 
-            <h3 class="w3-container w3-center"><u>Pr&oacute;ximas Tareas</u></h3>
+            <h3 class="w3-container w3-center w3-"><u>Pr&oacute;ximas Tareas</u></h3>
 
             <div class="w3-container">
                 <ul class="w3-ul w3-card-4">
@@ -146,7 +145,7 @@
                                     <div class="w3-bar-item">                         
                                         <span class="w3-large"><s:property value="%{#actividad.getNombre()}"/></span><br>
                                         <span class="w3-red">Fecha L&iacute;mite de Entrega: <s:property value="%{#actividad.getFechaFin()}"/> </span>
-                                        <span class="w3-right"><s:submit cssClass="w3-btn w3-mobile" value="Calificar Entregas"/></span>
+                                        <span class="w3-right"><s:submit cssClass="w3-btn w3-green w3-margin-left" value="Calificar Entregas"/></span>
                                     </div>
                                 </li>
                             </s:form>
