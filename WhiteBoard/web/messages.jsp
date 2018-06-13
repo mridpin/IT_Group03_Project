@@ -115,7 +115,6 @@
             <!--            Loops once per message loaded-->
             <div id="message_box" class="w3-hide w3-animate-right">
             </div>
-            <a href="#" class="w3-bar-item w3-button"><i class="fa fa-paper-plane w3-margin-right"></i>Enviados</a>
         </aside>
 
         <!-- Modal that pops up when you click on "New Message" -->
