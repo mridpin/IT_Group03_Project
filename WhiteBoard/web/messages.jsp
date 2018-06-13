@@ -40,7 +40,18 @@
                             return (adate <= bdate) ? 1 : 0;
                         });
                         $("#message_count").append(mensajes.length);
-                        openMail(mensajes[0]); //Open first by default
+                        if (mensajes.length > 0) {
+                            openMail(mensajes[0]); //Open first by default
+                        } else {
+                            // Display dummy message
+                            mensj = [];
+                            mensj["remitenteId"] = [];
+                            mensj["remitenteId"]["foto"] = "files/images/logo2.png";
+                            mensj["remitenteId"]["nombre"] = "Nombre del remitente";
+                            mensj["fecha"] = "2000-01-01";
+                            mensj["contenido"] = "Contenido del mensaje";
+                            openMail(mensj);
+                        }
                         // Built the message sidebar with the info from each message
                         for (var i in mensajes) {
                             var msg = mensajes[i];
@@ -62,7 +73,7 @@
                             }(i));
                             var msgimg = $("<img>");
                             $(msgimg).addClass("w3-round w3-margin-right");
-                            $(msgimg).attr("src", "../"+msg["remitenteId"]["foto"]);
+                            $(msgimg).attr("src", "../" + msg["remitenteId"]["foto"]);
                             $(msgimg).attr("alt", "user image");
                             $(msgimg).attr("width", "36px");
                             $(msgimg).css({
@@ -120,9 +131,9 @@
                         <p id="addressee_error" class="w3-panel w3-red w3-hide"></p>
                         <label>Para:</label>
                         <s:select cssClass="w3-input w3-border w3-margin-bottom" id="destinatario_nombre" name="destinatario" required="true" list="alumnos" listValue="nombre" listKey="username"></s:select>
-                        <input class="w3-input w3-border w3-margin-bottom" style="height:150px" placeholder="Escribe tu mensaje aquí" name="contenido" id="mensaje_cuerpo">
-                        <div class="w3-section">
-                            <a class="w3-button w3-red" onclick="document.getElementById('modal').style.display = 'none'">Cancelar<i class="fa fa-remove"></i></a>
+                            <input class="w3-input w3-border w3-margin-bottom" style="height:150px" placeholder="Escribe tu mensaje aquí" name="contenido" id="mensaje_cuerpo">
+                            <div class="w3-section">
+                                <a class="w3-button w3-red" onclick="document.getElementById('modal').style.display = 'none'">Cancelar<i class="fa fa-remove"></i></a>
                                 <s:submit cssClass="w3-button w3-light-grey w3-right" value="Enviar"></s:submit>
                             </div>
                         </div>
@@ -194,7 +205,7 @@
                 $("#message_text").empty();
                 $("#message_text").append(msg["contenido"]);
             }
-            </script>
+        </script>
         <s:include value="scripts.jsp"/>
     </body>
 </html> 
