@@ -5,6 +5,7 @@
  */
 package model.POJOs.service;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import javax.ejb.Stateless;
@@ -94,12 +95,18 @@ public class AlumnosFacadeREST extends AbstractFacade<Alumnos> {
     @Path("getEntregaAlumnoActividad/{idact}/{idal}")
     @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
     public Entrega getEntregaAlumnoActividad(@PathParam("idact") Integer idact,@PathParam("idal") Integer idal) {
-        Alumnos alumnos = this.find(idal);
-        
-        for (Entrega a : alumnos.getEntregaCollection()) {
-            if (a.getActividades().getActividadId()==idact) {
-                return a;
+        if(this.find(idal)!=null)
+        {
+            
+            List<Entrega> entregas = getEntregaAlumno(idal);
+            for(Entrega a : entregas)
+            {
+                if(a.getActividades().getActividadId()==idact)
+                {
+                    return a;
+                }
             }
+            
         }
         return null;
     }

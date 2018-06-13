@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 13-06-2018 a las 04:30:23
+-- Tiempo de generación: 13-06-2018 a las 06:02:19
 -- Versión del servidor: 10.1.21-MariaDB
 -- Versión de PHP: 5.6.30
 
@@ -43,7 +43,7 @@ CREATE TABLE `actividades` (
 --
 
 INSERT INTO `actividades` (`fechaFin`, `actividadId`, `tipo`, `notaMax`, `nombre`, `profesorId`, `asignaturaId`) VALUES
-('2018-06-16', 1, 'Proyecto', 5, 'Proyecto-IT-WhiteBoard', 2, 2);
+('2018-06-16', 1, 'Proyecto', 5, 'Proyecto Final IT', 2, 2);
 
 -- --------------------------------------------------------
 
@@ -62,7 +62,6 @@ CREATE TABLE `administradores` (
 --
 
 INSERT INTO `administradores` (`idUsuario`, `username`, `password`) VALUES
-(1, 'admin', 'password'),
 (2, 'admin', 'admin');
 
 -- --------------------------------------------------------
@@ -168,6 +167,14 @@ CREATE TABLE `material` (
   `nombre` varchar(256) COLLATE utf8mb4_spanish2_ci NOT NULL,
   `asignaturaId` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish2_ci;
+
+--
+-- Volcado de datos para la tabla `material`
+--
+
+INSERT INTO `material` (`materialId`, `rutaArchivo`, `nombre`, `asignaturaId`) VALUES
+(1, 'files\\asignaturas\\Integracion de Tecnologias\\epd\\CondicionesDeProyectos_IT_17_18.pdf', 'Condiciones de Proyectos Finales', 2),
+(2, 'files\\asignaturas\\Integracion de Tecnologias\\eb\\tema1-1.pdf', 'Tema 1', 2);
 
 -- --------------------------------------------------------
 
@@ -289,7 +296,7 @@ ALTER TABLE `profesores`
 -- AUTO_INCREMENT de la tabla `actividades`
 --
 ALTER TABLE `actividades`
-  MODIFY `actividadId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `actividadId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT de la tabla `administradores`
 --
@@ -299,7 +306,7 @@ ALTER TABLE `administradores`
 -- AUTO_INCREMENT de la tabla `alumnos`
 --
 ALTER TABLE `alumnos`
-  MODIFY `idUsuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `idUsuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT de la tabla `asignaturas`
 --
@@ -314,12 +321,12 @@ ALTER TABLE `aulas`
 -- AUTO_INCREMENT de la tabla `material`
 --
 ALTER TABLE `material`
-  MODIFY `materialId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `materialId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT de la tabla `mensajes`
 --
 ALTER TABLE `mensajes`
-  MODIFY `idMensaje` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `idMensaje` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT de la tabla `profesores`
 --

@@ -27,7 +27,7 @@
                 <br>
                 <u class=" w3-padding-left">Hora de tutor&iacute;a: <s:property value="profesor.horaTutoria"/></u>
                 <br>
-                <h6 class="w3-padding-16">Nota M&iacute;nima de la asignatura: <i class="w3-green"><s:property value="#session.asignatura.getNotaMinima()"/></i></h6>
+                <h6 class="w3-padding-16 w3-blue">Nota M&iacute;nima de la asignatura: <i><s:property value="#session.asignatura.getNotaMinima()"/></i></h6>
                 
                 <s:if test="%{#session.usuario.tipo()=='Alumno'}"> 
                     

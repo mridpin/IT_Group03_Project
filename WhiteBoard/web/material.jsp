@@ -36,7 +36,8 @@
 
 
             <s:iterator status="stat" value="all" var="material">
-                <div class="w3-container w3-padding-16">
+                <div class="w3-card-4 w3-padding-16
+                     ">
                     <div class="w3-left w3-padding"><i class="fa fa-file w3-xxxlarge w3-padding-16"></i></div>
                     <h4 class="w3-padding-16">
                         <a href='../<s:property value="rutaArchivo"/>' download>
