@@ -11,7 +11,7 @@
             <message>nombre.length</message>
         </field-validator>
     </field> 
-    <field name=" curso">
+    <field name="curso">
         <field-validator type="requiredstring">
             <message key="campo.required" />
         </field-validator>

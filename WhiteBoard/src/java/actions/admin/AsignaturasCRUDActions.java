@@ -34,7 +34,6 @@ public class AsignaturasCRUDActions extends ActionSupport {
 
     List<Asignaturas> asignaturas;
     private Integer asignaturaId;
-
     private double notaMinima;
 
     private int nAlumnos;
@@ -47,7 +46,6 @@ public class AsignaturasCRUDActions extends ActionSupport {
     private List<Alumnos> alumnosList;
     private List<Material> materialList;
     private List<Aulas> aulasList;
-    private List<Profesores> profesores; 
     private Profesores profesorId;
     // Atributos de la entidad
 
@@ -73,8 +71,6 @@ public class AsignaturasCRUDActions extends ActionSupport {
         session.put("origin", "loadCourses");
         return SUCCESS;
     }
-
-
 
     public String editarAsignatura() {
         Asignaturas a = new Asignaturas();
@@ -188,15 +184,6 @@ public class AsignaturasCRUDActions extends ActionSupport {
 
     public void setProfesorSeleccionado(String profesorSeleccionado) {
         this.profesorSeleccionado = profesorSeleccionado;
-    }
-
-    public List<Profesores> getProfesores() {
-        return profesores;
-    }
-
-    public void setProfesores(List<Profesores> allProfesores) {
-        this.profesores = allProfesores;
-    }
-    
+    } 
     
 }

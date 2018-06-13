@@ -136,8 +136,8 @@
                         <li><h4>Ejemplo:</h4></li>
                         <li>
                             <p>alu_frubbra,Francisco,Rubio Bravo,frubbra,image/1.jpg<br/>
-                                alu_jmalonie,Jos&eacute; Manuel,Alonso Nieto,jmalonie,image/2.jpg<br/>
-                                alu_asangue,Alicia,S&aacute;nchez Guerrero,asangue,image/3.jpg<br/>
+                                alu_jmalonie,Jose; Manuel,Alonso Nieto,jmalonie,image/2.jpg<br/>
+                                alu_asangue,Alicia,Sanchez Guerrero,asangue,image/3.jpg<br/>
                             </p>
                         </li>
                     </ul>
