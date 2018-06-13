@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 12-06-2018 a las 21:57:41
+-- Tiempo de generación: 13-06-2018 a las 04:30:23
 -- Versión del servidor: 10.1.21-MariaDB
 -- Versión de PHP: 5.6.30
 
@@ -43,8 +43,7 @@ CREATE TABLE `actividades` (
 --
 
 INSERT INTO `actividades` (`fechaFin`, `actividadId`, `tipo`, `notaMax`, `nombre`, `profesorId`, `asignaturaId`) VALUES
-('2018-06-16', 1, 'Actividad', 5, 'Actividad 1', 2, 2),
-('2018-06-02', 2, 'Actividad', 3, 'qaweqwwewqe', 2, 2);
+('2018-06-16', 1, 'Proyecto', 5, 'Proyecto-IT-WhiteBoard', 2, 2);
 
 -- --------------------------------------------------------
 
@@ -86,10 +85,8 @@ CREATE TABLE `alumnos` (
 --
 
 INSERT INTO `alumnos` (`idUsuario`, `username`, `nombre`, `apellidos`, `foto`, `password`) VALUES
-(1, 'alu_test', 'test', 'test', 'files/images/fotos/usuarios/pic1.png', 'test'),
-(2, 'alu_mridpin', 'Manuel', 'Ridao', 'files/images/fotos/usuarios/pic2.png', 'mridpin'),
-(4, 'alu_mridpin', 'Manuel', 'Ridao', 'files/images/fotos/usuarios/pic2.png', 'mridpin'),
-(5, 'alu_mridpin', 'Manuel', 'Ridao', 'files/images/fotos/usuarios/pic2.png', 'mridpin');
+(1, 'alu_vamarrod', 'Victor', 'Martinelli', 'files/images/fotos/usuarios/pic1.png', 'password'),
+(2, 'alu_mridpin', 'Manuel', 'Ridao', 'files/images/fotos/usuarios/pic2.png', 'mridpin');
 
 -- --------------------------------------------------------
 
@@ -131,7 +128,7 @@ CREATE TABLE `asignaturas` (
 --
 
 INSERT INTO `asignaturas` (`asignaturaId`, `notaMinima`, `nAlumnos`, `semestre`, `nombre`, `curso`, `profesorId`) VALUES
-(2, 5, 2, '1', 'Programación C', 1, 2);
+(2, 5, 2, '1', 'Integración de Tecnologías', 1, 2);
 
 -- --------------------------------------------------------
 
@@ -159,13 +156,6 @@ CREATE TABLE `entrega` (
   `rutaArchivo` varchar(256) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish2_ci;
 
---
--- Volcado de datos para la tabla `entrega`
---
-
-INSERT INTO `entrega` (`alumnoId`, `actividadId`, `nota`, `rutaArchivo`) VALUES
-(1, 1, 3.7, 'files/asignaturas//Programacion C/entregas/Actividad 1/alu_test/test.txt');
-
 -- --------------------------------------------------------
 
 --
@@ -178,14 +168,6 @@ CREATE TABLE `material` (
   `nombre` varchar(256) COLLATE utf8mb4_spanish2_ci NOT NULL,
   `asignaturaId` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish2_ci;
-
---
--- Volcado de datos para la tabla `material`
---
-
-INSERT INTO `material` (`materialId`, `rutaArchivo`, `nombre`, `asignaturaId`) VALUES
-(1, 'files\\asignaturas\\Programacion C\\eb\\meme.jpg', 'Notas EB', 2),
-(4, 'files/asignaturas/Programacion C/epd/danksouls.jpeg', 'Notas EPD', 2);
 
 -- --------------------------------------------------------
 
@@ -200,14 +182,6 @@ CREATE TABLE `mensajes` (
   `remitenteId` int(11) NOT NULL,
   `destinatarioId` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish2_ci;
-
---
--- Volcado de datos para la tabla `mensajes`
---
-
-INSERT INTO `mensajes` (`idMensaje`, `contenido`, `fecha`, `remitenteId`, `destinatarioId`) VALUES
-(1, 'que pasa', '2018-05-08', 2, 1),
-(2, 'nadfa', '2018-05-15', 1, 2);
 
 -- --------------------------------------------------------
 
@@ -230,7 +204,7 @@ CREATE TABLE `profesores` (
 --
 
 INSERT INTO `profesores` (`idUsuario`, `username`, `horaTutoria`, `password`, `nombre`, `apellidos`, `foto`) VALUES
-(2, 'prof_mike', '08:50', 'hunt', 'Mike', 'Hunt', 'fghfghfgh');
+(2, 'prof_ricardo', '08:50', 'password', 'Ricardo', 'Talavera', 'files/images/fotos/usuarios/pic4.png');
 
 --
 -- Índices para tablas volcadas
