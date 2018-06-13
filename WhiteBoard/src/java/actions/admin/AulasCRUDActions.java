@@ -27,8 +27,8 @@ import model.dao.DAOImpl;
 public class AulasCRUDActions extends ActionSupport {
 
     List<Aulas> aulas;
-    List<Asignaturas>asignaturas;
-        private Integer aulaId;
+    List<Asignaturas> asignaturas;
+    private Integer aulaId;
 
     private int capacidad;
 
@@ -39,13 +39,14 @@ public class AulasCRUDActions extends ActionSupport {
     private String asignaturaSeleccionada;
 
     public AulasCRUDActions() {
-        
+
     }
 
     public String execute() throws Exception {
         throw new UnsupportedOperationException("Not supported yet.");
     }
-        public String crearAula() {
+
+    public String crearAula() {
         Aulas a = new Aulas();
         a.setAulaId(aulaId);
         a.setCapacidad(capacidad);
@@ -60,8 +61,6 @@ public class AulasCRUDActions extends ActionSupport {
         session.put("origin", "loadRooms");
         return SUCCESS;
     }
-
-
 
     public String editarAula() {
         Aulas a = new Aulas();
@@ -79,14 +78,12 @@ public class AulasCRUDActions extends ActionSupport {
     public String loadAulas() {
         // Las llamadas al webservice se hacen siempre a traves de DAOImpl
         aulas = DAOImpl.findAllAulas();
-        asignaturas=DAOImpl.findAllAsignaturas();
+        asignaturas = DAOImpl.findAllAsignaturas();
         return SUCCESS;
     }
-    
+
     //Metodos cruds aqui
-
     // Getter y setters aqui
-
     public List<Aulas> getAulas() {
         return aulas;
     }
@@ -134,5 +131,14 @@ public class AulasCRUDActions extends ActionSupport {
     public void setAsignaturas(List<Asignaturas> asignaturas) {
         this.asignaturas = asignaturas;
     }
+
+    public String getAsignaturaSeleccionada() {
+        return asignaturaSeleccionada;
+    }
+
+    public void setAsignaturaSeleccionada(String asignaturaSeleccionada) {
+        this.asignaturaSeleccionada = asignaturaSeleccionada;
+    }
+
     
 }

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE validators PUBLIC "-//Apache Struts//XWork Validator 1.0.3//EN" "http://struts.apache.org/dtds/xwork-validator-1.0.3.dtd">
+<validators> 
+    <field name="nombre">
+        <field-validator type="requiredstring">
+            <message key="campo.required" />
+        </field-validator>
+        <field-validator type="stringlength">
+            <param name="maxLength">32</param>
+            <param name="minLength">1</param>
+            <message>nombre.length</message>
+        </field-validator>
+    </field> 
+    <field name="apellidos">
+        <field-validator type="requiredstring">
+            <message key="campo.required" />
+        </field-validator>
+        <field-validator type="stringlength">
+            <param name="maxLength">32</param>
+            <param name="minLength">1</param>
+            <message>nombre.length</message>
+        </field-validator>
+    </field> 
+    <field name="username">
+        <field-validator type="requiredstring">
+            <message key="campo.required" />
+        </field-validator>
+        <field-validator type="stringlength">
+            <param name="maxLength">52</param>
+            <param name="minLength">1</param>
+            <message>username.length</message>
+        </field-validator>
+    </field> 
+    <field name="password">
+        <field-validator type="requiredstring">
+            <message key="campo.required" />
+        </field-validator>
+    </field> 
+    <field name="foto">
+        <field-validator type="requiredstring">
+            <message key="campo.required" />
+        </field-validator>
+    </field> 
+</validators>

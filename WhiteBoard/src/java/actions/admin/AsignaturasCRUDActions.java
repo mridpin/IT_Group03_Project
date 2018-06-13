@@ -33,7 +33,7 @@ import model.dao.DAOImpl;
 public class AsignaturasCRUDActions extends ActionSupport {
 
     List<Asignaturas> asignaturas;
-        private Integer asignaturaId;
+    private Integer asignaturaId;
 
     private double notaMinima;
 
@@ -89,13 +89,8 @@ public class AsignaturasCRUDActions extends ActionSupport {
         a.setSemestre(semestre);
         a.setNombre(nombre);
         a.setCurso(curso);
-        profesores = DAOImpl.findAllProfesores();
-        if (profesorSeleccionado != null) {
-            for(int i=0;i<profesores.size();i++){
-                if(profesores.get(i).getIdUsuario().equals(profesorSeleccionado))
-                    a.setProfesorId(profesores.get(i));
-            }
-        }
+        profesorId = DAOImpl.findProfesor(profesorSeleccionado);
+        a.setProfesorId(profesorId);
         DAOImpl.editarAsignatura(a);
         return SUCCESS;
     }
@@ -212,5 +207,6 @@ public class AsignaturasCRUDActions extends ActionSupport {
     public void setProfesores(List<Profesores> allProfesores) {
         this.profesores = allProfesores;
     }
+    
     
 }

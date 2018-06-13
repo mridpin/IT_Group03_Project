@@ -52,7 +52,7 @@
     <body>
         <s:include value="header.jsp"/>
         <s:include value="admin_nav.jsp"/>
-          <article class="w3-container w3-threequarter w3-right w3-mobile" style="margin-left:300px;margin-bottom:100px;">
+        <article class="w3-container w3-threequarter w3-right w3-mobile" style="margin-left:300px;margin-bottom:100px;">
             <div class="w3-grey w3-text-black w3-container w3-center">
                 <button class="w3-button w3-xlarge w3-hide-large w3-left" onclick="w3_open()">&#9776;</button>
                 <h2><strong>GESTI&Oacute;N DE AULAS</strong></h2>
@@ -66,7 +66,8 @@
                                 <th>ID - Aula</th>
                                 <th>Capacidad</th>
                                 <th>Localizaci&oacute;n</th>
-                                <th>ID - Asignatura</th>
+                                <th>Asignatura</th>
+                                <th>Opciones</th>
                             </tr>
                         </thead>
                         <s:iterator value="aulas" var="al">
@@ -74,7 +75,7 @@
                                 <td><s:property value="#al.aulaId"></s:property></td>
                                 <td><s:property value="#al.capacidad"></s:property></td>
                                 <td><s:property value="#al.localizacion"></s:property></td>
-                                <td><s:property value="#al.asignaturaId.getNombre"></s:property></td>
+                                <td><s:property value="#al.asignaturaId.nombre"></s:property></td>
                                     <td><a class="w3-button fa fa-remove w3-large w3-hover-red borrar_item"></a></td>
                                 </tr>
                         </s:iterator>
@@ -86,12 +87,12 @@
             </section>
             <section class="w3-container">
                 <h3>EDITAR o CREAR AULAS</h3>
-                    <s:form cssClass="w3-container" namespace="/admin">
+                <s:form cssClass="w3-container" namespace="/admin">
                     <s:textfield cssClass="w3-input" type="text" id="input_id" name="aulaId"  label="ID" readonly="true"></s:textfield>
-                    <s:textfield cssClass="w3-input" type="text" id="input_capacidad" name="capacidad" label="capacidad"></s:textfield>
+                    <s:textfield cssClass="w3-input" type="text" id="input_capacidad" name="capacidad" label="Capacidad"></s:textfield>
                     <s:textfield cssClass="w3-input" type="text" id="input_localizacion" name="localizacion" label="Localizacion"></s:textfield>
                     <%-- <s:textfield cssClass="w3-input" type="text" id="input_asignaturaId" name="asignaturaId" label="Id-Asignatura"></s:textfield>--%>
-                    <s:select cssClass="w3-input" id="input_asignaturaId" name="asignaturaSeleccionada" required="true" list="asignaturas" listValue="asignaturaId" listKey="asignaturaId"></s:select>
+                    <s:select cssClass="w3-input" id="input_asignaturaId" name="asignaturaSeleccionada" required="true" list="asignaturas" listValue="nombre" listKey="asignaturaId"></s:select>
                     <s:submit value="Crear Aula" action="crearAula" cssClass="w3-button" theme="simple"></s:submit>
                     <s:submit value="Editar Aula" action="editarAula" theme="simple" cssClass="w3-button"></s:submit>
                         <br/>

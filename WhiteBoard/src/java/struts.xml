@@ -198,12 +198,12 @@
             </result>
         </action>  
         
-        <action name="loadTeachers" class="actions.admin.ProfesoresCRUDActions" method="loadProfesores">
+        <action name="loadTeachers" class="actions.admin.CargarProfesoresAction" method="loadProfesores">
             <result name="success">/admin_profesores.jsp</result>
         </action>
         <action name="crearProfesor" class="actions.admin.ProfesoresCRUDActions" method="crearProfesor">
             <result name="success">/postredirectget.jsp</result>
-            <result name="input">/admin_profesor.jsp</result>
+            <result name="input">/admin_profesores.jsp</result>
         </action>
         <action name="editarProfesor" class="actions.admin.ProfesoresCRUDActions" method="editarProfesor">
             <result name="success" type="redirectAction">
@@ -211,7 +211,8 @@
                 <param name="namespace">/admin</param>
             </result>
             <result name="input">/admin_profesores.jsp</result>
-        </action>        
+        </action>  
+              
         <action name="loadCourses" class="actions.admin.AsignaturasCRUDActions" method="loadAsignaturas">
             <result name="success">/admin_asignaturas.jsp</result>
         </action>
@@ -226,6 +227,7 @@
             </result>
             <result name="input">/admin_profesores.jsp</result>
         </action> 
+        
         <action name="loadRooms" class="actions.admin.AulasCRUDActions" method="loadAulas">
             <result name="success">/admin_aulas.jsp</result>
         </action>

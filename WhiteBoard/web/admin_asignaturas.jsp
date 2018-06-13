@@ -70,14 +70,11 @@
                                 <th>ID - Asignatura</th>
                                 <th>Nombre</th>
                                 <th>Curso</th>
-                                <th>Semestre</th>
-                                
-                                
+                                <th>Semestre</th>   
                                 <th>Nota M&iacute;nima</th>
                                 <th>N&uacute;mero de alumnos</th>
                                 <th>Profesor</th>
-                                
-                                
+                                <th>Opciones</th>    
                             </tr>
                         </thead>
                         <s:iterator value="asignaturas" var="al">
@@ -88,7 +85,7 @@
                                 <td><s:property value="#al.semestre"></s:property></td>
                                 <td><s:property value="#al.notaMinima"></s:property></td>
                                 <td><s:property value="#al.nAlumnos"></s:property></td>
-                                <td><s:property value="#al.profesorId.getIdUsuario()"></s:property></td>
+                                <td><s:property value="#al.profesorId.nombre"></s:property> <s:property value="#al.profesorId.apellidos"></s:property></td>
                                     <td><a class="w3-button fa fa-remove w3-large w3-hover-red borrar_item"></a></td>
                                 </tr>
                         </s:iterator>
@@ -102,13 +99,13 @@
                 <h3>EDITAR o CREAR ASIGNATURAS</h3>
                     <s:form cssClass="w3-container" namespace="/admin">
                     <s:textfield cssClass="w3-input" type="text" id="input_id" name="asignaturaId"  label="ID" readonly="true"></s:textfield>
-                    <s:textfield cssClass="w3-input" type="text" id="input_nombre" name="nombre" label="nombre"></s:textfield>
-                    <s:textfield cssClass="w3-input" type="text" id="input_curso" name="curso" label="curso"></s:textfield>
-                    <s:textfield cssClass="w3-input" type="text" id="input_semestre" name="semestre" label="semestre"></s:textfield>
+                    <s:textfield cssClass="w3-input" type="text" id="input_nombre" name="nombre" label="Nombre"></s:textfield>
+                    <s:textfield cssClass="w3-input" type="text" id="input_curso" name="curso" label="Curso"></s:textfield>
+                    <s:textfield cssClass="w3-input" type="text" id="input_semestre" name="semestre" label="Semestre"></s:textfield>
                     <s:textfield cssClass="w3-input" type="text" id="input_notaMinima" name="notaMinima" label="Nota Minima"></s:textfield>
                     <s:textfield cssClass="w3-input" type="text" id="input_nAlumnos" name="nAlumnos" label="Numero de alumnos"></s:textfield>
                     <%-- <s:textfield cssClass="w3-input" type="text" id="input_asignaturaId" name="asignaturaId" label="Id-Asignatura"></s:textfield>--%>
-                    <s:select cssClass="w3-input" id="input_profesorId" name="profesorSeleccionado" required="true" list="profesores" listValue="idUsuario" listKey="idUsuario" label="Profesor"></s:select>
+                    <s:select cssClass="w3-input" id="input_profesorId" name="profesorSeleccionado" required="true" list="profesores" listValue="%{nombre+ ' ' + apellidos}" listKey="idUsuario" label="Profesor"></s:select>
                     <s:submit value="Crear Asignatura" action="crearAsignatura" cssClass="w3-button" theme="simple"></s:submit>
                     <s:submit value="Editar Asignatura" action="editarAsignatura" theme="simple" cssClass="w3-button"></s:submit>
                         <br/>

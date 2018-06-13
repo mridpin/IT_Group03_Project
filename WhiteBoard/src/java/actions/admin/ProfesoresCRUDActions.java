@@ -68,14 +68,6 @@ public class ProfesoresCRUDActions extends ActionSupport {
         DAOImpl.editarProfesor(al);
         return SUCCESS;
     }
-    public String loadProfesores() {
-        // Las llamadas al webservice se hacen siempre a traves de DAOImpl
-        profesores = DAOImpl.findAllProfesores();
-        return SUCCESS;
-    }
-
-    //Metodos cruds aqui
-    // Getter y setters aqui
 
     public List<Profesores> getProfesores() {
         return profesores;

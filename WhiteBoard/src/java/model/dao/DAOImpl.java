@@ -29,7 +29,7 @@ import model.dao.AlumnosJerseyClient;
  * @author ridao
  */
 public class DAOImpl {
-    
+
     public static String path = "/files/asignaturas/";
 
     public static Administradores findAdmin(String user, String password) {
@@ -80,21 +80,19 @@ public class DAOImpl {
         client.close();
         return null;
     }
-    
-    public static double calcularNota(Alumnos al)
-    {
+
+    public static double calcularNota(Alumnos al) {
         AlumnosJerseyClient client = new AlumnosJerseyClient();
         GenericType<List<Entrega>> genericType = new GenericType<List<Entrega>>() {
         };
-        List<Entrega> entregas = client.getEntregaAlumno_JSON(genericType,al.getIdUsuario().toString());
-        
-        double nota=0.0;
+        List<Entrega> entregas = client.getEntregaAlumno_JSON(genericType, al.getIdUsuario().toString());
 
-        for(Entrega e : entregas)
-        {
-            nota+=(e.getNota()*10)/e.getActividades().getNotaMax();
+        double nota = 0.0;
+
+        for (Entrega e : entregas) {
+            nota += (e.getNota() * 10) / e.getActividades().getNotaMax();
         }
-        
+
         return nota;
     }
 
@@ -123,7 +121,7 @@ public class DAOImpl {
 
         return alumnoJersey.findAsignaturas_XML(genericType, idUsuario);
     }
-    
+
     public static List<Asignaturas> findAsignaturasFromProfesor(String idUsuario) {
         ProfesoresJerseyClient alumnoJersey = new ProfesoresJerseyClient();
         GenericType<List<Asignaturas>> genericType = new GenericType<List<Asignaturas>>() {
@@ -160,9 +158,8 @@ public class DAOImpl {
         };
         return client.findByUserName_XML(genericType, destinatario);
     }
-    
-    public static List<Actividades> getProximasActividadesFromAsignatura(String id)
-    {
+
+    public static List<Actividades> getProximasActividadesFromAsignatura(String id) {
         ActividadesJerseyClient client = new ActividadesJerseyClient();
         GenericType<List<Actividades>> genericType = new GenericType<List<Actividades>>() {
         };
@@ -197,49 +194,43 @@ public class DAOImpl {
         return client.findAll_XML(genericType);
     }
 
-    public static Entrega getEntregaAlumnoActividad(String act, String al)
-    {
+    public static Entrega getEntregaAlumnoActividad(String act, String al) {
         AlumnosJerseyClient client = new AlumnosJerseyClient();
         GenericType<Entrega> genericType = new GenericType<Entrega>() {
         };
         return client.getEntregaAlumnoActividad_JSON(genericType, act, al);
-     
+
     }
-    
-    public static List<Entrega> getTodasEntregasActividad(String act)
-    {
+
+    public static List<Entrega> getTodasEntregasActividad(String act) {
         EntregasJerseyClient client = new EntregasJerseyClient();
         GenericType<List<Entrega>> genericType = new GenericType<List<Entrega>>() {
         };
         return client.entregasActividad_JSON(genericType, act);
     }
-    
-    public static Actividades findActividad(String id)
-    {
+
+    public static Actividades findActividad(String id) {
         ActividadesJerseyClient client = new ActividadesJerseyClient();
         GenericType<Actividades> genericType = new GenericType<Actividades>() {
         };
         return client.find_XML(genericType, id);
     }
-    
-    public static List<Actividades> findActividadesAsignatura(String id)
-    {
+
+    public static List<Actividades> findActividadesAsignatura(String id) {
         ActividadesJerseyClient client = new ActividadesJerseyClient();
         GenericType<List<Actividades>> genericType = new GenericType<List<Actividades>>() {
         };
         return client.actividadesFromAsignatura_JSON(genericType, id);
     }
-    
-    public static Material findMaterial(String id)
-    {
+
+    public static Material findMaterial(String id) {
         MaterialJerseyClient client = new MaterialJerseyClient();
         GenericType<Material> genericType = new GenericType<Material>() {
         };
         return client.find_JSON(genericType, id);
     }
-    
-    public static List<Alumnos> alumnosFromAsignatura(String asignaturaId)
-    {
+
+    public static List<Alumnos> alumnosFromAsignatura(String asignaturaId) {
         AsignaturasJerseyClient client = new AsignaturasJerseyClient();
         GenericType<List<Alumnos>> genericType = new GenericType<List<Alumnos>>() {
         };
@@ -251,81 +242,82 @@ public class DAOImpl {
         client.create_JSON(al);
         //client.close();
     }
-    
-    public static void modificarActividad(Actividades al)
-    {
+
+    public static void modificarActividad(Actividades al) {
         ActividadesJerseyClient client = new ActividadesJerseyClient();
-        client.edit_JSON(al,al.getActividadId().toString());
+        client.edit_JSON(al, al.getActividadId().toString());
         client.close();
     }
-    
+
     public static void crearActividad(Actividades al) {
         ActividadesJerseyClient client = new ActividadesJerseyClient();
         client.create_XML(al);
         //client.close();
     }
-    
+
     public static void crearMaterial(Material al) {
-       MaterialJerseyClient client = new MaterialJerseyClient();
+        MaterialJerseyClient client = new MaterialJerseyClient();
         client.create_JSON(al);
         //client.close();
     }
-    
+
     public static void deleteMaterial(String al) {
-       MaterialJerseyClient client = new MaterialJerseyClient();
+        MaterialJerseyClient client = new MaterialJerseyClient();
         client.remove(al);
         //client.close();
     }
-    
+
     public static void editMaterial(Material al) {
         MaterialJerseyClient client = new MaterialJerseyClient();
-        client.edit_JSON(al,al.getMaterialId().toString());
+        client.edit_JSON(al, al.getMaterialId().toString());
         client.close();
     }
-    
-    
+
     public static void editarAlumno(Alumnos al) {
         AlumnosJerseyClient client = new AlumnosJerseyClient();
         client.edit_JSON(al, al.getIdUsuario().toString());
         client.close();
     }
+
     public static void borrarAlumno(String desde, String hasta) {
         AlumnosJerseyClient client = new AlumnosJerseyClient();
         client.removeRange(desde, hasta);
         client.close();
     }
-    public static void crearProfesor(Profesores p){
+
+    public static void crearProfesor(Profesores p) {
         ProfesoresJerseyClient client = new ProfesoresJerseyClient();
         client.create_JSON(p);
         //client.close();
     }
+
     public static void editarProfesor(Profesores p) {
         ProfesoresJerseyClient client = new ProfesoresJerseyClient();
         client.edit_JSON(p, p.getIdUsuario().toString());
         client.close();
     }
-    public static void crearAula(Aulas a){
+
+    public static void crearAula(Aulas a) {
         AulasJerseyClient client = new AulasJerseyClient();
         client.create_JSON(a);
         //client.close();
     }
-    
-    public static void crearEntrega(Entrega a){
+
+    public static void crearEntrega(Entrega a) {
         EntregasJerseyClient client = new EntregasJerseyClient();
         client.create_JSON(a);
         //client.close();
     }
-    
+
     public static void editarAula(Aulas a) {
         AulasJerseyClient client = new AulasJerseyClient();
         client.edit_JSON(a, a.getAulaId().toString());
         client.close();
     }
-    
-    public static void modificarEntrega(Entrega a)
-    {
+
+    public static void modificarEntrega(Entrega a) {
         EntregasJerseyClient client = new EntregasJerseyClient();
-        client.edit_XML(a,a.getEntregaPK().toString());
+        client.edit_XML(a, a.getEntregaPK().toString());
         client.close();
     }
 
@@ -334,14 +326,23 @@ public class DAOImpl {
         client.matricular_JSON(a, al.getIdUsuario().toString());
         client.close();
     }
-    public static void crearAsignatura(Asignaturas a){
+
+    public static void crearAsignatura(Asignaturas a) {
         AsignaturasJerseyClient client = new AsignaturasJerseyClient();
         client.create_JSON(a);
         //client.close();
     }
+
     public static void editarAsignatura(Asignaturas a) {
         AsignaturasJerseyClient client = new AsignaturasJerseyClient();
         client.edit_JSON(a, a.getAsignaturaId().toString());
         client.close();
+    }
+
+    public static Profesores findProfesor(String id) {
+        ProfesoresJerseyClient client = new ProfesoresJerseyClient();
+        GenericType<Profesores> genericType = new GenericType<Profesores>() {
+        };
+        return client.find_JSON(genericType, id);
     }
 }
