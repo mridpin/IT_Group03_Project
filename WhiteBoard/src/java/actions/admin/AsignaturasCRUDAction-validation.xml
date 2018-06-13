@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE validators PUBLIC "-//Apache Struts//XWork Validator 1.0.3//EN" "http://struts.apache.org/dtds/xwork-validator-1.0.3.dtd">
+<validators> 
+    <field name="nombre">
+        <field-validator type="requiredstring">
+            <message key="campo.required" />
+        </field-validator>
+        <field-validator type="stringlength">
+            <param name="maxLength">32</param>
+            <param name="minLength">1</param>
+            <message>nombre.length</message>
+        </field-validator>
+    </field> 
+    <field name=" curso">
+        <field-validator type="requiredstring">
+            <message key="campo.required" />
+        </field-validator>
+    </field> 
+    <field name="semestre">
+        <field-validator type="requiredstring">
+            <message key="campo.required" />
+        </field-validator>
+    </field> 
+    <field name="notaMinima">
+        <field-validator type="requiredstring">
+            <message key="campo.required" />
+        </field-validator>
+        <field-validator type="double">
+            <param name="min">0.0</param>
+            <param name="max">10.0</param>
+            <message>nota.size</message>
+        </field-validator>
+    </field> 
+    <field name="nAlumnos">
+        <field-validator type="requiredstring">
+            <message key="campo.required" />
+        </field-validator>
+    </field> 
+</validators>

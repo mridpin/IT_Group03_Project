@@ -89,12 +89,7 @@ public class AsignaturasCRUDActions extends ActionSupport {
         DAOImpl.editarAsignatura(a);
         return SUCCESS;
     }
-    public String loadAsignaturas() {
-        // Las llamadas al webservice se hacen siempre a traves de DAOImpl
-        profesores = DAOImpl.findAllProfesores();
-        asignaturas = DAOImpl.findAllAsignaturas();
-        return SUCCESS;
-    }
+
 
     //Metodos cruds aqui
     // Getter y setters aqui

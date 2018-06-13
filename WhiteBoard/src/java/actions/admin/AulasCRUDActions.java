@@ -75,12 +75,6 @@ public class AulasCRUDActions extends ActionSupport {
         return SUCCESS;
     }
 
-    public String loadAulas() {
-        // Las llamadas al webservice se hacen siempre a traves de DAOImpl
-        aulas = DAOImpl.findAllAulas();
-        asignaturas = DAOImpl.findAllAsignaturas();
-        return SUCCESS;
-    }
 
     //Metodos cruds aqui
     // Getter y setters aqui
