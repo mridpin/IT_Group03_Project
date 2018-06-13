@@ -29,6 +29,7 @@ public class CargarProfesoresAction extends ActionSupport {
     public String loadProfesores() {
         // Las llamadas al webservice se hacen siempre a traves de DAOImpl
         profesores = DAOImpl.findAllProfesores();
+        
         return SUCCESS;
     }
 

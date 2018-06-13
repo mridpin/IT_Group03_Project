@@ -12,17 +12,17 @@
         </field-validator>
     </field> 
     <field name="curso">
-        <field-validator type="requiredstring">
+        <field-validator type="required">
             <message key="campo.required" />
         </field-validator>
     </field> 
     <field name="semestre">
-        <field-validator type="requiredstring">
+        <field-validator type="required">
             <message key="campo.required" />
         </field-validator>
     </field> 
     <field name="notaMinima">
-        <field-validator type="requiredstring">
+        <field-validator type="required">
             <message key="campo.required" />
         </field-validator>
         <field-validator type="double">
@@ -32,7 +32,7 @@
         </field-validator>
     </field> 
     <field name="nAlumnos">
-        <field-validator type="requiredstring">
+        <field-validator type="required">
             <message key="campo.required" />
         </field-validator>
     </field> 

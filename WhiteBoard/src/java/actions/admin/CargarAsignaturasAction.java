@@ -6,8 +6,10 @@
 package actions.admin;
 
 import static com.opensymphony.xwork2.Action.SUCCESS;
+import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import java.util.List;
+import java.util.Map;
 import model.POJOs.Asignaturas;
 import model.POJOs.Aulas;
 import model.POJOs.Profesores;
@@ -21,6 +23,7 @@ public class CargarAsignaturasAction extends ActionSupport {
 
     List<Profesores> profesores;
     List<Asignaturas> asignaturas;
+
     public CargarAsignaturasAction() {
     }
 
@@ -32,6 +35,8 @@ public class CargarAsignaturasAction extends ActionSupport {
         // Las llamadas al webservice se hacen siempre a traves de DAOImpl
         profesores = DAOImpl.findAllProfesores();
         asignaturas = DAOImpl.findAllAsignaturas();
+        Map session = (Map) ActionContext.getContext().get("session");
+        session.put("profesores", profesores);
         return SUCCESS;
     }
 
@@ -50,7 +55,5 @@ public class CargarAsignaturasAction extends ActionSupport {
     public void setAsignaturas(List<Asignaturas> asignaturas) {
         this.asignaturas = asignaturas;
     }
-    
-
 
 }

@@ -51,6 +51,8 @@ public class CargarBorrarAlumnosAction extends ActionSupport {
         for (Asignaturas a : asignaturas) {
             nombreAsignaturas.add(a.getNombre());
         }
+        Map session = (Map) ActionContext.getContext().get("session");
+        session.put("asignaturas", nombreAsignaturas);
         return SUCCESS;
     }
 

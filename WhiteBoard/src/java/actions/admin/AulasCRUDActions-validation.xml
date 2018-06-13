@@ -2,7 +2,7 @@
 <!DOCTYPE validators PUBLIC "-//Apache Struts//XWork Validator 1.0.3//EN" "http://struts.apache.org/dtds/xwork-validator-1.0.3.dtd">
 <validators> 
     <field name="capacidad">
-        <field-validator type="requiredstring">
+        <field-validator type="required">
             <message key="campo.required" />
         </field-validator>
     </field> 

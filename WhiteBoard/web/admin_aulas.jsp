@@ -92,7 +92,7 @@
                     <s:textfield cssClass="w3-input" type="text" id="input_capacidad" name="capacidad" label="Capacidad"></s:textfield>
                     <s:textfield cssClass="w3-input" type="text" id="input_localizacion" name="localizacion" label="Localizacion"></s:textfield>
                     <%-- <s:textfield cssClass="w3-input" type="text" id="input_asignaturaId" name="asignaturaId" label="Id-Asignatura"></s:textfield>--%>
-                    <s:select cssClass="w3-input" id="input_asignaturaId" name="asignaturaSeleccionada" required="true" list="asignaturas" listValue="nombre" listKey="asignaturaId"></s:select>
+                    <s:select cssClass="w3-input" id="input_asignaturaId" name="asignaturaSeleccionada" required="true" list="#session.asignaturas" listValue="nombre" listKey="asignaturaId"></s:select>
                     <s:submit value="Crear Aula" action="crearAula" cssClass="w3-button" theme="simple"></s:submit>
                     <s:submit value="Editar Aula" action="editarAula" theme="simple" cssClass="w3-button"></s:submit>
                         <br/>

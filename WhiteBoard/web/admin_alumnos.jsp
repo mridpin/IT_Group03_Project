@@ -118,12 +118,7 @@
                 <h3>CREAR ALUMNOS MEDIANTE FICHERO CSV</h3>
                 <s:form action="crearAlumnosFichero" method="post" enctype="multipart/form-data">
                     <s:file cssClass="w3-button" name="fichero" label="Fichero CSV"/>
-                    <%--<s:iterator value="asignaturas" var="asg">--%>
-                        <%--<s:property value="#asg.nombre"></s:property>--%>
-                        <%--<s:checkbox name="checkboxes" label="%{#asg.nombre}" cssClass="w3-check"></s:checkbox>--%>
-                        <%--<s:hidden name="hiddenAsignaturas" value="%{#asg.asignaturaId}"></s:hidden>--%>
-                    <%--</s:iterator>--%>
-                    <s:checkboxlist label="Asignaturas" list="nombreAsignaturas" name="checkboxes" requiredLabel="true"></s:checkboxlist>
+                    <s:checkboxlist label="Asignaturas" list="#session.asignaturas" name="checkboxes" requiredLabel="true"></s:checkboxlist>
                     <s:submit value="Crear Alumnos" cssClass="w3-button"/>
                 </s:form>
                 <div class="w3-container">                    
