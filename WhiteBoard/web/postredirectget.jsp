@@ -19,7 +19,6 @@
     </head>
 
     <body class="w3-green">
-        <s:include value="header_login.jsp"/>
         <section class="w3-mobile w3-card-4 w3-round-medium w3-white w3-half w3-display-middle">
             <h2 class="w3-center">Operaci&oacute;n completada con &eacute;xito!</h2>
             <form method="get" action="<s:property value="#session.origin"></s:property>" class="w3-center">

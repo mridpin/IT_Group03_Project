@@ -100,7 +100,6 @@
                 </s:form>
             </section>
         </article>
-        <s:include value="footer.jsp"/>
         <script>
             function w3_open() {
                 document.getElementById("nav").style.display = "block";

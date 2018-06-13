@@ -26,5 +26,25 @@
                 </s:form>
             </div>
         </div>
+
+        <footer class="w3-margin-top w3-container w3-blue-grey w3-center w3-bottom" style='clear: both; height: 60px'>                 
+            <ul class="w3-bar">
+                <li class="w3-bar-item">
+                    <em class="w3-large">&copy;WhiteBoard</em>
+                </li>
+                <li class="w3-bar-item">
+                    Grupo 03:
+                </li>
+                <li class="w3-bar-item">
+                    Manuel Ridao Pineda
+                </li>
+                <li class="w3-bar-item">
+                    V&iacute;ctor Martinelli Rodr&iacute;guez
+                </li>
+                <li class="w3-bar-item">
+                    Pablo Oliva Navea
+                </li>
+            </ul>
+        </footer>
     </body>
 </html>
