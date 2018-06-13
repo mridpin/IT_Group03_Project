@@ -83,7 +83,7 @@ public class ActividadActions extends ActionSupport {
             if (notaFinal > 0) {
 
                 //Fecha is valid
-                if (fechaActividad.matches("^\\d{4}[\\-\\/\\s]?((((0[13578])|(1[02]))[\\-\\/\\s]?(([0-2][0-9])|(3[01])))|(((0[469])|(11))[\\-\\/\\s]?(([0-2][0-9])|(30)))|(02[\\-\\/\\s]?[0-2][0-9]))$")) {
+                if (fechaActividad.matches("^\\d{4}[\\-\\/\\s]?((((0[13578])|(1[02]))[\\-\\/\\s]?(([0-2][0-9])|(3[01])))|(((0[469])|(11))[\\-\\/\\s]?(([0-2][0-9])|(30)))|(02[\\-\\/\\s]?[0-2][0-9]))$") && fechaActividad.matches("/(.*-){3}/i")) {
 
                     //Nombre Actividad is required
                     if (nombreActividad != null && !nombreActividad.equals("")) {
@@ -104,7 +104,7 @@ public class ActividadActions extends ActionSupport {
 
                             newActividad.setAsignaturaId(asignatura);
                             newActividad.setNombre(nombreActividad);
-                            newActividad.setFechaFin(new SimpleDateFormat("YYYY/MM/dd").parse(fechaActividad));
+                            newActividad.setFechaFin(new SimpleDateFormat("yyyy-mm-dd").parse(fechaActividad));
                             newActividad.setNotaMax(Double.parseDouble(notaActividad));
                             newActividad.setTipo(tipoActividad);
                             newActividad.setProfesorId((Profesores) profesor);
@@ -192,7 +192,7 @@ public class ActividadActions extends ActionSupport {
             if (notaFinal > 0) {
 
                 //Fecha is valid
-                if (fechaActividad.matches("^\\d{4}[\\-\\/\\s]?((((0[13578])|(1[02]))[\\-\\/\\s]?(([0-2][0-9])|(3[01])))|(((0[469])|(11))[\\-\\/\\s]?(([0-2][0-9])|(30)))|(02[\\-\\/\\s]?[0-2][0-9]))$")) {
+                if (fechaActividad.matches("^\\d{4}[\\-\\/\\s]?((((0[13578])|(1[02]))[\\-\\/\\s]?(([0-2][0-9])|(3[01])))|(((0[469])|(11))[\\-\\/\\s]?(([0-2][0-9])|(30)))|(02[\\-\\/\\s]?[0-2][0-9]))$") && fechaActividad.matches("/(.*-){3}/i")) {
 
                     //Nombre Actividad is required
                     if (nombreActividad != null && !nombreActividad.equals("")) {
@@ -216,7 +216,7 @@ public class ActividadActions extends ActionSupport {
 
                             newActividad.setAsignaturaId(asignatura);
                             newActividad.setNombre(nombreActividad);
-                            newActividad.setFechaFin(new SimpleDateFormat("YYYY/MM/dd").parse(fechaActividad));
+                            newActividad.setFechaFin(new SimpleDateFormat("yyyy-mm-dd").parse(fechaActividad));
                             newActividad.setNotaMax(Double.parseDouble(notaActividad));
                             newActividad.setTipo(tipoActividad);
                             newActividad.setProfesorId((Profesores) profesor);

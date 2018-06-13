@@ -94,7 +94,7 @@
                             <s:textfield name="nombreActividad" id="nombreActividad" label="Nombre de la Actividad" cssClass="w3-input w3-border w3-round"/>
                             <s:textfield name="notaActividad" id="notaActividad" label="Nota Máxima de la Actividad - (Formato x.x)" cssClass="w3-input w3-border w3-round"/>
                             <s:textfield name="tipoActividad" id="tipoActividad" label="Tipo de Actividad" cssClass="w3-input w3-border w3-round"/>
-                            <s:textfield name="fechaActividad" id="fechaActividad" label="Fecha Máxima de entrega de la Actividad - (Formato yyyy/mm/dd)" cssClass="w3-input w3-border w3-round"/>
+                            <s:textfield name="fechaActividad" id="fechaActividad" label="Fecha Máxima de entrega de la Actividad - (Formato yyyy-mm-dd)" cssClass="w3-input w3-border w3-round"/>
                             <s:submit name="Subir Actividad" value="Subir Actividad" id="Subir Actividad" cssClass="w3-button w3-border"/>
                         </s:form>
                     </div>
