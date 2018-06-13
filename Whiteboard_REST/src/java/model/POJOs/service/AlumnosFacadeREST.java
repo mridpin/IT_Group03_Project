@@ -95,6 +95,7 @@ public class AlumnosFacadeREST extends AbstractFacade<Alumnos> {
     @Path("getEntregaAlumnoActividad/{idact}/{idal}")
     @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
     public Entrega getEntregaAlumnoActividad(@PathParam("idact") Integer idact,@PathParam("idal") Integer idal) {
+        
         if(this.find(idal)!=null)
         {
             
@@ -115,7 +116,7 @@ public class AlumnosFacadeREST extends AbstractFacade<Alumnos> {
     @Path("getEntregaAlumno/{idal}")
     @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
     public List<Entrega> getEntregaAlumno(@PathParam("idal") Integer idal) {
-        return (List<Entrega>) this.find(idal).getEntregaCollection();      
+        return em.createQuery("SELECT e FROM Entrega e WHERE e.alumnos.idUsuario = "+idal).getResultList();
     }
 
     @GET

@@ -104,7 +104,7 @@ public class ActividadActions extends ActionSupport {
 
                             newActividad.setAsignaturaId(asignatura);
                             newActividad.setNombre(nombreActividad);
-                            newActividad.setFechaFin(new SimpleDateFormat("YYYY-MM-dd").parse(fechaActividad));
+                            newActividad.setFechaFin(new SimpleDateFormat("YYYY/MM/dd").parse(fechaActividad));
                             newActividad.setNotaMax(Double.parseDouble(notaActividad));
                             newActividad.setTipo(tipoActividad);
                             newActividad.setProfesorId((Profesores) profesor);
@@ -216,7 +216,7 @@ public class ActividadActions extends ActionSupport {
 
                             newActividad.setAsignaturaId(asignatura);
                             newActividad.setNombre(nombreActividad);
-                            newActividad.setFechaFin(new SimpleDateFormat("YYYY-MM-dd").parse(fechaActividad));
+                            newActividad.setFechaFin(new SimpleDateFormat("YYYY/MM/dd").parse(fechaActividad));
                             newActividad.setNotaMax(Double.parseDouble(notaActividad));
                             newActividad.setTipo(tipoActividad);
                             newActividad.setProfesorId((Profesores) profesor);

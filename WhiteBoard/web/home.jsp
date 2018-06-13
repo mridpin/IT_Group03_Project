@@ -25,7 +25,7 @@
                     <ul class="w3-ul">
                         <li><u>Descargar el material de sus asignaturas</u></li>
                         <li><u>Realizar entregas de las actividades de sus asignaturas</u></li>
-                        <li><u>Contactar sus compa&ntilde;eros</u></li>
+                        <li><u>Contactar con sus compa&ntilde;eros</u></li>
                     </ul>
                     <p>Para comenzar, haga <u>click</u> en una de las asignaturas que tiene asignadas en la lista de la izquierda</p>
                 </div>
