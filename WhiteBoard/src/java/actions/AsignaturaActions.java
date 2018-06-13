@@ -49,7 +49,7 @@ public class AsignaturaActions extends ActionSupport {
         
         this.setProfesor(asignatura.getProfesorId());
         
-        currentActividades = getProximasActividadesFromAsignatura(asignaturaId.toString());
+        currentActividades = getActividadesFromAsignatura(asignaturaId.toString());
         
         Usuario usuario = (Usuario) session.get("usuario");
         

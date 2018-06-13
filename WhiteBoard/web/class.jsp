@@ -131,7 +131,7 @@
      
             </div>
 
-            <h3 class="w3-container w3-center w3-"><u>Pr&oacute;ximas Tareas</u></h3>
+            <h3 class="w3-container w3-center w3-"><u>Tareas de la asignatura</u></h3>
 
             <div class="w3-container">
                 <ul class="w3-ul w3-card-4">
