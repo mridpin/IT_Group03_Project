@@ -39,15 +39,19 @@
                                     <button class="fa fa-download w3-button">Descargar Entrega</button>
                                 </a>
                             </h4>
-                            <div class="w3-bar-item">
+
+                                 
+
+                                <div class="w3-bar-item">
+
+                                    <s:form namespace="/entregas" action="calificarEntrega">
+                                        <s:hidden name="alumnoId" value="%{#entrega.alumnos.idUsuario}"/>
+                                        <s:hidden name="actividadId" value="%{#session.currentActividad.actividadId}"/>
+                                        <s:textfield name="nota" id="nota" label="Calificación"/>
+                                        <s:submit name="Calificar" value="Calificar" id="Calificar"/>
+                                    </s:form>
+                                </div>
                                 
-                                <s:form namespace="/entregas" action="calificarEntrega">
-                                    <s:hidden name="alumnoId" value="%{#entrega.alumnos.idUsuario}"/>
-                                    <s:hidden name="actividadId" value="%{#session.currentActividad.actividadId}"/>
-                                    <s:textfield name="nota" id="nota" label="Calificación"/>
-                                    <s:submit name="Calificar" value="Calificar" id="Calificar"/>
-                                </s:form>
-                            </div>
                         </li>
                     </s:iterator>
                 </ul>

@@ -165,6 +165,13 @@ public class DAOImpl {
         };
         return client.proximasActividadesFromAsignatura_XML(genericType, id);
     }
+    
+    public static List<Actividades> getActividadesFromAsignatura(String id) {
+        ActividadesJerseyClient client = new ActividadesJerseyClient();
+        GenericType<List<Actividades>> genericType = new GenericType<List<Actividades>>() {
+        };
+        return client.actividadesFromAsignatura_JSON(genericType, id);
+    }
 
     public static List<Alumnos> findAllStudents() {
         AlumnosJerseyClient client = new AlumnosJerseyClient();

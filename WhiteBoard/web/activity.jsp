@@ -38,11 +38,18 @@
 
                     <s:if test="%{entrega==null}">
 
-                        <s:form namespace="/entregas" action="realizarEntrega" method="post" enctype="multipart/form-data">
-                            <s:hidden name="actividadId" value="%{current.actividadId}"/>
-                            <s:file cssClass="w3-button" name="file" label="Archivo para entregar"/>
-                            <s:submit value="Entregar" cssClass="w3-button w3-green"/>
-                        </s:form>
+                        <s:if test="pasada=='NO'">   
+
+                            <s:form namespace="/entregas" action="realizarEntrega" method="post" enctype="multipart/form-data">
+                                <s:hidden name="actividadId" value="%{current.actividadId}"/>
+                                <s:file cssClass="w3-button" name="file" label="Archivo para entregar"/>
+                                <s:submit value="Entregar" cssClass="w3-button w3-green"/>
+                            </s:form>
+
+                        </s:if>
+                        <s:else>
+                            <h4 class="w3-center w3-red">La actividad ha vencido</h4>
+                        </s:else>
 
                     </s:if>
                     <s:else>
@@ -76,8 +83,8 @@
                             <h5 class="w3-padding-16 w3-green">Nota M&aacute;xima: <s:property  value="%{#actividad.notaMax}"/></h5>  
                         </div>
 
-<hr>
-                        
+                        <hr>
+
                     </s:iterator>
 
                     <h4 class="w3-center">Subida de nueva Actividad</h4>
@@ -91,23 +98,23 @@
                             <s:submit name="Subir Actividad" value="Subir Actividad" id="Subir Actividad" cssClass="w3-button w3-border"/>
                         </s:form>
                     </div>
-                    
+
                     <hr>
-                    
+
                     <h4 class="w3-center">Modificar Actividad</h4>
-                     <div class="w3-container w3-row">
-                                <s:form namespace="/actividades" action="editarActividad">
-                                    <s:hidden name="actividadId" value="%{#actividad.actividadId}"/>
-                                    <s:hidden name="asignaturaId" value="%{#session.asignatura.asignaturaId}"/>
-                                    <s:textfield name="nombreActividad" id="nombreActividad" label="Nuevo nombre de la Actividad" cssClass="w3-input w3-border w3-round"/>
-                                    <s:textfield name="tipoActividad" id="tipoActividad" label="Nuevo tipo de la Actividad" cssClass="w3-input w3-border w3-round"/>
-                                    <s:textfield name="fechaActividad" id="fechaActividad" label="Nueva fecha de la Actividad" cssClass="w3-input w3-border w3-round"/>
-                                    <s:textfield name="notaActividad" id="notaActividad" label="Nueva nota máxima de la Actividad" cssClass="w3-input w3-border w3-round"/>
-                                    <s:submit name=""  value="Editar Actividad" cssClass="w3-button w3-yellow"/>  <br>
-                                    
-                                </s:form>
-                            </div>
-                    
+                    <div class="w3-container w3-row">
+                        <s:form namespace="/actividades" action="editarActividad">
+                            <s:hidden name="actividadId" value="%{#actividad.actividadId}"/>
+                            <s:hidden name="asignaturaId" value="%{#session.asignatura.asignaturaId}"/>
+                            <s:textfield name="nombreActividad" id="nombreActividad" label="Nuevo nombre de la Actividad" cssClass="w3-input w3-border w3-round"/>
+                            <s:textfield name="tipoActividad" id="tipoActividad" label="Nuevo tipo de la Actividad" cssClass="w3-input w3-border w3-round"/>
+                            <s:textfield name="fechaActividad" id="fechaActividad" label="Nueva fecha de la Actividad" cssClass="w3-input w3-border w3-round"/>
+                            <s:textfield name="notaActividad" id="notaActividad" label="Nueva nota máxima de la Actividad" cssClass="w3-input w3-border w3-round"/>
+                            <s:submit name=""  value="Editar Actividad" cssClass="w3-button w3-yellow"/>  <br>
+
+                        </s:form>
+                    </div>
+
 
                 </s:else>
 

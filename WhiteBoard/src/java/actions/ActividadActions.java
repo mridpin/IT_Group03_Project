@@ -45,6 +45,8 @@ public class ActividadActions extends ActionSupport {
     private String nombreActividad;
 
     private String fechaActividad;
+    
+    private String pasada;
 
     public ActividadActions() {
     }
@@ -56,6 +58,15 @@ public class ActividadActions extends ActionSupport {
         current = findActividad(actividadId);
 
         entrega = getEntregaAlumnoActividad(current.getActividadId().toString(), alumno.getIdUsuario().toString());
+        
+        if(current.getFechaFin().before(new Date()))
+        {
+            pasada="SI";
+        }
+        else
+        {
+            pasada="NO";
+        }
 
         return SUCCESS;
     }
@@ -287,4 +298,14 @@ public class ActividadActions extends ActionSupport {
         this.tipoActividad = tipoActividad;
     }
 
+    public String getPasada() {
+        return pasada;
+    }
+
+    public void setPasada(String pasada) {
+        this.pasada = pasada;
+    }
+
+    
+    
 }
