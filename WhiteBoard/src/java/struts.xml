@@ -54,12 +54,15 @@
         <!--
         TODO: El logout siempre da un input, asi que lo he reenvio al principio
         -->
-        <action name="logout" class="actions.LoginAction" method="logout">
-            <result name="success">/login.jsp</result>
-            <result name="input" type="chain">
+        <action name="logout" class="actions.LogoutAction" method="logout">
+            <result name="success" type="redirectAction">
                 <param name="actionName">index</param> 
                 <param name="namespace">/index</param>
             </result>
+<!--            <result name="input" type="chain">
+                <param name="actionName">index</param> 
+                <param name="namespace">/index</param>
+            </result>-->
             <result name="error">/error.jsp</result>            
         </action>
         

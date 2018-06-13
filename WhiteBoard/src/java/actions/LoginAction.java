@@ -53,20 +53,6 @@ public class LoginAction extends ActionSupport {
         }
         return res;
     }
-//            Alumnos current = login(user, password);
-//            if (current != null) {
-//                Map session = (Map) ActionContext.getContext().get("session");
-//                session.put("usuario", current);
-//                return SUCCESS;
-//            } else {
-//                //This has to be done here because the invalid login case doesn't have a validation
-//                addFieldError("user", getText("login.error"));
-//                return INPUT;
-//            }
-//        } else {
-//            return INPUT;
-//        }
-//    }
 
     public String getUser() {
         return user;
@@ -85,9 +71,6 @@ public class LoginAction extends ActionSupport {
     }
 
     private Usuario login(java.lang.String user, java.lang.String pass) {
-//        model.DAO_Service service = new model.DAO_Service();
-//        model.DAO port = service.getDAOPort();
-//        return port.login(user, pass);
         if (user.startsWith("alu")) {
             return DAOImpl.findStudent(user, password);
         } else if (user.startsWith("prof")) {
@@ -97,10 +80,10 @@ public class LoginAction extends ActionSupport {
         }
     }
 
-    public String logout() {
-        Map session = (Map) ActionContext.getContext().get("session");
-        session.put("usuario", null);
-        return SUCCESS;
-    }
+//    public String logout() {
+//        Map session = (Map) ActionContext.getContext().get("session");
+//        session.put("usuario", null);
+//        return SUCCESS;
+//    }
 
 }

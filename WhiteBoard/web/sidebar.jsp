@@ -14,7 +14,7 @@
                 <strong><s:submit cssClass="w3-bar-item w3-button" value="Mensajes" cssStyle="width:100%;"></s:submit></strong>
             </s:form>
             <s:form action="logout" namespace="/login">
-                <s:submit cssClass="w3-button w3-bar-item w3-hover-grey"  name="logout" value="Cerrar sesión" cssStyle="width:100%;"/>
+                <s:submit cssClass="w3-button w3-bar-item w3-hover-grey" name="logout" value="Cerrar sesión" cssStyle="width:100%;"/>
             </s:form>
         </div>
     </div>
