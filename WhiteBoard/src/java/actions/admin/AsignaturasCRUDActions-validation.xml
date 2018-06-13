@@ -8,7 +8,7 @@
         <field-validator type="stringlength">
             <param name="maxLength">32</param>
             <param name="minLength">1</param>
-            <message>nombre.length</message>
+            <message key="nombre.length"></message>
         </field-validator>
     </field> 
     <field name="curso">
@@ -28,12 +28,17 @@
         <field-validator type="double">
             <param name="min">0.0</param>
             <param name="max">10.0</param>
-            <message>nota.size</message>
+            <message key="nota.size"></message>
         </field-validator>
     </field> 
-    <field name="nAlumnos">
+    <field name="numAlumnos">
         <field-validator type="required">
             <message key="campo.required" />
+        </field-validator>
+        <field-validator type="int">
+            <param name="min">0</param>
+            <param name="max">100</param>
+            <message key="nAlumnos.range"></message>
         </field-validator>
     </field> 
 </validators>

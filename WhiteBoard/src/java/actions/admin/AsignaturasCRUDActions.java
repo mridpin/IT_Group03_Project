@@ -36,7 +36,7 @@ public class AsignaturasCRUDActions extends ActionSupport {
     private Integer asignaturaId;
     private double notaMinima;
 
-    private int nAlumnos;
+    private Integer numAlumnos;
 
     private String semestre;
 
@@ -59,7 +59,7 @@ public class AsignaturasCRUDActions extends ActionSupport {
         Asignaturas a = new Asignaturas();
         a.setAsignaturaId(asignaturaId);
         a.setNotaMinima(notaMinima);
-        a.setNAlumnos(nAlumnos);
+        a.setNAlumnos(numAlumnos);
         a.setSemestre(semestre);
         a.setNombre(nombre);
         a.setCurso(curso);
@@ -76,7 +76,7 @@ public class AsignaturasCRUDActions extends ActionSupport {
         Asignaturas a = new Asignaturas();
         a.setAsignaturaId(asignaturaId);
         a.setNotaMinima(notaMinima);
-        a.setNAlumnos(nAlumnos);
+        a.setNAlumnos(numAlumnos);
         a.setSemestre(semestre);
         a.setNombre(nombre);
         a.setCurso(curso);
@@ -114,12 +114,12 @@ public class AsignaturasCRUDActions extends ActionSupport {
         this.notaMinima = notaMinima;
     }
 
-    public int getnAlumnos() {
-        return nAlumnos;
+    public Integer getNumAlumnos() {
+        return numAlumnos;
     }
 
-    public void setnAlumnos(int nAlumnos) {
-        this.nAlumnos = nAlumnos;
+    public void setNumAlumnos(Integer numAlumnos) {
+        this.numAlumnos = numAlumnos;
     }
 
     public String getSemestre() {

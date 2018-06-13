@@ -103,7 +103,7 @@
                     <s:textfield cssClass="w3-input" type="text" id="input_curso" name="curso" label="Curso"></s:textfield>
                     <s:textfield cssClass="w3-input" type="text" id="input_semestre" name="semestre" label="Semestre"></s:textfield>
                     <s:textfield cssClass="w3-input" type="text" id="input_notaMinima" name="notaMinima" label="Nota Minima"></s:textfield>
-                    <s:textfield cssClass="w3-input" type="text" id="input_nAlumnos" name="nAlumnos" label="Numero de alumnos"></s:textfield>
+                    <s:textfield cssClass="w3-input" type="text" id="input_nAlumnos" name="numAlumnos" label="Numero de alumnos"></s:textfield>
                     <%-- <s:textfield cssClass="w3-input" type="text" id="input_asignaturaId" name="asignaturaId" label="Id-Asignatura"></s:textfield>--%>
                     <s:select cssClass="w3-input" id="input_profesorId" name="profesorSeleccionado" required="true" list="#session.profesores" listValue="%{nombre+ ' ' + apellidos}" listKey="idUsuario" label="Profesor"></s:select>
                     <s:submit value="Crear Asignatura" action="crearAsignatura" cssClass="w3-button" theme="simple"></s:submit>
