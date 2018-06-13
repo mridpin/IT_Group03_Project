@@ -41,4 +41,13 @@
             <message key="campo.required" />
         </field-validator>
     </field> 
+    <field name="horaTutoria">
+        <field-validator type="requiredstring">
+            <message key="campo.required" />
+        </field-validator>
+        <field-validator type="regex">
+            <param name="regex">$([01]?[0-9]|2[0-3]):[0-5][0-9]^</param> 
+            <message key="hora.format" />
+        </field-validator>
+    </field> 
 </validators>
