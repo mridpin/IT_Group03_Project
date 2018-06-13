@@ -26,7 +26,20 @@
                 <h6 class="w3-text-grey w3-padding-16"><i class="fa fa-graduation-cap fa-fw w3-margin-right w3-xxlarge w3-text-teal"></i>Profesor de la asignatura: <s:property value="profesor.nombre"/> <s:property value="profesor.apellidos"/></h6>
                 <br>
                 <u class=" w3-padding-left">Hora de tutor&iacute;a: <s:property value="profesor.horaTutoria"/></u>
-
+                <br>
+                <h6 class="w3-padding-16">Nota M&iacute;nima de la asignatura: <i class="w3-green"><s:property value="#session.asignatura.getNotaMinima()"/></i></h6>
+                
+                <s:if test="%{#session.usuario.tipo()=='Alumno'}"> 
+                    
+                    <s:if test="%{nota>#session.asignatura.notaMinima/2}">
+                        <h6 class="w3-padding-16 w3-green">Nota Actual: <i><s:property value="nota"/></i></h6>
+                    </s:if>
+                    <s:else>
+                        <h6 class="w3-padding-16 w3-red">Nota Actual: <i><s:property value="nota"/></i></h6>
+                    </s:else>
+                    
+                </s:if>
+                
             </header>
 
 

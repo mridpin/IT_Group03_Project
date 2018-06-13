@@ -103,6 +103,13 @@ public class AlumnosFacadeREST extends AbstractFacade<Alumnos> {
         }
         return null;
     }
+    
+    @GET
+    @Path("getEntregaAlumno/{idal}")
+    @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
+    public List<Entrega> getEntregaAlumno(@PathParam("idal") Integer idal) {
+        return (List<Entrega>) this.find(idal).getEntregaCollection();      
+    }
 
     @GET
     @Path("{id}/getAsignaturas")

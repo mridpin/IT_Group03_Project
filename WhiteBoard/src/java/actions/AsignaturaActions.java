@@ -14,6 +14,7 @@ import model.POJOs.Actividades;
 import model.POJOs.Alumnos;
 import model.POJOs.Asignaturas; 
 import model.POJOs.Profesores;
+import model.POJOs.Usuario;
 import model.dao.AsignaturasJerseyClient;
 import static model.dao.DAOImpl.*;
 
@@ -33,6 +34,8 @@ public class AsignaturaActions extends ActionSupport {
     
     private List<Actividades> currentActividades;
     
+    private double nota;
+    
     public AsignaturaActions() {
     }
     
@@ -47,6 +50,13 @@ public class AsignaturaActions extends ActionSupport {
         this.setProfesor(asignatura.getProfesorId());
         
         currentActividades = getProximasActividadesFromAsignatura(asignaturaId.toString());
+        
+        Usuario usuario = (Usuario) session.get("usuario");
+        
+        if(usuario.tipo().equals("Alumno"))
+        {      
+           nota = calcularNota((Alumnos) usuario);
+        }
         
         return "success";
     }
@@ -87,6 +97,14 @@ public class AsignaturaActions extends ActionSupport {
 
     public void setCurrentActividades(List<Actividades> currentActiviades) {
         this.currentActividades = currentActiviades;
+    }
+
+    public double getNota() {
+        return nota;
+    }
+
+    public void setNota(double nota) {
+        this.nota = nota;
     }
     
     

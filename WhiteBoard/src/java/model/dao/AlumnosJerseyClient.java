@@ -21,7 +21,7 @@ import javax.ws.rs.core.GenericType;
  *        client.close();
  * </pre>
  *
- * @author ridao
+ * @author Portatil
  */
 public class AlumnosJerseyClient {
 
@@ -32,6 +32,18 @@ public class AlumnosJerseyClient {
     public AlumnosJerseyClient() {
         client = javax.ws.rs.client.ClientBuilder.newClient();
         webTarget = client.target(BASE_URI).path("model.pojos.alumnos");
+    }
+
+    public <T> T getEntregaAlumno_XML(GenericType<T> responseType, String idal) throws ClientErrorException {
+        WebTarget resource = webTarget;
+        resource = resource.path(java.text.MessageFormat.format("getEntregaAlumno/{0}", new Object[]{idal}));
+        return resource.request(javax.ws.rs.core.MediaType.APPLICATION_XML).get(responseType);
+    }
+
+    public <T> T getEntregaAlumno_JSON(GenericType<T> responseType, String idal) throws ClientErrorException {
+        WebTarget resource = webTarget;
+        resource = resource.path(java.text.MessageFormat.format("getEntregaAlumno/{0}", new Object[]{idal}));
+        return resource.request(javax.ws.rs.core.MediaType.APPLICATION_JSON).get(responseType);
     }
 
     public void edit_XML(Object requestEntity, String id) throws ClientErrorException {

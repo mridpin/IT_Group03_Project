@@ -80,6 +80,23 @@ public class DAOImpl {
         client.close();
         return null;
     }
+    
+    public static double calcularNota(Alumnos al)
+    {
+        AlumnosJerseyClient client = new AlumnosJerseyClient();
+        GenericType<List<Entrega>> genericType = new GenericType<List<Entrega>>() {
+        };
+        List<Entrega> entregas = client.getEntregaAlumno_JSON(genericType,al.getIdUsuario().toString());
+        
+        double nota=0.0;
+
+        for(Entrega e : entregas)
+        {
+            nota+=(e.getNota()*10)/e.getActividades().getNotaMax();
+        }
+        
+        return nota;
+    }
 
     public static List<Asignaturas> findAsignaturas(Alumnos al) {
         AlumnosJerseyClient client = new AlumnosJerseyClient();
