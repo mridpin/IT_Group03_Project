@@ -7,12 +7,14 @@
         </a>
         <div class="w3-col s4">
             <img src='../<s:property value="#session.usuario.foto"></s:property>' alt="imagen de usuario" class="w3-circle w3-margin-right" style="width:46px">
-        </div>
-        <div class="w3-col s8 w3-bar">
-            <span>Bienvenido, <strong><s:property value="#session.usuario.nombre"/></strong></span><br>
-            <s:form namespace="/messages" action="loadMessages">
-                <strong><s:submit cssClass="w3-bar-item w3-button" value="Mensajes" cssStyle="width:100%;"></s:submit></strong>
-            </s:form>
+            </div>
+            <div class="w3-col s8 w3-bar">
+                <span>Bienvenido, <strong><s:property value="#session.usuario.nombre"/></strong></span><br>
+            <s:if test="#session.usuario.tipo()=='Alumno'">
+                <s:form namespace="/messages" action="loadMessages">
+                    <strong><s:submit cssClass="w3-bar-item w3-button" value="Mensajes" cssStyle="width:100%;"></s:submit></strong>
+                </s:form>
+            </s:if>
             <s:form action="logout" namespace="/login">
                 <s:submit cssClass="w3-button w3-bar-item w3-hover-grey" name="logout" value="Cerrar sesión" cssStyle="width:100%;"/>
             </s:form>
