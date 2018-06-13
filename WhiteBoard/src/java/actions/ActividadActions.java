@@ -158,6 +158,87 @@ public class ActividadActions extends ActionSupport {
         return SUCCESS;
     }
 
+    public String cargarActividad() {
+        Actividades current = findActividad(actividadId);
+
+        notaActividad = String.valueOf(current.getNotaMax());
+        fechaActividad = new SimpleDateFormat("YYYY-MM-dd").format(current.getFechaFin());
+        tipoActividad = current.getTipo();
+        nombreActividad = current.getNombre();
+
+        return SUCCESS;
+    }
+
+    public String editarActividad() throws ParseException {
+        Asignaturas asignatura = findAsignatura(asignaturaId);
+
+        //Nota is numeric
+        if (notaActividad.matches("^\\d+(\\.\\d+)+$")) {
+
+            double notaFinal = Double.parseDouble(notaActividad);
+
+            //Nota is positive
+            if (notaFinal > 0) {
+
+                //Fecha is valid
+                if (fechaActividad.matches("^\\d{4}[\\-\\/\\s]?((((0[13578])|(1[02]))[\\-\\/\\s]?(([0-2][0-9])|(3[01])))|(((0[469])|(11))[\\-\\/\\s]?(([0-2][0-9])|(30)))|(02[\\-\\/\\s]?[0-2][0-9]))$")) {
+
+                    //Nombre Actividad is required
+                    if (nombreActividad != null && !nombreActividad.equals("")) {
+
+                        //Tipo Actividad is required
+                        if (tipoActividad != null && !tipoActividad.equals("")) {
+                            Actividades oldActividad = findActividad(actividadId);
+                            
+                            String fullPath = getServletContext().getRealPath(File.separator) + (path + oldActividad.getAsignaturaId().getNombre() + "/entregas/");
+                            
+                            File oldPath = new File(fullPath+oldActividad.getNombre());
+                            
+                            File newPath = new File(fullPath+stripAccents(nombreActividad));
+
+                            oldPath.renameTo(newPath);
+                            
+                            Actividades newActividad = new Actividades();
+
+                            Map session = (Map) ActionContext.getContext().get("session");
+                            Usuario profesor = (Usuario) session.get("usuario");
+
+                            newActividad.setAsignaturaId(asignatura);
+                            newActividad.setNombre(nombreActividad);
+                            newActividad.setFechaFin(new SimpleDateFormat("YYYY-MM-dd").parse(fechaActividad));
+                            newActividad.setNotaMax(Double.parseDouble(notaActividad));
+                            newActividad.setTipo(tipoActividad);
+                            newActividad.setProfesorId((Profesores) profesor);
+                            newActividad.setActividadId(oldActividad.getActividadId());
+
+                            modificarActividad(newActividad);
+                        } else {
+                            addFieldError("tipoActividad", "El tipo de la actividad es requerido");
+                            return INPUT;
+                        }
+                    } else {
+                        addFieldError("nombreActividad", "El nombre de la actividad es requerido");
+                        return INPUT;
+                    }
+
+                } else {
+                    addFieldError("fechaActividad", "La fecha debe ser válida y debe tener el formato correcto");
+                    return INPUT;
+                }
+
+            } else {
+                addFieldError("notaActividad", "La nota debe ser mayor o igual a 0");
+                return INPUT;
+            }
+
+        } else {
+            addFieldError("notaActividad", "La nota debe ser numérica y debe seguir el formato X.X");
+            return INPUT;
+        }
+
+        return SUCCESS;
+    }
+
     public String getAsignaturaId() {
         return asignaturaId;
     }

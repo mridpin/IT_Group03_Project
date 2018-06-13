@@ -65,23 +65,19 @@
                     <s:iterator status="stat" value="#session.actividades" var="actividad">
                         <div class="w3-container w3-padding-16">
                             <div class="w3-left w3-padding"><i class="fa fa-pencil w3-xxxlarge w3-padding-16"></i></div>
-                            <h4 class="w3-padding-16"><s:property  value="%{#actividad.nombre}"/></h4>
+                            <h4 class="w3-padding-16">
+                                <s:form namespace="/actividades" action="getActividad">
+                                    <s:hidden name="actividadId" value="%{#actividad.actividadId}"/>
+                                    <s:submit name="submit"  value='%{#actividad.nombre}' cssClass="w3-button w3-border"/>
+                                </s:form>
+                            </h4>
                             <h5 class="w3-padding-16">Tipo: <s:property  value="%{#actividad.tipo}"/></h5>
                             <h5 class="w3-padding-16 w3-blue">Fecha L&iacute;mite de entrega: <s:property  value="%{#actividad.fechaFin}"/></h5>
-                            <h5 class="w3-padding-16 w3-green">Nota M&aacute;xima: <s:property  value="%{#actividad.notaMax}"/></h5>
-                            <div class="w3-container w3-row">
-                                <s:form namespace="/materiales" action="editarMaterial">
-                                    <s:hidden name="materialId" value="%{#material.materialId}"/>
-                                    <s:hidden name="asignaturaId" value="%{#session.asignatura.asignaturaId}"/>
-                                    <s:textfield name="nombreActividad" id="nombreActividad" label="Nuevo nombre de la Actividad" cssClass="w3-input w3-border w3-round"/>
-                                    <s:textfield name="nombreActividad" id="nombreActividad" label="Nuevo nombre de la Actividad" cssClass="w3-input w3-border w3-round"/>
-                                    <br>
-                                    <s:submit name=""  value="Editar" cssClass="w3-button w3-yellow"/> 
-                                </s:form>
-                            </div>
+                            <h5 class="w3-padding-16 w3-green">Nota M&aacute;xima: <s:property  value="%{#actividad.notaMax}"/></h5>  
                         </div>
 
-
+<hr>
+                        
                     </s:iterator>
 
                     <h4 class="w3-center">Subida de nueva Actividad</h4>
@@ -92,9 +88,26 @@
                             <s:textfield name="notaActividad" id="notaActividad" label="Nota Máxima de la Actividad - (Formato x.x)" cssClass="w3-input w3-border w3-round"/>
                             <s:textfield name="tipoActividad" id="tipoActividad" label="Tipo de Actividad" cssClass="w3-input w3-border w3-round"/>
                             <s:textfield name="fechaActividad" id="fechaActividad" label="Fecha Máxima de entrega de la Actividad - (Formato yyyy/mm/dd)" cssClass="w3-input w3-border w3-round"/>
-                            <s:submit name="Subir Actividad" value="Subir Actividad" id="Subir Actividad" cssClass="w3-input w3-border"/>
+                            <s:submit name="Subir Actividad" value="Subir Actividad" id="Subir Actividad" cssClass="w3-button w3-border"/>
                         </s:form>
                     </div>
+                    
+                    <hr>
+                    
+                    <h4 class="w3-center">Modificar Actividad</h4>
+                     <div class="w3-container w3-row">
+                                <s:form namespace="/actividades" action="editarActividad">
+                                    <s:hidden name="actividadId" value="%{#actividad.actividadId}"/>
+                                    <s:hidden name="asignaturaId" value="%{#session.asignatura.asignaturaId}"/>
+                                    <s:textfield name="nombreActividad" id="nombreActividad" label="Nuevo nombre de la Actividad" cssClass="w3-input w3-border w3-round"/>
+                                    <s:textfield name="tipoActividad" id="tipoActividad" label="Nuevo tipo de la Actividad" cssClass="w3-input w3-border w3-round"/>
+                                    <s:textfield name="fechaActividad" id="fechaActividad" label="Nueva fecha de la Actividad" cssClass="w3-input w3-border w3-round"/>
+                                    <s:textfield name="notaActividad" id="notaActividad" label="Nueva nota máxima de la Actividad" cssClass="w3-input w3-border w3-round"/>
+                                    <s:submit name=""  value="Editar Actividad" cssClass="w3-button w3-yellow"/>  <br>
+                                    
+                                </s:form>
+                            </div>
+                    
 
                 </s:else>
 
