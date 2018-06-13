@@ -20,27 +20,14 @@
 
             <s:if test="%{#session.usuario.tipo()=='Alumno'}">  
 
-                <div class="w3-row-padding w3-center w3-margin-bottom w3-card-4 w3-padding-16 w3-margin w3-white">
-                    <div class="w3-quarter">
-                        <div class="w3-container w3-red w3-padding-16">
-                            <div class="w3-left"><i class="fa fa-pencil w3-xxxlarge"></i></div>
-                            <div class="w3-right">
-                                <h3>99</h3>
-                            </div>
-                            <div class="w3-clear"></div>
-                            <h4>Pr&oacute;ximas Tareas</h4>
-                        </div>
-                    </div>
-                    <div class="w3-quarter">
-                        <div class="w3-container w3-blue w3-padding-16">
-                            <div class="w3-left"><i class="fa fa-comment w3-xxxlarge"></i></div>
-                            <div class="w3-right">
-                                <h3>52</h3>
-                            </div>
-                            <div class="w3-clear"></div>
-                            <h4>Mensajes</h4>
-                        </div>
-                    </div>
+               <div class="w3-row-padding w3-center w3-margin-bottom w3-card-4 w3-padding-16 w3-margin w3-white">
+                    <p>Como alumno, usted puede:</p>
+                    <ul class="w3-ul">
+                        <li><u>Descargar el material de sus asignaturas</u></li>
+                        <li><u>Realizar entregas de las actividades de sus asignaturas</u></li>
+                        <li><u>Contactar sus compa&ntilde;eros</u></li>
+                    </ul>
+                    <p>Para comenzar, haga <u>click</u> en una de las asignaturas que tiene asignadas en la lista de la izquierda</p>
                 </div>
 
             </s:if>

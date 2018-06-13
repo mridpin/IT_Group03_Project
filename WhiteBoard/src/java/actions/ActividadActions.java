@@ -60,7 +60,7 @@ public class ActividadActions extends ActionSupport {
         return SUCCESS;
     }
 
-    public String subirActividad() {
+    public String subirActividad() throws ParseException {
         Asignaturas asignatura = findAsignatura(asignaturaId);
 
         //Nota is numeric
@@ -93,7 +93,7 @@ public class ActividadActions extends ActionSupport {
 
                             newActividad.setAsignaturaId(asignatura);
                             newActividad.setNombre(nombreActividad);
-                            newActividad.setFechaFin(new Date(fechaActividad));
+                            newActividad.setFechaFin(new SimpleDateFormat("YYYY-MM-dd").parse(fechaActividad));
                             newActividad.setNotaMax(Double.parseDouble(notaActividad));
                             newActividad.setTipo(tipoActividad);
                             newActividad.setProfesorId((Profesores) profesor);

@@ -41,7 +41,7 @@
                         <s:form namespace="/entregas" action="realizarEntrega" method="post" enctype="multipart/form-data">
                             <s:hidden name="actividadId" value="%{current.actividadId}"/>
                             <s:file cssClass="w3-button" name="file" label="Archivo para entregar"/>
-                            <s:submit value="Entregar" cssClass="w3-button"/>
+                            <s:submit value="Entregar" cssClass="w3-button w3-green"/>
                         </s:form>
 
                     </s:if>

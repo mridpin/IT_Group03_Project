@@ -41,7 +41,7 @@
                     <s:form namespace="/materiales" action="loadMaterial">
                         <s:hidden name="asignaturaId" value="%{#asignatura.asignaturaId}"/>
                         <s:hidden name="tipo" value="eb"/>
-                        <div class="w3-quarter">
+                        <div class="w3-half">
                             <div class="w3-container w3-teal w3-padding-16">
                                 <div class="w3-left"><i class="fa fa-book w3-xxxlarge"></i></div>
                                 <div class="w3-right">
@@ -57,7 +57,7 @@
                     <s:form namespace="/materiales" action="loadMaterial">
                         <s:hidden name="asignaturaId" value="%{#asignatura.asignaturaId}"/>
                         <s:hidden name="tipo" value="epd"/>
-                        <div class="w3-quarter">
+                        <div class="w3-half">
                             <div class="w3-container w3-orange w3-text-white w3-padding-16">
                                 <div class="w3-left"><i class="fa fa-calculator w3-xxxlarge"></i></div>
                                 <div class="w3-right">
@@ -130,7 +130,7 @@
                                     <div class="w3-bar-item">                         
                                         <span class="w3-large"><s:property value="%{#actividad.getNombre()}"/></span><br>
                                         <span class="w3-red">Fecha L&iacute;mite de Entrega: <s:property value="%{#actividad.getFechaFin()}"/> </span>
-                                        <span class="w3-right"><s:submit cssClass="w3-btn w3-mobile" value="Ver"/></span>
+                                        <span class="w3-right"><s:submit cssClass="w3-btn w3-green w3-margin-left" value="Proceder a Entrega"/></span>
                                     </div>
                                 </li>
                             </s:form>
