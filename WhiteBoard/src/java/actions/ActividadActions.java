@@ -8,6 +8,8 @@ package actions;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import java.io.File;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -25,64 +27,102 @@ import static org.apache.struts2.ServletActionContext.getServletContext;
  * @author Portatil
  */
 public class ActividadActions extends ActionSupport {
-    
+
     private Actividades current;
-    
+
     private Entrega entrega;
-    
+
     private String actividadId;
-    
+
     private List<Actividades> all;
-    
+
     private String asignaturaId;
-    
+
     private String notaActividad;
-    
+
     private String tipoActividad;
-    
+
     private String nombreActividad;
-    
+
     private String fechaActividad;
-    
+
     public ActividadActions() {
     }
-    
+
     public String execute() throws Exception {
-         Map session = (Map) ActionContext.getContext().get("session");
+        Map session = (Map) ActionContext.getContext().get("session");
         Usuario alumno = (Usuario) session.get("usuario");
-        
+
         current = findActividad(actividadId);
-        
-        entrega = getEntregaAlumnoActividad(current.getActividadId().toString(),alumno.getIdUsuario().toString());
-        
+
+        entrega = getEntregaAlumnoActividad(current.getActividadId().toString(), alumno.getIdUsuario().toString());
+
         return SUCCESS;
     }
-    
-    public String subirActividad()
-    {
+
+    public String subirActividad() {
         Asignaturas asignatura = findAsignatura(asignaturaId);
-        
-        String fullPath = getServletContext().getRealPath(File.separator) + (path + stripAccents(asignatura.getNombre())+"/entregas/"+stripAccents(nombreActividad));
-        
-         //Create folder to store future entregas
-        File saveFolder = new File(fullPath);
-        
-        saveFolder.mkdirs();
-        
-        Actividades newActividad = new Actividades();
-        
-        Map session = (Map) ActionContext.getContext().get("session");
-        Usuario profesor = (Usuario) session.get("usuario");
-        
-        newActividad.setAsignaturaId(asignatura);
-        newActividad.setNombre(nombreActividad);
-        newActividad.setFechaFin(new Date(fechaActividad));
-        newActividad.setNotaMax(Double.parseDouble(notaActividad));
-        newActividad.setTipo(tipoActividad);
-        newActividad.setProfesorId((Profesores) profesor);
-        
-        crearActividad(newActividad);
-        
+
+        //Nota is numeric
+        if (notaActividad.matches("^\\d+(\\.\\d+)+$")) {
+
+            double notaFinal = Double.parseDouble(notaActividad);
+
+            //Nota is positive
+            if (notaFinal > 0) {
+
+                //Fecha is valid
+                if (fechaActividad.matches("^\\d{4}[\\-\\/\\s]?((((0[13578])|(1[02]))[\\-\\/\\s]?(([0-2][0-9])|(3[01])))|(((0[469])|(11))[\\-\\/\\s]?(([0-2][0-9])|(30)))|(02[\\-\\/\\s]?[0-2][0-9]))$")) {
+
+                    //Nombre Actividad is required
+                    if (nombreActividad != null && !nombreActividad.equals("")) {
+
+                        //Tipo Actividad is required
+                        if (tipoActividad != null && !tipoActividad.equals("")) {
+                            String fullPath = getServletContext().getRealPath(File.separator) + (path + stripAccents(asignatura.getNombre()) + "/entregas/" + stripAccents(nombreActividad));
+
+                            //Create folder to store future entregas
+                            File saveFolder = new File(fullPath);
+
+                            saveFolder.mkdirs();
+
+                            Actividades newActividad = new Actividades();
+
+                            Map session = (Map) ActionContext.getContext().get("session");
+                            Usuario profesor = (Usuario) session.get("usuario");
+
+                            newActividad.setAsignaturaId(asignatura);
+                            newActividad.setNombre(nombreActividad);
+                            newActividad.setFechaFin(new Date(fechaActividad));
+                            newActividad.setNotaMax(Double.parseDouble(notaActividad));
+                            newActividad.setTipo(tipoActividad);
+                            newActividad.setProfesorId((Profesores) profesor);
+
+                            crearActividad(newActividad);
+                        } else {
+                            addFieldError("tipoActividad", "El tipo de la actividad es requerido");
+                            return INPUT;
+                        }
+                    } else {
+                        addFieldError("nombreActividad", "El nombre de la actividad es requerido");
+                        return INPUT;
+                    }
+
+                } else {
+                    addFieldError("fechaActividad", "La fecha debe ser válida y debe tener el formato correcto");
+                    return INPUT;
+                }
+
+            } else {
+                addFieldError("notaActividad", "La nota debe ser mayor o igual a 0");
+                return INPUT;
+            }
+
+        } else {
+            addFieldError("notaActividad", "La nota debe ser numérica y debe seguir el formato X.X");
+            return INPUT;
+        }
+
         return SUCCESS;
     }
 
@@ -109,10 +149,12 @@ public class ActividadActions extends ActionSupport {
     public void setEntrega(Entrega entrega) {
         this.entrega = entrega;
     }
-    
-    public String cargarTodasActividades()
-    {
+
+    public String cargarTodasActividades() {
+        Map session = (Map) ActionContext.getContext().get("session");
         all = findActividadesAsignatura(asignaturaId);
+        session.put("actividades", all);
+
         return SUCCESS;
     }
 
@@ -163,9 +205,5 @@ public class ActividadActions extends ActionSupport {
     public void setTipoActividad(String tipoActividad) {
         this.tipoActividad = tipoActividad;
     }
-    
-    
-    
-    
-    
+
 }

@@ -8,6 +8,7 @@
         <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <s:head/>
     </head>
     <body>
 
@@ -61,7 +62,7 @@
 
                 </s:if>        
                 <s:else>
-                    <s:iterator status="stat" value="all" var="actividad">
+                    <s:iterator status="stat" value="#session.actividades" var="actividad">
                         <div class="w3-container w3-padding-16">
                             <div class="w3-left w3-padding"><i class="fa fa-pencil w3-xxxlarge w3-padding-16"></i></div>
                             <h4 class="w3-padding-16"><s:property  value="%{#actividad.nombre}"/></h4>
@@ -72,7 +73,8 @@
                                 <s:form namespace="/materiales" action="editarMaterial">
                                     <s:hidden name="materialId" value="%{#material.materialId}"/>
                                     <s:hidden name="asignaturaId" value="%{#session.asignatura.asignaturaId}"/>
-                                    <s:textfield name="nombreActividad" id="nombreActividad" label="Nuevo nombre del Material" cssClass="w3-input w3-border w3-round"/>
+                                    <s:textfield name="nombreActividad" id="nombreActividad" label="Nuevo nombre de la Actividad" cssClass="w3-input w3-border w3-round"/>
+                                    <s:textfield name="nombreActividad" id="nombreActividad" label="Nuevo nombre de la Actividad" cssClass="w3-input w3-border w3-round"/>
                                     <br>
                                     <s:submit name=""  value="Editar" cssClass="w3-button w3-yellow"/> 
                                 </s:form>

@@ -86,6 +86,7 @@
             <result name="success" type="chain">
                  <param name="actionName">loadTodoActividades</param>
             </result>
+            <result name="input">/activity.jsp</result>
         </action>
         
     </package>
