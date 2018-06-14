@@ -5,10 +5,15 @@
 5. Log out de alumno e inicar sesion como profesor.
 6. Meterse en la asignatura, después a gestionar material y subir algo.
 7. Hacer click en Ver lista de alumnos.
-8. En la pagina de la asignatura, hacer click en Calificar entregas, descargas la entrega, la abres y nos pones la maxima nota de la actividad (Puedes poner una nota superior a la nota maxima para que salte la validacion)
-9. Te metes en Gestionar Tareas y creas una nueva tarea con una fecha anterior a la de hoy (Puedes hacer que salte la validacion de la fecha poniendo un mes invalido o una nota no numerica, las validaciones se comprueban de una en una, es decir, si salta una las demas no saltan)
+8. En la pagina de la asignatura, hacer click en Calificar entregas, descargas la entrega, 
+la abres y nos pones la maxima nota de la actividad 
+(Puedes poner una nota superior a la nota maxima para que salte la validacion)
+9. Te metes en Gestionar Tareas y creas una nueva tarea con una fecha anterior a la de hoy 
+(Puedes hacer que salte la validacion de la fecha poniendo un mes invalido o una nota no numerica,
+ las validaciones se comprueban de una en una, es decir, si salta una las demas no saltan)
 10. Log out de profesor y log in de alumno.
-11. Te metes en la asignatura, muestras que se ha cambiado la nota actual del alumno y descargar el material nuevo que se ha subido.
+11. Te metes en la asignatura, muestras que se ha cambiado la nota actual del alumno y 
+descargar el material nuevo que se ha subido.
 12. Te metes en la entrega que se entrego antes y muestras que la nota ha cambiado.
 13. Te metes en la actividad que se ha creado nueva y muestras lo que sale.
 14. Mandas un mensaje al otro usuario y te metes en la cuenta del destinatario para enseñarla.
