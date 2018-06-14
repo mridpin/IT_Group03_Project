@@ -1,3 +1,0 @@
-Manuel: 6, 8, 9
-Víctor: 4, 5, 7
-Pablo: 1, 2, 3

@@ -102,7 +102,7 @@ public class ActividadActions extends ActionSupport {
                             newActividad.setAsignaturaId(asignatura);
                             newActividad.setNombre(nombreActividad);
                             try{
-                            newActividad.setFechaFin(new SimpleDateFormat("yyyy/MM/dd").parse(fechaActividad));
+                            newActividad.setFechaFin(new SimpleDateFormat("yyyy-MM-dd").parse(fechaActividad));
                             }
                             catch(ParseException ex)
                             {
@@ -221,7 +221,7 @@ public class ActividadActions extends ActionSupport {
                             newActividad.setAsignaturaId(asignatura);
                             newActividad.setNombre(nombreActividad);
                             try {
-                                newActividad.setFechaFin(new SimpleDateFormat("yyyy/MM/dd").parse(fechaActividad));
+                                newActividad.setFechaFin(new SimpleDateFormat("yyyy-MM-dd").parse(fechaActividad));
                             } catch (ParseException ex) {
                                 addFieldError("fechaActividad", "La fecha debe ser válida y debe tener el formato correcto");
                                 return INPUT;
